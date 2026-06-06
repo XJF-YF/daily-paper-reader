@@ -6,67 +6,41 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-05-28 ~ 2026-06-06
-- 运行时间：2026-06-06 13:07:36 UTC
+- 最新运行日期：2026-06-06
+- 运行时间：2026-06-06 20:48:18 UTC
 - 运行状态：成功
-- 本次总论文数：15
-- 精读区：4
-- 速读区：11
+- 本次总论文数：7
+- 精读区：1
+- 速读区：6
 
 ### 今日简报（AI）
-今天在3D高斯泼溅领域精选了15篇论文，精读4篇，重点关注高保真视图合成与实时渲染架构。  
-最值得看的是峰度约束高斯泼溅（KC-3DGS，9.0分）和层次化渲染架构（HiGS，8.0分），前者提升保真度，后者优化实时性能。  
-建议优先精读这两篇高分论文，再结合动态场景重建和点云上采样等速读内容，系统掌握3D高斯泼溅的最新进展。
-- 详情：[/20260528-20260606/README](/20260528-20260606/README)
+今日阅读7篇3D高斯泼溅相关论文，聚焦于未配对RGB-热成像渲染和实时街景模拟。精读《Unpaired RGB-Thermal Gaussian-Splatting》值得重点关注，其利用视觉几何变换器实现多模态数据融合；速读中《VEDAL》的变异驱动异步修剪和《SparseStreet》的稀疏高斯泼溅街景方案同样具有启发性。建议普通读者优先精读精读论文以理解非配对多模态高斯泼溅的核心创新，再根据实际需求选择修剪或街景方向的速读文章。
+- 详情：[/202606/06/README](/202606/06/README)
 
 ### 精读区论文标签
-1. [KC-3DGS: Kurtosis-Constrained Gaussian Splatting for High-Fidelity View Synthesis](/20260528-20260606/2606.03120v1-kc-3dgs-kurtosis-constrained-gaussian-splatting-for-high-fidelity-view-synthesis)  
-   标签：评分：9.0/10、query:pano-dgs
-   evidence：3D高斯溅射用于高保真新颖视图合成
-2. [HiGS: A Hierarchical Rendering Architecture for Real-Time 3D Gaussian Splatting](/20260528-20260606/2606.00352v1-higs-a-hierarchical-rendering-architecture-for-real-time-3d-gaussian-splatting)  
+1. [Unpaired RGB-Thermal Gaussian-Splatting Using Visual Geometric Transformers](/202606/06/2606.05491v1-unpaired-rgb-thermal-gaussian-splatting-using-visual-geometric-transformers)  
    标签：评分：8.0/10、query:pano-dgs
-   evidence：用于实时3D高斯泼溅的分层渲染架构
-3. [FreeStreamGS: Online Feed-forward 3D Gaussian Splatting from Unposed Streaming Inputs](/20260528-20260606/2606.03254v1-freestreamgs-online-feed-forward-3d-gaussian-splatting-from-unposed-streaming-inputs)  
-   标签：评分：8.0/10、query:pano-dgs
-   evidence：在线前馈3D高斯泼溅用于无位姿流式输入的新视角合成
-4. [ZipSplat: Fewer Gaussians, Better Splats](/20260528-20260606/2606.05102v1-zipsplat-fewer-gaussians-better-splats)  
-   标签：评分：8.0/10、query:pano-dgs
-   evidence：前馈3D高斯溅射用于新颖视图合成
+   evidence：使用3D高斯泼溅的无配对多模态RGB-热成像新颖视图合成
 
 ### 速读区论文标签
-1. [DSD-GS: Dynamic-Static Decomposition of Gaussian Splatting for Efficient and High-Fidelity Dynamic Scene Reconstruction](/20260528-20260606/2605.30863v1-dsd-gs-dynamic-static-decomposition-of-gaussian-splatting-for-efficient-and-high-fidelity-dynamic-scene-reconstruction)  
+1. [VEDAL: Variational Error-Driven Asynchronous Learning for 3D Gaussian Splatting Pruning](/202606/06/2606.02346v1-vedal-variational-error-driven-asynchronous-learning-for-3d-gaussian-splatting-pruning)  
    标签：评分：7.0/10、query:pano-dgs
-   evidence：动态-静态分解实现高效3DGS新颖视图合成
-2. [Optimizing 3D Gaussian Splatting via Point Cloud Upsampling](/20260528-20260606/2606.00450v1-optimizing-3d-gaussian-splatting-via-point-cloud-upsampling)  
+   evidence：3DGS剪枝框架，提升内存和训练稳定性，可应用于全景新视图合成
+2. [SparseStreet: Sparse Gaussian Splatting for Real-Time Street Scene Simulation](/202606/06/2606.03909v1-sparsestreet-sparse-gaussian-splatting-for-real-time-street-scene-simulation)  
    标签：评分：7.0/10、query:pano-dgs
-   evidence：优化3DGS初始化以提升视图合成质量
-3. [$\text{VG}^2$GT: Voxel-Gaussian Splatting Visual Geometry Grounded Transformer](/20260528-20260606/2606.01573v1-textvg2gt-voxel-gaussian-splatting-visual-geometry-grounded-transformer)  
+   evidence：面向实时街景模拟的稀疏高斯泼溅压缩方法
+3. [Geometry Gaussians: Decoupling Appearance and Geometry in Gaussian Splatting](/202606/06/2606.05124v1-geometry-gaussians-decoupling-appearance-and-geometry-in-gaussian-splatting)  
    标签：评分：7.0/10、query:pano-dgs
-   evidence：使用体素引导的高斯泼溅进行新视角合成
-4. [$\text{VG}^2$GT: Voxel-Gaussian Splatting Visual Geometry Grounded Transformer](/20260528-20260606/2606.01573v2-textvg2gt-voxel-gaussian-splatting-visual-geometry-grounded-transformer)  
-   标签：评分：7.0/10、query:pano-dgs
-   evidence：体素-高斯溅射用于新颖视图合成
-5. [WebSpline: Structure-Informed Splines for Real-Time 3D Gaussians from Monocular Videos](/20260528-20260606/2606.02096v1-webspline-structure-informed-splines-for-real-time-3d-gaussians-from-monocular-videos)  
-   标签：评分：7.0/10、query:pano-dgs
-   evidence：从单目视频重建动态3DGS用于视图合成
-6. [MLP Splatting: Object-Centric Neural Fields](/20260528-20260606/2606.03877v1-mlp-splatting-object-centric-neural-fields)  
-   标签：评分：7.0/10、query:pano-dgs
-   evidence：采用类似高斯泼溅的方法，使用MLP基元进行新视角合成
-7. [Uncertainty-driven 3D Gaussian Splatting Active Mapping via Anisotropic Visibility Field](/20260528-20260606/2605.30342v1-uncertainty-driven-3d-gaussian-splatting-active-mapping-via-anisotropic-visibility-field)  
+   evidence：3D高斯泼溅新视角合成方法
+4. [Real-Time Physics Simulation with Dynamic Mesh-Gaussian Reconstructions](/202606/06/2606.00444v1-real-time-physics-simulation-with-dynamic-mesh-gaussian-reconstructions)  
    标签：评分：6.0/10、query:pano-dgs
-   evidence：3DGS新颖视图合成中的不确定性量化
-8. [Learning Global Motion with Compact Gaussians for Feed-Forward 4D Reconstruction](/20260528-20260606/2605.31595v1-learning-global-motion-with-compact-gaussians-for-feed-forward-4d-reconstruction)  
+   evidence：结合固定拓扑网格用于物理模拟、高斯泼溅用于渲染的双表示框架
+5. [GeoSAM-3D: Geodesic Prompt Propagation for Open-Vocabulary 3D Scene Segmentation from Monocular Video](/202606/06/2606.00447v1-geosam-3d-geodesic-prompt-propagation-for-open-vocabulary-3d-scene-segmentation-from-monocular-video)  
    标签：评分：6.0/10、query:pano-dgs
-   evidence：前馈4D重建使用紧凑高斯表示
-9. [Beyond Static Gaussians: An Empirical Investigation of Architectural Paradigms for Dynamic 3D Scene Reconstruction](/20260528-20260606/2606.00452v1-beyond-static-gaussians-an-empirical-investigation-of-architectural-paradigms-for-dynamic-3d-scene-reconstruction)  
+   evidence：使用单目3D高斯溅射进行场景重建，实现开放词汇分割
+6. [PersistGS: Differentiable Physics for Object Permanence in 4D Gaussian Splatting](/202606/06/2606.03479v1-persistgs-differentiable-physics-for-object-permanence-in-4d-gaussian-splatting)  
    标签：评分：6.0/10、query:pano-dgs
-   evidence：动态3DGS方法的实证分析
-10. [Directed Distance Fields for Constant-Time Ray Queries on Gaussian Splatting](/20260528-20260606/2606.00817v1-directed-distance-fields-for-constant-time-ray-queries-on-gaussian-splatting)  
-   标签：评分：6.0/10、query:pano-dgs
-   evidence：扩展3D高斯泼溅使其支持射线追踪，对沉浸式环境渲染有潜在价值
-11. [DeblurNVS: Geometric Latent Diffusion for Novel View Synthesis from Sparse Motion-Blurred Images](/20260528-20260606/2606.01315v1-deblurnvs-geometric-latent-diffusion-for-novel-view-synthesis-from-sparse-motion-blurred-images)  
-   标签：评分：6.0/10、query:pano-dgs
-   evidence：利用几何潜在扩散和3DGS的模糊鲁棒新颖视图合成
+   evidence：带物理的3D高斯泼溅动态场景重建
 
 
 <div class="dpr-home-promo-card">

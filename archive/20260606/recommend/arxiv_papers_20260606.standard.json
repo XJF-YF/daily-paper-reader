@@ -1,0 +1,289 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-06T20:44:48.635287+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 6,
+    "quick_skim_target": 11,
+    "quick_selected": 6
+  },
+  "deep_dive": [
+    {
+      "id": "2606.05491v1",
+      "source": "arxiv",
+      "title": "Unpaired RGB-Thermal Gaussian-Splatting Using Visual Geometric Transformers",
+      "abstract": "Multi-modal novel view synthesis (NVS) combining RGB and thermal imagery enables precise 3D scene reconstruction with visual and thermal information. However, existing methods typically rely on precisely calibrated RGB-thermal image pairs or stereo setups, limiting scalability and practical deployment. To address this, we introduce a framework for unpaired RGB-thermal NVS that leverages VGGT, a 3D feed-forward transformer architecture, to independently estimate camera poses for each modality. The pose sets are then aligned using the Procrustes algorithm with a cross-modal feature matcher, enabling joint registration without paired calibration. Building on this alignment, we further propose a multi-modal 3D Gaussian Splatting approach that learns directly from unpaired RGB and thermal images. Experiments on diverse scenes demonstrate that our method achieves competitive performance in thermal view synthesis while maintaining RGB fidelity. Moreover, we show that existing reconstruction approaches can produce modality-specific reconstructions that lack cross-modal consistency. We thus introduce a benchmarking framework to rigorously evaluate both per-modality image synthesis and the multi-modal coherence of reconstructed scenes.",
+      "authors": [
+        "Jean Cordonnier",
+        "Chenghao Xu",
+        "Olga Fink",
+        "Malcolm Mielle"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "published": "2026-06-03T22:30:58+00:00",
+      "link": "https://arxiv.org/pdf/2606.05491v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Unpaired multi-modal RGB-Thermal NVS using 3D Gaussian Splatting",
+      "llm_evidence_cn": "使用3D高斯泼溅的无配对多模态RGB-热成像新颖视图合成",
+      "llm_evidence": "使用3D高斯泼溅的无配对多模态RGB-热成像新颖视图合成",
+      "canonical_evidence": "使用3D高斯泼溅的无配对多模态RGB-热成像新颖视图合成",
+      "llm_tldr_en": "Proposes a framework for unpaired RGB-thermal novel view synthesis using VGGT for pose estimation and Procrustes alignment, followed by multi-modal 3DGS learning disentangled color and thermal Gaussians.",
+      "llm_tldr_cn": "针对现有RGB-热成像NVS需要精确配对校准的问题，提出无配对框架：利用VGGT独立估计各模态相机位姿，通过Procrustes和跨模态特征匹配对齐。基于对齐结果，训练多模态3DGS分别学习颜色和热辐射高斯，实现从任意新视角的RGB热成像合成。",
+      "llm_tldr": "针对现有RGB-热成像NVS需要精确配对校准的问题，提出无配对框架：利用VGGT独立估计各模态相机位姿，通过Procrustes和跨模态特征匹配对齐。基于对齐结果，训练多模态3DGS分别学习颜色和热辐射高斯，实现从任意新视角的RGB热成像合成。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.02346v1",
+      "source": "arxiv",
+      "title": "VEDAL: Variational Error-Driven Asynchronous Learning for 3D Gaussian Splatting Pruning",
+      "abstract": "3D Gaussian Splatting (3DGS) achieves remarkable novel view synthesis quality with real-time rendering, yet suffers from excessive memory consumption due to millions of Gaussian primitives. Existing pruning methods rely on heuristic importance scores or synchronous batch updates, leading to suboptimal compression and training instability. We propose VEDAL, a principled framework that formulates Gaussian pruning as variational free energy minimization. Our approach introduces (1) a prediction-error gating mechanism that asynchronously activates pruning based on per-Gaussian reconstruction uncertainty, and (2) a variational uncertainty head that models pruning decisions as latent variables with learnable priors. The free energy objective naturally balances reconstruction fidelity against model complexity through an information-theoretic lens. Extensive experiments on Mip-NeRF 360, Tanks&Temples, and Deep Blending demonstrate that VEDAL achieves 5.2x compression with only 0.31 dB PSNR drop, outperforming PUP 3D-GS by +0.05 dB at a higher compression ratio and LightGaussian by +0.35 dB at comparable quality, while maintaining real-time rendering at 185 FPS.",
+      "authors": [
+        "Aoduo Li",
+        "Jiancheng Li",
+        "Huan Ye",
+        "Hongjian Xu",
+        "Shiting Wu",
+        "Xiujun Zhang",
+        "Zimeng Li",
+        "Xuhang Chen"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-01T14:56:50+00:00",
+      "link": "https://arxiv.org/pdf/2606.02346v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Pruning framework for 3DGS that improves memory and training stability, applicable to panoramic NVS scenarios",
+      "llm_evidence_cn": "3DGS剪枝框架，提升内存和训练稳定性，可应用于全景新视图合成",
+      "llm_evidence": "3DGS剪枝框架，提升内存和训练稳定性，可应用于全景新视图合成",
+      "canonical_evidence": "3DGS剪枝框架，提升内存和训练稳定性，可应用于全景新视图合成",
+      "llm_tldr_en": "VEDAL formulates 3DGS pruning as variational free energy minimization with an asynchronous gating mechanism, achieving better compression and stability, benefitting any NVS task including panoramic.",
+      "llm_tldr_cn": "针对3DGS存储开销大和现有剪枝方法不稳定问题，VEDAL将剪枝建模为变分自由能最小化，提出预测误差门控机制异步激活剪枝，并引入变分不确定性头。实验表明该方法在保持渲染质量的同时大幅压缩高斯数量，并提高训练稳定性。该工作为3DGS的高效部署提供了通用优化技术，可直接用于全景场景重建与新视图合成，降低资源需求。",
+      "llm_tldr": "针对3DGS存储开销大和现有剪枝方法不稳定问题，VEDAL将剪枝建模为变分自由能最小化，提出预测误差门控机制异步激活剪枝，并引入变分不确定性头。实验表明该方法在保持渲染质量的同时大幅压缩高斯数量，并提高训练稳定性。该工作为3DGS的高效部署提供了通用优化技术，可直接用于全景场景重建与新视图合成，降低资源需求。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.00444v1",
+      "source": "arxiv",
+      "title": "Real-Time Physics Simulation with Dynamic Mesh-Gaussian Reconstructions",
+      "abstract": "Integrating dynamic 3D reconstructions into physics simulation requires fixed mesh topology for efficient collision detection, but state-of-the-art methods like DG-Mesh produce varying topology optimized for geometric quality. We investigate whether topology conversion can enable physics integration while preserving reconstruction fidelity. We propose a dual-representation framework combining fixed-topology meshes for physics with Gaussian splatting for rendering, achieving 4.65$\\times$ speedup over varying-topology baselines through runtime vertex buffer updates. We evaluate two conversion strategies, temporal correspondence tracking and template-based projection, against native fixed-topology methods (MaGS) on the DG-Mesh dataset. Our evaluation reveals that both conversion approaches incur 65-80% geometric degradation, producing results inferior to MaGS despite DG-Mesh's superior initial quality. This demonstrates that high-quality reconstruction and physics-compatible topology represent fundamentally distinct objectives that cannot be reconciled through post-processing. Our findings inform future development of physics-aware reconstruction methods and our framework enables real-time simulation with any fixed-topology approach.",
+      "authors": [
+        "Adrian Ramlal",
+        "John S. Zelek"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "published": "2026-05-30T00:30:11+00:00",
+      "link": "https://arxiv.org/pdf/2606.00444v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Dual-representation framework combing fixed-topology meshes for physics with Gaussian splatting for rendering",
+      "llm_evidence_cn": "结合固定拓扑网格用于物理模拟、高斯泼溅用于渲染的双表示框架",
+      "llm_evidence": "结合固定拓扑网格用于物理模拟、高斯泼溅用于渲染的双表示框架",
+      "canonical_evidence": "结合固定拓扑网格用于物理模拟、高斯泼溅用于渲染的双表示框架",
+      "llm_tldr_en": "Proposes a dual-representation framework that separates physics simulation (fixed-topology mesh) from rendering (Gaussian splatting), achieving 4.65x speedup for dynamic scene reconstruction integration.",
+      "llm_tldr_cn": "针对动态三维重建与物理模拟集成中网格拓扑变化导致碰撞检测效率低的问题，提出双表示框架：固定拓扑网格用于物理模拟，高斯泼溅用于高质量渲染。运行时通过顶点缓冲区更新实现4.65倍加速，在保持重建保真度的同时显著提升物理仿真效率。",
+      "llm_tldr": "针对动态三维重建与物理模拟集成中网格拓扑变化导致碰撞检测效率低的问题，提出双表示框架：固定拓扑网格用于物理模拟，高斯泼溅用于高质量渲染。运行时通过顶点缓冲区更新实现4.65倍加速，在保持重建保真度的同时显著提升物理仿真效率。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.03909v1",
+      "source": "arxiv",
+      "title": "SparseStreet: Sparse Gaussian Splatting for Real-Time Street Scene Simulation",
+      "abstract": "While 3D Gaussian Splatting has shown promising results in street scene reconstruction, existing methods require massive numbers of Gaussian primitives to capture fine details, leading to prohibitive storage costs and slow rendering speeds. We observe that dynamic objects (e.g., vehicles and pedestrians) demand high-fidelity representations to maintain temporal consistency, while static background regions often contain substantial redundancy. Motivated by this, we propose SparseStreet, a general compression framework specifically designed for street scenes. First, we introduce a node-based learnable pruning strategy that systematically removes low-contributing Gaussian primitives while preserving visually critical regions. Second, after the scene representation stabilizes, we apply background compression, further reducing redundancy in static regions. Our method effectively preserves the geometry and appearance of dynamic objects while significantly reducing the total number of Gaussian primitives. Extensive experiments on the Waymo and nuScenes demonstrate that SparseStreet achieves up to 80% compression ratio with minimal quality degradation, enabling resource-efficient, high-fidelity dynamic scene reconstruction. Project website: https://sparsestreet.github.io/.",
+      "authors": [
+        "Qingpo Wuwu",
+        "Xiaobao Wei",
+        "Peng Chen",
+        "Nan Huang",
+        "Zhongyu Zhao",
+        "Hao Wang",
+        "Ming Lu",
+        "Ningning Ma",
+        "Shanghang Zhang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-02T17:06:14+00:00",
+      "link": "https://arxiv.org/pdf/2606.03909v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Sparse Gaussian Splatting compression for real-time street scene NVS",
+      "llm_evidence_cn": "面向实时街景模拟的稀疏高斯泼溅压缩方法",
+      "llm_evidence": "面向实时街景模拟的稀疏高斯泼溅压缩方法",
+      "canonical_evidence": "面向实时街景模拟的稀疏高斯泼溅压缩方法",
+      "llm_tldr_en": "Proposes SparseStreet, a compression framework for 3DGS that prunes low-contributing primitives via learnable node-based pruning, achieving efficient street scene rendering with reduced storage and faster speeds.",
+      "llm_tldr_cn": "针对现有3D高斯泼溅在街景重建中需要大量高斯原语导致存储和速度开销大的问题，提出SparseStreet压缩框架。通过基于节点的可学习剪枝策略系统移除低贡献高斯原语，同时保留视觉关键区域。实验表明该方法在不牺牲质量的前提下大幅减少存储并提升渲染速度，适用于实时街景仿真。",
+      "llm_tldr": "针对现有3D高斯泼溅在街景重建中需要大量高斯原语导致存储和速度开销大的问题，提出SparseStreet压缩框架。通过基于节点的可学习剪枝策略系统移除低贡献高斯原语，同时保留视觉关键区域。实验表明该方法在不牺牲质量的前提下大幅减少存储并提升渲染速度，适用于实时街景仿真。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.00447v1",
+      "source": "arxiv",
+      "title": "GeoSAM-3D: Geodesic Prompt Propagation for Open-Vocabulary 3D Scene Segmentation from Monocular Video",
+      "abstract": "Open-vocabulary 3D scene segmentation usually assumes RGB-D video, calibrated multi-view imagery, or a reconstructed mesh. GeoSAM-3D studies a lighter setting: a user uploads a short monocular video, clicks or names an object in one frame, and receives a propagated 3D mask over a Gaussian scene. The implementation combines frozen image and video foundation models with a monocular 3D Gaussian Splatting reconstruction and a differentiable graph-geodesic propagation kernel over Gaussian centroids. The central design choice is to propagate prompts by heat-kernel distance on the reconstructed scene graph, rather than by Euclidean nearest neighbors in 3D. This preserves continuity around curved surfaces and reduces leakage across nearby but disconnected objects. This paper describes the repository state, the mathematical kernel implemented in geosam3d.propagate, the feature head trained from Segment Anything masks, and the validation already present in the codebase. The evaluation protocol separates implementation validation, graph propagation quality, leakage control, and interactive latency.",
+      "authors": [
+        "Arun Sharma"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-05-30T00:34:37+00:00",
+      "link": "https://arxiv.org/pdf/2606.00447v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "uses monocular 3D Gaussian Splatting for scene reconstruction, enabling open-vocabulary segmentation",
+      "llm_evidence_cn": "使用单目3D高斯溅射进行场景重建，实现开放词汇分割",
+      "llm_evidence": "使用单目3D高斯溅射进行场景重建，实现开放词汇分割",
+      "canonical_evidence": "使用单目3D高斯溅射进行场景重建，实现开放词汇分割",
+      "llm_tldr_en": "Combines frozen foundation models with monocular 3D Gaussian Splatting reconstruction and a geodesic propagation kernel for zero-shot 3D segmentation, demonstrating utility of 3DGS beyond novel view synthesis.",
+      "llm_tldr_cn": "该论文提出GeoSAM-3D，利用单目视频和3D高斯溅射重建场景，结合冻住的图像/视频基础模型，通过图测地距离传播提示实现3D分割。虽然核心任务是分割而非全景新视角合成，但展示了3DGS在场景理解中的使能作用，对全景重建具有间接方法参考价值。",
+      "llm_tldr": "该论文提出GeoSAM-3D，利用单目视频和3D高斯溅射重建场景，结合冻住的图像/视频基础模型，通过图测地距离传播提示实现3D分割。虽然核心任务是分割而非全景新视角合成，但展示了3DGS在场景理解中的使能作用，对全景重建具有间接方法参考价值。",
+      "llm_tags": [
+        "query:pano-dgs:composite"
+      ],
+      "matched_query_tag": "query:pano-dgs:composite",
+      "matched_query_text": "Papers central to 请帮我查找全景3dgs的相关论文, especially work that connects or combines: 3D Gaussian Splatting method for novel view synthesis; reconstructing panoramic 360-degree scenes using Gaussian splatting; novel view synthesis for 360-degree immersive environments; omnidirectional rendering with 3D Gaussian Splatting; find papers on 3D Gaussian Splatting for panoramic 360 degree scene reconstruction; survey of omnidirectional novel view synthesis using Gaussian representations.",
+      "matched_requirement_id": "req-composite-pano-dgs",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.05124v1",
+      "source": "arxiv",
+      "title": "Geometry Gaussians: Decoupling Appearance and Geometry in Gaussian Splatting",
+      "abstract": "After the success of 3D Gaussian Splatting (3DGS) for novel view synthesis, many works have explored how to also use it for geometric surface representation. However, extracting accurate geometric information directly from 3DGS remains challenging and can often reduce the appearance rendering quality. In this work, we show that 3DGS in its default form is inheritedly unsuited to represent texture and geometry at the same time, by training with complete ground-truth texture and geometry information. We also propose a simple solution by applying a single additional geometry opacity parameter to each splat, together with an optional transparency-curated optimization pipeline. Our experiments, both with ground-truth and vision foundation model geometric input, show that this change leads to improved rendering and geometry performance on a wide variety of dataset, and especially complex scenes with transparent objects benefit significantly from our method.",
+      "authors": [
+        "Hongyu Zhou",
+        "Zorah Lähner"
+      ],
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-06-03T17:29:36+00:00",
+      "link": "https://arxiv.org/pdf/2606.05124v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "3D Gaussian Splatting novel view synthesis method",
+      "llm_evidence_cn": "3D高斯泼溅新视角合成方法",
+      "llm_evidence": "3D高斯泼溅新视角合成方法",
+      "canonical_evidence": "3D高斯泼溅新视角合成方法",
+      "llm_tldr_en": "Shows that default 3DGS is unsuited to jointly represent texture and geometry, and proposes a simple geometry opacity parameter to improve geometric accuracy without harming rendering quality.",
+      "llm_tldr_cn": "本文指出默认3D高斯泼溅（3DGS）在新视角合成中无法同时准确表示纹理和几何。通过训练与真实纹理和几何信息对比，发现其固有缺陷。提出为每个高斯添加一个额外的几何不透明度参数，并配合透明度优化管线，在不降低渲染质量的前提下提升几何精度。实验表明该方法在多种场景下有效，为后续3DGS几何改进提供了新思路。",
+      "llm_tldr": "本文指出默认3D高斯泼溅（3DGS）在新视角合成中无法同时准确表示纹理和几何。通过训练与真实纹理和几何信息对比，发现其固有缺陷。提出为每个高斯添加一个额外的几何不透明度参数，并配合透明度优化管线，在不降低渲染质量的前提下提升几何精度。实验表明该方法在多种场景下有效，为后续3DGS几何改进提供了新思路。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.03479v1",
+      "source": "arxiv",
+      "title": "PersistGS: Differentiable Physics for Object Permanence in 4D Gaussian Splatting",
+      "abstract": "Dynamic 3D Gaussian Splatting (3DGS) methods reconstruct time-varying scenes from synchronized multi-camera video using photometric supervision. When a moving object becomes fully occluded from all training cameras, this supervision vanishes: the Gaussians representing it receive no gradient signal and degrade. Existing approaches to incomplete observations in neural reconstruction rely on learned generative priors that prioritize visual plausibility over physical correctness.   We propose $\\textbf{PersistGS}$, a method that restores object permanence during occlusion by coupling differentiable rigid body simulation with 3D Gaussian Splatting. Our approach decomposes the scene into per-object Gaussians and collision meshes, estimates friction and velocity from the observed pre-occlusion trajectory via differentiable simulation, and uses the resulting SE(3) trajectory to position object Gaussians throughout the occlusion period. Because the predicted trajectory satisfies the governing equations of rigid body dynamics, it faithfully captures contact events (bounces, friction-based deceleration, direction changes) that kinematic extrapolation cannot model. We introduce a centroid silhouette loss that isolates positional gradients from appearance noise, yielding 40% lower trajectory error than photometric supervision. We evaluate using cameras withheld from training that observe the object during its occlusion. Experiments on synthetic scenes show that PersistGS outperforms constant velocity extrapolation by +2.46dB PSNR and comes within 0.19dB of a ground-truth trajectory upper bound.",
+      "authors": [
+        "Adrian Ramlal",
+        "John S. Zelek"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "published": "2026-06-02T10:57:15+00:00",
+      "link": "https://arxiv.org/pdf/2606.03479v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Dynamic 3D Gaussian Splatting with physics for object permanence",
+      "llm_evidence_cn": "带物理的3D高斯泼溅动态场景重建",
+      "llm_evidence": "带物理的3D高斯泼溅动态场景重建",
+      "canonical_evidence": "带物理的3D高斯泼溅动态场景重建",
+      "llm_tldr_en": "Couples differentiable rigid body simulation with 3DGS to maintain object permanence during occlusions in dynamic scene reconstruction from multi-camera video.",
+      "llm_tldr_cn": "动态3DGS在目标被遮挡时高斯退化，现有方法依赖生成先验忽视物理正确性。本文提出PersistGS，将可微刚体模拟与3DGS结合，将场景分解为每个物体的高斯和碰撞网格，估计摩擦系数等物理参数。在遮挡期间通过模拟保持物体状态，实验证明在保持外观质量的同时恢复了物理合理的物体永久性，为动态场景理解提供了新范式。",
+      "llm_tldr": "动态3DGS在目标被遮挡时高斯退化，现有方法依赖生成先验忽视物理正确性。本文提出PersistGS，将可微刚体模拟与3DGS结合，将场景分解为每个物体的高斯和碰撞网格，估计摩擦系数等物理参数。在遮挡期间通过模拟保持物体状态，实验证明在保持外观质量的同时恢复了物理合理的物体永久性，为动态场景理解提供了新范式。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

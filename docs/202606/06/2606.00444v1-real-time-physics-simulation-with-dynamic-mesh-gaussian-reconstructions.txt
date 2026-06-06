@@ -1,0 +1,150 @@
+Title: Real-Time Physics Simulation with Dynamic Mesh-Gaussian Reconstructions
+
+URL Source: https://arxiv.org/pdf/2606.00444v1
+
+Published Time: Tue, 02 Jun 2026 00:26:59 GMT
+
+Number of Pages: 5
+
+Markdown Content:
+# Real-Time Physics Simulation with Dynamic Mesh-Gaussian Reconstructions 
+
+# Adrian Ramlal University of Waterloo 
+
+> adrian.ramlal@uwaterloo.ca
+
+# John S. Zelek University of Waterloo 
+
+> jzelek@uwaterloo.ca
+
+# Abstract 
+
+Integrating dynamic 3D reconstructions into physics simu-lation requires fixed mesh topology for efficient collision de-tection, but state-of-the-art methods like DG-Mesh produce varying topology optimized for geometric quality. We inves-tigate whether topology conversion can enable physics inte-gration while preserving reconstruction fidelity. We propose a dual-representation framework combining fixed-topology meshes for physics with Gaussian splatting for render-ing, achieving 4.65 × speedup over varying-topology base-lines through runtime vertex buffer updates. We evaluate two conversion strategies, temporal correspondence track-ing and template-based projection, against native fixed-topology methods (MaGS) on the DG-Mesh dataset. Our evaluation reveals that both conversion approaches incur 65–80% geometric degradation, producing results inferior to MaGS despite DG-Mesh’s superior initial quality. This demonstrates that high-quality reconstruction and physics-compatible topology represent fundamentally distinct ob-jectives that cannot be reconciled through post-processing. Our findings inform future development of physics-aware reconstruction methods and our framework enables real-time simulation with any fixed-topology approach. 
+
+# 1. Introduction 
+
+Physics simulation with photorealistic rendering is essen-tial for robotics [21], virtual reality [16], and reinforcement learning [1]. Training robots in simulation requires real-istic collision dynamics and visual feedback to enable ef-fective sim-to-real transfer. Similarly, embodied AI agents need physically accurate environments to develop transfer-able behaviors. Recent advances in neural rendering, partic-ularly 3D Gaussian Splatting (3DGS) [8] and its dynamic extensions [9, 12], enable photorealistic reconstruction of dynamic scenes from multi-view video with explicit mesh geometry. However, integrating them into physics engines faces a critical barrier: mesh topology consistency .Modern physics engines require fixed topology (consis-tent vertex count and face connectivity) to maintain effi-cient collision detection structures. Varying topology neces-sitates expensive per-frame rebuilds of spatial acceleration structures, preventing real-time simulation. This exposes a fundamental trade-off in current meth-ods. DG-Mesh [9] achieves state-of-the-art quality via iso-surface extraction but produces varying topology .MaGS [12] maintains fixed topology by jointly optimizing a template mesh with Gaussians, enabling physics simulation at the cost of fidelity. Can high-quality varying-topology reconstructions be converted to fixed topology while pre-serving geometric quality? Bridging this gap would enable leveraging the highest-quality reconstructions for physics simulation in robotics and interactive applications. We investigate this question through systematic evalua-tion in the Genesis simulator [1]. Our contributions are: 1. Dual-Representation Framework. We develop an ar-chitecture combining fixed-topology meshes for physics with Gaussians for rendering. Runtime vertex buffer up-dates achieve 147.8 FPS versus 31.8 FPS for varying topology (4.65× speedup), enabling efficient integration of any fixed-topology method. 2. Topology Conversion Evaluation. We propose two conversion strategies (temporal tracking and template projection) and provide the first systematic comparison against native fixed-topology methods on the DG-Mesh dataset [9], measuring geometric accuracy across six dy-namic scenes. Our experiments reveal that topology conversion incurs 65–80% geometric degradation, making both strategies in-ferior to native fixed-topology methods. This demonstrates that high-quality reconstruction and physics-compatible topology are fundamentally distinct objectives. Our frame-work provides valuable infrastructure for fixed-topology methods and our evaluation informs future physics-aware reconstruction approaches. 
+
+# 2. Related Works 
+
+2.1. Dynamic Neural Rendering 
+
+Neural Radiance Fields (NeRF) [13] and extensions [4, 15, 17] model dynamic scenes with volumetric represen-
+
+> arXiv:2606.00444v1 [cs.CV] 30 May 2026
+
+tations but lack explicit geometry. 3D Gaussian Splatting (3DGS) [8] provides explicit point-based rendering with real-time performance. Dynamic 3DGS methods [11, 23, 25] learn deformation networks to model temporal motion, with controllable variants like SC-GS [7] using sparse con-trol points for editing. While achieving high rendering qual-ity, these point-based methods produce meshes with incon-sistent topology across frames, preventing direct physics in-tegration. 
+
+2.2. Mesh-Gaussian Hybrid Representations 
+
+Recent work combines meshes with 3DGS for structured geometry. SuGaR [5] regularizes Gaussians to surfaces and extracts meshes via Poisson reconstruction. GaMeS [22] introduces mesh-Gaussian binding for topology-preserving edits through triangle soups. Domain-specific methods leverage parametric models: GaussianAvatars [18] uses FLAME for animatable heads, while PGC [6] and Gaussian Garments [19] bind Gaussians to cloth meshes for physics-based simulation. For general dynamic scenes, DG-Mesh [9] achieves state-of-the-art geometric quality through differen-tiable Poisson reconstruction and Marching Cubes, with Gaussian-Mesh Anchoring enforcing one-to-one Gaussian-face correspondence. However, the iso-surface extraction produces varying topology across frames. In contrast, MaGS [12] maintains fixed topology by jointly optimizing a template mesh with mesh-adsorbed Gaussians, incorpo-rating deformation priors like ARAP [20] and SMPL [10]. This prioritizes topological stability and physics compati-bility over geometric fidelity. Our work provides the first systematic comparison of these approaches for physics simulation. 
+
+2.3. Physics Integration with Neural Representa-tions 
+
+Physics engines require fixed topology for efficient colli-sion detection through spatial acceleration structures (BVH trees, SDFs). Traditional approaches use explicit meshes with simulators like MuJoCo [21], Bullet [3], or Gene-sis [1]. Recent neural-physics integration includes Phys-Gaussian [24] with mass-spring dynamics on Gaussian particles, GASP [2] for soft-body simulation on point clouds, and Splatting Physical Scenes [14] optimizing coarse meshes through differentiable simulation. However, these works either avoid mesh extraction or use simplified static geometry, leaving a gap in integrating high-fidelity time-varying meshes. Our framework enables systematic evaluation of topol-ogy strategies for physics simulation in Genesis [1]. We investigate whether topology conversion can preserve ge-ometric quality while enabling physics integration, and provide infrastructure for real-time simulation with fixed-topology methods through a dual-representation architec-ture that decouples physics meshes from photorealistic ren-dering. 
+
+# 3. Method 
+
+Our method enables integration of state-of-the-art dynamic reconstruction techniques into real-time physics simula-tion through a dual-representation framework that decou-ples physics-compatible mesh topology from high-fidelity rendering. 
+
+3.1. Background: Dynamic Reconstruction 
+
+We build upon two complementary approaches representing different points in the quality-topology trade-off space. 
+
+DG-Mesh [9] achieves state-of-the-art reconstruction quality (CD = 0.697) by representing scenes using canoni-cal 3D Gaussians deformed via learned temporal networks. Geometry extraction via Differentiable Poisson Surface Re-construction and Marching Cubes produces high-quality meshes with varying topology : both vertex count |Vt| and connectivity Ft change across frames, preventing direct physics integration. 
+
+MaGS [12] maintains fixed topology by jointly optimiz-ing a template mesh and Gaussian primitives. Gaussians are adsorbed to mesh faces and displaced via learned networks, while mesh vertices deform through a deformation network. The fixed template topology enables direct physics integra-tion but achieves lower geometric fidelity (CD = 1.108) than DG-Mesh. DG-Mesh’s superior geometric quality (36% lower CD) motivates our investigation of topology conversion strate-gies to enable physics integration while preserving recon-struction fidelity. 
+
+3.2. Physics-Rendering Dual Representation 
+
+Our framework maintains two synchronized representa-tions: a physics mesh (Mphys ) with fixed topology for col-lision detection, and a rendering representation (Rrender )using high-fidelity Gaussian splatting for photorealistic vi-sualization. This decoupling enables optimal performance for both physics and rendering while supporting compara-tive analysis of different reconstruction methods. 
+
+3.3. Fixed-Topology Mesh Integration 
+
+MaGS: Native Fixed-Topology. MaGS meshes directly provide fixed topology. At simulation time t, we load cor-responding deformed vertices: k = ⌊t · frecon ⌋ where frecon 
+
+is the reconstruction framerate. 
+
+DG-Mesh: Topology Conversion Strategies. To enable physics integration of DG-Mesh’s varying-topology se-quences {M t = (Vt, Ft)}, we explore two conversion strategies to establish fixed correspondences. Strategy 1: Temporal Correspondence Tracking. 
+
+Given an initial template M0 = ( V0, F0), we track ver-tices forward through time: 
+
+˜Vt+1 = {NearestSurface (vti , Mt+1 )}Nv 
+
+> i=1
+
+(1) where NearestSurface (v, M) projects point v onto mesh 
+
+M via k-NN weighted surface projection. To mitigate drift accumulation, we periodically re-anchor to the template ev-ery 50 frames by blending 80% tracked motion with 20% direct template projection. 
+
+Strategy 2: Template-Based Projection. We indepen-dently project a static template onto each frame: 
+
+˜Vt = {NearestSurface (v(0)  
+
+> i
+
+, Mt)}Nv 
+
+> i=1
+
+(2) using barycentric interpolation for sub-face accuracy. This eliminates drift but may lose detail in regions with varying geometric complexity. 
+
+3.4. Efficient Runtime Updates 
+
+Our key technical contribution enables time-varying mesh geometry without rebuilding collision structures. 
+
+Initialization. We construct spatial acceleration struc-tures (BVH, SDF) from template topology F0. These struc-tures store only vertex and face indices , enabling reuse across all timesteps. 
+
+Per-Frame Update. At each simulation step: 1. Compute frame index k = ⌊t · frecon ⌋ and load vertices 
+
+Vk
+
+2. Update vertex buffer via O(Nv ) memory copy 3. Recompute per-face normals on-demand during colli-sion queries This approach scales as O(Nv ) per frame versus 
+
+O(Nv log Nv ) for BVH reconstruction, enabling real-time rates for typical meshes ( Nv ≈ 10 3–10 4). 
+
+# 4. Experiments 
+
+We evaluate our framework on the DG-Mesh dataset [9], which provides ground truth mesh sequences for six dy-namic scenes. Each sequence contains 200 frames with varying-topology meshes extracted from multi-view cap-tures. 
+
+4.1. Baseline: Varying-Topology Meshes 
+
+To establish the computational necessity of fixed topol-ogy, we implement a baseline that uses DG-Mesh’s original varying-topology meshes directly in physics simulation. At each frame, this baseline must destroy and rebuild all colli-sion structures (BVH trees, contact caches) to accommodate topology changes. We measure performance on a test scene containing the 
+
+horse sequence with 5 rigid spheres falling onto the deform-ing mesh. The varying-topology baseline achieves 31.8  
+
+> Table 1. Geometric reconstruction quality on DG-Mesh dataset averaged over 6 scenes. Lower is better. Our topology conversion strategies result in significant degradation compared to both origi-nal DG-Mesh and MaGS native output.
+
+Method CD ↓ EMD ↓
+
+DG-Mesh (Original) 0.697 0.130 Temporal Tracking (Ours) 1.152 0.185 Template Projection (Ours) 1.254 0.200 MaGS (Native) 1.108 0.113 
+
+FPS, with collision rebuild overhead consuming 23.8 ms per frame (75.6% of total frame time). While this provides the highest geometric quality (CD = 0.697), the performance is insufficient for real-time applications. In contrast, fixed-topology approaches achieve 147.8 FPS by eliminating re-build overhead through vertex buffer updates, demonstrat-ing a 4.65× speedup. 
+
+4.2. Geometric Accuracy Analysis 
+
+We compare four approaches: DG-Mesh original (varying topology), our two topology conversion strategies (temporal tracking and template projection), and MaGS native (fixed topology). Like DG-Mesh [9] and MaGS [12], we measure quality using Chamfer Distance (CD, in 10 −3 units) and Earth Mover’s Distance (EMD, in 10 −1 units) by sampling 10K points from reconstructed and ground truth meshes. Table 1 shows that DG-Mesh’s original varying-topology meshes achieve the best accuracy (CD = 0.697, EMD = 0.130). MaGS achieves CD = 1.108 and EMD = 0.113. While MaGS has higher CD, it achieves lower EMD, indi-cating better global shape preservation consistent with its fixed-topology design. Our topology conversion strategies result in substantial degradation. Temporal tracking achieves CD = 1.152 and EMD = 0.185 (65% and 42% worse than original DG-Mesh). Template projection performs worse with CD = 1.254 and EMD = 0.200 (80% and 54% degradation). Critically, both conversion strategies produce geomet-rically inferior results compared to MaGS native output. Temporal tracking achieves 4% worse CD and 64% worse EMD than MaGS, while template projection is 13% worse in CD and 77% worse in EMD. This demonstrates a fundamental limitation: converting high-quality varying-topology reconstruction to fixed-topology incurs geometric losses that negate the original quality advantage. 
+
+4.3. Qualitative Analysis 
+
+Figure 1 visualizes geometric quality at frame 20 of the 
+
+horse sequence. The original DG-Mesh mesh exhibits crisp surface details and accurate thin structures. Our temporal tracking conversion introduces noticeable smoothing and Figure 1. Qualitative comparison at frame 20 on the horse se-quence. From left to right: (a) DG-Mesh original varying-topology mesh, (b) our temporal tracking conversion, (c) our tem-plate projection conversion, (d) MaGS native fixed-topology. Both conversion strategies introduce visible artifacts compared to the original DG-Mesh quality. MaGS maintains better geometric fi-delity despite having native fixed topology. 
+
+vertex drift, particularly visible in the neck. Template pro-jection shows more severe degradation with over-smoothed surfaces and loss of fine features. In comparison, MaGS na-tive output maintains substantially better geometric fidelity than either conversion strategy. The temporal tracking method suffers from accumu-lated drift over the 200-frame sequence despite periodic re-anchoring, while template projection loses detail by forcing a fixed vertex distribution onto varying geometric complex-ity. These results reveal that the topology conversion pro-cess fundamentally compromises the geometric quality that made DG-Mesh attractive for this application. 
+
+# 5. Discussion 
+
+Our experiments reveal a critical finding: converting varying-topology reconstructions to fixed topology for physics simulation fundamentally degrades geometric qual-ity (65–80% increase in CD, 42–54% increase in EMD). Both our conversion strategies incur substantial geomet-ric losses that eliminate DG-Mesh’s quality advantage and produce results inferior to MaGS’s native fixed-topology method. This finding demonstrates that high-quality reconstruc-tion and physics-compatible topology represent distinct de-sign objectives that cannot be easily bridged through post-processing. DG-Mesh optimizes for geometric fidelity without topological constraints, while MaGS balances qual-ity with topological stability from the outset. The underly-ing cause is that topology conversion requires establishing correspondences between meshes with different geometric complexity distributions. Temporal tracking accumulates drift as errors compound over frames, while template pro-jection forces a fixed vertex distribution onto varying geo-metric features. Despite these conversion limitations, our work pro-vides valuable contributions. The dual-representation ar-chitecture and runtime vertex buffer update mechanism achieve a 4.65× performance improvement, enabling real-time physics simulation at 147.8 FPS. This infrastruc-ture supports any fixed-topology dynamic reconstruction method. Our systematic evaluation provides the first direct comparison between varying-topology conversion strate-gies and native fixed-topology approaches in physics simu-lation contexts, offering concrete evidence that informs fu-ture research directions. 
+
+Limitations. Our topology conversion strategies as-sume smooth deformations without topological events (self-contact, tears). Temporal tracking accumulates drift be-yond 200 frames, while template projection cannot adapt vertex density to local complexity. Our evaluation focuses on geometric accuracy (CD, EMD) rather than physics-specific metrics like collision fidelity or task performance. The framework is tested only with rigid body physics; soft-body dynamics and deformable materials remain unex-plored. Fundamentally, fixed-topology representations can-not capture phenomena requiring topology changes. 
+
+# 6. Conclusion 
+
+We identified mesh topology consistency as the critical barrier preventing integration of state-of-the-art dynamic 3D reconstructions into real-time physics simulation. We demonstrated that varying-topology meshes impose a 4.65× performance penalty due to per-frame collision structure rebuilds. We explored two topology conversion strategies to enable physics integration of high-quality reconstruc-tions, revealing that both approaches incur 65–80% geomet-ric degradation and produce results inferior to native fixed-topology methods like MaGS. This demonstrates that high-quality reconstruction and physics-compatible topology are fundamentally distinct objectives that cannot be easily rec-onciled through post-processing. Our dual-representation framework provides valuable infrastructure for integrating fixed-topology methods into physics simulation, achieving 147.8 FPS with runtime vertex buffer updates. Future work should focus on developing reconstruction methods that di-rectly optimize for high-fidelity, fixed-topology constraints during training rather than attempting post-hoc conversion. References 
+
+[1] Genesis Authors. Genesis: A generative and universal physics engine for robotics and beyond, 2024. 1, 2 [2] Piotr Borycki, Weronika Smolak, Joanna Waczy´ nska, Marcin Mazur, Sławomir Tadeja, and Przemysław Spurek. Gasp: Gaussian splatting for physic-based simulations. 2024. 2 [3] Erwin Coumans and Yunfei Bai. Pybullet, a python mod-ule for physics simulation for games, robotics and machine learning. http://pybullet.org , 2016–2021. 2 [4] Chen Gao, Ayush Saraf, Johannes Kopf, and Jia-Bin Huang. Dynamic view synthesis from dynamic monocular video. In 
+
+Proceedings of the IEEE International Conference on Com-puter Vision , 2021. 1 [5] Antoine Gu´ edon and Vincent Lepetit. Sugar: Surface-aligned gaussian splatting for efficient 3d mesh reconstruc-tion and high-quality mesh rendering. CVPR , 2024. 2 [6] Michelle Guo, Matt Jen-Yuan Chiang, Igor Santesteban, Nikolaos Sarafianos, Hsiao-Yu Chen, Oshri Halimi, Aljaˇ zBoˇ ziˇ c, Shunsuke Saito, Jiajun Wu, C. Karen Liu, Tuur Stuyck, and Egor Larionov. Pgc: Physics-based gaussian cloth from a single pose. In 2025 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) , pages 21215–21225, 2025. 2 [7] Yi-Hua Huang, Yang-Tian Sun, Ziyi Yang, Xiaoyang Lyu, Yan-Pei Cao, and Xiaojuan Qi. Sc-gs: Sparse-controlled gaussian splatting for editable dynamic scenes. arXiv preprint arXiv:2312.14937 , 2023. 2 [8] Bernhard Kerbl, Georgios Kopanas, Thomas Leimk¨ uhler, and George Drettakis. 3d gaussian splatting for real-time radiance field rendering. ACM Transactions on Graphics , 42 (4), 2023. 1, 2 [9] Isabella Liu, Hao Su, and Xiaolong Wang. Dynamic gaus-sians mesh: Consistent mesh reconstruction from monocular videos, 2024. 1, 2, 3 [10] Matthew Loper, Naureen Mahmood, Javier Romero, Ger-ard Pons-Moll, and Michael J. Black. SMPL: A skinned multi-person linear model. ACM Trans. Graphics (Proc. SIGGRAPH Asia) , 34(6):248:1–248:16, 2015. 2 [11] Jonathon Luiten, Georgios Kopanas, Bastian Leibe, and Deva Ramanan. Dynamic 3d gaussians: Tracking by per-sistent dynamic view synthesis. In 3DV , 2024. 2 [12] Shaojie Ma, Yawei Luo, Wei Yang, and Yi Yang. Mags: Re-constructing and simulating dynamic 3d objects with mesh-adsorbed gaussian splatting. 2024. 1, 2, 3 [13] Ben Mildenhall, Pratul P. Srinivasan, Matthew Tancik, Jonathan T. Barron, Ravi Ramamoorthi, and Ren Ng. Nerf: Representing scenes as neural radiance fields for view syn-thesis. In ECCV , 2020. 1 [14] Ben Moran, Mauro Comi, Arunkumar Byravan, Steven Bo-hez, Tom Erez, Zhibin Li, and Leonard Hasenclever. Splat-ting physical scenes: End-to-end real-to-sim from imperfect robot data, 2025. 2 [15] Keunhong Park, Utkarsh Sinha, Jonathan T. Barron, Sofien Bouaziz, Dan B Goldman, Steven M. Seitz, and Ricardo Martin-Brualla. Nerfies: Deformable neural radiance fields. 
+
+ICCV , 2021. 1 [16] Anastasiya Pechko, Piotr Borycki, Joanna Waczy´ nska, Daniel Barczyk, Agata Szyma´ nska, Sławomir Tadeja, and Przemysław Spurek. Gs-verse: Mesh-based gaussian splat-ting for physics-aware interaction in virtual reality, 2025. 1 [17] Albert Pumarola, Enric Corona, Gerard Pons-Moll, and Francesc Moreno-Noguer. D-nerf: Neural radiance fields for dynamic scenes. arXiv preprint arXiv:2011.13961 , 2020. 1 [18] Shenhan Qian, Tobias Kirschstein, Liam Schoneveld, Davide Davoli, Simon Giebenhain, and Matthias Nießner. Gaus-sianavatars: Photorealistic head avatars with rigged 3d gaus-sians. In Proceedings of the IEEE/CVF Conference on Com-puter Vision and Pattern Recognition , pages 20299–20309, 2024. 2 [19] Boxiang Rong, Artur Grigorev, Wenbo Wang, Michael J. Black, Bernhard Thomaszewski, Christina Tsalicoglou, and Otmar Hilliges. Gaussian Garments: Reconstruct-ing simulation-ready clothing with photorealistic appearance from multi-view video. In International Conference on 3D Vision 2025 , 2025. 2 [20] Olga Sorkine and Marc Alexa. As-rigid-as-possible surface modeling. In Proceedings of EUROGRAPHICS/ACM SIG-GRAPH Symposium on Geometry Processing , pages 109– 116, 2007. 2 [21] Emanuel Todorov, Tom Erez, and Yuval Tassa. Mujoco: A physics engine for model-based control. In 2012 IEEE/RSJ International Conference on Intelligent Robots and Systems ,pages 5026–5033. IEEE, 2012. 1, 2 [22] Joanna Waczy´ nska, Piotr Borycki, Sławomir Tadeja, Jacek Tabor, and Przemysław Spurek. Games: Mesh-based adapt-ing and modification of gaussian splatting. 2024. 2 [23] Guanjun Wu, Taoran Yi, Jiemin Fang, Lingxi Xie, Xiaopeng Zhang, Wei Wei, Wenyu Liu, Qi Tian, and Xinggang Wang. 4d gaussian splatting for real-time dynamic scene render-ing. In Proceedings of the IEEE/CVF Conference on Com-puter Vision and Pattern Recognition (CVPR) , pages 20310– 20320, 2024. 2 [24] Tianyi Xie, Zeshun Zong, Yuxing Qiu, Xuan Li, Yutao Feng, Yin Yang, and Chenfanfu Jiang. Physgaussian: Physics-integrated 3d gaussians for generative dynamics. arXiv preprint arXiv:2311.12198 , 2023. 2 [25] Ziyi Yang, Xinyu Gao, Wen Zhou, Shaohui Jiao, Yuqing Zhang, and Xiaogang Jin. Deformable 3d gaussians for high-fidelity monocular dynamic scene reconstruction. arXiv preprint arXiv:2309.13101 , 2023. 2
