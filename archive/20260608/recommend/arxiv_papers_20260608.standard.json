@@ -1,0 +1,98 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-08T21:03:44.315542+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2606.07514v1",
+      "source": "arxiv",
+      "title": "UniSHARP: Universal Sharp Monocular View Synthesis",
+      "abstract": "In this work, we focus on extending SHARP, the popular photorealistic view synthesis method, for universal monocular rendering across a continuum of camera systems, from conventional perspective cameras to wide-field-of-view, fisheye and omnidirectional panoramic settings. To overcome the pinhole-specific assumptions of SHARP, our key idea is to align various images in a unified omnidirectional latent space. Thus, we propose UniSHARP, which performs implicit alignment in both feature and Gaussian spaces. Specifically, Gaussian primitives are arranged along rays and radial distances in a ray-based universal representation, while 2D semantic and 3D spatial features extracted from UniK3D-inspired encoders are jointly decoded to generate the complete Gaussian cloud. To comprehensively evaluate our method, we construct a benchmark covering diverse imaging systems across various scenes. The benchmark is further stratified by field of view (FoV) to enable fine-grained assessment of the universal monocular rendering task. Extensive experiments on the proposed benchmark demonstrate the effectiveness of UniSHARP, outperforming alternative methods by a large margin. The project page can be found at: https://insta360-research-team.github.io/Unisharp-website/",
+      "authors": [
+        "Meixi Song",
+        "Dizhe Zhang",
+        "Hao Ren",
+        "Ruiyang Zhang",
+        "Bo Du",
+        "Ming-Hsuan Yang",
+        "Lu Qi"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-05T17:59:41+00:00",
+      "link": "https://arxiv.org/pdf/2606.07514v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Extends SHARP to omnidirectional panoramic settings using Gaussian primitives in unified latent space",
+      "llm_evidence_cn": "将SHARP扩展至全向全景设置，在统一潜在空间中使用高斯基元",
+      "llm_evidence": "将SHARP扩展至全向全景设置，在统一潜在空间中使用高斯基元",
+      "canonical_evidence": "将SHARP扩展至全向全景设置，在统一潜在空间中使用高斯基元",
+      "llm_tldr_en": "Proposes UniSHARP for universal monocular rendering including omnidirectional panoramic, using implicit alignment in feature and Gaussian spaces with ray-based universal representation and UniK3D encoders.",
+      "llm_tldr_cn": "现有视图合成方法如SHARP仅支持针孔相机，无法处理广角、鱼眼及全景设置。本文提出UniSHARP，通过将图像对齐到统一全向潜在空间，在特征和高斯空间实现隐式对齐，利用射线基通用表示和UniK3D编码器生成完整高斯云。该方法实现了从常规透视到全向全景的连续相机系统单目渲染，极大扩展了高斯泼溅的适用场景。实验证明其在多种相机类型上均能保持高保真度与锐度。",
+      "llm_tldr": "现有视图合成方法如SHARP仅支持针孔相机，无法处理广角、鱼眼及全景设置。本文提出UniSHARP，通过将图像对齐到统一全向潜在空间，在特征和高斯空间实现隐式对齐，利用射线基通用表示和UniK3D编码器生成完整高斯云。该方法实现了从常规透视到全向全景的连续相机系统单目渲染，极大扩展了高斯泼溅的适用场景。实验证明其在多种相机类型上均能保持高保真度与锐度。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "reconstructing panoramic 360-degree scenes using Gaussian splatting",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.07179v1",
+      "source": "arxiv",
+      "title": "EvoGS: Constructing Continuous-Layered Gaussian Splatting with Evolution Tree for Scalable 3D Streaming",
+      "abstract": "Streaming 3D Gaussian Splatting requires highly scalable, progressive representations. Existing progressive methods rely on \\textit{discrete layering}, accumulating separate splat sets for each level of detail. This structural independence between layers inherently leads to error accumulation, severe splat redundancy, and uncontrolled quality transitions. We propose EvoGS, the first \\textit{continuous-layering} representation. Organized as an Evolution Tree, EvoGS generates finer details via an explicit, wavelet-inspired parent-child refinement. This empowers child nodes to structurally correct ancestral errors, yield inherently sparse and highly compressible inter-layer signals. Extensive experiments show EvoGS eliminates splat redundancy from over 65\\% to under 25\\%. Compared to state-of-the-art baselines, it reduces transmission payload and GPU VRAM footprint by up to 2.4$\\times$ and 5.5$\\times$, respectively, and achieves smooth quality transitions optimal for real-time adaptive streaming. Project page: https://yuang-ian.github.io/evogs/",
+      "authors": [
+        "Yuang Shi",
+        "Simone Gasparini",
+        "Géraldine Morin",
+        "Wei Tsang Ooi"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.MM",
+        "eess.IV"
+      ],
+      "published": "2026-06-05T11:44:15+00:00",
+      "link": "https://arxiv.org/pdf/2606.07179v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "continuous-layering Gaussian Splatting for scalable 3D streaming",
+      "llm_evidence_cn": "连续分层高斯溅射用于可扩展3D流",
+      "llm_evidence": "连续分层高斯溅射用于可扩展3D流",
+      "canonical_evidence": "连续分层高斯溅射用于可扩展3D流",
+      "llm_tldr_en": "EvoGS introduces a continuous-layering Gaussian Splatting representation organized as an Evolution Tree, where child nodes refine details and correct ancestral errors, enabling efficient progressive 3D streaming.",
+      "llm_tldr_cn": "EvoGS提出了首个连续分层的高斯溅射表示，通过进化树结构组织，子节点可以细化细节并纠正祖先误差。这种表示消除了离散分层带来的冗余和误差累积，实现了可扩展的3D流式传输。实验证明了其在压缩率和质量过渡方面的显著改进，为3DGS的渐进式表示提供了新范式。",
+      "llm_tldr": "EvoGS提出了首个连续分层的高斯溅射表示，通过进化树结构组织，子节点可以细化细节并纠正祖先误差。这种表示消除了离散分层带来的冗余和误差累积，实现了可扩展的3D流式传输。实验证明了其在压缩率和质量过渡方面的显著改进，为3DGS的渐进式表示提供了新范式。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

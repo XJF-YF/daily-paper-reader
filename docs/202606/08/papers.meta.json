@@ -1,0 +1,39 @@
+{
+  "label": "2026-06-08",
+  "date": "2026-06-08",
+  "generated_at": "2026-06-08T21:06:30",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202606/08/2606.07514v1-unisharp-universal-sharp-monocular-view-synthesis",
+      "section": "deep",
+      "title_en": "UniSHARP: Universal Sharp Monocular View Synthesis",
+      "authors": "Meixi Song, Dizhe Zhang, Hao Ren, Ruiyang Zhang, Bo Du, Ming-Hsuan Yang, Lu Qi",
+      "date": "2026-06-05",
+      "pdf": "https://arxiv.org/pdf/2606.07514v1",
+      "score": "9.0",
+      "evidence": "将SHARP扩展至全向全景设置，在统一潜在空间中使用高斯基元",
+      "tldr": "针对现有单目视图合成方法仅适用于针孔相机的问题，本文提出UniSHARP，将SHARP扩展到全景、鱼眼等任意相机。核心思想是在统一全景潜空间中隐式对齐图像特征和高斯体，通过射线基表示和UniK3D编码器联合生成完整高斯云。在涵盖多种成像系统的基准测试中，UniSHARP大幅超越现有方法。该方法为通用单目渲染提供了新范式。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "In this work, we focus on extending SHARP, the popular photorealistic view synthesis method, for universal monocular rendering across a continuum of camera systems, from conventional perspective cameras to wide-field-of-view, fisheye and omnidirectional panoramic settings. To overcome the pinhole-specific assumptions of SHARP, our key idea is to align various images in a unified omnidirectional latent space. Thus, we propose UniSHARP, which performs implicit alignment in both feature and Gaussian spaces. Specifically, Gaussian primitives are arranged along rays and radial distances in a ray-based universal representation, while 2D semantic and 3D spatial features extracted from UniK3D-inspired encoders are jointly decoded to generate the complete Gaussian cloud. To comprehensively evaluate our method, we construct a benchmark covering diverse imaging systems across various scenes. The benchmark is further stratified by field of view (FoV) to enable fine-grained assessment of the universal monocular rendering task. Extensive experiments on the proposed benchmark demonstrate the effectiveness of UniSHARP, outperforming alternative methods by a large margin. The project page can be found at: https://insta360-research-team.github.io/Unisharp-website/",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/08/2606.07179v1-evogs-constructing-continuous-layered-gaussian-splatting-with-evolution-tree-for-scalable-3d-streaming",
+      "section": "quick",
+      "title_en": "EvoGS: Constructing Continuous-Layered Gaussian Splatting with Evolution Tree for Scalable 3D Streaming",
+      "authors": "Yuang Shi, Simone Gasparini, Géraldine Morin, Wei Tsang Ooi",
+      "date": "2026-06-05",
+      "pdf": "https://arxiv.org/pdf/2606.07179v1",
+      "score": "7.0",
+      "evidence": "连续分层高斯溅射用于可扩展3D流",
+      "tldr": "针对可扩展三维高斯泼溅流式传输需求，现有离散分层方法导致层间误差累积、冗余超过65%且质量过渡不连续。EvoGS首次构建连续分层表示，以进化树结构组织，通过类小波父-子细化使子节点结构性修正祖先误差，生成稀疏可压缩层间信号。该方法将冗余降至25%以下，传输负载降低2.4倍，GPU显存占用降低5.5倍，实现平滑质量过渡。EvoGS为可扩展三维流式传输开辟新范式。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Streaming 3D Gaussian Splatting requires highly scalable, progressive representations. Existing progressive methods rely on \\textit{discrete layering}, accumulating separate splat sets for each level of detail. This structural independence between layers inherently leads to error accumulation, severe splat redundancy, and uncontrolled quality transitions. We propose EvoGS, the first \\textit{continuous-layering} representation. Organized as an Evolution Tree, EvoGS generates finer details via an explicit, wavelet-inspired parent-child refinement. This empowers child nodes to structurally correct ancestral errors, yield inherently sparse and highly compressible inter-layer signals. Extensive experiments show EvoGS eliminates splat redundancy from over 65\\% to under 25\\%. Compared to state-of-the-art baselines, it reduces transmission payload and GPU VRAM footprint by up to 2.4$\\times$ and 5.5$\\times$, respectively, and achieves smooth quality transitions optimal for real-time adaptive streaming. Project page: https://yuang-ian.github.io/evogs/",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
