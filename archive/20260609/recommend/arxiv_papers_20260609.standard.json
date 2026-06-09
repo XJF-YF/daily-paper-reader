@@ -1,0 +1,175 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-09T21:49:26.608486+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [
+    {
+      "id": "2606.07932v1",
+      "source": "arxiv",
+      "title": "LEGS: Laplacian-Enhanced Gaussian Splatting with a Nonlinear Weighted Loss",
+      "abstract": "3D Gaussian Splatting (3DGS) has become an efficient explicit representation for radiance field reconstruction and real-time novel view synthesis. However, its standard photometric loss treats flat and structure-rich regions similarly, which may limit the recovery of sharp contours and fine details. Edge-Guided Gaussian Splatting (EGGS) improves structure awareness through edge-guided weighting, but mainly relies on first-order gradient responses and linear weighting. In this paper, we propose LEGS, a Laplacian-Enhanced Gaussian Splatting method with a nonlinearly weighted loss. LEGS replaces first-order gradient guidance with second-order Laplacian structural guidance and maps the normalized Laplacian response into pixel-wise weights through nonlinear response-to-weight functions. The proposed loss improves structure-aware Gaussian optimization while keeping the original 3DGS rendering pipeline unchanged. Experiments on the full Tanks\\&Temples and Mip-NeRF360 datasets show that LEGS improves peak signal-to-noise ratio (PSNR) by up to 1.68 dB over 3DGS and up to 0.52 dB over EGGS. Incorporating the proposed second-order nonlinear weighting strategy into FastGS and FasterGS further improves PSNR by up to 1.69 dB, demonstrating its effectiveness as a general loss-level extension for Gaussian Splatting pipelines with potential applications in AR/VR, immersive visualization, and real-time 3D content generation.",
+      "authors": [
+        "Yongfei Guo",
+        "Qizhou Huo",
+        "Xuan Sun",
+        "Yuanhao Gong"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR",
+        "cs.MM",
+        "eess.IV",
+        "math.OC"
+      ],
+      "published": "2026-06-06T01:50:14+00:00",
+      "link": "https://arxiv.org/pdf/2606.07932v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Enhances 3DGS for novel view synthesis with Laplacian-guided weighted loss",
+      "llm_evidence_cn": "使用拉普拉斯引导加权损失增强3DGS的新视角合成",
+      "llm_evidence": "使用拉普拉斯引导加权损失增强3DGS的新视角合成",
+      "canonical_evidence": "使用拉普拉斯引导加权损失增强3DGS的新视角合成",
+      "llm_tldr_en": "Replaces first-order edge guidance with second-order Laplacian for weighted loss in 3DGS, improving fine detail recovery in novel view synthesis.",
+      "llm_tldr_cn": "针对3DGS标准损失函数对平坦和结构区域处理不区分的问题，提出使用二阶拉普拉斯结构引导替代一阶梯度引导，并结合非线性加权损失。该方法有效增强了尖锐轮廓和细节的恢复，在新视角合成任务中取得了更清晰的渲染结果。",
+      "llm_tldr": "针对3DGS标准损失函数对平坦和结构区域处理不区分的问题，提出使用二阶拉普拉斯结构引导替代一阶梯度引导，并结合非线性加权损失。该方法有效增强了尖锐轮廓和细节的恢复，在新视角合成任务中取得了更清晰的渲染结果。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.09034v1",
+      "source": "arxiv",
+      "title": "Leveraging NeRF-Rendered Images for 3D Gaussian Splatting",
+      "abstract": "Neural radiance field (NeRF) and 3D Gaussian splatting (3DGS) are two mainstream approaches for novel view synthesis. They often show complementary performance, i.e., 3DGS demonstrating faster rendering speed and NeRF demonstrating higher rendering quality. Motivated by this, we propose leveraging NeRF-rendered images for 3DGS. Specifically, we target street scenes and utilize a pre-trained street-specific NeRF method to produce training images for a target 3DGS method. In our 3DGS training, NeRF-rendered images are used to remove transient objects in street-level input views and to generate bird's-eye views as additional views, inheriting the higher-quality rendering of NeRF into 3DGS. We further incorporate a diffusion-based image enhancement to improve the image quality of the additional views. Experimental results on one synthetic and two real datasets demonstrate that our proposed method improves street-scene rendering while preserving the speed of 3DGS and the quality of NeRF.",
+      "authors": [
+        "Mizuki Morikawa",
+        "Yuta Shimizu",
+        "Chunyu Li",
+        "Yusuke Monno",
+        "Masatoshi Okutomi"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-08T05:03:22+00:00",
+      "link": "https://arxiv.org/pdf/2606.09034v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "uses NeRF to enhance 3DGS for novel view synthesis",
+      "llm_evidence_cn": "利用NeRF增强3DGS进行新视图合成",
+      "llm_evidence": "利用NeRF增强3DGS进行新视图合成",
+      "canonical_evidence": "利用NeRF增强3DGS进行新视图合成",
+      "llm_tldr_en": "Proposes leveraging NeRF-rendered images to improve 3D Gaussian Splatting for street scenes, removing transient objects and generating bird's-eye views.",
+      "llm_tldr_cn": "当前3DGS和新视图合成方法存在互补性能，3DGS渲染快但质量有时不如NeRF。本文提出利用预训练的街景NeRF生成训练图像来增强3DGS，去除动态物体并添加鸟瞰视角，同时引入扩散增强。实验表明该方法在街景新视图合成上提升了渲染质量。",
+      "llm_tldr": "当前3DGS和新视图合成方法存在互补性能，3DGS渲染快但质量有时不如NeRF。本文提出利用预训练的街景NeRF生成训练图像来增强3DGS，去除动态物体并添加鸟瞰视角，同时引入扩散增强。实验表明该方法在街景新视图合成上提升了渲染质量。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.09794v1",
+      "source": "arxiv",
+      "title": "Beyond Spherical Harmonics: Rethinking Appearance Models for Radiance Reconstruction",
+      "abstract": "View-dependent appearance modeling remains a challenging problem in novel-view synthesis and reconstruction. Accurately representing complex angular effects often requires substantial memory and computational resources. For new learning-based methods, a common approach is to rely on SH. However, capturing high-frequency phenomena such as specular reflections demands high-order expansions, which increase memory usage and computational cost. Consequently, most methods employ low-order SH, which limits the ability to model complex view-dependent effects, resulting in overly smooth or diffuse representations. To address these limitations, we systematically evaluate a wide range of spherical functions in the context of scene reconstruction. Some of them are introduced to graphics and computer vision for the first time in this paper. Based on the insights from the experiment, we develop a novel spherical formulation, the Normalized Anisotropic Spherical Gabor function that enables efficient modeling and learning of high-frequency appearance effects while maintaining compact representation. Compared to existing approaches, our function achieves higher-quality reconstruction of view-dependent phenomena such as glints, while being up to five times more memory-efficient and more efficient to evaluate. We validate its performance in radiance-field reconstruction tasks.",
+      "authors": [
+        "Ewa Miazga",
+        "Jorge Condor",
+        "Piotr Didyk"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "published": "2026-06-08T17:50:41+00:00",
+      "link": "https://arxiv.org/pdf/2606.09794v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "appearance modeling for novel view synthesis",
+      "llm_evidence_cn": "为新视图合成改进外观建模",
+      "llm_evidence": "为新视图合成改进外观建模",
+      "canonical_evidence": "为新视图合成改进外观建模",
+      "llm_tldr_en": "Replaces spherical harmonics with more expressive spherical functions for view-dependent effects in radiance reconstruction.",
+      "llm_tldr_cn": "现有新视图合成方法常用低阶球谐函数表示视角依赖效果，但难以捕捉高频反射。本文系统评估多种球面函数，提出替换球谐的更优外观模型。实验表明新模型在保持效率的同时提升了渲染质量。",
+      "llm_tldr": "现有新视图合成方法常用低阶球谐函数表示视角依赖效果，但难以捕捉高频反射。本文系统评估多种球面函数，提出替换球谐的更优外观模型。实验表明新模型在保持效率的同时提升了渲染质量。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.09074v1",
+      "source": "arxiv",
+      "title": "REFINE: Super-efficient 3D Gaussian Splatting Pruning via Rendering-Free Primitive Importance",
+      "abstract": "Existing pruning methods for 3D Gaussian splatting (3DGS) suffer from either severe quality degradation or prohibitive computational overhead. In this paper, we propose REFINE, a highly accelerated 3DGS pruning framework centered on a novel rendering-free primitive importance metric. Our approach leverages an analytically approximated, rendering-aware Hessian field to quantify the expected perceptual error induced by the removal of individual primitives. By modeling the joint modulation of visibility, projection geometry and the content adaptive hyperparameter, we entirely bypass costly forward rendering passes and derive an anisotropic perceptual weight field that serves as a high-fidelity proxy for primitive importance. Extensive experiments across multiple benchmark datasets demonstrate that REFINE maintains highly competitive rendering quality while achieving an unprecedented $3,000\\times$ reduction in pruning-related computational complexity compared to state-of-the-art pruning methods.",
+      "authors": [
+        "Zhang Chen",
+        "Shuai Wan",
+        "Mengting Yu",
+        "Fuzheng Yang",
+        "Junhui Hou"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-08T06:16:38+00:00",
+      "link": "https://arxiv.org/pdf/2606.09074v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "directly addresses 3DGS pruning, a key efficiency technique for 3DGS-based novel view synthesis",
+      "llm_evidence_cn": "直接针对3DGS剪枝，是对基于3DGS的新颖视图合成效率的关键技术",
+      "llm_evidence": "直接针对3DGS剪枝，是对基于3DGS的新颖视图合成效率的关键技术",
+      "canonical_evidence": "直接针对3DGS剪枝，是对基于3DGS的新颖视图合成效率的关键技术",
+      "llm_tldr_en": "REFINE proposes a rendering-free primitive importance metric for 3DGS pruning, using an analytically approximated Hessian field to achieve high-quality, super-fast pruning.",
+      "llm_tldr_cn": "现有3D高斯溅射剪枝方法面临质量与效率的权衡。REFINE通过无渲染的感知重要性度量，基于分析近似的Hessian场，在完全避免前向渲染开销的同时准确评估基元重要性。实验表明，该方法在剪枝速度上比现有方法快几个数量级，同时保持或提升了渲染质量，为3DGS的实用化部署提供了关键技术。",
+      "llm_tldr": "现有3D高斯溅射剪枝方法面临质量与效率的权衡。REFINE通过无渲染的感知重要性度量，基于分析近似的Hessian场，在完全避免前向渲染开销的同时准确评估基元重要性。实验表明，该方法在剪枝速度上比现有方法快几个数量级，同时保持或提升了渲染质量，为3DGS的实用化部署提供了关键技术。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

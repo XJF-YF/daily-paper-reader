@@ -6,28 +6,34 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-08
-- 运行时间：2026-06-08 21:06:21 UTC
+- 最新运行日期：2026-06-09
+- 运行时间：2026-06-09 21:51:55 UTC
 - 运行状态：成功
-- 本次总论文数：2
+- 本次总论文数：4
 - 精读区：1
-- 速读区：1
+- 速读区：3
 
 ### 今日简报（AI）
-今天精读了高分单目视图合成方法UniSHARP，速读了可扩展3D流媒体方案EvoGS。  
-最值得关注的是UniSHARP（9分），能有效提升单目视角合成的清晰度。  
-下一步可深入对比UniSHARP与传统方法，或探索EvoGS的分层流媒体架构。
-- 详情：[/202606/08/README](/202606/08/README)
+今日聚焦3D高斯泼溅技术，精读一篇拉普拉斯增强方法，速读三篇涵盖渲染、剪枝与外观模型优化。  
+最值得关注的方向：Laplacian增强的非线性加权损失（8.0分）以及基于无渲染重要性评估的超高效剪枝（7.0分）。  
+建议普通读者先深入精读论文，再结合速读中两种实用优化思路，快速构建对高斯泼溅不同改进维度的理解。
+- 详情：[/202606/09/README](/202606/09/README)
 
 ### 精读区论文标签
-1. [UniSHARP: Universal Sharp Monocular View Synthesis](/202606/08/2606.07514v1-unisharp-universal-sharp-monocular-view-synthesis)  
-   标签：评分：9.0/10、query:pano-dgs
-   evidence：将SHARP扩展至全向全景设置，在统一潜在空间中使用高斯基元
+1. [LEGS: Laplacian-Enhanced Gaussian Splatting with a Nonlinear Weighted Loss](/202606/09/2606.07932v1-legs-laplacian-enhanced-gaussian-splatting-with-a-nonlinear-weighted-loss)  
+   标签：评分：8.0/10、query:pano-dgs
+   evidence：使用拉普拉斯引导加权损失增强3DGS的新视角合成
 
 ### 速读区论文标签
-1. [EvoGS: Constructing Continuous-Layered Gaussian Splatting with Evolution Tree for Scalable 3D Streaming](/202606/08/2606.07179v1-evogs-constructing-continuous-layered-gaussian-splatting-with-evolution-tree-for-scalable-3d-streaming)  
+1. [Leveraging NeRF-Rendered Images for 3D Gaussian Splatting](/202606/09/2606.09034v1-leveraging-nerf-rendered-images-for-3d-gaussian-splatting)  
    标签：评分：7.0/10、query:pano-dgs
-   evidence：连续分层高斯溅射用于可扩展3D流
+   evidence：利用NeRF增强3DGS进行新视图合成
+2. [REFINE: Super-efficient 3D Gaussian Splatting Pruning via Rendering-Free Primitive Importance](/202606/09/2606.09074v1-refine-super-efficient-3d-gaussian-splatting-pruning-via-rendering-free-primitive-importance)  
+   标签：评分：7.0/10、query:pano-dgs
+   evidence：直接针对3DGS剪枝，是对基于3DGS的新颖视图合成效率的关键技术
+3. [Beyond Spherical Harmonics: Rethinking Appearance Models for Radiance Reconstruction](/202606/09/2606.09794v1-beyond-spherical-harmonics-rethinking-appearance-models-for-radiance-reconstruction)  
+   标签：评分：6.0/10、query:pano-dgs
+   evidence：为新视图合成改进外观建模
 
 
 <div class="dpr-home-promo-card">
