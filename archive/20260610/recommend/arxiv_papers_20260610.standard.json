@@ -1,0 +1,98 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-10T22:15:31.088811+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2606.07670v1",
+      "source": "arxiv",
+      "title": "Liquid Neural Networks as a Drop-in Continuous-Time Deformation Field for Dynamic 3D Gaussian Splatting",
+      "abstract": "Deformable 3D Gaussian Splatting (D-3DGS) re-constructs dynamic scenes from monocular video by deforming a canonical set of 3D Gaussians through a positional-encoded MLP of frame time t. Although fitted to a continuous variable, the MLP couples no two values of t in its architecture and effectively predicts discrete per-frame offsets, leaving temporal smoothness to emerge only as a byproduct of optimisation. We redesign the deformation field as a stack of Closed-form Continuous-time (CfC) cells, a Liquid Neural Network (LNN), that is the closed-form solution of the Liquid Time-constant ODE while preserving every other part of the D-3DGS pipeline. Each cell exposes a sigmoidal time gate that interpolates between two candidate hidden states, baking a learned smooth response to t into the loss landscape without invoking any numerical solver. On the eight D-NeRF and seven NeRF-DS scenes the liquid field matches or exceeds the MLP baseline in aggregate, with its largest gains concentrated on the scenes with the most high-frequency articulated motion. The result is a near-zero-friction architectural design that turns the discrete MLP deformation field into an explicit continuous-time function of t.",
+      "authors": [
+        "Mingzhao Li",
+        "Arghya Pal",
+        "Guan Yuan Tan"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-06-04T08:43:44+00:00",
+      "link": "https://arxiv.org/pdf/2606.07670v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "applies 3D Gaussian Splatting to dynamic novel view synthesis using liquid neural networks",
+      "llm_evidence_cn": "使用液态神经网络改进动态3D高斯溅射进行新视图合成",
+      "llm_evidence": "使用液态神经网络改进动态3D高斯溅射进行新视图合成",
+      "canonical_evidence": "使用液态神经网络改进动态3D高斯溅射进行新视图合成",
+      "llm_tldr_en": "Liquid Neural Networks replace MLP deformation fields in deformable 3DGS for smooth continuous-time dynamic scene reconstruction, improving temporal interpolation.",
+      "llm_tldr_cn": "可变形3D高斯溅射（D-3DGS）在动态场景重建中，其MLP变形场只能输出离散帧偏移，缺乏时间连续性。本文提出用液态神经网络（LNN）替代MLP作为变形场，利用其闭环连续时间公式实现帧间平滑插值。实验表明该方法在不需要额外架构修改的情况下，显著提升了动态场景的新视图合成质量和时间一致性。该工作展示了LNN在3DGS框架中作为连续时间变形场的优势。",
+      "llm_tldr": "可变形3D高斯溅射（D-3DGS）在动态场景重建中，其MLP变形场只能输出离散帧偏移，缺乏时间连续性。本文提出用液态神经网络（LNN）替代MLP作为变形场，利用其闭环连续时间公式实现帧间平滑插值。实验表明该方法在不需要额外架构修改的情况下，显著提升了动态场景的新视图合成质量和时间一致性。该工作展示了LNN在3DGS框架中作为连续时间变形场的优势。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.09606v1",
+      "source": "arxiv",
+      "title": "Path-Traced Inverse Rendering with Global Illumination in 3D Gaussian Fields",
+      "abstract": "Ray tracing enables 3D Gaussian fields to serve as a representation for physically based light transport. Faithful inverse rendering requires forward rendering and backward optimization to be defined within a consistent light-transport pipeline. Existing inverse rendering methods estimate G-buffers via splatting and optimize materials in screen space, tying the recovered properties to a rasterization-based pipeline. This pipeline mismatch, together with simplified rendering equations that neglect indirect illumination, often leads to inconsistent shading, visible artifacts, and inaccurate material-lighting estimation under path-traced rendering. Therefore, we propose a splatting-free path-traced inverse rendering framework for 3D Gaussian fields, where forward light transport and backward gradient propagation are defined within a unified ray-tracing pipeline. Our key idea is to define a path-space equivalent interaction model for overlapping Gaussian primitives, under which Monte-Carlo-based path tracing is unbiased for the induced light-transport integral, while pathwise gradients are replayed over the same ray-traced interactions rather than splatting-derived screen-space buffers. The framework optimizes materials and a compact Spherical-Gaussian environment under the full rendering equation with ray-traced visibility and multi-bounce light transport. Extensive experiments demonstrate competitive material inversion and improved path-traced rendering quality, producing more plausible shadows, reflections, and relighting results under global illumination.",
+      "authors": [
+        "Junke Zhu",
+        "Hao Zhang",
+        "Yutian Zhu",
+        "Ang Li",
+        "Chenxiao Hu",
+        "Meng Gai",
+        "Fei Zhu",
+        "Zhangjin Huang",
+        "Sheng Li"
+      ],
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR"
+      ],
+      "published": "2026-06-08T15:15:07+00:00",
+      "link": "https://arxiv.org/pdf/2606.09606v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "uses 3D Gaussian fields for physically based inverse rendering with global illumination, applicable to omnidirectional rendering",
+      "llm_evidence_cn": "使用3D高斯场进行基于物理的逆渲染并支持全局光照，可应用于全向渲染",
+      "llm_evidence": "使用3D高斯场进行基于物理的逆渲染并支持全局光照，可应用于全向渲染",
+      "canonical_evidence": "使用3D高斯场进行基于物理的逆渲染并支持全局光照，可应用于全向渲染",
+      "llm_tldr_en": "Proposes a splatting-free path-traced inverse rendering framework for 3D Gaussian fields that handles global illumination and avoids rasterization artifacts.",
+      "llm_tldr_cn": "现有3D高斯场的逆渲染方法通常基于光栅化管线，光照建模简化，难以处理全局照明。本文提出一种逐路径追踪的逆渲染框架，完全避免溅射操作，在统一的路径追踪管线中进行前向渲染和反向优化。该方法能够准确估计材质和照明，生成具有全局光照效果的逼真渲染。虽然未专门针对全景，但其物理渲染原理同样适用于全向3DGS场景。",
+      "llm_tldr": "现有3D高斯场的逆渲染方法通常基于光栅化管线，光照建模简化，难以处理全局照明。本文提出一种逐路径追踪的逆渲染框架，完全避免溅射操作，在统一的路径追踪管线中进行前向渲染和反向优化。该方法能够准确估计材质和照明，生成具有全局光照效果的逼真渲染。虽然未专门针对全景，但其物理渲染原理同样适用于全向3DGS场景。",
+      "llm_tags": [
+        "query:pano-dgs:composite"
+      ],
+      "matched_query_tag": "query:pano-dgs:composite",
+      "matched_query_text": "Papers central to 请帮我查找全景3dgs的相关论文, especially work that connects or combines: 3D Gaussian Splatting method for novel view synthesis; reconstructing panoramic 360-degree scenes using Gaussian splatting; novel view synthesis for 360-degree immersive environments; omnidirectional rendering with 3D Gaussian Splatting; find papers on 3D Gaussian Splatting for panoramic 360 degree scene reconstruction; survey of omnidirectional novel view synthesis using Gaussian representations.",
+      "matched_requirement_id": "req-composite-pano-dgs",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

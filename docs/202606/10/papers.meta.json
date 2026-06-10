@@ -1,0 +1,39 @@
+{
+  "label": "2026-06-10",
+  "date": "2026-06-10",
+  "generated_at": "2026-06-10T22:17:48",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202606/10/2606.07670v1-liquid-neural-networks-as-a-drop-in-continuous-time-deformation-field-for-dynamic-3d-gaussian-splatting",
+      "section": "deep",
+      "title_en": "Liquid Neural Networks as a Drop-in Continuous-Time Deformation Field for Dynamic 3D Gaussian Splatting",
+      "authors": "Mingzhao Li, Arghya Pal, Guan Yuan Tan",
+      "date": "2026-06-04",
+      "pdf": "https://arxiv.org/pdf/2606.07670v1",
+      "score": "8.0",
+      "evidence": "使用液态神经网络改进动态3D高斯溅射进行新视图合成",
+      "tldr": "针对可变形3D高斯泼溅（D-3DGS）中MLP形变场只能预测离散帧偏移、缺乏时序平滑性的问题，本文提出用液态神经网络（LNN）的闭式连续时间单元（CfC）堆叠替代MLP，作为即插即用的连续时间形变场。每个CfC细胞通过S形时间门插值隐藏状态，将平滑响应显式嵌入损失函数。在D-NeRF和NeRF-DS数据集上，该方法在总体上匹配或超越MLP基线，尤其对高频关节运动场景提升显著。这一近零摩擦的架构设计将离散形变转变为显式连续时间函数，提升了动态场景重建的时间一致性。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Deformable 3D Gaussian Splatting (D-3DGS) re-constructs dynamic scenes from monocular video by deforming a canonical set of 3D Gaussians through a positional-encoded MLP of frame time t. Although fitted to a continuous variable, the MLP couples no two values of t in its architecture and effectively predicts discrete per-frame offsets, leaving temporal smoothness to emerge only as a byproduct of optimisation. We redesign the deformation field as a stack of Closed-form Continuous-time (CfC) cells, a Liquid Neural Network (LNN), that is the closed-form solution of the Liquid Time-constant ODE while preserving every other part of the D-3DGS pipeline. Each cell exposes a sigmoidal time gate that interpolates between two candidate hidden states, baking a learned smooth response to t into the loss landscape without invoking any numerical solver. On the eight D-NeRF and seven NeRF-DS scenes the liquid field matches or exceeds the MLP baseline in aggregate, with its largest gains concentrated on the scenes with the most high-frequency articulated motion. The result is a near-zero-friction architectural design that turns the discrete MLP deformation field into an explicit continuous-time function of t.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/10/2606.09606v1-path-traced-inverse-rendering-with-global-illumination-in-3d-gaussian-fields",
+      "section": "quick",
+      "title_en": "Path-Traced Inverse Rendering with Global Illumination in 3D Gaussian Fields",
+      "authors": "Junke Zhu, Hao Zhang, Yutian Zhu, Ang Li, Chenxiao Hu, Meng Gai, Fei Zhu, Zhangjin Huang, Sheng Li",
+      "date": "2026-06-08",
+      "pdf": "https://arxiv.org/pdf/2606.09606v1",
+      "score": "6.0",
+      "evidence": "使用3D高斯场进行基于物理的逆渲染并支持全局光照，可应用于全向渲染",
+      "tldr": "针对现有3D高斯场逆渲染因管线不匹配及忽略间接光照导致渲染伪影和材质估计不准的问题，提出一种基于统一光线追踪管道的路径追踪逆渲染框架。通过定义高斯原语在路径空间下的等效交互模型，实现无偏蒙特卡洛光传输，并将梯度回放于相同光追交互上。该方法优化材质与紧凑球面高斯环境，利用光线追踪可见性和多次反弹全局光照。实验表明，相较于传统方法，能更准确恢复材质，产生更真实的阴影、反射及重光照效果。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Ray tracing enables 3D Gaussian fields to serve as a representation for physically based light transport. Faithful inverse rendering requires forward rendering and backward optimization to be defined within a consistent light-transport pipeline. Existing inverse rendering methods estimate G-buffers via splatting and optimize materials in screen space, tying the recovered properties to a rasterization-based pipeline. This pipeline mismatch, together with simplified rendering equations that neglect indirect illumination, often leads to inconsistent shading, visible artifacts, and inaccurate material-lighting estimation under path-traced rendering. Therefore, we propose a splatting-free path-traced inverse rendering framework for 3D Gaussian fields, where forward light transport and backward gradient propagation are defined within a unified ray-tracing pipeline. Our key idea is to define a path-space equivalent interaction model for overlapping Gaussian primitives, under which Monte-Carlo-based path tracing is unbiased for the induced light-transport integral, while pathwise gradients are replayed over the same ray-traced interactions rather than splatting-derived screen-space buffers. The framework optimizes materials and a compact Spherical-Gaussian environment under the full rendering equation with ray-traced visibility and multi-bounce light transport. Extensive experiments demonstrate competitive material inversion and improved path-traced rendering quality, producing more plausible shadows, reflections, and relighting results under global illumination.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
