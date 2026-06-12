@@ -1,0 +1,54 @@
+{
+  "label": "2026-06-12",
+  "date": "2026-06-12",
+  "generated_at": "2026-06-12T21:29:42",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202606/12/2606.10656v1-envision4d-envisioning-visual-futures-via-feed-forward-4d-gaussian-splatting-for-autonomous-driving",
+      "section": "quick",
+      "title_en": "Envision4D: Envisioning Visual Futures via Feed-forward 4D Gaussian Splatting for Autonomous Driving",
+      "authors": "Qi Song, Yifei He, Chi Zhang, Zheng Fu, Xuhe Zhao, Mengmeng Yang, Kun Jiang, Rui Huang, Diange Yang",
+      "date": "2026-06-09",
+      "pdf": "https://arxiv.org/pdf/2606.10656v1",
+      "score": "7.0",
+      "evidence": "前馈4D高斯泼溅用于新视图合成与未来外推",
+      "tldr": "自动驾驶需要预测动态场景的未来演化，但现有前馈方法仅适用于插值，外推时会产生伪影且依赖简化运动假设或未来先验。本文提出Envision4D，一种全自监督的无位姿未来外推框架，通过未来位姿预测模块、层内时序注意力与条件运动提升，以及渐进式训练策略，将高不确定性外推转化为鲁棒关系映射。在多个数据集上，该方法显著优于现有方法，达到最先进性能。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Forecasting the future evolution of dynamic scenes is crucial in autonomous driving. However, existing feed-forward paradigms are primarily designed for interpolation. When extended to future extrapolation, they suffer from ghosting artifacts under large displacements and are constrained by simplified motion assumptions or strict future priors. To overcome these challenges, we propose Envision4D, a fully self-supervised feed-forward framework for pose-free future extrapolation. Specifically, we introduce a Future Pose Prediction module that infers future camera parameters via an iterative denoising process. Furthermore, to capture non-linear dynamics, we propose In-layer Temporal Attention and employ Conditioned Motion Lifting, which transforms the highly uncertain extrapolation process into robust relational mappings. Finally, a Progressive Training Strategy is utilized to stabilize unsupervised motion learning against error accumulation. Extensive experiments demonstrate that Envision4D achieves state-of-the-art performance, significantly outperforming existing methods in future view synthesis.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/12/2606.05650v1-gs-nfs-bandwidth-adaptive-streaming-of-dynamic-gaussian-splats-and-point-clouds",
+      "section": "quick",
+      "title_en": "GS-NFS: Bandwidth-adaptive Streaming of Dynamic Gaussian Splats and Point Clouds",
+      "authors": "Rajrup Ghosh, Haodong Wang, Haoran Hong, Eduardo Pavez, Amartya Chaudhuri, Weiwu Pang, Harsha V. Madhyastha, Antonio Ortega, Ramesh Govindan",
+      "date": "2026-06-04",
+      "pdf": "https://arxiv.org/pdf/2606.05650v1",
+      "score": "6.0",
+      "evidence": "动态3D高斯泼溅流传输",
+      "tldr": "动态3D高斯泼溅（3DGS）技术可生成高质量3D视频，但帧数据量巨大且压缩缓慢。GS-NFS通过GPU并行化现有编码算法，大幅加速动态3DGS帧的编解码，在全帧率下运行。相比现有方法，编解码速度提升1-2个数量级，同时保持出色的压缩性能和渲染质量。该工作为高带宽3D视频流应用提供了高效解决方案。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Dynamic 3D Gaussian Splatting (3DGS) holds great promise as a 3D video streaming technology since it can represent complex 3D scenes with high fidelity. In this approach, every frame in a 3D video represents the environment as a collection of Gaussians with position and other attributes such as scale, rotation, opacity, and color. Frames capture fine details, permit views from any arbitrary perspective, but are an order of magnitude, or more, larger than 2D video frames. A line of recent work has explored how to compress dynamic 3DGS frames, but these approaches are often slow, in part because their compression techniques are not amenable to efficient acceleration. GS-NFS accelerates dynamic 3DGS compression and decompression on a GPU, to the point where it can encode and decode at full frame rate. It achieves this by developing novel GPU-based parallelizations of existing algorithms for encoding both positions and attributes of Gaussians. As a result, it is 1-2 orders of magnitude faster than the state-of-the-art in encoding and decoding a frame, while offering competitive compression performance and rendering quality.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/12/2606.10645v1-manisplat-manipulation-trajectory-synthesis-from-monocular-video-via-decoupled-3d-gaussian-splatting",
+      "section": "quick",
+      "title_en": "ManiSplat: Manipulation Trajectory Synthesis from Monocular Video via Decoupled 3D Gaussian Splatting",
+      "authors": "Wenhao Hu, Haonan Zhou, Liu Liu, Yun Du, Xinjie Wang, Ziang Li, Zhizhong Su, Gaoang Wang",
+      "date": "2026-06-09",
+      "pdf": "https://arxiv.org/pdf/2606.10645v1",
+      "score": "6.0",
+      "evidence": "使用解耦的3D高斯泼溅进行场景重建",
+      "tldr": "针对机器人操作场景中动态场景重建与交互需求，提出ManiSplat框架。通过图结构解耦表示将机器人、物体和背景分离为独立高斯子场；利用任务导向时空对齐模块，基于操作任务运动-技能阶段交替构建伪真值轨迹；采用联合光度几何优化保证时间连续与物理一致性。实验表明，该方法能高保真重建交互驱动动态场景并支持下游机器人任务。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Reconstructing dynamic and interactive 3D scenes from real-world observations remains a fundamental challenge in computer vision and robotics. While recent advances in 3D Gaussian Splatting have enabled high-fidelity static reconstruction, extending it to interactive environments with articulated robots and manipulable objects remains difficult due to complex contact interactions and abrupt pose changes. To address these challenges, we introduce ManiSplat, a unified framework that reconstructs controllable and decoupled Gaussian digital twins directly from monocular ego-view robotic videos. Our method introduces a Graph-Structured Disentangled Representation that separates the robot, objects, and background into independently optimizable Gaussian subfields organized within a scene graph. To ensure stability, we propose a Task-Oriented Spatio-Temporal Alignment module that leverages the inherent logic of manipulation tasks-alternating between Motion and Skill phases-to construct accurate pseudo-ground-truth trajectories. Finally, a joint photometric-geometric optimization ensures the reconstructed scenes are temporally coherent, physically consistent, and simulation-ready. Extensive experiments demonstrate that our approach reconstructs interaction-driven dynamic scenes with high fidelity and controllability, effectively supporting downstream robotic tasks and policy learning.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

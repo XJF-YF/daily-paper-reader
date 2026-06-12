@@ -1,0 +1,148 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-12T21:28:21.897965+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2606.10656v1",
+      "source": "arxiv",
+      "title": "Envision4D: Envisioning Visual Futures via Feed-forward 4D Gaussian Splatting for Autonomous Driving",
+      "abstract": "Forecasting the future evolution of dynamic scenes is crucial in autonomous driving. However, existing feed-forward paradigms are primarily designed for interpolation. When extended to future extrapolation, they suffer from ghosting artifacts under large displacements and are constrained by simplified motion assumptions or strict future priors. To overcome these challenges, we propose Envision4D, a fully self-supervised feed-forward framework for pose-free future extrapolation. Specifically, we introduce a Future Pose Prediction module that infers future camera parameters via an iterative denoising process. Furthermore, to capture non-linear dynamics, we propose In-layer Temporal Attention and employ Conditioned Motion Lifting, which transforms the highly uncertain extrapolation process into robust relational mappings. Finally, a Progressive Training Strategy is utilized to stabilize unsupervised motion learning against error accumulation. Extensive experiments demonstrate that Envision4D achieves state-of-the-art performance, significantly outperforming existing methods in future view synthesis.",
+      "authors": [
+        "Qi Song",
+        "Yifei He",
+        "Chi Zhang",
+        "Zheng Fu",
+        "Xuhe Zhao",
+        "Mengmeng Yang",
+        "Kun Jiang",
+        "Rui Huang",
+        "Diange Yang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-09T10:04:38+00:00",
+      "link": "https://arxiv.org/pdf/2606.10656v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "feed-forward 4D Gaussian Splatting for novel view synthesis and future extrapolation",
+      "llm_evidence_cn": "前馈4D高斯泼溅用于新视图合成与未来外推",
+      "llm_evidence": "前馈4D高斯泼溅用于新视图合成与未来外推",
+      "canonical_evidence": "前馈4D高斯泼溅用于新视图合成与未来外推",
+      "llm_tldr_en": "Envision4D proposes a self-supervised feed-forward framework using 4D Gaussian Splatting with future pose prediction and temporal attention for novel view synthesis and future frame extrapolation in autonomous driving.",
+      "llm_tldr_cn": "针对动态场景未来外推中的伪影问题，提出Envision4D框架，基于前馈4D高斯泼溅，引入未来姿态预测模块和层内时序注意力，实现无先验的自监督新视图合成与未来帧预测，在自动驾驶数据集上有效减少伪影并捕捉非线性运动。",
+      "llm_tldr": "针对动态场景未来外推中的伪影问题，提出Envision4D框架，基于前馈4D高斯泼溅，引入未来姿态预测模块和层内时序注意力，实现无先验的自监督新视图合成与未来帧预测，在自动驾驶数据集上有效减少伪影并捕捉非线性运动。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.05650v1",
+      "source": "arxiv",
+      "title": "GS-NFS: Bandwidth-adaptive Streaming of Dynamic Gaussian Splats and Point Clouds",
+      "abstract": "Dynamic 3D Gaussian Splatting (3DGS) holds great promise as a 3D video streaming technology since it can represent complex 3D scenes with high fidelity. In this approach, every frame in a 3D video represents the environment as a collection of Gaussians with position and other attributes such as scale, rotation, opacity, and color. Frames capture fine details, permit views from any arbitrary perspective, but are an order of magnitude, or more, larger than 2D video frames. A line of recent work has explored how to compress dynamic 3DGS frames, but these approaches are often slow, in part because their compression techniques are not amenable to efficient acceleration. GS-NFS accelerates dynamic 3DGS compression and decompression on a GPU, to the point where it can encode and decode at full frame rate. It achieves this by developing novel GPU-based parallelizations of existing algorithms for encoding both positions and attributes of Gaussians. As a result, it is 1-2 orders of magnitude faster than the state-of-the-art in encoding and decoding a frame, while offering competitive compression performance and rendering quality.",
+      "authors": [
+        "Rajrup Ghosh",
+        "Haodong Wang",
+        "Haoran Hong",
+        "Eduardo Pavez",
+        "Amartya Chaudhuri",
+        "Weiwu Pang",
+        "Harsha V. Madhyastha",
+        "Antonio Ortega",
+        "Ramesh Govindan"
+      ],
+      "primary_category": "cs.MM",
+      "categories": [
+        "cs.MM",
+        "cs.CV",
+        "cs.GR",
+        "cs.NI"
+      ],
+      "published": "2026-06-04T03:27:56+00:00",
+      "link": "https://arxiv.org/pdf/2606.05650v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Dynamic 3D Gaussian Splatting streaming",
+      "llm_evidence_cn": "动态3D高斯泼溅流传输",
+      "llm_evidence": "动态3D高斯泼溅流传输",
+      "canonical_evidence": "动态3D高斯泼溅流传输",
+      "llm_tldr_en": "GS-NFS accelerates GPU-based compression and decompression of dynamic 3D Gaussian Splatting frames for bandwidth-adaptive 3D video streaming.",
+      "llm_tldr_cn": "动态3D高斯泼溅作为3D视频流技术具有高保真优势，但帧数据量大、压缩慢。本文提出GS-NFS框架，在GPU上加速动态3DGS帧的压缩与解压，实现带宽自适应流传输，为实时3D视频应用提供了高效方案。",
+      "llm_tldr": "动态3D高斯泼溅作为3D视频流技术具有高保真优势，但帧数据量大、压缩慢。本文提出GS-NFS框架，在GPU上加速动态3DGS帧的压缩与解压，实现带宽自适应流传输，为实时3D视频应用提供了高效方案。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.10645v1",
+      "source": "arxiv",
+      "title": "ManiSplat: Manipulation Trajectory Synthesis from Monocular Video via Decoupled 3D Gaussian Splatting",
+      "abstract": "Reconstructing dynamic and interactive 3D scenes from real-world observations remains a fundamental challenge in computer vision and robotics. While recent advances in 3D Gaussian Splatting have enabled high-fidelity static reconstruction, extending it to interactive environments with articulated robots and manipulable objects remains difficult due to complex contact interactions and abrupt pose changes. To address these challenges, we introduce ManiSplat, a unified framework that reconstructs controllable and decoupled Gaussian digital twins directly from monocular ego-view robotic videos. Our method introduces a Graph-Structured Disentangled Representation that separates the robot, objects, and background into independently optimizable Gaussian subfields organized within a scene graph. To ensure stability, we propose a Task-Oriented Spatio-Temporal Alignment module that leverages the inherent logic of manipulation tasks-alternating between Motion and Skill phases-to construct accurate pseudo-ground-truth trajectories. Finally, a joint photometric-geometric optimization ensures the reconstructed scenes are temporally coherent, physically consistent, and simulation-ready. Extensive experiments demonstrate that our approach reconstructs interaction-driven dynamic scenes with high fidelity and controllability, effectively supporting downstream robotic tasks and policy learning.",
+      "authors": [
+        "Wenhao Hu",
+        "Haonan Zhou",
+        "Liu Liu",
+        "Yun Du",
+        "Xinjie Wang",
+        "Ziang Li",
+        "Zhizhong Su",
+        "Gaoang Wang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-09T09:55:58+00:00",
+      "link": "https://arxiv.org/pdf/2606.10645v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "uses decoupled 3D Gaussian Splatting for scene reconstruction",
+      "llm_evidence_cn": "使用解耦的3D高斯泼溅进行场景重建",
+      "llm_evidence": "使用解耦的3D高斯泼溅进行场景重建",
+      "canonical_evidence": "使用解耦的3D高斯泼溅进行场景重建",
+      "llm_tldr_en": "ManiSplat reconstructs decoupled Gaussian digital twins from monocular video via a graph-structured disentangled representation, enabling controllable manipulation and novel view synthesis.",
+      "llm_tldr_cn": "针对动态交互场景重建难的问题，提出ManiSplat框架，利用解耦的3D高斯泼溅和图表征分离机器人、物体和背景，从单目单视角视频中构建可操控的数字孪生，实现轨迹合成与新视角渲染，实验结果展示了高保真动态重建能力。",
+      "llm_tldr": "针对动态交互场景重建难的问题，提出ManiSplat框架，利用解耦的3D高斯泼溅和图表征分离机器人、物体和背景，从单目单视角视频中构建可操控的数字孪生，实现轨迹合成与新视角渲染，实验结果展示了高保真动态重建能力。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
