@@ -1,0 +1,24 @@
+{
+  "label": "2026-06-15",
+  "date": "2026-06-15",
+  "generated_at": "2026-06-15T22:47:39",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202606/15/2606.14389v1-moomins----monocular-3d-reconstruction-and-object-pose-estimation-from-multiple-instances",
+      "section": "quick",
+      "title_en": "MooMIns -- Monocular 3D Reconstruction and Object Pose Estimation from Multiple Instances",
+      "authors": "Robert Langendörfer, Markus Hillemann, Markus Ulrich",
+      "date": "2026-06-12",
+      "pdf": "https://arxiv.org/pdf/2606.14389v1",
+      "score": "6.0",
+      "evidence": "基于高斯泼溅的方法从多实例进行3D重建和新视角合成",
+      "tldr": "单目图像同时进行3D重建和6D姿态估计是病态问题。工业场景中多个相同物体随机堆放，隐式提供多视图几何。MooMIns基于Gaussian-splatting反转渲染过程，从单相机渲染多实例，结合SAM3分割和修改SfM初始化，实现几何驱动的重建与姿态估计。在合成和真实数据上准确重建未见物体并可靠估计姿态。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Simultaneous 3D reconstruction and 6D object pose estimation from a single monocular image is an inherently ill-posed problem. In industrial settings, however, multiple instances of an object are often randomly arranged in bins, implicitly providing several views of the same object within a single image. We show that this implicit multi-view geometry can be exploited to simultaneously reconstruct the object in 3D and estimate the 6D pose of each visible object instance. We present MooMIns, a new Gaussian-splatting-based approach that inverts the original Gaussian splatting formulation: instead of rendering a single scene from multiple cameras, we render multiple object instances from a single camera. Our method is initialized with SAM3 instance segmentation masks and a modified Structure from Motion (SfM) pipeline. In contrast to learned monocular depth estimation, we perform true geometry-based reconstruction from image evidence, avoiding hallucinations caused by training data priors. We evaluate MooMIns on synthetic and real bin-picking scenarios, and demonstrate accurate reconstruction of previously unseen objects as well as reliable pose estimation of individual instance",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

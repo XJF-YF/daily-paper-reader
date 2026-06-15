@@ -1,6 +1,9 @@
 * <a class="dpr-sidebar-root-link" href="#/">首页</a>
 * <a class="dpr-sidebar-root-link dpr-sidebar-noactive-link" href="javascript:void(0)" data-dpr-hash="#/tutorial/README">使用教程</a>
 * Daily Papers
+  * 2026-06-15 <!--dpr-date:20260615-->
+    * 速读区
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202606/15/2606.14389v1-moomins----monocular-3d-reconstruction-and-object-pose-estimation-from-multiple-instances" data-sidebar-item="{&quot;title&quot;: &quot;MooMIns -- Monocular 3D Reconstruction and Object Pose Estimation from Multiple Instances&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2606.14389v1-moomins----monocular-3d-reconstruction-and-object-pose-estimation-from-multiple-instances&quot;, &quot;score&quot;: &quot;6.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;pano-dgs&quot;}], &quot;evidence&quot;: &quot;基于高斯泼溅的方法从多实例进行3D重建和新视角合成&quot;}">MooMIns -- Monocular 3D Reconstruction and Object Pose Estimation from Multiple Instances</a>
   * 2026-06-14 <!--dpr-date:20260614-->
     * 精读区
       * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202606/14/2606.11894v2-wild3r-feed-forward-3d-gaussian-splatting-from-unconstrained-sparse-photo-collection" data-sidebar-item="{&quot;title&quot;: &quot;Wild3R: Feed-Forward 3D Gaussian Splatting from Unconstrained Sparse Photo Collection&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2606.11894v2-wild3r-feed-forward-3d-gaussian-splatting-from-unconstrained-sparse-photo-collection&quot;, &quot;score&quot;: &quot;9.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;pano-dgs&quot;}], &quot;evidence&quot;: &quot;前馈式3D高斯溅射用于新颖视图合成&quot;}">Wild3R: Feed-Forward 3D Gaussian Splatting from Unconstrained Sparse Photo Collection</a>

@@ -1,0 +1,54 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-15T22:46:59.350012+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2606.14389v1",
+      "source": "arxiv",
+      "title": "MooMIns -- Monocular 3D Reconstruction and Object Pose Estimation from Multiple Instances",
+      "abstract": "Simultaneous 3D reconstruction and 6D object pose estimation from a single monocular image is an inherently ill-posed problem. In industrial settings, however, multiple instances of an object are often randomly arranged in bins, implicitly providing several views of the same object within a single image. We show that this implicit multi-view geometry can be exploited to simultaneously reconstruct the object in 3D and estimate the 6D pose of each visible object instance. We present MooMIns, a new Gaussian-splatting-based approach that inverts the original Gaussian splatting formulation: instead of rendering a single scene from multiple cameras, we render multiple object instances from a single camera. Our method is initialized with SAM3 instance segmentation masks and a modified Structure from Motion (SfM) pipeline. In contrast to learned monocular depth estimation, we perform true geometry-based reconstruction from image evidence, avoiding hallucinations caused by training data priors. We evaluate MooMIns on synthetic and real bin-picking scenarios, and demonstrate accurate reconstruction of previously unseen objects as well as reliable pose estimation of individual instance",
+      "authors": [
+        "Robert Langendörfer",
+        "Markus Hillemann",
+        "Markus Ulrich"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-12T12:24:50+00:00",
+      "link": "https://arxiv.org/pdf/2606.14389v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Gaussian-splatting-based approach for 3D reconstruction and novel view synthesis from multiple instances",
+      "llm_evidence_cn": "基于高斯泼溅的方法从多实例进行3D重建和新视角合成",
+      "llm_evidence": "基于高斯泼溅的方法从多实例进行3D重建和新视角合成",
+      "canonical_evidence": "基于高斯泼溅的方法从多实例进行3D重建和新视角合成",
+      "llm_tldr_en": "MooMIns inverts the Gaussian splatting formulation to reconstruct multiple object instances from a single monocular image, leveraging implicit multi-view geometry.",
+      "llm_tldr_cn": "MooMIns提出了一种新颖的高斯泼溅变体，通过从单张图像中隐式利用多个物体实例的多视图几何，同时进行3D重建和姿态估计。方法反转了传统3DGS：从单个相机渲染多个实例。虽然主要用于工业物体而非全景场景，但其高斯泼溅核心具有可迁移性。",
+      "llm_tldr": "MooMIns提出了一种新颖的高斯泼溅变体，通过从单张图像中隐式利用多个物体实例的多视图几何，同时进行3D重建和姿态估计。方法反转了传统3DGS：从单个相机渲染多个实例。虽然主要用于工业物体而非全景场景，但其高斯泼溅核心具有可迁移性。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
