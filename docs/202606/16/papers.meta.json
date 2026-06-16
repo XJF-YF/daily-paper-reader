@@ -1,0 +1,39 @@
+{
+  "label": "2026-06-16",
+  "date": "2026-06-16",
+  "generated_at": "2026-06-16T22:07:54",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202606/16/2606.15924v1-turbogs-accelerating-3d-gaussian-splatting-via-error-guided-sparse-pixel-sampling-and-optimization",
+      "section": "quick",
+      "title_en": "TurboGS: Accelerating 3D Gaussian Splatting via Error-Guided Sparse Pixel Sampling and Optimization",
+      "authors": "Zheng Dong, Daifei Qiu, Pinxuan Dai, Ke Xu, Jiamin Xu, Lili He, Rynson W. H. Lau, Weiwei Xu",
+      "date": "2026-06-14",
+      "pdf": "https://arxiv.org/pdf/2606.15924v1",
+      "score": "7.0",
+      "evidence": "加速3DGS优化以用于通用新视角合成",
+      "tldr": "现有3DGS加速方法在冗余像素上计算量大且丢失细节，为此提出TurboGS，通过多视图重建误差驱动的块级稀疏像素采样优先处理困难区域，结合块级结构感知损失和误差驱动密度控制，以及混合优化器，实现训练加速。在标准基准上，TurboGS在单张RTX 5090上100秒内达到与原始3DGS相当或更优渲染质量，训练速度提升10倍。该方法有效减少了冗余计算，同时保持了细节质量，为实时3D重建应用提供了高效解决方案。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Consumer-level applications require fast optimization of 3D Gaussian Splatting (3DGS) with high-fidelity novel view rendering. However, existing 3DGS acceleration approaches still incur substantial computation on redundant pixels while sacrificing fine details. In this paper, we present TurboGS, an error-guided training framework that accelerates 3DGS by concentrating optimization on perceptually informative pixels. TurboGS is built upon four core components: (1) a tile-wise sparse pixel sampling, which, driven by multi-view reconstruction errors during training, prioritizes challenging regions and skips well-reconstructed ones to avoid redundant gradient computation; (2) a tile-wise structure-aware loss with sparse Normalized Cross-Correlation, which provides sparse yet effective supervision to preserve fine details and stabilize training; (3) an error-driven Gaussian density control strategy, which dynamically allocates model capacity and removes redundant primitives; and (4) a tailored hybrid optimizer that couples Hessian-informed updates with Adam moment damping to stabilize and improve convergence under sparse supervision. Experiments on standard benchmarks demonstrate that TurboGS can deliver on par or superior rendering quality within 100 seconds on a single RTX 5090 GPU card (up to 10x training speedup over vanilla 3DGS).",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/16/2606.16566v1-local-gs-accelerating-3d-gaussian-splatting-via-tile-local-warp-coherence",
+      "section": "quick",
+      "title_en": "Local-GS: Accelerating 3D Gaussian Splatting via Tile-Local Warp Coherence",
+      "authors": "Yang Luo, Yan Gong, Yongsheng Gao, Jie Zhao, Xinyu Zhang, Huaping Liu",
+      "date": "2026-06-15",
+      "pdf": "https://arxiv.org/pdf/2606.16566v1",
+      "score": "7.0",
+      "evidence": "通过线程束一致性加速3DGS渲染，可适用于全景场景",
+      "tldr": "3D Gaussian Splatting在实时新视图合成中表现出色，但高斯原语的不规则空间分布导致GPU线程束发散和冗余计算，限制了渲染效率。Local-GS提出基于SIMT执行边界的warp相干渲染范式，通过逐块预计算共享参数、剔除无贡献线程束、以统一指令流替代逐像素分支，显著提升利用率。在多个数据集上，该方法在保持画质的同时大幅加速，尤其在Deep Blending场景中实现7.76倍提速，可作为即插即用优化提升所有基线性能。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "3D Gaussian Splatting (3DGS) has significantly advanced real-time novel view synthesis by representing scenes as dense collections of anisotropic 3D Gaussian primitives. However, the irregular spatial distribution of Gaussians often leads to poor GPU utilization, as warp divergence and redundant computation degrade rendering performance. To address this, we present Local-GS, a warp-coherent rendering paradigm that, organizes Gaussian primitives with respect to SIMT (Single Instruction, Multiple Threads) execution boundaries rather than scene geometry. Specifically, we propose three warp-coherent stages: a hoisting stage that precomputes shared parameters at tile level, a culling stage that discards warps with no contribution, and a blending stage that replaces per-pixel branching with a uniform instruction stream. Across extensive benchmarks on multiple datasets, Local-GS improves efficiency without compromising quality. As a plug-and-play optimization, it provides additional performance gains to all tested baselines, culminating in a $7.76\\times$ speedup on Deep Blending scenes.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

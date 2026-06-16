@@ -1,0 +1,100 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-16T22:06:20.440777+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2606.15924v1",
+      "source": "arxiv",
+      "title": "TurboGS: Accelerating 3D Gaussian Splatting via Error-Guided Sparse Pixel Sampling and Optimization",
+      "abstract": "Consumer-level applications require fast optimization of 3D Gaussian Splatting (3DGS) with high-fidelity novel view rendering. However, existing 3DGS acceleration approaches still incur substantial computation on redundant pixels while sacrificing fine details. In this paper, we present TurboGS, an error-guided training framework that accelerates 3DGS by concentrating optimization on perceptually informative pixels. TurboGS is built upon four core components: (1) a tile-wise sparse pixel sampling, which, driven by multi-view reconstruction errors during training, prioritizes challenging regions and skips well-reconstructed ones to avoid redundant gradient computation; (2) a tile-wise structure-aware loss with sparse Normalized Cross-Correlation, which provides sparse yet effective supervision to preserve fine details and stabilize training; (3) an error-driven Gaussian density control strategy, which dynamically allocates model capacity and removes redundant primitives; and (4) a tailored hybrid optimizer that couples Hessian-informed updates with Adam moment damping to stabilize and improve convergence under sparse supervision. Experiments on standard benchmarks demonstrate that TurboGS can deliver on par or superior rendering quality within 100 seconds on a single RTX 5090 GPU card (up to 10x training speedup over vanilla 3DGS).",
+      "authors": [
+        "Zheng Dong",
+        "Daifei Qiu",
+        "Pinxuan Dai",
+        "Ke Xu",
+        "Jiamin Xu",
+        "Lili He",
+        "Rynson W. H. Lau",
+        "Weiwei Xu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "published": "2026-06-14T16:59:48+00:00",
+      "link": "https://arxiv.org/pdf/2606.15924v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "accelerates 3DGS optimization for general novel view synthesis",
+      "llm_evidence_cn": "加速3DGS优化以用于通用新视角合成",
+      "llm_evidence": "加速3DGS优化以用于通用新视角合成",
+      "canonical_evidence": "加速3DGS优化以用于通用新视角合成",
+      "llm_tldr_en": "TurboGS accelerates 3DGS training by error-guided sparse pixel sampling, focusing on challenging regions and skipping redundant pixels, achieving faster convergence with high fidelity.",
+      "llm_tldr_cn": "TurboGS针对3DGS训练中冗余像素计算浪费的问题，提出基于重建误差的稀疏采样策略：优先优化困难区域，跳过已良好重建的像素。结合结构感知损失和稀疏归一化，该方法在多个基准上以更少迭代达到同等或更优质量，加速训练过程，适用于各种场景，包括全景场景的快速重建。",
+      "llm_tldr": "TurboGS针对3DGS训练中冗余像素计算浪费的问题，提出基于重建误差的稀疏采样策略：优先优化困难区域，跳过已良好重建的像素。结合结构感知损失和稀疏归一化，该方法在多个基准上以更少迭代达到同等或更优质量，加速训练过程，适用于各种场景，包括全景场景的快速重建。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.16566v1",
+      "source": "arxiv",
+      "title": "Local-GS: Accelerating 3D Gaussian Splatting via Tile-Local Warp Coherence",
+      "abstract": "3D Gaussian Splatting (3DGS) has significantly advanced real-time novel view synthesis by representing scenes as dense collections of anisotropic 3D Gaussian primitives. However, the irregular spatial distribution of Gaussians often leads to poor GPU utilization, as warp divergence and redundant computation degrade rendering performance. To address this, we present Local-GS, a warp-coherent rendering paradigm that, organizes Gaussian primitives with respect to SIMT (Single Instruction, Multiple Threads) execution boundaries rather than scene geometry. Specifically, we propose three warp-coherent stages: a hoisting stage that precomputes shared parameters at tile level, a culling stage that discards warps with no contribution, and a blending stage that replaces per-pixel branching with a uniform instruction stream. Across extensive benchmarks on multiple datasets, Local-GS improves efficiency without compromising quality. As a plug-and-play optimization, it provides additional performance gains to all tested baselines, culminating in a $7.76\\times$ speedup on Deep Blending scenes.",
+      "authors": [
+        "Yang Luo",
+        "Yan Gong",
+        "Yongsheng Gao",
+        "Jie Zhao",
+        "Xinyu Zhang",
+        "Huaping Liu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-15T11:08:10+00:00",
+      "link": "https://arxiv.org/pdf/2606.16566v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "accelerates 3DGS rendering via warp coherence, applicable to panoramic scenes",
+      "llm_evidence_cn": "通过线程束一致性加速3DGS渲染，可适用于全景场景",
+      "llm_evidence": "通过线程束一致性加速3DGS渲染，可适用于全景场景",
+      "canonical_evidence": "通过线程束一致性加速3DGS渲染，可适用于全景场景",
+      "llm_tldr_en": "Local-GS improves GPU utilization in 3DGS by organizing Gaussians according to SIMT warp boundaries, reducing divergence and redundant computation for faster rendering.",
+      "llm_tldr_cn": "Local-GS针对3DGS渲染中高斯分布不规则导致GPU线程束发散和计算冗余的问题，提出以线程束执行边界组织高斯原语，通过预计算共享参数、跳过无贡献线程束等策略提升渲染速度。该方法不改变渲染质量，适用于任何3DGS场景，包括高分辨率全景渲染。",
+      "llm_tldr": "Local-GS针对3DGS渲染中高斯分布不规则导致GPU线程束发散和计算冗余的问题，提出以线程束执行边界组织高斯原语，通过预计算共享参数、跳过无贡献线程束等策略提升渲染速度。该方法不改变渲染质量，适用于任何3DGS场景，包括高分辨率全景渲染。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
