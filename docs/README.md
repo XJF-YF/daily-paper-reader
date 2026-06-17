@@ -6,29 +6,31 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-16
-- 运行时间：2026-06-16 22:07:48 UTC
+- 最新运行日期：2026-06-17
+- 运行时间：2026-06-17 20:40:57 UTC
 - 运行状态：成功
-- 本次总论文数：2
-- 精读区：0
+- 本次总论文数：3
+- 精读区：1
 - 速读区：2
 
 ### 今日简报（AI）
-今日速读两篇关于加速3D Gaussian Splatting的论文，均获7.0分。  
-值得关注两个加速方向：基于错误引导的稀疏像素采样优化，以及利用局部瓦片一致性。  
-建议进一步了解这些方法如何提升3D渲染效率，尤其适合实时应用场景。
-- 详情：[/202606/16/README](/202606/16/README)
+1. 今日聚焦3D高斯泼溅技术：精读其用于具身仿真环境自动重建的GASE系统，速读动态头部编辑与单目在线SLAM优化两项应用。  
+2. 最值得关注：GASE为机器人仿真提供高效环境重建方案；Edit3DGS统一了2D指令与3D高斯实现动态头部编辑。  
+3. 建议下一步关注Gaussian Splatting与具身智能结合的潜力，并学习MoonSplat的Sim(3)全局优化方法以增强单目重建鲁棒性。
+- 详情：[/202606/17/README](/202606/17/README)
 
 ### 精读区论文标签
-- 本次无精读推荐。
+1. [GASE: Gaussian Splatting-Based Automated System for Reconstructing Embodied-Simulation Environments](/202606/17/2606.17520v1-gase-gaussian-splatting-based-automated-system-for-reconstructing-embodied-simulation-environments)  
+   标签：评分：9.0/10、query:pano-dgs
+   evidence：使用全景相机阵列和高斯喷溅重建场景
 
 ### 速读区论文标签
-1. [TurboGS: Accelerating 3D Gaussian Splatting via Error-Guided Sparse Pixel Sampling and Optimization](/202606/16/2606.15924v1-turbogs-accelerating-3d-gaussian-splatting-via-error-guided-sparse-pixel-sampling-and-optimization)  
-   标签：评分：7.0/10、query:pano-dgs
-   evidence：加速3DGS优化以用于通用新视角合成
-2. [Local-GS: Accelerating 3D Gaussian Splatting via Tile-Local Warp Coherence](/202606/16/2606.16566v1-local-gs-accelerating-3d-gaussian-splatting-via-tile-local-warp-coherence)  
-   标签：评分：7.0/10、query:pano-dgs
-   evidence：通过线程束一致性加速3DGS渲染，可适用于全景场景
+1. [Edit3DGS: Unified Framework for Dynamic Head Editing via 2D Instruction-Guided Diffusion and 3D Gaussian Splatting](/202606/17/2606.17432v1-edit3dgs-unified-framework-for-dynamic-head-editing-via-2d-instruction-guided-diffusion-and-3d-gaussian-splatting)  
+   标签：评分：6.0/10、query:pano-dgs
+   evidence：利用3D高斯溅射进行头部编辑中的视图合成
+2. [MoonSplat: Monocular Online Gaussian Splatting with Sim(3) Global Optimization](/202606/17/2606.17935v1-moonsplat-monocular-online-gaussian-splatting-with-sim3-global-optimization)  
+   标签：评分：6.0/10、query:pano-dgs
+   evidence：基于单目图像的在线3D高斯泼溅重建，与沉浸式环境重建相关
 
 
 <div class="dpr-home-promo-card">
