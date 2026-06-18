@@ -6,31 +6,33 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-17
-- 运行时间：2026-06-17 20:40:57 UTC
+- 最新运行日期：2026-06-18
+- 运行时间：2026-06-18 21:32:45 UTC
 - 运行状态：成功
 - 本次总论文数：3
-- 精读区：1
-- 速读区：2
+- 精读区：2
+- 速读区：1
 
 ### 今日简报（AI）
-1. 今日聚焦3D高斯泼溅技术：精读其用于具身仿真环境自动重建的GASE系统，速读动态头部编辑与单目在线SLAM优化两项应用。  
-2. 最值得关注：GASE为机器人仿真提供高效环境重建方案；Edit3DGS统一了2D指令与3D高斯实现动态头部编辑。  
-3. 建议下一步关注Gaussian Splatting与具身智能结合的潜力，并学习MoonSplat的Sim(3)全局优化方法以增强单目重建鲁棒性。
-- 详情：[/202606/17/README](/202606/17/README)
+今日精选3篇论文，聚焦实时视频建模、大规模3D重建与生成先验融合。
+
+《MoVerse》以全景高斯支架实现实时视频世界建模，获满分推荐；《Splaxel》通过像素级通信高效分布式训练3D高斯泼溅，适合大场景重建。
+
+建议关注高斯泼溅在实时与大规模场景中的落地应用，并留意生成先验如何提升重建保真度（如《FlowObject》）。
+- 详情：[/202606/18/README](/202606/18/README)
 
 ### 精读区论文标签
-1. [GASE: Gaussian Splatting-Based Automated System for Reconstructing Embodied-Simulation Environments](/202606/17/2606.17520v1-gase-gaussian-splatting-based-automated-system-for-reconstructing-embodied-simulation-environments)  
-   标签：评分：9.0/10、query:pano-dgs
-   evidence：使用全景相机阵列和高斯喷溅重建场景
+1. [MoVerse: Real-Time Video World Modeling with Panoramic Gaussian Scaffold](/202606/18/2606.13376v2-moverse-real-time-video-world-modeling-with-panoramic-gaussian-scaffold)  
+   标签：评分：10.0/10、query:pano-dgs
+   evidence：用于实时360度世界建模的全景高斯支架
+2. [Splaxel: Efficient Distributed Training of 3D Gaussian Splatting for Large-scale Scene Reconstruction via Pixel-level Communication](/202606/18/2606.18588v1-splaxel-efficient-distributed-training-of-3d-gaussian-splatting-for-large-scale-scene-reconstruction-via-pixel-level-communication)  
+   标签：评分：8.0/10、query:pano-dgs
+   evidence：分布式3DGS训练用于大规模场景重建
 
 ### 速读区论文标签
-1. [Edit3DGS: Unified Framework for Dynamic Head Editing via 2D Instruction-Guided Diffusion and 3D Gaussian Splatting](/202606/17/2606.17432v1-edit3dgs-unified-framework-for-dynamic-head-editing-via-2d-instruction-guided-diffusion-and-3d-gaussian-splatting)  
-   标签：评分：6.0/10、query:pano-dgs
-   evidence：利用3D高斯溅射进行头部编辑中的视图合成
-2. [MoonSplat: Monocular Online Gaussian Splatting with Sim(3) Global Optimization](/202606/17/2606.17935v1-moonsplat-monocular-online-gaussian-splatting-with-sim3-global-optimization)  
-   标签：评分：6.0/10、query:pano-dgs
-   evidence：基于单目图像的在线3D高斯泼溅重建，与沉浸式环境重建相关
+1. [FlowObject: Flow Steering for Bridging Generative Priors and Reconstruction Fidelity](/202606/18/2606.19019v1-flowobject-flow-steering-for-bridging-generative-priors-and-reconstruction-fidelity)  
+   标签：评分：7.0/10、query:pano-dgs
+   evidence：将3D高斯泼濺用于稀疏视角重建
 
 
 <div class="dpr-home-promo-card">
