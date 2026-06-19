@@ -1,0 +1,216 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-19T20:25:58.292787+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [
+    {
+      "id": "2606.17935v1",
+      "source": "arxiv",
+      "title": "MoonSplat: Monocular Online Gaussian Splatting with Sim(3) Global Optimization",
+      "abstract": "Online 3D reconstruction from monocular image sequences is a challenging and ongoing research topic. 3D Gaussian Splatting (3DGS), leveraging its high-quality real-time rendering capability, empowers online 3D reconstruction to represent dense scenes with enhanced expressiveness, and thus holds great promise for a wide range of applications such as robotics and AR/VR. However, existing online 3DGS methods still suffer from some key challenges: fragile camera pose estimation due to the lack of global optimization, and low optimization efficiency in large-scale or long-sequence scenarios. To address these issues, we propose a robust and efficient online voxelized 3DGS reconstruction framework integrated with global $\\text{Sim}(3)$ optimization, which enables reliable camera tracking and efficient global loop closure for both camera poses and voxelized 3DGS. To accelerate the convergence of the voxelized 3DGS, we further introduce a color residual learning strategy, which not only boosts optimization speed but also enhances rendering quality. Extensive experiments on diverse indoor and outdoor datasets demonstrate that our method achieves state-of-the-art performance in both camera pose estimation accuracy and rendering quality, while retaining real-time efficiency. Additionally, we develop and deploy a real-world UAV-based active reconstruction system grounded on our proposed method, validating its robustness and generalizability for practical online 3D reconstruction tasks. Our code and data are available at https://github.com/TrickyGo/MoonSplat.",
+      "authors": [
+        "Guo Pu",
+        "Yixuan Han",
+        "Haofeng Li",
+        "Yao Zhang",
+        "Hui Zhou",
+        "Zhouhui Lian"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-16T13:43:35+00:00",
+      "link": "https://arxiv.org/pdf/2606.17935v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "uses 3D Gaussian Splatting for online novel view synthesis from monocular input",
+      "llm_evidence_cn": "使用3D高斯泼溅进行单目在线新视图合成",
+      "llm_evidence": "使用3D高斯泼溅进行单目在线新视图合成",
+      "canonical_evidence": "使用3D高斯泼溅进行单目在线新视图合成",
+      "llm_tldr_en": "MoonSplat proposes online voxelized 3DGS with Sim(3) global optimization for robust monocular reconstruction and novel view synthesis.",
+      "llm_tldr_cn": "该论文针对在线单目重建中相机位姿估计脆弱、大场景优化效率低的问题，提出了MoonSplat框架。采用体素化3D高斯泼溅并集成全局Sim(3)优化，实现了鲁棒的位姿估计和高效的场景重建。在多个数据集上的实验表明，该方法在重建质量和渲染速度上均优于现有在线3DGS方法，为机器人、AR/VR等应用提供了实时、高质量的新视角渲染能力。",
+      "llm_tldr": "该论文针对在线单目重建中相机位姿估计脆弱、大场景优化效率低的问题，提出了MoonSplat框架。采用体素化3D高斯泼溅并集成全局Sim(3)优化，实现了鲁棒的位姿估计和高效的场景重建。在多个数据集上的实验表明，该方法在重建质量和渲染速度上均优于现有在线3DGS方法，为机器人、AR/VR等应用提供了实时、高质量的新视角渲染能力。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.19874v1",
+      "source": "arxiv",
+      "title": "MMD-SLAM: Structure-Enhanced Multi-Meta Gaussian Distribution-Guided Visual SLAM",
+      "abstract": "3D Gaussian Splatting (3DGS) has significantly boosted novel view synthesis and high-fidelity scene reconstruction, expanding the potential of 3DGS-based Visual Simultaneous Localization and Mapping (SLAM) methods. However, most existing systems fail to fully exploit the underlying structural information, which limits rendering quality and often leads to inconsistent maps. To address these limitations, we propose MMD-SLAM, a structure-enhanced Visual SLAM framework that leverages the Atlanta World (AW) assumption to guide a Multi-Meta Gaussian representation for photorealistic mapping. First, we introduce a point-line fusion strategy for pose optimization, where 3D line segments are incorporated to improve tracking robustness and provide additional constraints for mapping. Second, we design a Multi-Meta Gaussian representation with dominant directions, explicitly encoding structural priors from the AW hypothesis. Finally, we propose a Gaussian evolution strategy that adapts to scene geometry and incorporates structural cues into global optimization. Extensive experiments demonstrate that these innovations enable MMD-SLAM to achieve state-of-the-art performance in both tracking accuracy and mapping quality. e.g., our method achieves a 48.56% reduction in ATE RMSE on ScanNet and a 5.71% improvement in PSNR on Replica, compared with MonoGS.",
+      "authors": [
+        "Fan Zhu",
+        "Ziyu Chen",
+        "Peichen Liu",
+        "Yifan Zhao",
+        "Zhisong Xu",
+        "Hui Zhu",
+        "Hongxing Zhou",
+        "Sixun Liu",
+        "Chunmao Jiang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-06-18T07:33:08+00:00",
+      "link": "https://arxiv.org/pdf/2606.19874v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "3D Gaussian Splatting for novel view synthesis and scene reconstruction",
+      "llm_evidence_cn": "利用3D高斯溅射进行新颖视图合成与场景重建",
+      "llm_evidence": "利用3D高斯溅射进行新颖视图合成与场景重建",
+      "canonical_evidence": "利用3D高斯溅射进行新颖视图合成与场景重建",
+      "llm_tldr_en": "MMD-SLAM enhances 3DGS-based SLAM with structural priors from Atlanta World assumption, using multi-meta Gaussian representation for photorealistic mapping and robust tracking.",
+      "llm_tldr_cn": "MMD-SLAM针对3D高斯溅射SLAM系统中结构信息利用不足的问题，引入亚特兰大世界假设引导的多元高斯表示。通过点线融合策略优化位姿，并利用结构信息提升渲染质量和地图一致性。实验证明该方法在渲染质量和跟踪鲁棒性上优于现有3DGS-SLAM方法，扩展了3DGS在新颖视图合成与SLAM中的应用。",
+      "llm_tldr": "MMD-SLAM针对3D高斯溅射SLAM系统中结构信息利用不足的问题，引入亚特兰大世界假设引导的多元高斯表示。通过点线融合策略优化位姿，并利用结构信息提升渲染质量和地图一致性。实验证明该方法在渲染质量和跟踪鲁棒性上优于现有3DGS-SLAM方法，扩展了3DGS在新颖视图合成与SLAM中的应用。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.17212v1",
+      "source": "arxiv",
+      "title": "Renderable Partial Representations for Dynamic Gaussian Splatting under Incomplete Delivery",
+      "abstract": "Dynamic Gaussian compression is normally optimized for complete files or complete progressive prefixes, but interactive rendering encounters partial representations: some spatiotemporal regions are present, others missing, and late refinements cannot affect the displayed frame. We study dynamic Gaussian representations whose incomplete delivery states remain directly renderable and whose degradation is optimized in image space. Gaussian primitives are organized into independently addressable spatiotemporal clusters with a base level and three refinements; training samples partial dependency graphs, renders many counterfactual states in one GPU batch, and minimizes expected distortion, tail distortion, temporal inconsistency, rate, and prefix regressions. A counterfactual utility layer measures the marginal render contribution of each completion group across valid receiver contexts. The same graph admits a concrete delivery realization with MTU-bounded entropy-coded chunks, deadline-aware scheduling, and receiver-side dependency closure. On held-out views, the finest refinement has negative mean marginal utility in 3/32 D-NeRF bouncingballs, 49/64 HyperNeRF broom2, and 28/64 HyperNeRF chicken clusters; its lower-tail utility is negative in 21/32, 61/64, and 42/64 clusters, respectively. On broom2, render-utility ordering removes both PSNR regressions produced by nominal layer order at matched byte budgets; on chicken, utilities measured on disjoint training cameras improve held-out PSNR by 3.03 dB at the lowest matched budget. These scoped results show why nominal refinement order cannot substitute for render-conditioned utility: the formulation treats network delivery as a distribution over renderable scene states rather than as an external wrapper around a graphics codec.",
+      "authors": [
+        "Faruk Alpay",
+        "Levent Sarioglu",
+        "Yaser Hadri"
+      ],
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR",
+        "cs.NI"
+      ],
+      "published": "2026-06-15T18:51:11+00:00",
+      "link": "https://arxiv.org/pdf/2606.17212v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Dynamic Gaussian Splatting rendering under incomplete delivery",
+      "llm_evidence_cn": "不完整交付下的动态高斯溅射渲染",
+      "llm_evidence": "不完整交付下的动态高斯溅射渲染",
+      "canonical_evidence": "不完整交付下的动态高斯溅射渲染",
+      "llm_tldr_en": "Proposes renderable partial representations for dynamic Gaussian splatting, organizing primitives into spatiotemporal clusters and optimizing for incomplete delivery states, enabling direct rendering with controlled degradation.",
+      "llm_tldr_cn": "本文研究动态高斯压缩在不完整递送状态下的可渲染性，将高斯基元组织为独立可寻址的时空聚类与基线和三次精化。训练时采样部分依赖图并批量渲染反事实状态，优化预期失真、尾部失真、时间不一致性和码率。实验表明该方法能有效处理动态高斯的不完整递送，在保持可渲染性的同时实现速率失真优化，对实时交互渲染具有重要意义。",
+      "llm_tldr": "本文研究动态高斯压缩在不完整递送状态下的可渲染性，将高斯基元组织为独立可寻址的时空聚类与基线和三次精化。训练时采样部分依赖图并批量渲染反事实状态，优化预期失真、尾部失真、时间不一致性和码率。实验表明该方法能有效处理动态高斯的不完整递送，在保持可渲染性的同时实现速率失真优化，对实时交互渲染具有重要意义。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.20103v1",
+      "source": "arxiv",
+      "title": "Geometry-Preserving in 3D Gaussian Splatting for LiDAR-Camera Extrinsic Calibration",
+      "abstract": "Accurate LiDAR-camera calibration is essential for robust multi-modal perception. Targetless approaches avoid manual setup but remain limited by the scarcity of discriminative cross-modal features. Recent methods address this by reconstructing the scene within a differentiable model, enabling extrinsic optimization through dense photometric supervision. Among these, 3D Gaussian Splatting (3DGS) has been widely adopted as a geometric proxy that bridges LiDAR and camera within a single differentiable framework. However, since 3DGS was originally designed for novel view synthesis, existing methods tend to prioritize rendering quality, causing the proxy geometry to drift from the true LiDAR structure. We propose a framework that preserves the metric geometry of the Gaussian proxy by aggregating multi-view LiDAR observations for dense depth supervision and blocking photometric gradients from updating the Gaussian spatial parameters. We validate our method on public driving datasets, where it consistently outperforms existing targetless methods in calibration accuracy.",
+      "authors": [
+        "Kyoleen Kwak",
+        "Daeho Kim",
+        "Jeong Woon Lee",
+        "Hyoseok Hwang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-18T11:23:33+00:00",
+      "link": "https://arxiv.org/pdf/2606.20103v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "uses 3D Gaussian Splatting for novel view synthesis proxy in calibration",
+      "llm_evidence_cn": "使用3D高斯泼溅作为新视角合成代理进行标定",
+      "llm_evidence": "使用3D高斯泼溅作为新视角合成代理进行标定",
+      "canonical_evidence": "使用3D高斯泼溅作为新视角合成代理进行标定",
+      "llm_tldr_en": "Proposes geometry-preserving 3DGS for LiDAR-camera calibration, addressing geometry drift from novel view synthesis focus.",
+      "llm_tldr_cn": "该论文针对激光雷达-相机外参标定中3D高斯泼溅（3DGS）几何漂移的问题，提出了一种几何保持的3DGS框架。现有方法由于3DGS原设计用于新视图合成，导致代理几何偏离真实激光雷达结构。本文通过引入几何约束，在保持渲染质量的同时确保几何准确性。实验表明该方法在标定精度上优于现有方法，为多模态感知提供了更可靠的几何代理。",
+      "llm_tldr": "该论文针对激光雷达-相机外参标定中3D高斯泼溅（3DGS）几何漂移的问题，提出了一种几何保持的3DGS框架。现有方法由于3DGS原设计用于新视图合成，导致代理几何偏离真实激光雷达结构。本文通过引入几何约束，在保持渲染质量的同时确保几何准确性。实验表明该方法在标定精度上优于现有方法，为多模态感知提供了更可靠的几何代理。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.20531v1",
+      "source": "arxiv",
+      "title": "VisDom: Sparse Novel View Synthesis with Visible Domain Constraint",
+      "abstract": "Sparse novel view synthesis (NVS) remains challenging due to the ambiguity of recovering 3D geometry from few input views. While NeRF- and Gaussian Splatting (GS)-based methods perform well with dense supervision, they often overfit in sparse settings, producing floating artifacts and inconsistent geometry. Silhouette consistency is commonly used as a regularizer, but it remains insufficient, as silhouette-consistent regions can extend beyond the true object geometry. We introduce VisDom, a learning-free geometric constraint that augments classical carving-based visual hull reconstruction by enforcing a minimum multi-view visibility requirement. Specifically, we define a visible domain as the subset of 3D space observed by at least $K$ views and use it as an additional filtering criterion on top of standard silhouette-based reconstruction. This provides a stronger spatial prior in sparse-view settings. We integrate VisDom into both implicit (NeRF) and explicit (GS) pipelines by restricting volumetric sampling and guiding Gaussian placement during optimization. Experiments on three challenging datasets show consistent improvements in sparse-view NVS, enabling high-quality object-centric reconstruction from as few as four input images. Our method is domain-agnostic, requires only silhouettes, and introduces no learned parameters, making it a simple complement to existing approaches. Applying VisDom on top of GaussianObject further improves performance on Omni3D and MipNeRF360, while matching or surpassing it at 22 $\\times$ lower training cost.",
+      "authors": [
+        "Mariia Gladkova*",
+        "Tarun Yenamandra*",
+        "Edmond Boyer",
+        "Robert Maier",
+        "Tony Tung",
+        "Daniel Cremers"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-18T17:45:37+00:00",
+      "link": "https://arxiv.org/pdf/2606.20531v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Uses Gaussian Splatting for novel view synthesis; introduces visible domain constraint for sparse reconstruction",
+      "llm_evidence_cn": "使用高斯泼溅进行新视角合成；提出可见域约束改进稀疏重建",
+      "llm_evidence": "使用高斯泼溅进行新视角合成；提出可见域约束改进稀疏重建",
+      "canonical_evidence": "使用高斯泼溅进行新视角合成；提出可见域约束改进稀疏重建",
+      "llm_tldr_en": "VisDom introduces a learning-free visible domain constraint for sparse novel view synthesis, improving geometry consistency in GS-based methods.",
+      "llm_tldr_cn": "稀疏新视角合成中几何模糊导致伪影。本文提出VisDom，一种无需学习的可见域约束，通过多视图可见性最小需求增强视觉外壳重建。在GS和NeRF基础上验证，有效减少浮点伪影，提升稀疏视角下的几何一致性。该方法可推广至全景场景的稀疏重建。",
+      "llm_tldr": "稀疏新视角合成中几何模糊导致伪影。本文提出VisDom，一种无需学习的可见域约束，通过多视图可见性最小需求增强视觉外壳重建。在GS和NeRF基础上验证，有效减少浮点伪影，提升稀疏视角下的几何一致性。该方法可推广至全景场景的稀疏重建。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
