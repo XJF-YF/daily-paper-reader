@@ -1,0 +1,57 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-22T21:58:05.989263+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2606.18623v1",
+      "source": "arxiv",
+      "title": "Intrinsic 4D Gaussian Segmentation from Scene Cues",
+      "abstract": "Dynamic 4D Gaussian Splatting reconstructs deforming scenes with high fidelity and is increasingly adopted as a representation for dynamic 3D scenes. Putting such a scene to use, for editing, manipulation or motion analysis, first requires segmenting it: grouping the Gaussian primitives into coherent objects. Current pipelines obtain this grouping by importing 2D masks from foundation models such as SAM and lifting or distilling them into the Gaussian representation. In dynamic scenes these masks must be generated across many frames and views, which is costly, and the resulting segmentation can depend strongly on the quality and consistency of those external masks. We ask how much object-level structure can instead be recovered from the Gaussians themselves, and propose Intrinsic-GS, a training-free, mask-free method that builds a sparse affinity graph over Gaussian primitives from appearance, orientation, scale, deformation-trajectory and non-learned rendered-boundary cues. The graph is partitioned with Leiden community detection, requiring no foundation model and no learned feature field. On the standard 4D Gaussian segmentation benchmarks, Neu3D and HyperNeRF, Intrinsic-GS recovers substantial object structure without mask supervision, reaching 0.746 mIoU on Neu3D and 0.575 on HyperNeRF; on Neu3D, a geometry-only variant reaches 0.902 mIoU, matching SAM-supervised TRASE. On HyperNeRF, Intrinsic-GS runs 12.5x faster than the mask-generation and feature-rendering stages used by mask-supervised pipelines. These results suggest that much of the segmentation signal is already encoded in the Gaussians themselves, offering a fast, mask-free direction for 3D and 4D Gaussian segmentation that may also point toward more generalizable, robust segmentation in settings where external masks are unreliable or expensive.",
+      "authors": [
+        "Hasan Yazar",
+        "Mohamed Rayan Barhdadi",
+        "Erchin Serpedin",
+        "Mehmet Tuncel",
+        "Hasan Kurban"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "eess.IV"
+      ],
+      "published": "2026-06-17T02:40:35+00:00",
+      "link": "https://arxiv.org/pdf/2606.18623v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "4D Gaussian splatting for dynamic scene segmentation",
+      "llm_evidence_cn": "4D高斯泼溅用于动态场景分割",
+      "llm_evidence": "4D高斯泼溅用于动态场景分割",
+      "canonical_evidence": "4D高斯泼溅用于动态场景分割",
+      "llm_tldr_en": "Intrinsic 4D Gaussian Segmentation recovers object-level groupings directly from Gaussian primitives in dynamic 4D scenes, bypassing expensive 2D mask generation and distillation.",
+      "llm_tldr_cn": "动态4D高斯泼溅场景中，现有分割方法依赖昂贵的多帧二维掩码生成与蒸馏。本文提出内在4D高斯分割，直接从高斯原语中恢复物体级结构，无需外部掩码。实验表明该方法在多个动态场景数据集上取得高质量分割，显著降低了计算开销，为高斯表示的场景编辑与分析提供了新途径。",
+      "llm_tldr": "动态4D高斯泼溅场景中，现有分割方法依赖昂贵的多帧二维掩码生成与蒸馏。本文提出内在4D高斯分割，直接从高斯原语中恢复物体级结构，无需外部掩码。实验表明该方法在多个动态场景数据集上取得高质量分割，显著降低了计算开销，为高斯表示的场景编辑与分析提供了新途径。",
+      "llm_tags": [
+        "query:pano-dgs:composite"
+      ],
+      "matched_query_tag": "query:pano-dgs:composite",
+      "matched_query_text": "Papers central to 请帮我查找全景3dgs的相关论文, especially work that connects or combines: 3D Gaussian Splatting method for novel view synthesis; reconstructing panoramic 360-degree scenes using Gaussian splatting; novel view synthesis for 360-degree immersive environments; omnidirectional rendering with 3D Gaussian Splatting; find papers on 3D Gaussian Splatting for panoramic 360 degree scene reconstruction; survey of omnidirectional novel view synthesis using Gaussian representations.",
+      "matched_requirement_id": "req-composite-pano-dgs",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

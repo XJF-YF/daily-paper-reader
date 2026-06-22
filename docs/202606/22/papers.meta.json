@@ -1,0 +1,24 @@
+{
+  "label": "2026-06-22",
+  "date": "2026-06-22",
+  "generated_at": "2026-06-22T21:59:01",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202606/22/2606.18623v1-intrinsic-4d-gaussian-segmentation-from-scene-cues",
+      "section": "quick",
+      "title_en": "Intrinsic 4D Gaussian Segmentation from Scene Cues",
+      "authors": "Hasan Yazar, Mohamed Rayan Barhdadi, Erchin Serpedin, Mehmet Tuncel, Hasan Kurban",
+      "date": "2026-06-17",
+      "pdf": "https://arxiv.org/pdf/2606.18623v1",
+      "score": "6.0",
+      "evidence": "4D高斯泼溅用于动态场景分割",
+      "tldr": "动态4D高斯泼溅需要分割场景中的物体。传统方法依赖外部2D掩码，成本高且质量不稳定。本文提出Intrinsic-GS，无需训练和掩码，直接从高斯图元构建稀疏亲和图，利用外观、方向、尺度、形变轨迹等线索，再用Leiden社区检测进行分组。在Neu3D上达到0.746 mIoU，HyperNeRF上0.575，速度比掩码方法快12.5倍。表明高斯本身已编码足够的分割信号。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Dynamic 4D Gaussian Splatting reconstructs deforming scenes with high fidelity and is increasingly adopted as a representation for dynamic 3D scenes. Putting such a scene to use, for editing, manipulation or motion analysis, first requires segmenting it: grouping the Gaussian primitives into coherent objects. Current pipelines obtain this grouping by importing 2D masks from foundation models such as SAM and lifting or distilling them into the Gaussian representation. In dynamic scenes these masks must be generated across many frames and views, which is costly, and the resulting segmentation can depend strongly on the quality and consistency of those external masks. We ask how much object-level structure can instead be recovered from the Gaussians themselves, and propose Intrinsic-GS, a training-free, mask-free method that builds a sparse affinity graph over Gaussian primitives from appearance, orientation, scale, deformation-trajectory and non-learned rendered-boundary cues. The graph is partitioned with Leiden community detection, requiring no foundation model and no learned feature field. On the standard 4D Gaussian segmentation benchmarks, Neu3D and HyperNeRF, Intrinsic-GS recovers substantial object structure without mask supervision, reaching 0.746 mIoU on Neu3D and 0.575 on HyperNeRF; on Neu3D, a geometry-only variant reaches 0.902 mIoU, matching SAM-supervised TRASE. On HyperNeRF, Intrinsic-GS runs 12.5x faster than the mask-generation and feature-rendering stages used by mask-supervised pipelines. These results suggest that much of the segmentation signal is already encoded in the Gaussians themselves, offering a fast, mask-free direction for 3D and 4D Gaussian segmentation that may also point toward more generalizable, robust segmentation in settings where external masks are unreliable or expensive.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

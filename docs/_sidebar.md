@@ -1,6 +1,9 @@
 * <a class="dpr-sidebar-root-link" href="#/">首页</a>
 * <a class="dpr-sidebar-root-link dpr-sidebar-noactive-link" href="javascript:void(0)" data-dpr-hash="#/tutorial/README">使用教程</a>
 * Daily Papers
+  * 2026-06-22 <!--dpr-date:20260622-->
+    * 速读区
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202606/22/2606.18623v1-intrinsic-4d-gaussian-segmentation-from-scene-cues" data-sidebar-item="{&quot;title&quot;: &quot;Intrinsic 4D Gaussian Segmentation from Scene Cues&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2606.18623v1-intrinsic-4d-gaussian-segmentation-from-scene-cues&quot;, &quot;score&quot;: &quot;6.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;pano-dgs&quot;}], &quot;evidence&quot;: &quot;4D高斯泼溅用于动态场景分割&quot;}">Intrinsic 4D Gaussian Segmentation from Scene Cues</a>
   * 2026-06-19 <!--dpr-date:20260619-->
     * 精读区
       * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202606/19/2606.17935v1-moonsplat-monocular-online-gaussian-splatting-with-sim3-global-optimization" data-sidebar-item="{&quot;title&quot;: &quot;MoonSplat: Monocular Online Gaussian Splatting with Sim(3) Global Optimization&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2606.17935v1-moonsplat-monocular-online-gaussian-splatting-with-sim3-global-optimization&quot;, &quot;score&quot;: &quot;8.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;pano-dgs&quot;}], &quot;evidence&quot;: &quot;使用3D高斯泼溅进行单目在线新视图合成&quot;}">MoonSplat: Monocular Online Gaussian Splatting with Sim(3) Global Optimization</a>
