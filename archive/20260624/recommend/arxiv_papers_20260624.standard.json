@@ -1,0 +1,168 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-24T20:36:08.290800+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 3,
+    "deep_cap": 6,
+    "deep_selected": 3,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2606.24796v1",
+      "source": "arxiv",
+      "title": "Pocket-SLAM: Rendering-Area-Aware Pruning for Memory-Efficient 3DGS-SLAM",
+      "abstract": "3D Gaussian Splatting (3DGS) has garnered significant attention in Simultaneous Localization and Mapping (SLAM) due to its advances in capturing fine-grained geometry features and synthesizing novel views. For SLAM in large-scale scenes, such as autonomous driving, 3DGS-SLAM faces a critical limitation: memory consumption increases continuously over time as Gaussian points accumulate, leading to poor memory efficiency and limiting its applicability. In this work, we propose a rendering-area-aware pruning strategy that selectively removes Gaussians based on their contribution to the effective rendering area, rather than solely relying on Gaussian-level heuristics such as opacity or gradient magnitude. This perspective directly targets the sources of memory redundancy, effectively reducing the peak memory footprint of 3DGS-SLAM during runtime. Evaluations on the EuRoC and KITTI datasets demonstrate that our method consistently outperforms existing pruning approaches in large-scale outdoor scenes, achieving over 60% memory reduction and more than 2 times FPS improvement while preserving localization and mapping accuracy. These results highlight rendering-area-aware pruning as a promising direction for scaling 3DGS-SLAM to real-world autonomous driving scenarios. Our code is publicly available at https://github.com/UMN-ZhaoLab/Pocket-SLAM.git.",
+      "authors": [
+        "Leshu Li",
+        "Jie Peng",
+        "Yang Zhao"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-23T16:48:58+00:00",
+      "link": "https://arxiv.org/pdf/2606.24796v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "3DGS method for novel view synthesis with memory efficiency",
+      "llm_evidence_cn": "面向新视角合成的3DGS内存优化方法",
+      "llm_evidence": "面向新视角合成的3DGS内存优化方法",
+      "canonical_evidence": "面向新视角合成的3DGS内存优化方法",
+      "llm_tldr_en": "Pocket-SLAM proposes a rendering-area-aware pruning strategy for 3DGS-SLAM, reducing memory consumption while maintaining novel view synthesis quality.",
+      "llm_tldr_cn": "Pocket-SLAM针对3DGS-SLAM在大型场景中内存消耗持续增长的问题，提出一种渲染面积感知的剪枝策略，根据高斯点对有效渲染区域的贡献进行选择性移除，而非仅依赖不透明度或梯度幅度。该方法在保持新视角合成质量的同时显著降低内存占用，提升了3DGS在SLAM中的实用性和可扩展性。",
+      "llm_tldr": "Pocket-SLAM针对3DGS-SLAM在大型场景中内存消耗持续增长的问题，提出一种渲染面积感知的剪枝策略，根据高斯点对有效渲染区域的贡献进行选择性移除，而非仅依赖不透明度或梯度幅度。该方法在保持新视角合成质量的同时显著降低内存占用，提升了3DGS在SLAM中的实用性和可扩展性。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.24799v1",
+      "source": "arxiv",
+      "title": "OrbitForge: Text-to-3D Scene Generation via Reconstruction-Anchored Video Synthesis",
+      "abstract": "Generic text-to-video models can be used as rich open-world scene priors. Despite the high quality of today's generated videos, they do not directly yield reliable 3D assets: camera motion is difficult to control, view coverage is partial, and frames often contain inconsistencies across time. We introduce OrbitForge, an adapter built from frozen video priors and per-prompt Gaussian Splatting reconstruction optimization that converts a single text-generated video into a canonical closed-orbit 3D Gaussian Splatting scene. We use 3D reconstruction as an anchor to improve the 3D consistency of the generated video. We obtain a preliminary 3D reconstruction from a first generated video via Deformable Gaussian Splatting with a robust MedianGS proxy. We render views from a prescribed orbit to detect missing viewpoints. OrbitForge uses the text-to-video model to complete only the missing views, and reconstructs the completed orbit into a final Gaussian Splatting scene. This design requires no task-specific video or multiview fine-tuning, avoids per-prompt score-distillation optimization, and does not progressively generate views one step at a time. We further argue that this setting demands coverage-aware evaluation: local smoothness alone rewards methods that never attempt a full orbit. On a frozen 300-prompt T3Bench-derived audit, OrbitForge reconstruction attains a 359.0-degree measured median span, raises originally unsupported-bin Q10 ImageReward from 8.07 to 16.36 relative to MedianGS-only reconstruction, while remaining competitive with VideoMV on the coverage-quality.",
+      "authors": [
+        "Chenrui Fan",
+        "Paolo Favaro"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-06-23T16:50:47+00:00",
+      "link": "https://arxiv.org/pdf/2606.24799v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "text-to-3D scene generation with Gaussian Splatting for novel view synthesis",
+      "llm_evidence_cn": "文本到3D场景生成，利用3DGS新视角合成",
+      "llm_evidence": "文本到3D场景生成，利用3DGS新视角合成",
+      "canonical_evidence": "文本到3D场景生成，利用3DGS新视角合成",
+      "llm_tldr_en": "Converts text-generated videos into consistent 3D Gaussian Splatting scenes via reconstruction-anchored optimization, enabling novel view synthesis from text prompts.",
+      "llm_tldr_cn": "文本生成视频因视角覆盖有限和时序不一致难以直接用于3D资产创建。本文提出OrbitForge，结合冻结视频先验与每提示3DGS重建优化，将单个视频转化为封闭轨道3DGS场景。该方法在保持视觉质量的同时提升了3D一致性，支持新视角渲染，为文本驱动的新视角合成提供了简洁有效的方案，并拓展了3DGS在生成场景中的应用。",
+      "llm_tldr": "文本生成视频因视角覆盖有限和时序不一致难以直接用于3D资产创建。本文提出OrbitForge，结合冻结视频先验与每提示3DGS重建优化，将单个视频转化为封闭轨道3DGS场景。该方法在保持视觉质量的同时提升了3D一致性，支持新视角渲染，为文本驱动的新视角合成提供了简洁有效的方案，并拓展了3DGS在生成场景中的应用。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.24874v1",
+      "source": "arxiv",
+      "title": "FLUX3D: High-Fidelity 3D Gaussian Generation with Diffusion-Aligned Sparse Representation",
+      "abstract": "Sparse voxel representation has emerged as a scalable foundation for image-to-3D Gaussian Splatting (3DGS) generation, yet current methods struggle to preserve high-frequency visual details of input images due to two structural bottlenecks. First, they adopt discriminative 2D features optimized for semantic abstraction to construct sparse voxel latents, which suppress reconstructive cues and induce a representation bottleneck. Second, in the generation stage, standard diffusion transformers lack effective mechanisms to align dense 2D image tokens with sparse 3D voxel latents, resulting in a cross-modal correspondence bottleneck. To address these issues, we propose FLUX3D, a scalable image-to-3DGS framework that boosts both representation learning and cross-modal alignment during generation. We first revisit 2D feature selection for sparse-voxel-based 3D representation learning, propose Diffusion-Aligned Structured Latents (DA-SLAT) and couple it with a decoder-only architecture to improve 3DGS reconstruction fidelity. We also design a sparse-structure-aware diffusion framework, which integrates the Sparse-structure Multimodal Diffusion Transformer (SMDiT) and Modal-Aware Rotary Positional Embedding (MARoPE) to achieve geometry-agnostic 2D-3D alignment. Extensive benchmark experiments demonstrate that FLUX3D yields substantial improvements in appearance fidelity and significantly outperforms all state-of-the-art (SOTA) methods in generating high-quality 3DGS assets.",
+      "authors": [
+        "Haorui Ji",
+        "Weizhe Liu",
+        "Hongdong Li",
+        "Hengkai Guo"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-06-23T17:52:21+00:00",
+      "link": "https://arxiv.org/pdf/2606.24874v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "image-to-3D Gaussian generation for novel view synthesis",
+      "llm_evidence_cn": "图像到3D高斯生成用于新视角合成",
+      "llm_evidence": "图像到3D高斯生成用于新视角合成",
+      "canonical_evidence": "图像到3D高斯生成用于新视角合成",
+      "llm_tldr_en": "FLUX3D generates high-fidelity 3DGS from a single image using a diffusion-aligned sparse voxel representation, addressing representation and correspondence bottlenecks.",
+      "llm_tldr_cn": "现有图像到3DGS生成方法因使用判别特征和缺少对齐机制而丢失高频细节。FLUX3D提出可扩展框架：采用稀疏体素表示与扩散对齐策略，通过设计重建友好的特征和跨模态对齐模块，显著提升了生成3D高斯的高频保真度，在多个基准上实现更逼真的新视角渲染。",
+      "llm_tldr": "现有图像到3DGS生成方法因使用判别特征和缺少对齐机制而丢失高频细节。FLUX3D提出可扩展框架：采用稀疏体素表示与扩散对齐策略，通过设计重建友好的特征和跨模态对齐模块，显著提升了生成3D高斯的高频保真度，在多个基准上实现更逼真的新视角渲染。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.18623v1",
+      "source": "arxiv",
+      "title": "Intrinsic 4D Gaussian Segmentation from Scene Cues",
+      "abstract": "Dynamic 4D Gaussian Splatting reconstructs deforming scenes with high fidelity and is increasingly adopted as a representation for dynamic 3D scenes. Putting such a scene to use, for editing, manipulation or motion analysis, first requires segmenting it: grouping the Gaussian primitives into coherent objects. Current pipelines obtain this grouping by importing 2D masks from foundation models such as SAM and lifting or distilling them into the Gaussian representation. In dynamic scenes these masks must be generated across many frames and views, which is costly, and the resulting segmentation can depend strongly on the quality and consistency of those external masks. We ask how much object-level structure can instead be recovered from the Gaussians themselves, and propose Intrinsic-GS, a training-free, mask-free method that builds a sparse affinity graph over Gaussian primitives from appearance, orientation, scale, deformation-trajectory and non-learned rendered-boundary cues. The graph is partitioned with Leiden community detection, requiring no foundation model and no learned feature field. On the standard 4D Gaussian segmentation benchmarks, Neu3D and HyperNeRF, Intrinsic-GS recovers substantial object structure without mask supervision, reaching 0.746 mIoU on Neu3D and 0.575 on HyperNeRF; on Neu3D, a geometry-only variant reaches 0.902 mIoU, matching SAM-supervised TRASE. On HyperNeRF, Intrinsic-GS runs 12.5x faster than the mask-generation and feature-rendering stages used by mask-supervised pipelines. These results suggest that much of the segmentation signal is already encoded in the Gaussians themselves, offering a fast, mask-free direction for 3D and 4D Gaussian segmentation that may also point toward more generalizable, robust segmentation in settings where external masks are unreliable or expensive.",
+      "authors": [
+        "Hasan Yazar",
+        "Mohamed Rayan Barhdadi",
+        "Erchin Serpedin",
+        "Mehmet Tuncel",
+        "Hasan Kurban"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "eess.IV"
+      ],
+      "published": "2026-06-17T02:40:35+00:00",
+      "link": "https://arxiv.org/pdf/2606.18623v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Uses 3DGS representation for dynamic scene segmentation, relevant to 3DGS methods",
+      "llm_evidence_cn": "利用3DGS表示进行动态场景分割，与3DGS方法相关",
+      "llm_evidence": "利用3DGS表示进行动态场景分割，与3DGS方法相关",
+      "canonical_evidence": "利用3DGS表示进行动态场景分割，与3DGS方法相关",
+      "llm_tldr_en": "Intrinsic 4D Gaussian Segmentation recovers object-level structure from Gaussian primitives themselves, reducing reliance on external masks.",
+      "llm_tldr_cn": "Intrinsic 4D Gaussian Segmentation针对动态4D高斯场景中依赖外部掩码进行分割成本高且不一致的问题，提出从高斯本身提取对象结构的方法，通过场景线索自动分组高斯基元，无需多帧多视图的2D分割掩码，降低了计算开销并提高了分割一致性。",
+      "llm_tldr": "Intrinsic 4D Gaussian Segmentation针对动态4D高斯场景中依赖外部掩码进行分割成本高且不一致的问题，提出从高斯本身提取对象结构的方法，通过场景线索自动分组高斯基元，无需多帧多视图的2D分割掩码，降低了计算开销并提高了分割一致性。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
