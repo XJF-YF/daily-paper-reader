@@ -6,34 +6,29 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-24
-- 运行时间：2026-06-24 20:39:28 UTC
+- 最新运行日期：2026-06-25
+- 运行时间：2026-06-25 20:48:37 UTC
 - 运行状态：成功
-- 本次总论文数：4
-- 精读区：3
-- 速读区：1
+- 本次总论文数：2
+- 精读区：0
+- 速读区：2
 
 ### 今日简报（AI）
-今日日报收录4篇论文，精读2篇（最高8.0分）：聚焦3DGS-SLAM内存优化与文本到3D场景生成。  
-最值得关注的两大方向：Pocket-SLAM的渲染区域感知修剪技术可降低内存占用；OrbitForge通过重建锚定视频合成实现高质文本到3D场景生成。  
-建议普通读者优先尝试OrbitForge的文字转3D工具，体验从文本描述直接生成完整三维场景的便捷流程。
-- 详情：[/202606/24/README](/202606/24/README)
+1) 今日速读2篇：从稀疏2D锚点重建一致3D高斯街景，以及单张肖像生成即时高斯编码头像。  
+2) 最值得关注的是街景重建方法（7.0分），它能从残缺2D线索产出连贯3D场景；头像方法（6.0分）则侧重实时性。  
+3) 建议优先深入了解街景方向，其“支持感知”策略对多视角一致性有启发；头像方法可作轻量化参考。
+- 详情：[/202606/25/README](/202606/25/README)
 
 ### 精读区论文标签
-1. [Pocket-SLAM: Rendering-Area-Aware Pruning for Memory-Efficient 3DGS-SLAM](/202606/24/2606.24796v1-pocket-slam-rendering-area-aware-pruning-for-memory-efficient-3dgs-slam)  
-   标签：评分：8.0/10、query:pano-dgs
-   evidence：面向新视角合成的3DGS内存优化方法
-2. [OrbitForge: Text-to-3D Scene Generation via Reconstruction-Anchored Video Synthesis](/202606/24/2606.24799v1-orbitforge-text-to-3d-scene-generation-via-reconstruction-anchored-video-synthesis)  
-   标签：评分：8.0/10、query:pano-dgs
-   evidence：文本到3D场景生成，利用3DGS新视角合成
-3. [FLUX3D: High-Fidelity 3D Gaussian Generation with Diffusion-Aligned Sparse Representation](/202606/24/2606.24874v1-flux3d-high-fidelity-3d-gaussian-generation-with-diffusion-aligned-sparse-representation)  
-   标签：评分：8.0/10、query:pano-dgs
-   evidence：图像到3D高斯生成用于新视角合成
+- 本次无精读推荐。
 
 ### 速读区论文标签
-1. [Intrinsic 4D Gaussian Segmentation from Scene Cues](/202606/24/2606.18623v1-intrinsic-4d-gaussian-segmentation-from-scene-cues)  
+1. [From Sparse and Imperfect 2D Anchors to Consistent 3D Gaussian Street Scenes: Support-Aware Appearance](/202606/25/2606.26007v1-from-sparse-and-imperfect-2d-anchors-to-consistent-3d-gaussian-street-scenes-support-aware-appearance)  
+   标签：评分：7.0/10、query:pano-dgs
+   evidence：使用3D高斯溅射进行街道场景重建和新视图合成
+2. [FiCA: Feed-forward instant Gaussian Codec Avatars from a Single Portrait Image](/202606/25/2606.24232v1-fica-feed-forward-instant-gaussian-codec-avatars-from-a-single-portrait-image)  
    标签：评分：6.0/10、query:pano-dgs
-   evidence：利用3DGS表示进行动态场景分割，与3DGS方法相关
+   evidence：3D高斯泼溅用于虚拟人新视角合成
 
 
 <div class="dpr-home-promo-card">
