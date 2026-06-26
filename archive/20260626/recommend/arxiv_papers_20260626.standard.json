@@ -1,0 +1,253 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-26T21:05:52.394813+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 3,
+    "deep_cap": 6,
+    "deep_selected": 3,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [
+    {
+      "id": "2606.27071v1",
+      "source": "arxiv",
+      "title": "PanoImager: Geometry-Guided Novel View Synthesis and Reconstruction from Sparse Panoramic Views",
+      "abstract": "Panoramic sensing offers wide field-of-view coverage, yet 3D reconstruction from sparse panoramas remains challenging under rotation-dominant, weak-parallax motion. In such regimes, SfM/SLAM initialization is often ill-conditioned and unreliable. We present PanoImager, an SfM-free framework that combines feed-forward pose/depth priors, geometry-conditioned diffusion view completion, and depth-guided 3DGS optimization. Given only a few panoramic images, PanoImager decomposes them into local perspective views, synthesizes auxiliary observations to enrich sparse evidence, and stabilizes Gaussian optimization for improved cross-view consistency. Experiments on multiple benchmarks show improved stability under extreme sparsity, suggesting PanoImager as an offline/background component for map refinement when SfM/SLAM fails to initialize.",
+      "authors": [
+        "Zhisong Xu",
+        "Takeshi Oishi"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-25T14:15:09+00:00",
+      "link": "https://arxiv.org/pdf/2606.27071v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "panoramic views, 3DGS, novel view synthesis",
+      "llm_evidence_cn": "全景视图，3DGS，新视角合成",
+      "llm_evidence": "全景视图，3DGS，新视角合成",
+      "canonical_evidence": "全景视图，3DGS，新视角合成",
+      "llm_tldr_en": "PanoImager combines feed-forward pose/depth priors and diffusion view completion with depth-guided 3DGS for novel view synthesis from sparse panoramic images, achieving stable reconstruction under extreme sparsity.",
+      "llm_tldr_cn": "针对稀疏全景视图下3D重建的挑战，PanoImager提出无SfM框架，结合前馈位姿/深度先验、几何条件扩散视图补全和深度引导的3DGS优化。在少量全景图像输入下，通过分解局部视角和合成辅助观测，有效提升跨视图一致性。实验表明该方法在极端稀疏条件下具有显著稳定性，为全景场景的实用3D重建提供了新途径。",
+      "llm_tldr": "针对稀疏全景视图下3D重建的挑战，PanoImager提出无SfM框架，结合前馈位姿/深度先验、几何条件扩散视图补全和深度引导的3DGS优化。在少量全景图像输入下，通过分解局部视角和合成辅助观测，有效提升跨视图一致性。实验表明该方法在极端稀疏条件下具有显著稳定性，为全景场景的实用3D重建提供了新途径。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "reconstructing panoramic 360-degree scenes using Gaussian splatting",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.23027v2",
+      "source": "arxiv",
+      "title": "Learning Stable Canonical Worlds for Novel View Synthesis and Beyond",
+      "abstract": "Feed-forward Gaussian splatting (FFGS) facilitates real-time novel view synthesis, yet current methods often remain tied to view-dependent predictions. As more input views are added, they may accumulate noisy or redundant evidence instead of converging to a stable scene representation. In this paper, we introduce CanonicalGS, a feed-forward pipeline that maps cluttered multi-view observations into a stable, scene-centric representation. CanonicalGS first extracts view-centric evidence from depth, semantic features, and uncertainty estimates, and then aggregates this evidence in a canonical latent world using uncertainty-aware fusion. By emphasizing reliable observations while suppressing uncertain or redundant ones, CanonicalGS produces representations that scale more effectively for novel view synthesis and transfer to downstream visual perception tasks. Experiments show up to a $2.5$ dB improvement in peak signal-to-noise ratio for synthesizing novel views and an $11\\%$ gain in semantic segmentation accuracy.",
+      "authors": [
+        "Xiaoyu Xu",
+        "Jian Zou",
+        "Sheyang Tang",
+        "Zhihua Wang",
+        "Jing Liao",
+        "Kede Ma"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-22T08:38:39+00:00",
+      "link": "https://arxiv.org/pdf/2606.23027v2",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "feed-forward Gaussian splatting for novel view synthesis",
+      "llm_evidence_cn": "前馈高斯喷溅用于新视图合成",
+      "llm_evidence": "前馈高斯喷溅用于新视图合成",
+      "canonical_evidence": "前馈高斯喷溅用于新视图合成",
+      "llm_tldr_en": "CanonicalGS learns a stable canonical world from multi-view observations using uncertainty-aware fusion, improving novel view synthesis quality and robustness.",
+      "llm_tldr_cn": "针对前馈高斯喷溅在新视图合成中因视角依赖预测导致表示不稳定问题，本文提出CanonicalGS。该方法从多视图观测中提取深度、语义和不确定性线索，通过不确定性感知融合构建稳定场景中心表示。实验表明，该方法在多个基准数据集上显著提升新视图合成质量，尤其在包含冗余或不一致视角时保持鲁棒性。这项工作为构建可重复使用的3D场景表示提供了新思路。",
+      "llm_tldr": "针对前馈高斯喷溅在新视图合成中因视角依赖预测导致表示不稳定问题，本文提出CanonicalGS。该方法从多视图观测中提取深度、语义和不确定性线索，通过不确定性感知融合构建稳定场景中心表示。实验表明，该方法在多个基准数据集上显著提升新视图合成质量，尤其在包含冗余或不一致视角时保持鲁棒性。这项工作为构建可重复使用的3D场景表示提供了新思路。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.26754v1",
+      "source": "arxiv",
+      "title": "Capacity-Controlled Multi-View Stylization of 3D Gaussian Splatting",
+      "abstract": "While 3D Gaussian Splatting (3DGS) provides an efficient and explicit representation for novel view synthesis, enforcing stylistic coherence across viewpoints remains challenging. Existing 3D stylization methods typically apply 2D feature-matching losses independently per rendered view, which leads to unstable style allocation, many-to-one feature reuse, and limited cross-view consistency. We propose a capacity-controlled framework for multi-view stylization of 3DGS, grounded in optimal transport. Specifically, we reformulate local style matching as a semi-balanced optimal transport problem. By introducing explicit column-capacity constraints with tunable strength, our formulation mitigates many-to-one matching and enables controllable allocation of style features. This transport-based objective provides a principled mechanism for balancing feature coverage and stylistic diversity while maintaining stable correspondences across viewpoints. To further enhance cross-view coherence, we incorporate a novel cross-view matching guidance to constrain correspondences between scene content and style patterns. In addition, we introduce several geometric regularizations to enhance the vanilla 3DGS, thereby enabling optimized Gaussian primitives to represent finer-grained textures during stylization. Extensive experiments demonstrate that our approach significantly improves multi-view stylistic consistency and produces stable, expressive 3D stylizations while preserving the core semantic structure of the scene.",
+      "authors": [
+        "Zhihao Wen",
+        "Yixin Yang",
+        "Bojian Wu",
+        "Yang Zhou",
+        "Dani Lischinski",
+        "Daniel Cohen-Or",
+        "Hui Huang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-25T08:36:50+00:00",
+      "link": "https://arxiv.org/pdf/2606.26754v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "3D Gaussian Splatting method for novel view synthesis with multi-view stylization",
+      "llm_evidence_cn": "用于新视图合成的3D高斯泼溅方法，支持多视图风格化",
+      "llm_evidence": "用于新视图合成的3D高斯泼溅方法，支持多视图风格化",
+      "canonical_evidence": "用于新视图合成的3D高斯泼溅方法，支持多视图风格化",
+      "llm_tldr_en": "Proposes a capacity-controlled framework for multi-view stylization of 3DGS using optimal transport, improving cross-view consistency for novel view synthesis.",
+      "llm_tldr_cn": "针对3D高斯泼溅在风格化时跨视图一致性问题，提出了基于最优传输的容量控制框架，将局部风格匹配建模为半平衡最优传输问题，通过显式列容量约束实现了可控风格分配，实验证明有效提升了多视图风格一致性。",
+      "llm_tldr": "针对3D高斯泼溅在风格化时跨视图一致性问题，提出了基于最优传输的容量控制框架，将局部风格匹配建模为半平衡最优传输问题，通过显式列容量约束实现了可控风格分配，实验证明有效提升了多视图风格一致性。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.23455v1",
+      "source": "arxiv",
+      "title": "MeGAS: Thermomechanical Dynamic Gaussian Splatting for Thermophysical Scene Editing",
+      "abstract": "Recent advances integrate physically grounded Newtonian dynamics with neural rendering frameworks, narrowing the gap between photorealistic scene reconstruction and physics-based animation. However, existing approaches focus on mechanically driven dynamics while neglecting temperature, a fundamental yet invisible physical factor underlying phenomena such as melting, solidification, and other thermomechanical processes. In this paper, we propose MeGAS, a novel framework that incorporates thermomechanical phase-change dynamics into 3D Gaussian Splatting (3DGS). Specifically, we propose a new thermomechanical dynamic Gaussian Splatting representation that augments 3DGS with temperature attributes and employs a heat advection-diffusion solver with MPM dynamics incorporating phase transitions, enabling physically plausible and visually realistic synthesis of thermophysical phenomena. Furthermore, a new topology-adaptive Gaussian rendering strategy is proposed to mitigate cracking and floaters under extreme deformation. Extensive experiments demonstrate that MeGAS produces physically consistent thermomechanical behavior while maintaining high-fidelity photorealistic rendering, advancing toward physics-integrated world models.",
+      "authors": [
+        "Zesong Yang",
+        "Yuanhang Lei",
+        "Liyuan Cui",
+        "Yihang Chen",
+        "Jiaer Huang",
+        "Boming Zhao",
+        "Peter Yichen Chen",
+        "Hujun Bao",
+        "Zhaopeng Cui"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-22T15:05:59+00:00",
+      "link": "https://arxiv.org/pdf/2606.23455v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "3D Gaussian Splatting framework extended with thermomechanical dynamics",
+      "llm_evidence_cn": "将热力学动态扩展到3D高斯泼溅框架中",
+      "llm_evidence": "将热力学动态扩展到3D高斯泼溅框架中",
+      "canonical_evidence": "将热力学动态扩展到3D高斯泼溅框架中",
+      "llm_tldr_en": "MeGAS integrates thermomechanical phase-change dynamics into 3DGS by augmenting Gaussians with temperature attributes and a heat advection-diffusion solver.",
+      "llm_tldr_cn": "针对现有物理动态神经渲染忽略温度因素的局限，提出MeGAS框架，将热力学相变动态集成到3D高斯泼溅中，为每个高斯增加温度属性并设计热传导-扩散求解器，实现了热物理场景编辑与逼真渲染的统一。",
+      "llm_tldr": "针对现有物理动态神经渲染忽略温度因素的局限，提出MeGAS框架，将热力学相变动态集成到3D高斯泼溅中，为每个高斯增加温度属性并设计热传导-扩散求解器，实现了热物理场景编辑与逼真渲染的统一。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.24876v1",
+      "source": "arxiv",
+      "title": "FLAT: Feedforward Latent Triangle Splatting for Geometrically Accurate Scene Generation",
+      "abstract": "Generating explorable 3D scenes from a single image requires strong generative priors and accurate geometric representations suitable for downstream use. Current video diffusion models offer high-quality generation and implicitly encode multi-view geometric structure in latent space. However, existing feedforward latent scene decoders typically output volumetric 3D Gaussians that lack a well-defined surface, limiting their use in simulation or standard graphics pipelines. This motivates decoding surface-aligned primitives that are not only renderable but also closer to explicit geometric assets. We ask whether compressed video diffusion latents can be mapped directly to explicit surface primitives in a single pass. To this end, we introduce FLAT and, for the first time, show that triangle splats can be decoded directly from video diffusion latents. Compared with decoding 3D Gaussians, predicting flat primitives is notoriously more challenging due to high sensitivity to primitive orientations, oftentimes leading to poor gradient flow. FLAT solves with two key ingredients: a ray-centered rotation parameterization for triangle regression and a novel product window function that improves gradient flow during differentiable triangle rendering. On standard benchmarks, FLAT achieves significantly better geometric accuracy while maintaining competitive visual quality compared to state-of-the-art feedforward baselines. We further show that a lightweight test-time refinement step converts the predicted triangle soup into a fully opaque, game-engine-ready representation that supports real-time rendering. By evaluating 3DGS, 2DGS, and triangle splatting variants under an identical training setup, we provide the first systematic analysis of representation tradeoffs in feedforward scene generation. The project page is available at https://flat-splat.github.io",
+      "authors": [
+        "Orest Kupyn",
+        "Goutam Bhat",
+        "Philipp Henzler",
+        "Fabian Manhardt",
+        "Christian Rupprecht",
+        "Federico Tombari"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-23T17:53:41+00:00",
+      "link": "https://arxiv.org/pdf/2606.24876v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "feedforward latent triangle splatting for 3D scene generation, related to novel view synthesis",
+      "llm_evidence_cn": "前馈潜在三角形喷溅用于3D场景生成，与新视图合成相关",
+      "llm_evidence": "前馈潜在三角形喷溅用于3D场景生成，与新视图合成相关",
+      "canonical_evidence": "前馈潜在三角形喷溅用于3D场景生成，与新视图合成相关",
+      "llm_tldr_en": "FLAT decodes video diffusion latents into explicit triangle primitives for geometrically accurate 3D scene generation, enabling novel view synthesis.",
+      "llm_tldr_cn": "现有前馈场景解码器输出体积化3D高斯体，缺乏明确表面。本文提出FLAT，将压缩视频扩散潜码直接映射到表面对齐的三角形基元。单次前馈即可生成几何精确的可探索3D场景。实验显示该方法在场景重建和渲染质量上超越基于高斯的方法，更适用于图形管线。此工作开辟了从隐式到显式表面基元的新路径。",
+      "llm_tldr": "现有前馈场景解码器输出体积化3D高斯体，缺乏明确表面。本文提出FLAT，将压缩视频扩散潜码直接映射到表面对齐的三角形基元。单次前馈即可生成几何精确的可探索3D场景。实验显示该方法在场景重建和渲染质量上超越基于高斯的方法，更适用于图形管线。此工作开辟了从隐式到显式表面基元的新路径。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.26985v1",
+      "source": "arxiv",
+      "title": "Vis4GS: A Visual Analytic Tool for 3D Gaussian Splatting Reconstruction",
+      "abstract": "3D Gaussian Splatting (3DGS) supports fast training and real-time rendering, but its optimization process remains difficult to interpret. Existing viewers mainly expose the final reconstructed scene and offer limited support for explaining how Gaussian properties contribute to visible artifacts or evolve during training. We present Vis4GS, a multi-view visual analytics tool for primitive-level diagnosis of 3DGS reconstruction artifacts. Built on the original 3DGS viewer and training framework, Vis4GS links rendered artifacts to Gaussian properties, View Coverage, training progress, and Gaussian genealogy through four linked views: an interactive Gaussian analysis view, a property timeline view, a Gaussian densification tree view, and a log and control panel. The system supports Gaussian selection, blur and needle-like artifact scoring, View Coverage analysis, and multiscale genealogy exploration of clone, split, prune, and clone-split events. By connecting scene-level artifacts with primitive-level evidence and optimization history, Vis4GS enables a structured workflow for diagnosing reconstruction failures beyond final-image inspection and global metrics. A user study also shows that Vis4GS provides stronger support for usability and artifact understanding than the original 3DGS viewer.",
+      "authors": [
+        "Kai-Yuan Lin",
+        "Aryabima Mandala Putra",
+        "Jui-Chi Lee",
+        "Shih-Hsuan Hung"
+      ],
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR"
+      ],
+      "published": "2026-06-25T12:59:02+00:00",
+      "link": "https://arxiv.org/pdf/2606.26985v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "visual analytic tool for diagnosing 3D Gaussian splatting reconstruction",
+      "llm_evidence_cn": "用于诊断3D高斯喷溅重建的可视分析工具",
+      "llm_evidence": "用于诊断3D高斯喷溅重建的可视分析工具",
+      "canonical_evidence": "用于诊断3D高斯喷溅重建的可视分析工具",
+      "llm_tldr_en": "Vis4GS provides primitive-level diagnosis of 3DGS artifacts through linked views, helping users understand Gaussian evolution and artifact causes.",
+      "llm_tldr_cn": "针对3DGS优化过程难以解释的问题，本文提出Vis4GS多视图可视分析工具。它通过高斯属性分析、覆盖度可视化、训练时间线和密集化树等联动视图，帮助用户定位渲染伪影与高斯参数的关系。在多个场景上验证了该工具的有效性，降低了3DGS调试门槛。该工作为3DGS的可解释性提供了重要支撑。",
+      "llm_tldr": "针对3DGS优化过程难以解释的问题，本文提出Vis4GS多视图可视分析工具。它通过高斯属性分析、覆盖度可视化、训练时间线和密集化树等联动视图，帮助用户定位渲染伪影与高斯参数的关系。在多个场景上验证了该工具的有效性，降低了3DGS调试门槛。该工作为3DGS的可解释性提供了重要支撑。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

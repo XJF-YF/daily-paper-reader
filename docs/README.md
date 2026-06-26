@@ -6,29 +6,38 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-25
-- 运行时间：2026-06-25 20:48:37 UTC
+- 最新运行日期：2026-06-26
+- 运行时间：2026-06-26 21:09:59 UTC
 - 运行状态：成功
-- 本次总论文数：2
-- 精读区：0
-- 速读区：2
+- 本次总论文数：6
+- 精读区：3
+- 速读区：3
 
 ### 今日简报（AI）
-1) 今日速读2篇：从稀疏2D锚点重建一致3D高斯街景，以及单张肖像生成即时高斯编码头像。  
-2) 最值得关注的是街景重建方法（7.0分），它能从残缺2D线索产出连贯3D场景；头像方法（6.0分）则侧重实时性。  
-3) 建议优先深入了解街景方向，其“支持感知”策略对多视角一致性有启发；头像方法可作轻量化参考。
-- 详情：[/202606/25/README](/202606/25/README)
+今日研究聚焦稀疏全景视图几何引导合成、稳定规范世界新视角生成及热力学场景编辑，共精读3篇、速读3篇。最值得关注的两篇精读论文：《PanoImager》以几何引导实现稀疏全景新视角合成（10分），《Learning Stable Canonical Worlds》提出稳定规范世界方法提升合成效果（9分）。建议优先精读这两篇论文，理解其核心算法如何解决稀疏数据下的视角合成难题。
+- 详情：[/202606/26/README](/202606/26/README)
 
 ### 精读区论文标签
-- 本次无精读推荐。
+1. [PanoImager: Geometry-Guided Novel View Synthesis and Reconstruction from Sparse Panoramic Views](/202606/26/2606.27071v1-panoimager-geometry-guided-novel-view-synthesis-and-reconstruction-from-sparse-panoramic-views)  
+   标签：评分：10.0/10、query:pano-dgs
+   evidence：全景视图，3DGS，新视角合成
+2. [Learning Stable Canonical Worlds for Novel View Synthesis and Beyond](/202606/26/2606.23027v2-learning-stable-canonical-worlds-for-novel-view-synthesis-and-beyond)  
+   标签：评分：9.0/10、query:pano-dgs
+   evidence：前馈高斯喷溅用于新视图合成
+3. [Capacity-Controlled Multi-View Stylization of 3D Gaussian Splatting](/202606/26/2606.26754v1-capacity-controlled-multi-view-stylization-of-3d-gaussian-splatting)  
+   标签：评分：9.0/10、query:pano-dgs
+   evidence：用于新视图合成的3D高斯泼溅方法，支持多视图风格化
 
 ### 速读区论文标签
-1. [From Sparse and Imperfect 2D Anchors to Consistent 3D Gaussian Street Scenes: Support-Aware Appearance](/202606/25/2606.26007v1-from-sparse-and-imperfect-2d-anchors-to-consistent-3d-gaussian-street-scenes-support-aware-appearance)  
+1. [MeGAS: Thermomechanical Dynamic Gaussian Splatting for Thermophysical Scene Editing](/202606/26/2606.23455v1-megas-thermomechanical-dynamic-gaussian-splatting-for-thermophysical-scene-editing)  
    标签：评分：7.0/10、query:pano-dgs
-   evidence：使用3D高斯溅射进行街道场景重建和新视图合成
-2. [FiCA: Feed-forward instant Gaussian Codec Avatars from a Single Portrait Image](/202606/25/2606.24232v1-fica-feed-forward-instant-gaussian-codec-avatars-from-a-single-portrait-image)  
+   evidence：将热力学动态扩展到3D高斯泼溅框架中
+2. [FLAT: Feedforward Latent Triangle Splatting for Geometrically Accurate Scene Generation](/202606/26/2606.24876v1-flat-feedforward-latent-triangle-splatting-for-geometrically-accurate-scene-generation)  
    标签：评分：6.0/10、query:pano-dgs
-   evidence：3D高斯泼溅用于虚拟人新视角合成
+   evidence：前馈潜在三角形喷溅用于3D场景生成，与新视图合成相关
+3. [Vis4GS: A Visual Analytic Tool for 3D Gaussian Splatting Reconstruction](/202606/26/2606.26985v1-vis4gs-a-visual-analytic-tool-for-3d-gaussian-splatting-reconstruction)  
+   标签：评分：6.0/10、query:pano-dgs
+   evidence：用于诊断3D高斯喷溅重建的可视分析工具
 
 
 <div class="dpr-home-promo-card">
