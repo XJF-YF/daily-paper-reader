@@ -1,0 +1,514 @@
+Title: SatSplatDiff: Geometry-preserving generative refinement for high-fidelity satellite Gaussian Splatting
+
+URL Source: https://arxiv.org/pdf/2606.27223v1
+
+Published Time: Fri, 26 Jun 2026 01:25:22 GMT
+
+Number of Pages: 23
+
+Markdown Content:
+# SatSplatDi ff : Geometry-preserving generative refinement for high-fidelity satellite Gaussian Splatting 
+
+Jiyong Kim a,1 , Shuang Song a,1 , Rongjun Qin a,b, ∗
+
+> aDepartment of Civil, Environmental and Geodetic Engineering, The Ohio State University, Columbus, 43210, OH, USA
+> bDepartment of Electrical and Computer Engineering, The Ohio State University, Columbus, 43210, OH, USA
+
+Abstract 
+
+Gaussian Splatting has been recently explored for satellite 3D reconstruction, demonstrating flexibility and e ffi ciency in representing radiometrically diverse satellite scenes. However, the limited top viewpoint of satellite imagery results in insu ffi cient supervision on building facades, leaving surface holes and degraded visual fidelity. Generative refinement, which leverages pretrained generative priors to iteratively refine and update the rendered images used as supervision targets, has recently been investigated to improve the visual fidelity of Gaussian-rendered images. However, since these models refine each view independently, the resulting images can generate hallucinations and break photo-consistency, leading to geometric degradation. To address these limitations, we propose SatSplatDi ff , which aims to minimize geometric degradation prevalent in generative refinement. Building on photogrammetric digital surface model (DSM) initialization and 2DGS-based shadow casting established in our prior work SatSplat (Song et al., 2027), we first introduce monocular depth supervision and multi-scale geometric refinement to establish a geometrically accurate and well-regularized surface representation. We then apply shadow-guided generative refinement, where geometrically calculated shadow maps guide the Gaussians to maintain consistency with the underlying geometry, improving visual fidelity while reducing geometric degradation. Extensive evaluations on the IARPA2016 and DFC2019 datasets demonstrate state-of-the-art performance, reducing geometric MAE reg by up to 18% and improving visual fidelity (FID-CLIP) by 28–45% over existing baselines. Our method delivers up to 5 × resolution enhancement with minimal hallucination and sensor-consistent appearance. By preserving geometric accuracy throughout the pipeline, it further demonstrates seamless cross-tile consistency and strong scalability for large-scale reconstruction. Source code is available at https://github.com/GDAOSU/SatSplatDiff 
+
+Keywords: Photogrammetry, Satellite Imagery, Gaussian Splatting, Di ff usion Model, Generative Prior 
+
+1. Introduction 
+
+The 3D reconstruction of large-scale urban scenes from satel-lite imagery is a critical task emerged at the intersection of pho-togrammetry, remote sensing, and computer vision (Li et al., 2023). For example, satellite sensors runing 24 /7 allow cap-turing and reconstructing scenes at a consistent temporal rate, it also provides the advantage of enabling extensive coverage of inaccessible regions without physical presence. Classical multi-view stereo (MVS) methods process these images with heuristic pairwise selection, feature matching, and dense stereo matching to generate Digital Surface Model (DSM) (De Fran-chis et al., 2014; Beyer et al., 2018; Qin, 2016; Zhao et al., 2023). These pipelines establish a robust technical foundation by producing tractable surface representations through rigor-ous geometric modeling of the sensors and ray-based triangu-lation. However, despite their explicit rigor and geometric ac-curacy, traditional photogrammetric methods are often limited in handling complex radiometric variations and multi-temporal      
+
+> ∗Corresponding author
+> Email addresses: kim.9854@osu.edu (Jiyong Kim),
+> song.1634@osu.edu (Shuang Song), qin.324@osu.edu (Rongjun Qin)
+> 1These authors contributed equally to this work.
+
+inconsistencies inherent in satellite imagery including shadow eff ects. These limitations have motivated the adoption of learnable scene representations such as NeRF (Mildenhall et al., 2021) and 3D Gaussian Splatting (Kerbl et al., 2023), which have been integrated into satellite 3D reconstruction pipelines due to their ability to model the scene with complex light environments. While much of the recent literature explores various aspects of 3D Gaussian Splatting in representing large-scale urban scenes from ground or aerial views (Liu et al., 2024c; Lin et al., 2024; Liu et al., 2024d; Li et al., 2025), some studies have focused on reconstructing accurate 3D surfaces from satellite imagery (Marí et al., 2023; Aira et al., 2025; Luo et al., 2026). A key strategy to improve geometric accuracy in these learn-able representations is the separation of shadow and albedo components to decouple scene geometry from appearance. Shadow visibility, in particular, can be explicitly rendered from scene geometry under known solar illumination, o ff ering a di-rect geometric signal while albedo components address appear-ance reconstruction. Most notably, our previous work Sat-Splat (Song et al., 2027) extended this paradigm by incor-porating 2D Gaussian Splatting (2DGS) (Huang et al., 2024) and shadow casting, which has shown 2DGS with oriented disk primitives are more e ff ective in representing scene sourced 
+
+> arXiv:2606.27223v1 [cs.CV] 25 Jun 2026
+
+from high-altitude satellite images, leading to more convergent optimization and more accurate 3D reconstruction. Satsplats also integrates di ff erentiable shadow casting for geometric su-pervision, which has achieved state-of-the-art accuracy in DSM generation. Despite the demonstrable results showing the su-perior quality of the GS models and the resulting DSM accu-racy, these work consistently su ff er from numerical instabil-ity associated with inaccurate GS initializations and pose er-rors from very small intersection angles among these high-nadir satellite images. Existing works partially investigated solutions for these problems by exploring di ff erent GS initializations and pose optmization through GS reconstruction, while they were not systematically integrated into a coherent approach to in-crease the solution stability. Another limitation stems from the nature of satellite obser-vations: although existing approaches are able to arguably pro-duce highly accurate DSM from the nadir-view, they su ff er from insu ffi cient supervision on building facades due to the lim-ited top viewpoints of satellite imagery and occlusions, result-ing in surface holes and degraded visual quality of the models. Di ff usion-based generative refinement, which uses pretrained di ff usion models to iteratively refine and update the rendered images used as supervision targets, has recently emerged as a promising direction to recover this missing appearance in-formation by injecting appearance details from large and pre-trained generative priors (i.e., di ff usion models). However, a direct re-application of di ff usion model for view generation will produce plausible but hallucinated textures drastically deviating from the reality (the actual, weak textures from the original im-ages), which then leads to geometry artifacts when these gen-erated views are used in 3DGS optimization (Lee et al., 2025). This calls for the need to place strong control on the di ff usion model to yield enhanced views that are not only plausible, but also respect the geometry and appearance reality sourced from the actual satellite images. In this context, we present SatSplatDi ff , a unified, accuracy preserving, "splats & di ff usion" driven pipeline that reconstruct highly accurate Gaussians from multi-date images. The pro-posed work resolves the fragmented gaps in the existing litera-ture with a single pipeline consisting of three main novel strate-gies: 1) photogrammetric initialization to improve the poor convergence of Gaussians for satellite images; 2) geometric optimization via in GS pose estimation to improve the high-nadir ray convergence; 3) strong control for di ff usion models to facilitate generative refinement of the GS model via shading guidace. Specifically, starting from a DSM generated by tra-ditional photogrammetry, the geometric optimization stage ex-tends SatSplat with monocular depth supervision, multi-scale geometric refinement, and densification to establish geomet-rically well-regularized surfaces with fully opaque Gaussians. This foundation is then followed by shadow-guided genera-tive refinement, where geometrically calculated shadow maps from location and solar metadata are cast onto rendered images to condition the Gaussians on the underlying scene geometry. Furthermore, since shadow structure remains a stable geomet-ric cue throughout refinement, the di ff usion-refined image helps preserve geometry while improving visual fidelity. Together, these components enable SatSplatDi ff to reduce geometric MAE reg by up to 18% while delivering up to 5 ×
+
+resolution enhancement with high-fidelity texture and minimal hallucination. Furthermore, by preserving geometric accuracy and sensor-consistent appearance throughout the pipeline, our method demonstrates seamless cross-tile consistency, demon-strating scalability for larger area. Our major contributions can be listed as follows: 
+
+• Integrated Multi-date Satellite 3D Reconstruction Framework: SatSplatDi ff is an unified framework for multi-date satellite 3D reconstruction. It leverages the dif-ferentiable nature of Gaussian Splatting to separate light-ing from appearance while incorporating generative pri-ors for enhanced geometric precision and texture richness. SatSplatDi ff establishes state-of-the-art results across the DFC2019 and IARPA2016 datasets. 
+
+• Enhanced Geometric Optimization: We extend SatSplat with monocular depth supervision, multi-scale geometric refinement and densification to address insu ffi cient facade supervision and establish a solid foundation for generative refinement. 
+
+• Geometry-preserving Generative Refinement: We in-troduce a shadow-guided generative refinement stage that improves visual fidelity by up to 5 × eff ective resolution while preserving geometric accuracy by using shadow as a geometric cue. We first review related work in section 2, positioning our ap-proach within the ongoing research on satellite 3D reconstruc-tion and generative refinement. Section 3 and section 4 then introduce the preliminaries and detail our proposed method. section 5 evaluates our method against state-of-the-art base-lines and presents ablation studies on each component. Finally, section 6 discusses sensitivity and practical considerations, and section 7 concludes the paper. 
+
+2. Related work 
+
+2.1. Satellite 3D reconstruction 
+
+Figure 1 summarizes the evolution of satellite 3D reconstruc-tion across three distinct stages, marking a paradigm shift from treating shading as image noise to leveraging it as a valuable geometric observation. Classical satellite 3D reconstruction is primarily based on photogrammetric pipelines consisting of stereo rectification, stereo matching, and triangulation (Zhao et al., 2023). Stereo matching algorithms such as semi global matching (SGM) (Hirschmuller, 2008) and more global match-ing (MGM) (Facciolo et al., 2015) established strong geometric baselines by aggregating matching costs along multiple paths while enforcing smoothness constraints, with robust cost mea-sures such as census transform reducing sensitivity to illumina-tion variations including cast shadows. Subsequent deep learn-ing approaches further improved robustness through learned feature representations that are domain-agnostic to radiometric variations (He et al., 2022; Kim et al., 2025). In both cases, 2reconstruction requires photo-consistency across pairs, with shadows treated as radiometric variation to be suppressed rather than as geometry-aware supervision cues. Domain-agnostic methods demonstrate robustness, but only within the distribu-tion represented in their training data, which covers only a small fraction of the available satellite image archive.  
+
+> Figure 1: Evolution of satellite 3D reconstruction and the role of shadow mod-eling: from a source of radiometric noise in classical photogrammetry, to a ge-ometric cue for Gaussian Splatting optimization. SatSplatDi ff extends shadow as a geometric cue to di ff usion-based generative refinement stage.
+
+Recently, novel-view synthesis methods including Neural Radiance Fields (NeRF) (Mildenhall et al., 2021) and Gaus-sian Splatting (Kerbl et al., 2023) have been adopted in satel-lite scene reconstruction due to its flexibility in representing di-verse radiometric variations. The di ff erentiable rendering struc-ture of NeRF and GS allows shading models to be injected directly into the optimization, naturally separating per-image solar illumination from albedo. S-NeRF (Derksen and Izzo, 2021) modeled illumination using two components, direct sun-light with a local light source visibility field, and indirect sky light with a color field conditioned on the sun position, learn-ing to predict a shading component and an albedo for each im-age. Sat-NeRF (Marí et al., 2022) extended this shadow-aware formulation with a transient embedding to additionally absorb appearance changes from small transient objects, such as cars and trees. EO-NeRF (Marí et al., 2023) took a di ff erent ap-proach, rather than learning shadows as an appearance factor, it casts shadows directly from the estimated geometry and Sun direction, so that geometric inconsistencies surface as shadow artifacts that in turn provide a supervision signal to refine the geometry. However, despite achieving strong reconstruction quality with shadow-albedo decomposition, NeRF-based meth-ods remain computationally expensive to train, which moti-vated SatelliteRF (Zhou et al., 2024) and Sat-NGP (Billouard et al., 2024) to adopt multi-resolution hash encoding for faster convergence. Gaussian Splatting (Kerbl et al., 2023) has emerged as an effi cient alternative, o ff ering comparable representational flexi-bility with substantially faster training and rendering, motivat-ing recent e ff orts to bring the similar shadow casting explored in NeRF into the Gaussian Splatting framework. Motivated by the faster convergence of Gaussian Splatting, EOGS (Aira et al., 2025) brought the geometry-driven shadow casting in-troduced by EO-NeRF into 3DGS optimization, demonstrat-ing that shadow-based geometric cues can achieve DSM ac-curacy on par with classical photogrammetric methods when validated against LiDAR ground truth. The e ff ectiveness of this shadow casting formulation within 3DGS established a foundation for subsequent works. EOGS ++ (Bournez et al., 2025) expanded EOGS with optical-flow-based alignment be-tween rendered and training images, while ShadowGS (Luo et al., 2026) adopted a similar shadow casting mechanism to sharpen surface reconstruction. Most closely aligned with our work, SatSplat (Song et al., 2027) adopted a 2D Gaussian Splat-ting representation (Huang et al., 2024) and photogrammetric DSM initialization, achieving state-of-the-art geometric accu-racy. The flattened, surface-aligned primitives of 2DGS, de-signed for accurate surface reconstruction, are particularly well suited to geometry-driven shadow casting, since shadow bound-aries are rendered directly from the reconstructed surface rather than from a volumetric approximation. While these shadow-aware Gaussian Splatting methods achieve strong near-nadir view synthesis quality and DSM generation, their performance degrades at oblique viewpoints, where top viewpoint satellite imagery provides sparse cover-age. This results in insu ffi cient supervision on building facades, leaving surface holes and degraded visual fidelity, motivating the need for additional geometric regularization and appearance refinement on these under-observed regions. 
+
+2.2. Pretrained priors for external supervision 
+
+Within the satellite domain, pretrained priors have been in-creasingly used to provide explicit guidance, compensating for the sparse supervision inherent to satellite acquisition. Sat-DN (Liu et al., 2025) and SkySplat (Huang et al., 2025) both incorporated depth priors estimated by a pretrained monocu-lar network, Depth Anything V2 (Yang et al., 2024), but ap-plied them di ff erently. Sat-DN registered the relative depth predictions to sparse point clouds to recover absolute altitude, while SkySplat instead supervised geometry through a Pearson correlation loss (Lee Rodgers and Nicewander, 1988) between rendered and predicted depth. GU-GS (Ding et al., 2026) in-stead leveraged DINOv2 (Oquab et al., 2023) feature embed-dings to model uncertainty in the discrepancy between ren-dered and ground-truth features, automatically downweighting regions, such as shadows and transient objects, where photo-consistency is not ensured. Meanwhile, the generative capacity of di ff usion mod-els (Esser et al., 2024; Rombach et al., 2022; Peebles and Xie, 2023; Saharia et al., 2022) in the computer vision domain has inspired a broader line of work that leverages these mod-els as generative priors to enhance 3D scene representations. Early Score Distillation Sampling (SDS)-based methods such as DreamFusion (Poole et al., 2022) and Magic3D (Lin et al., 2023) demonstrated that 3D synthesis can be guided by 2D dif-fusion priors. However, these methods incur substantial com-putational overhead. Owing to its computational e ffi ciency, more recent works concentrate on what we refer to as generative refinement. A3D representation is first optimized from the input views, and a di ff usion model is then used to improve its rendered outputs, such as novel views, depth, or appearance. These refined out-puts are fed back as additional supervision for the 3D represen-tation, rather than distilling it directly from the di ff usion model. This reduces memory consumption because unlike SDS-based 3methods, which keep both the di ff usion model and the 3D repre-sentation in memory simultaneously throughout optimization, generative refinement alternates between generating a batch of refined views with the di ff usion model and distilling them into the 3D representation. Following this pipeline, Deceptive-NeRF /3DGS (Liu et al., 2024a) directly injected di ff usion-generated images as training views, while FlowR (Fischer et al., 2025) and CAT3D (Gao et al., 2024) adopted multi-view con-sistent di ff usion models for more coherent priors. 3DGS Un-bounding (Liu et al., 2024b) leveraged video di ff usion to main-tain temporal consistency, and DIFIX3D + (Wu et al., 2025b) and ArtiFixer (de Lutio et al., 2026) focused on accelerating in-ference through single-step and auto-regressive distillation, re-spectively. Across these methods, generative refinement e ff ec-tively recovers fine-grained appearance details, while reducing the computational overhead of SDS-based distillation. How-ever, several recent works (Liu et al., 2026) have reported that di ff usion-generated content can introduce hallucinations incon-sistent with the actual scene. Building on this trend in computer vision, generative refine-ment has recently been applied to satellite imagery, enabled by foundation di ff usion models (Khanna et al., 2024; Wu et al., 2025a; Labs, 2025) trained on large volumes of aerial and fa-cade imagery, which can be taken as generative priors to aug-ment weak satellite textures or recover missing facade appear-ance with reasonable accuracy. Skyfall-GS (Lee et al., 2025) generates high-fidelity synthetic views with a di ff usion model to supervise Gaussian optimization, demonstrating the poten-tial of generative refinement to substantially elevate visual fi-delity in satellite 3D reconstruction. However, Skyfall-GS also exhibits the same hallucination issue observed in general-domain generative refinement. Since these hallucinations break the photo-consistency assumption underlying geometric recon-struction, Skyfall-GS exhibits degraded geometric accuracy af-ter generative refinement. Orbit2Ground (Yu et al., 2025) mit-igates this by anchoring generative priors to a 2.5D mesh, but the structural rigidity of a 2.5D representation limits its ability to capture complex urban surfaces. Hallucination thus remains a key challenge in generative re-finement, as it can break photo-consistency and consequently degrade geometric accuracy. While hallucination itself may be unavoidable, its impact on geometry can be mitigated by constraining the refinement process with external geometric cues. However, neither Skyfall-GS nor Orbit2Ground extends the shadow-based geometric cues already established in EO-NeRF (Marí et al., 2023), EOGS (Aira et al., 2025), and Sat-Splat (Song et al., 2027) into the generative refinement stage. 
+
+3. Preliminaries 
+
+This section introduces the preliminaries adopted in our pipeline: the 2D Gaussian Splatting representation, the a ffi ne camera model, and the di ff erentiable shadow casting mecha-nism. These components, previously validated in our prior work SatSplat (Song et al., 2027), form the foundation upon which our proposed extensions, detailed in section 4, are built. Following subsections describe the details of each component. 
+
+3.1. 2D Gaussian Splatting 
+
+The key di ff erence in 2DGS and 3DGS is that 2DGS com-putes the exact intersection of each ray with an oriented disk primitive, rather than projecting the disk’s center onto the im-age plane (Huang et al., 2024). This ray-disk intersection allows 2DGS to represent geometrically accurate surfaces, in contrast to the volumetric primitives used in 3DGS. The alpha blending procedure follows 2DGS (Huang et al., 2024): 
+
+R(x) =
+
+> N
+
+X
+
+> i=1
+
+aiαi ˆGi(u(x)) 
+
+> i−1
+
+Y
+
+> j=1
+
+(1 − α j ˆG j(u(x))) , (1) where R(x) denotes the rasterized features at pixel x, and a in-cludes color, normal, and depth. Index i orders Gaussian prim-itives by depth, and α denotes opacity. To ensure the Gaussians represent a consistent and continu-ous surface rather than disconnected primitives, 2DGS (Huang et al., 2024) introduces two critical loss functions: distortion loss and normal consistency loss. The distortion loss Ldist is designed to minimize the depth ambiguity along the ray by pe-nalizing the spread of Gaussians in the depth direction, encour-aging them to collapse onto a thin surface layer: 
+
+Ldist =
+
+X 
+
+> i,j
+
+ωiω j|zi − z j|, (2) where ωi is the blending weight and zi is the depth of the i-th Gaussian. The 2D Gaussians define a surface normal n in world space, which is the last column of the rotation matrix for each Gaus-sian. The rendered normal map N and depth map D are com-puted via alpha blending following eq. (1). The normal con-sistency loss Lnormal reduces the discrepancy between the per-Gaussian normals ni and the normals estimated from the gradi-ent of the rendered depth map N:
+
+Lnormal =
+
+X
+
+> i
+
+ωi(1 − nTi N), (3) However, since these geometric losses are computed only from the available satellite viewpoints, Gaussians in occluded regions such as building facades receive weak gradient signals due to limited pixel coverage, motivating the multi-scale geo-metric refinement introduced in section 4.2.1. 
+
+3.2. A ffi ne camera model fitting 
+
+Satellite images employ rational polynomial coe ffi cients (RPCs) as their camera model, which provide high geometric accuracy but involve complex nonlinear transformations. Sev-eral prior works have demonstrated the e ff ectiveness of approx-imating RPCs with a ffi ne camera models for satellite-based Gaussian splatting (Aira et al., 2025; Bournez et al., 2025). These methods approximate the RPC models with an a ffi ne camera as eq. (4). 
+
+x = F ·
+
+"p
+
+1
+
+#
+
+. (4) 4This simplification allows e ffi cient mapping of 3D points to the image plane. Specifically, an a ffi ne camera maps a 3D world point p ∈ R3 to a 2D image coordinate x ∈ R2 via a 2 × 4projection matrix F, as shown in eq. (4). We note that we also describe the camera model F as combination of 2 × 3 matrix W
+
+and translation matrix b with [ W|b]. 
+
+3.3. Shadow casting and rendering 
+
+An e ff ective strategy adopted in several works (Aira et al., 2025) to optimize geometry is to model the sun as an inverse camera, which makes shadow casting di ff erentiable and enables direct geometric supervision on Gaussians. Specifically, for a sun camera with azimuth and elevation angles ( ϕsun , θ sun ), world points are flattened onto the XOY plane along the sun direction and then project onto the main camera. To preserve depth infor-mation along the sun direction for shadow testing, the original elevation is retained as the sun depth. 
+
+Wsun = W(I −
+
+
+
+0 0 cos ϕsun  
+
+> tan θsun
+
+0 0 sin ϕsun  
+
+> tan θsun
+
+0 0 1
+
+). (5) After generation, Wsun and eq. (13) are used to build the sun camera Fsun . Using the sun camera Fsun , we render the depth map and compute the sun visibility mask V, determined by the discrepancy between the projected depth Dpro j and the sun-space depth reprojected onto image space ˆ Dsun :
+
+V = exp −ρ · max(0 , Dpro j − ˆDsun ) , (6) where ρ equals to shadow density. Finally, the image R f inal ∈ RC×H×W can be modeled as a combination of the surface albedo Ralbedo ∈ RC×H×W , the sun visibility mask V ∈ R1×H×W , and a global ambient light com-ponent La ∈ RC×1×1. The sun visibility equals 1 if the point is lit by the sun and 0 if it is in shadow. To model radiomet-ric variation and sensor characteristics across di ff erent acquisi-tions, C ∈ RC×C and c ∈ RC could be used to represent per-image camera gain and bias. The final rendered color is given by eq. (7). 
+
+R f inal = (C · Ralbedo + c)
+
+| {z }
+
+> Corrected albedo
+
+⊙ (V + (1 − V)La)
+
+| {z }
+
+> Shadow map
+
+, (7) where ⊙ denotes element-wise multiplication, and C is the num-ber of color channels (i.e., 3 for RGB), H is the image height, and W is the image width. Aside from the sun visibility mask 
+
+V, which is determined at render time, all other components are learned during training. As noted in EOGS (Aira et al., 2025), much of the scene texture becomes embedded in the shadow map unless shadow transparency is penalized, since semi-transparent shadows ef-fectively bake appearance information into the visibility mask. EOGS addresses this by applying an entropy penalty on the vis-ibility mask V for each pixel grid ( u, v), using the entropy func-tion H(x) = − x log( x) + (1 − x) log(1 − x):
+
+Lshadow =
+
+X
+
+> u,v
+
+H(V(u, v)) . (8) 
+
+4. Methodology 
+
+As established in section 2, satellite 3D reconstruction faces two major challenges: insu ffi cient supervision for occluded structures such as building facades, and the di ffi culty of im-proving visual fidelity without geometric degradation during generative refinement. As illustrated in fig. 2, SatSplatDi ff 
+
+addresses these challenges through a three-stage pipeline con-sisting of photogrammetric initialization, geometric optimiza-tion, and shadow-guided generative refinement. Starting from a DSM generated by traditional photogrammetry, the geometric optimization stage extends SatSplat with monocular depth su-pervision, multi-scale geometric refinement, and Gaussian den-sification. The generative refinement stage further improves ap-pearance quality using di ff usion-refined images as supervision targets while preserving geometry through shadow-based struc-tural cues. In the following subsections, we describe each stage in detail. 
+
+4.1. Photogrammetric initialization 
+
+Most Gaussian Splatting methods utilize sparse point clouds for initialization (Kerbl et al., 2023; Huang et al., 2024; Lee et al., 2025; Luo et al., 2026), while some satellite-specific ap-proaches for DSM generation spread Gaussians volumetrically and prune during optimization (Aira et al., 2025; Bournez et al., 2025; Ding et al., 2026). However, as demonstrated in Sat-Splat (Song et al., 2027), initializing from a photogrammetric DSM provides more accurate geometric initialization, which is essential in our pipeline because both shadow casting and subsequent generative refinement rely on geometry-consistent scene representations. Following our previous work SatSplat, we initialize 2D Gaussians from a photogrammetric DSM generated through classical stereo matching with ASP (Beyer et al., 2018) or s2p (De Franchis et al., 2014), after refining camera parame-ters through bundle adjustment. The DSM is converted into 2D Gaussian primitives, where each Gaussian center is sampled from DSM pixels. To better represent high-frequency structures such as building facades, we adopt an area-weighted sampling strategy that assigns higher sampling probability to regions with larger local surface variation. Specifically, for each DSM pixel, we estimate the local surface area as 
+
+a = ∥dx × dy ∥, (9) where dx and dy denote local tangent vectors computed from neighboring points. The estimated area serves as a sampling weight for Gaussian initialization, allowing geometrically com-plex regions to receive denser Gaussian representation. 
+
+4.2. Geometric optimization 
+
+In the geometric optimization stage (fig. 2), we extend the SatSplat optimization framework to improve surface complete-ness and geometric consistency in under-observed regions. We introduce multi-scale geometric refinement, monocular depth supervision, and adaptive Gaussian densification to enhance the reconstruction of regions with limited geometric constraints. 5Figure 2: Overall architecture of the SatSplatDi ff framework. The pipeline achieves geometric accuracy and visual fidelity through three key stages: (1) photogram-metric initialization (section 3) establishes the initial 3D representation through bundle adjustment and DSM generation; (2) geometric optimization (section 4.2) transforms the baseline into a 2DGS representation and refines the geometry, utilizing multi-scale geometric refinement, monocular depth supervision and Gaussian densification; and (3) shadow-guided generative refinement (section 4.3) incorporates di ff usion-based refinement to improve visual fidelity, with geometry guided by shadow casting to preserve geometric accuracy. 
+
+Multi-scale geometric refinement optimizes Gaussians from di-verse viewpoints to improve surface continuity, while monoc-ular depth supervision provides a coarse geometric prior that stabilizes early-stage optimization. Finally, Gaussian densifica-tion improves surface coverage and enables fine-grained struc-ture recovery. 
+
+4.2.1. Multi-scale geometric refinement 
+
+As discussed in section 4.2, satellite imagery provides lim-ited observations of vertical structures, leaving facade regions insu ffi ciently supervised. Since facade regions are typically rendered at a much lower e ff ective resolution than the original satellite imagery, optimizing Gaussians at a single fixed scale is insu ffi cient to recover consistent surface geometry. We there-fore render facade regions at multiple scales, applying geomet-ric optimization at each resolution to better capture fine-grained structural detail. To address this issue, we introduce multi-scale geometric refinement by generating a ffi ne camera models with varying zoom scales, elevation, and rotation angles: 
+
+F = f (t, ϕ, θ, s), (10) where t refers to target interest vector, θ and ϕ refers to the angle of camera position and s refers to zoom scale. The viewing direction is determined by the azimuth angle ϕ and elevation angle θ, which directly define the unit viewing vector f ∈ R3:
+
+f = h− cos θ sin ϕ, − cos θ cos ϕ, sin θi⊤
+
+. (11) We then construct an orthonormal basis {u, v, f} for the cam-era coordinate system, where u = f×up  
+
+> ∥f×up ∥
+
+with the world-up vec-tor up = [0 , 0, −1] ⊤, and v = f × u is computed following the right-handed rule. The refined a ffi ne parameters W and b are formulated by scaling the image-plane basis with a zoom factor 
+
+s and the original scene scale σ:
+
+W = sσ · hu⊤ v⊤i , b = −Wt (12) 
+
+F = [W|b]. (13) Based on this camera sampling function, we define an a ffi ne camera model F with eq. (10). Using F, we render the albedo image Ralbedo and depth map D for geometric supervision. We 6then perform an additional optimization step using geometric loss terms: Lnormal and Ldist .Furthermore, to encourage solid and stable surface structures while promoting the removal of transparent Gaussians, we in-troduce an opacity entropy term: 
+
+Lent =
+
+X
+
+> i
+
+H(αi), (14) where αi denotes the opacity of the i-th Gaussian. The final refinement loss is defined as: 
+
+Lre f ine = λdist Ldist + λnormal Lnormal + λent Lent . (15) At each training iteration, an additional optimization step is performed using Lre f ine , providing geometric gradients for oc-cluded regions and eliminating surface holes (fig. 3).  
+
+> (a) w /o multi-scale geometric refine-ment
+> (b) w /multi-scale geometric refine-ment
+> Figure 3: Impact of multi-scale geometric refinement on surface solidity, e ff ec-tively eliminating holes in building facades.
+
+4.2.2. Monocular depth supervision 
+
+Although photogrammetric initialization provides a reliable geometric starting point, early-stage Gaussian optimization can still su ff er from local minima due to sparse observations. To provide additional structural guidance during this stage, we incorporate monocular depth supervision following previous works (Lee et al., 2025; Li et al., 2024). Monocular depth super-vision is applied only during the first 3,000 iterations to provide a coarse geometric prior and stabilize the initial optimization. Since monocular depth supervision provides only relative geo-metric information, it is removed after the initial stabilization stage to prevent accumulated depth biases. Specifically, we use Depth Anything V2 (Yang et al., 2024) to predict a monocular depth map and supervise the rendered depth using the Pearson Correlation Coe ffi cient (Lee Rodgers and Nicewander, 1988) as a scale-invariant loss function. Let 
+
+Drend be the rendered depth map from the Gaussians and Dmono 
+
+be the depth map predicted by the monocular foundation model. The depth supervision loss Ldepth is defined as: 
+
+Ldepth = 1−
+
+P
+
+> u,v
+
+(Drend (u, v) − ¯Drend )( Dmono (u, v) − ¯Dmono )
+
+rP
+
+> u,v
+
+(Drend (u, v) − ¯Drend )2 P
+
+> u,v
+
+(Dmono (u, v) − ¯Dmono )2
+
+,
+
+(16) where ¯ D denotes the mean depth value of the respective map. By maximizing the Pearson correlation (minimizing Ldepth ), we enforce the Gaussians to align with the relative geometric struc-ture and relief of the scene without being constrained by abso-lute depth values at initial stage. This initialization phase pro-vides a coarse starting point for shadow casting, preventing the optimization from collapsing into local minima. 
+
+4.2.3. Gaussian densification 
+
+Recovering facade details requires su ffi cient Gaussian den-sity in occluded regions that are sparsely covered by satel-lite viewpoints. We therefore adopt Adaptive Density Control (ADC) (Kerbl et al., 2023) to dynamically adjust Gaussian den-sity during optimization. However, standard ADC preserves opacity values during cloning, leading to accumulation in den-sified regions. To address this, we apply the revised opacity formulation of Rota Bulò et al. (2024), such that the com-bined transmittance of two split Gaussians along the viewing ray equal to that of the original Gaussian in the alpha blending: ˆα = 1 − √1 − α. (17) Given the vast geographical extent and varying GSD inher-ent to satellite data, we employ scale-based densification via gsplat (Ye et al., 2025) to handle the wide range of surface de-tail levels across the scene, preventing over-expansion in flat terrains while preserving fine-grained structural detail. 
+
+4.3. Shadow-guided generative refinement 
+
+Generative refinement have been demonstrated to be e ff ec-tive in improving texture quality, particularly in building fa-cades (Lee et al., 2025). However, di ff usion-based refinement tends to degrade geometric accuracy without explicit geometric cues. To address this, we extend the shadow casting pipeline into the generative refinement stage, where shadow structures are preserved during di ff usion-based appearance refinement. This enables di ff usion models to improve visual fidelity while maintaining the geometry established during the Gaussian op-timization process. The following subsections describe each component of this process. 
+
+4.3.1. Novel View Sampling 
+
+To provide more diverse supervision, we synthesize novel-view images with varying viewpoints and scales using the a ffi ne camera generation function from eq. (10). The camera param-eters ( t, ϕ, θ, s) are randomly sampled from predefined ranges and grids, where t is drawn from a predefined 3 × 3 grid in NDC space, ϕ ∼ U (0 ◦, 360 ◦), θ ∼ U (θmin , θ max ), and s ∼U(smin , smax ). This sampling reduces the dependency on the original satellite acquisition geometry and provides diverse ge-ometric cues for optimizing the Gaussian representation. Once the novel-view camera F is generated, we render an image from the Gaussians G optimized in the previous stage. Since novel-view cameras do not contain radiometric parame-ters C and c, we transform the Gaussian colors a into the cor-responding camera color space using Ca + c and generate mod-ified Gaussians Gmodi f ied . The rendered albedo image Ralbedo 
+
+is then obtained using F and Gmodi f ied with eq. (10). Because radiometric correction is directly embedded into Gmodi f ied , the 7image formation model in eq. (7) uses C = I and c = 0 for novel-view rendering. After rendering the novel-view image, we compute the shadow visibility mask V from the Gaussian geometry of 
+
+Gmodi f ied . Unlike the original satellite observations that provide only a single illumination configuration, random solar sampling generates diverse shadow patterns while preserving the same underlying geometry. The illumination direction is diversified by randomly sampling a timestamp τ ∼ U (τmin , τ max ) from ten-year window centered on the acquisition date, and compute the corresponding solar elevation θsun and solar azimuth ϕsun using a solar position model, given the geographic latitude ϕlat and longitude λlon :
+
+ϕsun , θ sun = Ssolar (τ, ϕ lat , λ lon ). (18) To avoid extreme low-angle illumination and unstable shadow formation, we constrain the solar elevation angle to 
+
+θsun ∈ [45 ◦, 90 ◦]. If the sampled timestamp violates this con-straint, we resample τ until a valid configuration is obtained. The resulting solar direction is used to generate a shadow vis-ibility mask V from Gaussian positions with section 3.3. This shadow visibility mask is then cast onto the rendered albedo image following eq. (7) to produce the shadow-guided input for the di ff usion model. 
+
+4.3.2. Di ff usion-based refinement 
+
+After novel view sampling and shadow casting, we employ a di ff usion model on the shadow-cast rendered image (as in section 4.3.1) to improve visual fidelity while preserving the underlying scene geometry. The shadow-cast image is passed as a conditioning input alongside a text prompt, producing a di ff usion-refined image Rdi ff . During generative refinement, we adopt FLUX.2 (Labs, 2025) as our di ff usion backbone. The prompts are designed to emphasize surface detail enhancement rather than introducing structural modifications: 
+
+Diffusion Model Prompt 
+
+"Restored satellite photo, 8k ultra-sharp resolution. Strictly rectilinear architectural lines and cleaner tex-tures. Zero vehicles, empty roads, and vacant parking lots. Razor-sharp facades. Crisp building boundaries. Google Earth style. Pitch black background for no-data areas, zero atmospheric haze, no sky, no clouds. Clean and smooth but crisp surfaces. Shadows are perfectly lin-ear and semi-transparent. Maintain consistent radiomet-ric exposure and original lighting levels from the input. Zero sensor noise, anti-aliased urban concrete. Strictly aligned with input geometry." The di ff usion model is not explicitly optimized to preserve shadow boundaries. However, instead of refining a shadow-free appearance representation, we provide the di ff usion model with an input image that already incorporates geometrically cal-culated shadows derived from the sun visibility mask V. There-fore, the refinement process enhances surface appearance while maintaining the shadow present in the input representation. As shown in fig. 4, the refined images improve local texture details while preserving consistent shadow boundaries.   
+
+> (a) Rendered albedo (b) Shadow-cast image
+> (c) Refined albedo (d) Refined shadow-cast image
+> Figure 4: Visualization of di ff usion refinement combined with shadow casting. The di ff usion model enhances texture details while preserving the shape of cast shadows.
+
+Since Rdi ff remains fixed until the di ff usion-refined supervi-sion targets are regenerated in the next refinement cycle, the geometry of Gmodi f ied is optimized using image supervision aligned with the shadow structure rendered from the current Gaussian geometry. Gradients through the shadow visibility mask V continue to provide a valid geometric cue for updat-ing Gmodi f ied . The remaining discrepancy is primarily attributed to texture and color variations, which are handled by the albedo component Ralbedo instead. Furthermore, di ff usion-refined images may exhibit color dis-tributional shifts from the original satellite observations. To mitigate this e ff ect, we mix Npseudo di ff usion-refined images with Noriginal original satellite images during each optimization step, aligning the refinement process to real sensor observa-tions. Each sample is paired with its corresponding camera model F and sun camera model Fsun .
+
+4.4. Loss functions and optimization 
+
+The proposed pipeline is trained through two sequential stages. In the geometric optimization stage, all loss terms are active, with Ldepth applied only during the first 3,000 itera-tions. In the shadow-guided generative refinement stage, Ldepth 
+
+is deactivated and Limg is applied to the mixed pseudo-dataset 
+
+Dpseudo consisting of di ff usion-refined and original satellite im-ages. The total objective function is: 
+
+Ltotal = λimg Limg + λdepth Ldepth + Lreg (19) Following the standard 3DGS and 2DGS pipelines (Kerbl et al., 2023; Huang et al., 2024), the image reconstruction loss 8Limg is formulated as a combination of the L1 loss and the Structural Similarity (SSIM) term: 
+
+Limg = (1 − λssim )L1 + λssim Lssim , (20) where λssim balances the pixel-wise intensity di ff erence and the structural consistency. The regularization term Lreg combines geometric supervision terms: 
+
+Lreg = λent Lent + λshadow Lshadow + λnorm Lnorm + λdist Ldist . (21) At each iteration of the geometric optimization stage, an ad-ditional backpropagation step is performed using Lre f ine de-fined in section 4.2.1. 
+
+5. Experiments and analysis 
+
+5.1. Implementation 
+
+For bundle adjustment, we utilize the Sat Bundle Adjust li-brary (Marí et al., 2021). Features are extracted from the SIFT (Lowe, 1999) descriptors with epipolar-based matching, con-strained by RANSAC (Fischler and Bolles, 1981) threshold of 0.3 to eliminate outliers. After bundle adjustment, DSM gener-ation was conducted with the ASP (Beyer et al., 2018) pipeline. Based on the refined RPC parameters from the bundle adjust-ment stage, we select optimal stereo pairs by filtering the inter-section angles between 5 ◦ and 30 ◦. For each selected pair, we perform dense stereo matching using the MGM (More Global Matching) (Facciolo et al., 2015) algorithm. After DSM generation, the DSM is converted into 2DGS and geometrically optimized. For generating the monocular depth priors, we utilized the Depth Anything V2 (Yang et al., 2024) ViT-Large variant model instead of recent V3 version. We em-pirically observe that V3 produces less stable depth estimates for satellite imagery, likely due to the domain gap between its training distribution and near-nadir satellite views. Since the model output represents relative disparity, we invert the esti-mated values to obtain a relative depth map, which is then uti-lized as a monocular depth prior Ldepth during the initial 3 , 000 iterations of the geometric optimization stage. For generating shadow map, we utilized the shadow density 
+
+ρ value of 0.4 and initial ambient value La of 0.5 for optimiza-tion. Since our pipeline is initialized with the solid DSM-based pipeline, we utilized the relatively high value of ambient to re-duce the instability of shadows on initial training iterations. Based on eq. (10), we sample Npseudo = 180 views on shadow-guided generative refinement. We set the target vector 
+
+t from a 3 × 3 grid {− 0.25 , 0.0, 0.25 }2 to ensure that the gen-erative refinement could be held evenly on all scenes. Since our camera models are a ffi ne, the distance between camera and the result image doesn’t e ff ect the output. However, to ensure that all gaussians are placed in front of the a ffi ne camera plane, we set the distance value d as 5 in NDC space. The cam-era elevation value θ was sampled from [5 .0◦, 86 .0◦] and az-imuth ϕ was sampled from [ −180 .0◦, 180 .0◦] with fixed incre-ments to cover the entire visibility hemisphere. The zoom scale 
+
+s ∼ U (4 .0, 6.0), allowing the di ff usion model to refine multi-scale high-frequency details. For sun camera random date and time τ was simulated within a ten-year window (2014–2024) After generating the rendered image and shadow-cast image pairs with a resolution of 1024 × 1024, we apply the di ff u-sion model to refine their appearance. Following the refine-ment strategy described in section 4.3.2, we designed prompts to encourage texture enhancement while minimizing structural modifications and preserving the shadow layout. The geometric optimization stage was run for a total of 12,000 iterations. Monocular depth supervision was applied only for the first 3,000 iterations, while shadow casting was enabled from the start, as the pipeline is initialized from a solid photogrammetric base. Loss weights were set as fol-lows: λimg = 1.0, λdepth = 0.05, λssim = 0.2, λent = 0.05, 
+
+λshadow = 0.01, and λnorm = λdist = 0.05. Similarly, learning rates were tuned to prioritize geometry over image refinement: 1e-4 for color correction, 2.5e-3 for colors, 1e-2 for ambient 
+
+La, 2.5e-2 for Gaussian means (positions), 7.5e-2 for opacities, and 1e-3 for rotations and scales. Densification was applied ev-ery 100 iterations according to the 2DGS scale gradient, and Gaussians with opacity below 5e-3 were pruned. The Gaussians on shadow-guided generative refinement stage were optimized for a total of 10,000 iterations, repeated for 5 refinement steps. Monocular depth supervision and shadow entropy were disabled in this stage. Learning rates were reduced for Gaussian means to 1e-2 to minimize fluctuations. Densification started at iteration 2,000 and was applied every 2,000 iterations. A single NVIDIA RTX 6000 ADA Genera-tion GPU was used to accelerate the optimization. 
+
+5.2. Datasets 
+
+We utilized two primary datasets in our experiments: DFC2019 and IARPA2016. DFC2019 (Le Saux et al., 2019; Bosch et al., 2019) covers Jacksonville, Florida, and Omaha, Nebraska. The dataset contains 2048 × 2048 pixel images at a 35 cm /pixel resolution. Ground truth LiDAR data is available for a 512 × 512 pixel area at 0.5 m /pixel resolution. Metadata such as Rational Polynomial Coe ffi cients (RPCs), acquisition dates, and solar angles are also provided. For visual assess-ment, we follow the evaluation protocol of Skyfall-GS (Lee et al., 2025), incorporating lower-view Google Earth images using 300 images for each of four JAX sites (JAX-004, JAX-068, JAX-214, and JAX-260) and three Omaha sites (OMA-203, OMA-212, OMA-315). These Google Earth images are strictly used for evaluation and not for training. IARPA2016 (Bosch et al., 2016) provides approximately 50 commercial satellite images covering 100 km 2 along with cor-responding 3D point clouds. Digital Surface Models (DSMs) were derived from the LiDAR data to serve as ground truth for geometric evaluation. To ensure evaluation consistency, we generated corresponding lower-view Google Earth images sim-ilar to the DFC2019 setup. As with DFC2019, these Google Earth images were used only for evaluation purposes and ex-cluded from any training procedure. 95.3. Evaluation metrics 
+
+We categorize our evaluation criteria into three distinct groups to assess the quality of our reconstruction from mul-tiple perspectives. To evaluate visual fidelity, we used PSNR (Huynh-Thu and Ghanbari, 2008) and SSIM (Wang et al., 2004) compared to Google Earth images. In particular, we employ histogram-matched PSNR to compensate for global illumina-tion di ff erences, focusing on structural accuracy rather than ra-diometric variations. However, since these metrics are often sensitive to minor pixel-level misalignment common in satellite imagery, we pri-marily incorporate CW-SSIM (Sampat et al., 2009), which leverages complex wavelet transform coe ffi cients to ensure in-variance against small geometric distortions. ˜S (cx, cy) =
+
+2 PNi=1 cx,ic∗ 
+
+> y,i
+
++ K
+
+PNi=1 |cx,i|2 + PNi=1 |cy,i|2 + K , (22) where c∗ denotes the complex conjugate and K is a small posi-tive constant to ensure numerical stability. Furthermore, LPIPS (Zhang et al., 2018) is included to capture high-level perceptual similarity by comparing deep feature activations, providing a more human-centric assessment of visual fidelity. All criteria are calculated using lower-view Google Earth images as ground truth. To assess generative quality and distribution alignment, we utilize metrics based on the CLIP (Radford et al., 2021) back-bone, which aligns more closely with human perception than traditional InceptionV3-based methods. We report FID-CLIP (Kynkäänniemi et al., 2022) to measure the Fréchet Distance between feature distributions and CMMD (Jayasumana et al., 2024), a CLIP Maximum Mean Discrepancy-based metric, to provide a robust distance measure between sets of image em-beddings. For geometric assessment, we compare our reconstructed Digital Surface Model (DSM) against LiDAR ground truth. The altitude map is rendered from a nadir perspective (512 ×512 pixels, 0.5m resolution for DFC2019 and 863 × 863, 0.3m reso-lution for IARPA2016) to calculate the registration-based Mean Absolute Error (MAE reg ). To mitigate the influence of outliers and floating artifacts, the error values are clipped to the range of [ −10 , 10] meters prior to evaluation: MAE reg = min 
+
+> o
+
+1
+
+N
+
+> N
+
+X
+
+> i=1
+
+ˆM(xi + ox, yi + oy) + oz − M(xi, yi) ,
+
+(23) where M is the ground truth DSM, ˆ M is the reconstructed DSM, and o = (ox, oy, oz) represents the 3D translation o ff set that min-imizes MAE reg . This metric e ff ectively compensates for both horizontal and vertical registration shifts, ensuring that geomet-ric accuracy is evaluated independently of global alignment er-rors. 
+
+5.4. Experimental results 
+
+Our method is compared against several state-of-the-art base-lines. For geometric comparison, we included Sat-NGP (Bil-louard et al., 2024), EOGS (Aira et al., 2025), Skyfall-GS (Lee et al., 2025), GU-GS (Ding et al., 2026) and ASP (Beyer et al., 2018). Since ASP, Sat-NGP, EOGS, and GU-GS provide their own DSM generation procedures, we follow the original imple-mentation of each method to obtain reconstructed DSMs. For Skyfall-GS, we generate the DSM using the same nadir-view al-titude rendering procedure adopted in our evaluation pipeline. For visual comparison, we include EOGS, Mip-Splatting (Yu et al., 2024), and Skyfall-GS. These baselines allow us to eval-uate the e ff ectiveness of the proposed refinement strategy from both geometric and visual perspectives. section 5.4.1 presents the assessment of visual fidelity, followed by the assessment of geometric accuracy in section 5.4.2. 
+
+5.4.1. Assessment of visual fidelity 
+
+Both qualitative and quantitative comparisons are presented in fig. 5 and table 1. Our method produces sharper textures and more clearly defined boundaries than existing baselines, whereas other 3DGS-based methods tend to generate transpar-ent Gaussian clouds with ambiguous surface boundaries. This distinction is particularly evident at the JAX-214 site, where Skyfall-GS introduces floating artifacts above building roofs, primarily due to the influence of dynamic objects such as cars, while our method e ff ectively filters out these transient features to maintain a clean roof surface. Our method also demonstrated results with reduced artifacts on fig. 5. In the JAX-214 and JAX-260 sites, Skyfall-GS re-moves or modifies original structures, whereas the proposed method reconstructs the geometry without artifacts. Similar re-sults are observed at OMA sites. While Skyfall-GS generates artifacts and causes both visual and geometric misalignments at OMA-203 and OMA-315, our method produces realistic sur-faces with accurate geometric alignment. IARPA site evalu-ations further confirm the pipeline’s consistency across loca-tions. Specifically, at IARPA-003, Skyfall-GS fails to capture the intricate details of circular amusement structures, often sim-plifying them into generic conical forms, whereas our method preserves the authentic geometric characteristics of the objects. A closer comparison with other di ff usion-integrated frame-works further highlights the robustness of our approach (fig. 6). Skyfall-GS often introduces artifacts that do not correspond to the actual scene when compared against Google Earth imagery. For example, it removes the roof of a church (JAX-168) and alters the structure of nearby buildings (JAX-214). In contrast, our pipeline exhibits substantially fewer such artifacts, with re-constructed geometry that remains visually consistent with the underlying structures observed in Google Earth. Quantitative results on JAX, OMA, and IARPA sites align with the qualitative findings. Our method outperforms all base-lines across all metrics (table 1). The distribution metrics (FID-CLIP, CMMD) indicate that our method aligns with the over-all data distribution of Google Earth images. While baseline models show higher discrepancy in these metrics, our method achieves a FID-CLIP of 19.50 on JAX, 19.06 on OMA, and 29.50 on IARPA, which are 28%, 28%, and 45% lower than the second-best results, respectively. These scores confirm that our method generates outputs that are structurally similar to Google Earth. 10 Google Earth EOGS Mip-Splatting Skyfall-GS Ours 
+
+> JAX-068 JAX-214 JAX-260 OMA-203 OMA-212 OMA-315 IARPA-001 IARPA-002 IARPA-003
+
+Figure 5: Qualitative visual comparison of synthesized views across JAX, OMA, and IARPA sites. Compared to existing 3DGS-based baselines that often produce floating artifacts around building roofs, our method generates sharper synthesized views with well-defined structural boundaries. With our shadow-guided generative refinement, our pipeline e ff ectively filters out transient features such as vehicles and maintains strict edge consistency. 
+
+11 Google Earth Skyfall-GS Ours 
+
+> JAX-168 JAX-214 JAX-251
+
+Figure 6: Comparative analysis of structural stability and artifacts. This figure contrasts our framework with Skyfall-GS and Google Earth images. Yellow boxes highlight regions where the baselines introduce structural hallucinations. In contrast, our method remains geometrically aligned with actual observations. Table 1: Quantitative evaluation of visual fidelity on JAX, OMA and IARPA sites. Metrics are validated against Google Earth reference imagery. †JAX rendered outputs for baseline methods are reproduced from Lee et al. (2025); metrics are computed by us on the same evaluation set. Sat-NeRF results are only available for JAX.                                                                              
+
+> Dataset Methods Distributional Pixel-level
+> FID-CLIP ↓CMMD ↓PSNR ↑CW-SSIM ↑LPIPS ↓
+> JAX †
+> Sat-NeRF 86.90 4.786 9.77 0.302 0.773 EOGS 87.47 5.294 11.33 0.236 0.749 Mip-Splatting 86.94 5.414 11.21 0.322 0.753 Skyfall-GS 27.06 2.125 11.83 0.386 0.716
+> Ours 19.50 1.681 12.26 0.414 0.611 OMA
+> EOGS 70.56 4.760 10.47 0.322 0.778 Mip-Splatting 90.10 5.583 10.64 0.313 0.798 Skyfall-GS 26.31 1.725 10.61 0.352 0.759
+> Ours 19.06 1.520 10.68 0.358 0.677 IARPA
+> EOGS 86.26 4.887 11.17 0.258 0.806 Mip-Splatting 88.20 5.031 11.11 0.294 0.816 Skyfall-GS 53.72 2.588 11.08 0.300 0.824
+> Ours 29.50 1.790 11.65 0.300 0.769
+
+In terms of pixel-level metrics (PSNR, CW-SSIM, LPIPS), our model demonstrates higher correspondence in direct pixel values and structural details. The improved PSNR and LPIPS scores across both datasets show that the reconstructed geome-try and textures are closer to the target pixels. In particular, the CW-SSIM score (0.414) reflects that our approach maintains edge consistency and building boundaries even under varying satellite viewpoints. 
+
+5.4.2. Geometric accuracy 
+
+The geometric accuracy of the proposed method is qualita-tively and quantitatively evaluated with the ground truth LiDAR data, as illustrated in fig. 7 and fig. 8. Across various pipelines for comparison, our approach consistently generates the most sharply defined and detailed DSMs. A closer qualitative inspection (fig. 8) reveals that EOGS tends to produce overly smoothed reconstructions, often omit-ting fine scene components such as vegetation and small struc-tures, whereas Skyfall-GS captures sharper detail but struggles to maintain even, well-defined surfaces. Our method balances both characteristics, recovering structural detail while preserv-ing surface solidity. At the JAX-214 site, for instance, EOGS and Sat-NGP fail to reconstruct vegetation entirely, and al-though Skyfall-GS recovers these features, it introduces trans-parent roof surfaces with inaccurate altitude values. In contrast, our method reconstructs both vegetation and building geometry 12 GT ASP SAT-NGP EOGS Skyfall-GS Ours 
+
+> JAX-004 JAX-068 JAX-214 JAX-168 OMA-212 OMA-315 IARPA-001 IARPA-003
+
+Figure 7: Qualitative comparison of reconstructed Digital Surface Models (DSMs) across JAX, OMA, and IARPA sites. Our method consistently generates the most sharply defined building geometries and fine structural details when compared to traditional photogrammetric (ASP) and learnable representative (Sat-NGP, EOGS, Skyfall-GS) baselines. While EOGS often produces oversmoothed surfaces that omit small structures, and Skyfall-GS su ff ers from transparent roofs and geometric instability, our approach maintains strict surface solidity and captures complex urban features. 
+
+13 LiDAR (GT) EOGS Skyfall-GS Ours  
+
+> JAX-068 JAX-214 OMA-212 OMA-315
+> Figure 8: Comparative qualitative analysis of reconstructed geometry against LiDAR ground truth. Compared to existing GS-based baselines, our framework reconstructs clean surfaces with well-defined boundaries, including specular high-reflectance structures on the OMA sites.
+
+while maintaining consistent surface solidity throughout. These clean, solid surfaces are further evidenced across both the OMA and IARPA sites (fig. 7). On the IARPA sites, EOGS produces cleaner DSMs but fails to recover certain scene com-ponents, whereas Skyfall-GS captures more detail but struggles to maintain solid surfaces. Our method addresses both limi-tations simultaneously, reconstructing detailed yet structurally coherent surfaces. A similar pattern emerges on the OMA-212 site, which contains high-reflectance structures that pose par-ticular challenges for reconstruction. EOGS and Sat-NGP fail to recover these structures entirely, and while Skyfall-GS par-tially recovers their presence, our results remain geometrically cleaner and more consistent with the underlying surface geom-etry. The IARPA-003 site, however, reveals a limitation of our method: it fails to reconstruct the roller coaster structure that Skyfall-GS recovers on the right side of the DSM. We attribute this to our method’s emphasis on global geometric consistency and surface smoothness, which comes at the cost of missing thin, isolated structures. The quantitative evaluation also supports the qualitative ob-servation on fig. 7 and fig. 8 that our method reconstructs cleaner and solid surfaces. As shown in table 2 our method achieves an average MAE reg of 1.23m on the JAX sites, which corresponds to an 18.0% improvement over the second best method, EOGS (1.50m). While EOGS shows competitive per-formance its accuracy significantly degrades in sites with more complex urban structures. In contrast, our method maintains a robust error margin below 1.4m in most cases, e ff ectively cap-turing fine-grained building geometries. The performance gap remains pronounced when including 14 Table 2: Summary of geometric accuracy MAE reg across various satellite datasets. SatSplatDi ff achieves best geometric accuracy on all sites. Com-parison on only buildings demonstrates the ability of our pipeline to form solid gaussian surfaces. 
+
+Method Full Scene Buildings JAX OMA IARPA Mean JAX OMA IARPA Mean 
+
+ASP 2.09 1.01 2.39 1.83 1.88 2.12 1.90 1.97 SAT-NGP 3.01 1.82 2.16 2.33 3.40 3.99 2.70 3.36 EOGS 1.50 1.47 1.86 1.61 1.25 2.64 1.37 1.75 Skyfall-GS 1.88 1.40 2.60 1.96 1.58 1.81 2.05 1.81 GU-GS 1.73 2.31 1.83 1.96 1.69 2.87 1.35 1.97 
+
+Ours 1.23 0.65 1.82 1.23 0.91 0.81 1.32 1.01 
+
+the IARPA and OMA sites. Overall, our method achieves a mean MAE reg of 1.23m, a significant improvement over EOGS (1.61m) and other NeRF-based baselines. Notably, our ap-proach achieves sub-meter accuracy on the Omaha sites, re-ducing the error to less than half that of the next-best method. When restricted to building regions, our method achieves a mean MAE reg below one meter on both the JAX and OMA tiles. These results indicate that our method reconstructs build-ing geometry with consistent sub-meter accuracy across both full-scene and building-specific evaluations. 
+
+5.5. Ablations 5.5.1. E ff ect of multi-scale geometric refinement 
+
+An ablation study was conducted to evaluate the impact of multi-scale geometric refinement (section 4.2.1) on both visual fidelity and geometric accuracy (table 3. Multi-scale refine-ment introduces additional supervision from rendered images with di ff erent spatial scales, allowing Gaussians to better re-cover structures that are insu ffi ciently constrained in the orig-inal satellite observations. Given that this refinement process involves an additional backpropagation step per iteration, the computational trade-o ff was also analyzed. 
+
+Table 3: Final reconstruction quality after complete optimization with and with-out multi-scale refinement. Complexity reports the computational cost of the geometric optimization stage.                                             
+
+> Configuration Distributional Pixel-level Geometric Complexity (Geo. Opt.)
+> FID-CLIP ↓CMMD ↓PSNR ↑CW-SSIM ↑LPIPS ↓MAE reg ↓/Opacity ↑#Gaussians /Time (min) Ours (w /o multi-scale) 19.56 1.700 12.24 0.410 0.598 1.27 /0.97 2,434,791 /42.15
+> Ours (w /multi-scale) 19.50 1.681 12.26 0.414 0.611 1.25 /0.99 2,460,800 /49.39
+
+As reported in table 3, integrating multi-scale geomet-ric refinement improves distribution metrics (FID-CLIP and CMMD) and pixel-level quality (PSNR and CW-SSIM). From a geometric perspective, the refinement reduces the MAE reg from 1.27m to 1.25m and increases the average opacity from 0.97 to 0.99, suggesting reduced ambiguity in Gaussian coverage. However, the additional multi-scale supervision increases the number of optimized Gaussians from 2,434,791 to 2,460,800 and increases the geometric optimization time from 42 to 49 minutes. These results indicate that multi-scale refinement pro-vides measurable improvements in appearance quality and ge-ometric consistency with a moderate increase in computational cost. 
+
+5.5.2. E ffi cacy of generative refinement 
+
+The e ff ectiveness of our generative refinement pipeline is evaluated through an ablation study, as summarized in fig. 9 and table 4. Qualitative analysis indicates improvements in build-ing facade reconstruction. In sites JAX-068, JAX-214 and JAX-260, which are characterized by high-rise structures, the refine-ment of facade textures is observed. Furthermore, comparative analysis of the reconstructed DSMs reveals that the generative refinement pipeline reduces rough textures and improve con-sistencies across the scene, while further regularizing structural boundaries. Quantitative comparison without generative refinement in-dicates that all evaluation criteria improve after generative re-finement (table 4). Distributional metrics show the most pro-nounced gains, with FID-CLIP decreasing from 48.34 to 19.50 and CMMD from 3.422 to 1.681, indicating that the refined reconstructions more closely resemble the visual structure of the Google Earth reference imagery. Pixel-level metrics im-prove as well, and our full configuration (FLUX.2 [klein] 4B) achieves the best PSNR, CW-SSIM, and LPIPS among all eval-uated di ff usion pipelines, even though the absolute gain over the unrefined baseline is comparatively modest due to the inherent pixel-level misalignment between the source satellite imagery and the Google Earth reference. 
+
+Table 4: Quantitative ablation study of the shadow-guided generative refine-ment stage with di ff erent di ff usion pipelines, evaluated using distributional metrics (FID-CLIP and CMMD), pixel-level metrics (PSNR, CW-SSIM, and LPIPS), and geometric accuracy (MAE reg ).                                       
+
+> Configuration Distributional Pixel-level Geometric
+> FID-CLIP ↓CMMD ↓PSNR ↑CW-SSIM ↑LPIPS ↓MAE reg ↓
+> No Enhancement 48.34 3.422 11.87 0.368 0.679 1.28 Skyfall-GS (FlowEdit +FLUX.1 [dev]) 27.06 2.125 11.83 0.386 0.716 1.89 Ours (FlowEdit +FLUX.1 [dev]) 36.27 2.251 12.14 0.399 0.668 1.27 Ours (FLUX.2 [klein] 4B) 19.50 1.681 12.26 0.414 0.611 1.25
+
+We additionally evaluate an alternative di ff usion pipeline, FlowEdit with FLUX.1 [dev], to verify the robustness of our framework (fig. 10). Even with this change in di ff usion back-bone, performance improves consistently across all metrics rel-ative to the unrefined baseline. Notably, when comparing our framework and Skyfall-GS under the same FlowEdit pipeline, Skyfall-GS achieves slightly better distributional metrics, while our framework achieves better pixel-level alignment and ge-ometric accuracy (MAE reg ). These results suggest that our shadow-guided refinement preserves sensor-observed geometry and improves visual fidelity regardless of the underlying di ff u-sion backbone. A key observation is that our di ff usion pipeline improves visual fidelity while preserving the geometric accuracy estab-lished during the optimization stage. Shadow casting pre-vents geometric degradation that would otherwise occur during di ff usion-based refinement, while the refined appearance im-proves visual fidelity. This demonstrates the e ff ectiveness of our shadow-guided generative refinement in decoupling appear-ance enhancement from geometric change. 15 Rendered Albedo DSM (Height Map) 
+
+w/o Di ff usion w/ Di ff usion w/o Di ff usion w/ Di ff usion 
+
+> JAX-068 JAX-168 JAX-214 JAX-260
+
+Figure 9: Qualitative ablation of our generative refinement process. The comparison between the initial 2DGS output ("w /o Di ff usion") and the refined results ("w /
+
+Di ff usion") highlights the framework’s ability to recover high-frequency textures and sharpen building boundaries. 
+
+5.5.3. Impact of shadow casting 
+
+We previously established that casting geometrically calcu-lated shadows helps maintain geometric accuracy throughout the pipeline. To validate this, we conduct an ablation study on shadow casting (fig. 11). The results confirm that shadow casting preserves geometric accuracy relative to the generative refinement pipeline without shadow casting. In particular, the surface collapse observed when training without shadow cast-ing is largely resolved. A comparative analysis of geometric accuracy before and after the application of generative refinement (table 5) further supports these findings. For our method, the mean geomet-ric error (MAE reg ) on the full scene remains nearly unchanged at 1.27m and 1.26m when the di ff usion model is conditioned on albedo images ( Ralbedo ) instead of shadow-cast images. On building regions specifically, however, the degradation is more pronounced, increasing from 1.02m to 1.07m, suggesting that removing geometry-derived shadow structures particularly re-duces the geometric cues available for refining facade and rooftop details. In comparison, Skyfall-GS exhibits a larger degradation on the full scene, from 1.85m to 1.93m, under the same di ff usion-based refinement. When the di ff usion model is instead conditioned on shadow-cast images, our method recov-ers a mean geometric error of 1.23m on the full scene and 1.02m on building regions, demonstrating that shadow-guided condi-tioning helps retain geometry-consistent appearance refinement during Gaussian optimization. 
+
+Table 5: Comparative analysis of geometric accuracy during generative refine-ment. The results demonstrate that while generative refinement typically leads to geometric degradation, our framework with shadow casting maintains geo-metric accuracy.                                                    
+
+> Method Full Scene Buildings JAX OMA IARPA Mean JAX OMA IARPA Mean
+> Skyfall-GS (w /o di ff usion) 1.79 1.21 2.55 1.85 1.35 1.68 2.14 1.72 Skyfall-GS (w /di ff usion) 1.86 1.39 2.55 1.93 1.56 1.80 2.05 1.80 Ours (w /o di ff usion) 1.27 0.65 1.89 1.27 0.92 0.86 1.29 1.02 Ours (w /o shadow) 1.32 0.65 1.82 1.26 0.98 0.85 1.37 1.07
+> Ours (w /shadow) 1.23 0.64 1.82 1.23 0.91 0.81 1.35 1.02
+
+16 Google Earth Skyfall-GS (FlowEdit) No Enhancement FlowEdit +FLUX.1 [dev] FLUX.2 [klein] 4B 
+
+> JAX-068 JAX-214 JAX-260
+> Figure 10: Qualitative comparison of satellite image enhancement using di ff erent di ff usion pipelines (FlowEdit). Our shadow-guided refinement improves visual details and recovers cleaner building facades while preserving the underlying geometric structures reconstructed from Gaussian optimization.
+
+In addition to geometric accuracy, shadow casting con-tributes to enhanced visual fidelity. By conditioning on shadow-cast images, the di ff usion model generates outputs that align more closely with the radiometric distribution of real-world satellite imagery. As indicated in table 6, random shadow sam-pling improves visual fidelity compared to results using fixed or no shadow casting. Specifically, random shadow sampling achieves the lowest FID-CLIP (19.50) and CMMD (1.681), confirming the e ff ectiveness of our shadow sampling strategy.                                   
+
+> Table 6: Quantitative ablation of shadow casting strategies during the shadow-guided generative refinement stage. Random shadow sampling e ffi ciently mod-els diverse solar configurations, providing the most robust performance across both distributional and pixel-level metrics.
+> Configuration Distributional Pixel-level Geometric
+> FID-CLIP ↓CMMD ↓PSNR ↑CW-SSIM ↑LPIPS ↓MAE reg ↓
+> w/o shadow 19.57 1.717 11.74 0.373 0.621 1.32 w/fixed shadow 19.61 1.695 12.23 0.413 0.614 1.28 w/random shadow 19.50 1.681 12.26 0.414 0.611 1.25
+
+6. Discussion 
+
+Throughout the experiments, SatSplatDi ff achieves state-of-the-art geometric accuracy and visual fidelity. The geometric optimization stage produces well-regularized surfaces, and the shadow-guided generative refinement stage improves visual fi-delity on occluded surfaces while preserving geometric accu-racy. In the following subsections, we discuss the further analy-sis on key components and demonstrate scalability to large-area reconstruction. 
+
+6.1. Initialization sensitivity 
+
+Based on our observations across multiple JAX sites, re-construction quality relies heavily on the completeness of the photogrammetric DSM, as incomplete DSMs lead to erroneous shadow maps that reinforce incorrect geometry throughout op-timization. As illustrated in fig. 12, incomplete initializa-tion leads to degraded reconstruction geometry, while a com-plete initialization enables stable reconstruction. In practice, ASP (Beyer et al., 2018) o ff ers faster runtime but is more susceptible to incomplete DSMs under limited stereo overlap, while s2p (De Franchis et al., 2014) produces more complete initializations at the cost of higher computational overhead. 
+
+6.2. Sensitivity to monocular depth supervision 
+
+On our pipeline, shadow casting serves as the primary geometric supervision signal throughout optimization, while monocular depth supervision plays a supporting role during the first 3,000 iterations by accelerating early convergence. To eval-uate this role under extreme conditions, we deliberately employ volumetric initialization instead of our default DSM-based ini-tialization across four JAX sites (JAX-004, JAX-068, JAX-214, JAX-260). As shown in fig. 13, the absence of monocular depth supervision results in significantly slower and less stable con-vergence, while its inclusion establishes a stable trajectory from early iterations, confirming its role in providing a geometric foundation for shadow casting. 
+
+6.3. Sensitivity to number of di ff usion-refined images 
+
+To determine the optimal balance between computational cost and reconstruction quality, we have conducted a sensitiv-ity analysis on the number of di ff usion-refined images (fig. 14). 17 Rendered Albedo DSM (Height Map)      
+
+> w/o Shadow w/Shadow w/o Shadow w/Shadow
+> JAX-068 JAX-168 JAX-214 JAX-251
+> Figure 11: Qualitative ablation of shadow casting across multiple JAX sites. Shadow casting imposes geometric guidance, helping Gaussians maintain geometric accuracy and visual fidelity.
+
+We evaluate across four JAX sites (JAX-004, JAX-068, JAX-214, JAX-260) by varying the number of generated views from 120 to 500, measuring geometric accuracy (MAE reg ) alongside visual fidelity metrics (PSNR, LPIPS, FID-CLIP, CMMD, CW-SSIM). For clarity, all metrics are normalized to [0, 1] and ad-justed so that higher values indicate better performance. Our results show that 180 refined images is the optimal con-figuration. Increasing the count beyond this threshold does not yield further improvements but leads to slight degradation across most metrics. This suggests that while a su ffi cient num-ber of views is necessary to provide multi-view constraints, an excess of di ff usion-generated images may introduce cumulative perceptual noise. 
+
+6.4. Appearance drift from di ff usion refinement 
+
+Di ff usion refinement improves visual fidelity but may in-troduce appearance drift due to the generative prior. To ana-lyze this behavior, we compare reconstructions with and with-out mixing original satellite observations during Gaussian op-timization (table 7). Since appearance drift is mainly associ-ated with generative refinement, we compare against Skyfall-GS, which also employs di ff usion-based enhancement, rather than conventional reconstruction methods.                   
+
+> Table 7: Eff ect of incorporating original satellite images during generative refinement. Including original observations reduces distributional drift intro-duced by the di ff usion process.
+> Method Pixel-level
+> PSNR ↑CW-SSIM ↑LPIPS ↓
+> Skyfall-GS 14.11 0.273 0.601 Ours (w /o original img.) 15.66 0.354 0.558
+> Ours (w /original img.) 16.83 0.430 0.529
+
+The proposed method achieves higher similarity to the orig-inal satellite observations compared with Skyfall-GS. While Skyfall-GS obtains a PSNR of 14.11, our method achieves 16.83. Within our framework, incorporating original satellite images during optimization further improves the similarity, in-creasing PSNR from 15.66 to 16.83 and reducing LPIPS from 0.558 to 0.529. These results indicate that mixing original ob-18 (a) Initialization DSM (failure) (b) Initialization DSM (partial failure)    
+
+> (c) Reconstructed DSM from (a) (d) Reconstructed DSM from (b)
+> Figure 12: Initialization sensitivity on JAX-167. Top row: initialization DSMs with high-rise reconstruction failure (a) and partial failure (b). Bottom row: corresponding reconstructed DSMs.
+> Figure 13: MAE reg over training steps under volumetric initialization, used as a stress test for extreme geometry cases. Monocular depth supervision acceler-ates early-stage convergence, while the absence of it results in slower and less stable convergence throughout training.
+> Figure 14: Sensitivity analysis on numbers of refined images on pseudo dataset. The normalized performance metrics indicate that 180 refined images provide the optimal balance. Exceeding this threshold introduces cumulative perceptual noise.
+
+servations with di ff usion-refined images e ff ectively constrains the refinement process and reduces deviation from the original satellite image distribution. 
+
+6.5. Practical considerations 
+
+Across our experiments on the DFC2019 and IARPA2016 datasets, scenes with fewer than approximately 12 images con-sistently exhibited unstable optimization due to insu ffi cient multi-view coverage, leading us to identify this as the practi-cal minimum for stable reconstruction. Additionally, accurate acquisition dates or solar metadata are required for physically accurate shadow simulation, which may not be available in all satellite products. Reconstruction quality is also sensitive to the completeness of the initialization DSM, since shadow-based su-pervision relies on accurate geometry for physically meaning-ful shadow simulation. While our pipeline consumes approx-imately 23 GB of GPU memory, roughly half that of Skyfall-GS, the multi-stage optimization still incurs higher computa-tional overhead than standard Gaussian Splatting. We expect future work on accelerating di ff usion-based refinement to sub-stantially reduce this overhead. 
+
+6.6. Scalability and large-area reconstruction 
+
+Unlike full-scale reconstruction methods, our pipeline recon-structs large scenes by processing satellite images in smaller tiles. Although independent tile reconstruction may introduce inconsistencies in geometry or appearance across boundaries, our results show that adjacent reconstructed sites can be directly merged with minimal visible artifacts. As shown in fig. 15, independently reconstructed JAX-164, JAX-165, JAX-167 and JAX-214, JAX-260 produce seamless mosaics with consistent geometric structure and radiometric appearance. These results suggest that the proposed refinement process preserves su ffi -cient consistency across independently optimized regions, en-abling practical scaling to larger areas. 
+
+7. Conclusion 
+
+In this paper, we presented SatSplatDi ff , a unified pipeline for satellite-based 3D reconstruction that achieves state-of-the-art geometric accuracy and visual fidelity. The key idea is to extend shadow casting, previously used as a geometric cue dur-ing optimization, into the generative refinement stage. By con-ditioning di ff usion-based refinement on shadow-cast rendered images, the resulting appearance remains consistent with the underlying geometry, mitigating the geometric degradation typ-ically introduced by di ff usion-based refinement. Together with photogrammetric DSM initialization, monocular depth supervi-sion, multi-scale geometric refinement, and Gaussian densifica-tion, the proposed framework produces geometrically accurate and high-fidelity satellite reconstructions. Quantitative evaluations on the IARPA2016 and DFC2019 datasets demonstrate that SatSplatDi ff consistently outperforms existing methods in both geometric accuracy and visual fidelity, reducing MAE reg by up to 18% and improving FID-CLIP by 28–45%, while delivering up to 5 × resolution enhancement over existing baselines. Our method does exhibit limitations, 19 (a) Full mosaic of adjacent sites: JAX-164, JAX-165, and JAX-167. 
+
+> (b) Full mosaic of adjacent sites: JAX-214 and JAX-260.
+
+Figure 15: Application on larger area: seamless mosaics of adjacent JAX sites, including (a) JAX-164, JAX-165, JAX-167 and (b) JAX-214, JAX-260. Each site is reconstructed independently and merged using perpendicular bisectors along shared boundaries, demonstrating consistent visual details and scalability across di ff erent scenes. 
+
+20 including reduced fidelity in recovering extremely thin struc-tures such as roller coasters and a practical requirement of at least 12 input images for stable reconstruction. Nonetheless, these results demonstrate the e ff ectiveness of shadow-guided generative refinement in jointly improving geometric accuracy and visual fidelity for satellite-based 3D reconstruction. Future work will focus on extending the framework to larger and more diverse scenes and further improving robustness under sparse-view conditions. 
+
+Acknowledgements 
+
+This work is supported by the Intelligence Advanced Re-search Projects Activity (IARPA) via Department of In-terior /Interior Business Center (DOI /IBC) contract number 140D0423C0075 and O ffi ce of Naval Research (Award No. N000142312670). This work is also supported by the U.S. Na-tional Science Foundation (NSF) under Award No. 2331104. 
+
+References 
+
+Aira, L.S., Facciolo, G., Ehret, T., 2025. Gaussian splatting for e ffi cient satellite image photogrammetry, in: Proceedings of the Computer Vision and Pattern Recognition Conference, pp. 5959–5969. Beyer, R.A., Alexandrov, O., McMichael, S., 2018. The ames stereo pipeline: Nasa’s open source software for deriving and processing terrain data. Earth and Space Science 5, 537–548. Billouard, C., Derksen, D., Sarrazin, E., Vallet, B., 2024. Sat-ngp: Unleashing neural graphics primitives for fast re-lightable transient-free 3d reconstruction from satellite im-agery, in: IGARSS 2024-2024 IEEE International Geo-science and Remote Sensing Symposium, IEEE. pp. 8749– 8753. Bosch, M., Foster, K., Christie, G., Wang, S., Hager, G.D., Brown, M., 2019. Semantic stereo for incidental satellite images, in: 2019 IEEE Winter Conference on Applications of Computer Vision (WACV), IEEE. pp. 1524–1532. Bosch, M., Kurtz, Z., Hagstrom, S., Brown, M., 2016. Amultiple view stereo benchmark for satellite imagery, in: 2016 IEEE Applied Imagery Pattern Recognition Workshop (AIPR), IEEE. pp. 1–9. Bournez, P., Aira, L.S., Ehret, T., Facciolo, G., 2025. Eogs ++ :Earth observation gaussian splatting with internal camera re-finement and direct panchromatic rendering. arXiv preprint arXiv:2511.16542 . De Franchis, C., Meinhardt-Llopis, E., Michel, J., Morel, J.M., Facciolo, G., 2014. An automatic and modular stereo pipeline for pushbroom images, in: ISPRS Annals of the Photogrammetry, Remote Sensing and Spatial Information Sciences. Derksen, D., Izzo, D., 2021. Shadow neural radiance fields for multi-view satellite photogrammetry, in: Proceedings of the IEEE /CVF Conference on Computer Vision and Pattern Recognition, pp. 1152–1161. Ding, B., Liu, J., Yin, X., Yang, Z., Luo, Y., Zhang, D., 2026. Gu-gs: Gaussian splatting-based geometry refinement and uncertainty-aware learning method for dsm generation from satellite imagery. IEEE Transactions on Geoscience and Re-mote Sensing . Esser, P., Kulal, S., Blattmann, A., Entezari, R., Müller, J., Saini, H., Levi, Y., Lorenz, D., Sauer, A., Boesel, F., et al., 2024. Scaling rectified flow transformers for high-resolution image synthesis, in: Forty-first international conference on machine learning. Facciolo, G., De Franchis, C., Meinhardt, E., 2015. Mgm: A significantly more global matching for stereovision, in: BMVC 2015. Fischer, T., Bulò, S.R., Yang, Y.H., Keetha, N., Porzi, L., Müller, N., Schwarz, K., Luiten, J., Pollefeys, M., Kontschieder, P., 2025. Flowr: Flowing from sparse to dense 3d reconstructions, in: Proceedings of the IEEE /CVF Inter-national Conference on Computer Vision, pp. 27702–27712. Fischler, M.A., Bolles, R.C., 1981. Random sample consen-sus: a paradigm for model fitting with applications to image analysis and automated cartography. Communications of the ACM 24, 381–395. Gao, R., Holynski, A., Henzler, P., Brussee, A., Martin-Brualla, R., Srinivasan, P., Barron, J.T., Poole, B., 2024. Cat3d: Cre-ate anything in 3d with multi-view di ff usion models. arXiv preprint arXiv:2405.10314 . He, S., Li, S., Jiang, S., Jiang, W., 2022. Hmsm-net: Hierar-chical multi-scale matching network for disparity estimation of high-resolution satellite stereo images. ISPRS Journal of Photogrammetry and Remote Sensing 188, 314–330. Hirschmuller, H., 2008. Stereo processing by semiglobal matching and mutual information. IEEE Transactions on pat-tern analysis and machine intelligence 30, 328–341. Huang, B., Yu, Z., Chen, A., Geiger, A., Gao, S., 2024. 2d gaussian splatting for geometrically accurate radiance fields, in: ACM SIGGRAPH 2024 conference papers, pp. 1–11. Huang, X., Liu, X., Wan, Y., Zheng, Z., Zhang, B., Xiong, M., Pei, Y., Zhang, Y., 2025. Skysplat: Generalizable 3d gaussian splatting from multi-temporal sparse satellite images. arXiv preprint arXiv:2508.09479 . Huynh-Thu, Q., Ghanbari, M., 2008. Scope of validity of psnr in image /video quality assessment. Electronics letters 44, 800–801. 21 Jayasumana, S., Ramalingam, S., Veit, A., Glasner, D., Chakrabarti, A., Kumar, S., 2024. Rethinking fid: Towards a better evaluation metric for image generation, in: Proceed-ings of the IEEE /CVF conference on computer vision and pattern recognition, pp. 9307–9315. Kerbl, B., Kopanas, G., Leimkühler, T., Drettakis, G., 2023. 3d gaussian splatting for real-time radiance field rendering. ACM Trans. Graph. 42, 139–1. Khanna, S., Liu, P., Zhou, L., Meng, C., Rombach, R., Burke, M., Lobell, D., Ermon, S., 2024. Di ff usionsat: A genera-tive foundation model for satellite imagery, in: International Conference on Learning Representations, pp. 5586–5604. Kim, J., Cho, S., Chung, M., Kim, Y., 2025. Improving dis-parity consistency with self-refined cost volumes for deep learning-based satellite stereo matching. IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing . Kynkäänniemi, T., Karras, T., Aittala, M., Aila, T., Lehtinen, J., 2022. The role of imagenet classes in fr \’echet inception distance. arXiv preprint arXiv:2203.06026 . Labs, B.F., 2025. FLUX.2: Frontier Visual Intelligence. 
+
+https://bfl.ai/blog/flux-2 .Le Saux, B., Yokoya, N., Hänsch, R., Brown, M., 2019. Data fusion contest 2019 (dfc2019); ieee dataport. IEEE: Piscat-away, NJ, USA . Lee, J.Y., Liu, Y.R., Tsai, S.R., Chang, W.C., Wu, C.H., Chan, J., Zhao, Z., Lin, C.H., Liu, Y.L., 2025. Skyfall-GS: Syn-thesizing immersive 3D urban scenes from satellite imagery. arXiv preprint arXiv:2510.15869 .Lee Rodgers, J., Nicewander, W.A., 1988. Thirteen ways to look at the correlation coe ffi cient. The American Statistician 42, 59–66. Li, J., Zhang, J., Bai, X., Zheng, J., Ning, X., Zhou, J., Gu, L., 2024. Dngaussian: Optimizing sparse-view 3d gaussian ra-diance fields with global-local depth normalization, in: Pro-ceedings of the IEEE /CVF conference on computer vision and pattern recognition, pp. 20775–20785. Li, S., He, S., Jiang, S., Jiang, W., Zhang, L., 2023. Whu-stereo: A challenging benchmark for stereo matching of high-resolution satellite images. IEEE Transactions on Geo-science and Remote Sensing 61, 1–14. Li, Z., Yao, S., Wu, T., Yue, Y., Zhao, W., Qin, R., García-Fernández, Á.F., Levers, A., Ralph, J., Zhu, X., 2025. Ulsr-gs: Urban large-scale surface reconstruction gaussian splat-ting with multi-view geometric consistency. ISPRS Journal of Photogrammetry and Remote Sensing 230, 861–880. Lin, C.H., Gao, J., Tang, L., Takikawa, T., Zeng, X., Huang, X., Kreis, K., Fidler, S., Liu, M.Y., Lin, T.Y., 2023. Magic3d: High-resolution text-to-3d content creation, in: Proceedings of the IEEE /CVF conference on computer vision and pattern recognition, pp. 300–309. Lin, J., Li, Z., Tang, X., Liu, J., Liu, S., Liu, J., Lu, Y., Wu, X., Xu, S., Yan, Y., et al., 2024. Vastgaussian: Vast 3d gaussians for large scene reconstruction, in: Proceedings of the IEEE /CVF Conference on Computer Vision and Pattern Recognition, pp. 5166–5175. Liu, T., Zhao, S., Jiang, W., Guo, B., 2025. Sat-dn: Implicit surface reconstruction from multi-view satellite images with depth and normal supervision. IEEE Journal of Selected Top-ics in Applied Earth Observations and Remote Sensing . Liu, X., Chen, J., Kao, S.h., Tai, Y.W., Tang, C.K., 2024a. Deceptive-nerf /3dgs: Di ff usion-generated pseudo-observations for high-quality sparse-view reconstruction, in: European Conference on Computer Vision, Springer. pp. 337–355. Liu, X., Sun, W., Ren, Z., Broaddus, C., Huang, S., Guigues, L., 2026. Had: Hallucination-aware di ff usion priors for 3d re-construction, in: Proceedings of the IEEE /CVF Conference on Computer Vision and Pattern Recognition, pp. 29781– 29791. Liu, X., Zhou, C., Huang, S., 2024b. 3dgs-enhancer: Enhanc-ing unbounded 3d gaussian splatting with view-consistent 2d di ff usion priors. Advances in Neural Information Processing Systems 37, 133305–133327. Liu, Y., Luo, C., Fan, L., Wang, N., Peng, J., Zhang, Z., 2024c. Citygaussian: Real-time high-quality large-scale scene ren-dering with gaussians, in: European Conference on Com-puter Vision, Springer. pp. 265–282. Liu, Y., Luo, C., Mao, Z., Peng, J., Zhang, Z., 2024d. Citygaus-sianv2: E ffi cient and geometrically accurate reconstruction for large-scale scenes. arXiv preprint arXiv:2411.00771 . Lowe, D.G., 1999. Object recognition from local scale-invariant features, in: Proceedings of the seventh IEEE in-ternational conference on computer vision, Ieee. pp. 1150– 1157. Luo, F., Pan, H., Yang, X., Jiang, B., Liu, F., Huang, T., 2026. Shadowgs: Shadow-aware 3d gaussian splatting for satellite imagery. arXiv preprint arXiv:2601.00939 . de Lutio, R., Fischer, T., Chang, Y.Y., Zhang, Y., Wu, J.Z., Ren, X., Shen, T., Tothova, K., Gojcic, Z., Turki, H., 2026. Artifixer: Enhancing and extending 3d reconstruc-tion with auto-regressive di ff usion models. arXiv preprint arXiv:2603.00492 . Marí, R., Facciolo, G., Ehret, T., 2022. Sat-nerf: Learning multi-view satellite photogrammetry with transient objects and shadow modeling using rpc cameras, in: Proceedings of the IEEE /CVF Conference on Computer Vision and Pattern Recognition, pp. 1311–1321. 22 Marí, R., Facciolo, G., Ehret, T., 2023. Multi-date earth obser-vation nerf: The detail is in the shadows, in: Proceedings of the IEEE /CVF Conference on Computer Vision and Pattern Recognition, pp. 2035–2045. Marí, R., de Franchis, C., Meinhardt-Llopis, E., Anger, J., Fac-ciolo, G., 2021. A Generic Bundle Adjustment Method-ology for Indirect RPC Model Refinement of Satellite Im-agery. Image Processing On Line 11, 344–373. https: //doi.org/10.5201/ipol.2021.352 .Mildenhall, B., Srinivasan, P.P., Tancik, M., Barron, J.T., Ra-mamoorthi, R., Ng, R., 2021. Nerf: Representing scenes as neural radiance fields for view synthesis. Communications of the ACM 65, 99–106. Oquab, M., Darcet, T., Moutakanni, T., Vo, H.V., Szafraniec, M., Khalidov, V., Fernandez, P., Haziza, D., Massa, F., El-Nouby, A., Howes, R., Huang, P.Y., Xu, H., Sharma, V., Li, S.W., Galuba, W., Rabbat, M., Assran, M., Ballas, N., Syn-naeve, G., Misra, I., Jegou, H., Mairal, J., Labatut, P., Joulin, A., Bojanowski, P., 2023. Dinov2: Learning robust visual features without supervision. Peebles, W., Xie, S., 2023. Scalable di ff usion models with transformers, in: Proceedings of the IEEE /CVF international conference on computer vision, pp. 4195–4205. Poole, B., Jain, A., Barron, J.T., Mildenhall, B., 2022. Dream-fusion: Text-to-3d using 2d di ff usion. arXiv preprint arXiv:2209.14988 . Qin, R., 2016. Rpc stereo processor (rsp)–a software pack-age for digital surface model and orthophoto generation from satellite stereo imagery. ISPRS Annals of the Photogram-metry, Remote Sensing and Spatial Information Sciences 3, 77–82. Radford, A., Kim, J.W., Hallacy, C., Ramesh, A., Goh, G., Agarwal, S., Sastry, G., Askell, A., Mishkin, P., Clark, J., et al., 2021. Learning transferable visual models from nat-ural language supervision, in: International conference on machine learning, PmLR. pp. 8748–8763. Rombach, R., Blattmann, A., Lorenz, D., Esser, P., Ommer, B., 2022. High-resolution image synthesis with latent di ff u-sion models, in: Proceedings of the IEEE /CVF conference on computer vision and pattern recognition, pp. 10684–10695. Rota Bulò, S., Porzi, L., Kontschieder, P., 2024. Revising den-sification in gaussian splatting, in: European Conference on Computer Vision, Springer. pp. 347–362. Saharia, C., Chan, W., Saxena, S., Li, L., Whang, J., Denton, E.L., Ghasemipour, K., Gontijo Lopes, R., Karagol Ayan, B., Salimans, T., et al., 2022. Photorealistic text-to-image di ff u-sion models with deep language understanding. Advances in neural information processing systems 35, 36479–36494. Sampat, M.P., Wang, Z., Gupta, S., Bovik, A.C., Markey, M.K., 2009. Complex wavelet structural similarity: A new image similarity index. IEEE transactions on image processing 18, 2385–2401. Song, S., Kim, J., Qin, R., 2027. Satsplat: Geometrically-accurate gaussian splatting for satellite imagery. Photogram-metric Engineering & Remote Sensing In press. Wang, Z., Bovik, A.C., Sheikh, H.R., Simoncelli, E.P., 2004. Image quality assessment: from error visibility to structural similarity. IEEE transactions on image processing 13, 600– 612. Wu, C., Li, J., Zhou, J., Lin, J., Gao, K., Yan, K., Yin, S.m., Bai, S., Xu, X., Chen, Y., et al., 2025a. Qwen-image technical report. arXiv preprint arXiv:2508.02324 . Wu, J.Z., Zhang, Y., Turki, H., Ren, X., Gao, J., Shou, M.Z., Fidler, S., Gojcic, Z., Ling, H., 2025b. Difix3d +: Improving 3d reconstructions with single-step di ff usion models, in: Pro-ceedings of the IEEE /CVF Conference on Computer Vision and Pattern Recognition, pp. 26024–26035. Yang, L., Kang, B., Huang, Z., Zhao, Z., Xu, X., Feng, J., Zhao, H., 2024. Depth anything v2. arXiv:2406.09414 . Ye, V., Li, R., Kerr, J., Turkulainen, M., Yi, B., Pan, Z., Seiskari, O., Ye, J., Hu, J., Tancik, M., Kanazawa, A., 2025. gsplat: An open-source library for gaussian splatting. Journal of Machine Learning Research 26, 1–17. Yu, F., Liu, Y., Tang, L., Sun, M., Ge, Z., Bu, R., Jin, Y., Zhao, H., Sun, H., Li, Y., et al., 2025. From orbit to ground: Gen-erative city photogrammetry from extreme o ff -nadir satellite images. arXiv preprint arXiv:2512.07527 . Yu, Z., Chen, A., Huang, B., Sattler, T., Geiger, A., 2024. Mip-splatting: Alias-free 3d gaussian splatting, in: Proceedings of the IEEE /CVF conference on computer vision and pattern recognition, pp. 19447–19456. Zhang, R., Isola, P., Efros, A.A., Shechtman, E., Wang, O., 2018. The unreasonable e ff ectiveness of deep features as a perceptual metric, in: Proceedings of the IEEE conference on computer vision and pattern recognition, pp. 586–595. Zhao, L., Wang, H., Zhu, Y., Song, M., 2023. A review of 3d reconstruction from high-resolution urban satellite images. International Journal of Remote Sensing 44, 713–748. Zhou, X., Wang, Y., Lin, D., Cao, Z., Li, B., Liu, J., 2024. Satel-literf: Accelerating 3d reconstruction in multi-view satellite images with e ffi cient neural radiance fields. Applied Sci-ences 14, 2729. 23

@@ -1,0 +1,97 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-27T21:02:17.776013+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2606.24206v1",
+      "source": "arxiv",
+      "title": "Inclusive Interactive Collisions for Multi-View Consistent Compositional 3D Generation",
+      "abstract": "Recent breakthroughs in 3D generation have advanced notably with the development of text-to-image diffusion model. However, existing methods remain two practical challenges: (1) They primarily generate single 3D object, but struggle to generate multi-object compositional 3D assets due to the lack of the modeling for Gaussian primitives in reasonable interactions. (2) They often suffer from cross-view inconsistency during 3D optimization, as Score Distillation Sampling inherently performs on each single view, inevitably resulting in cross-view hallucinations. To solve above issues, we propose I2C-3D, a novel optimization-based method to generate multi-view consistent compositional 3D assets with reasonable interactions. Specifically, we propose an Inclusive Interactive Collisions strategy to guide Gaussian primitives appearing in reasonable interaction regions naturally, thereby ensuring objects in the compositional scene interact in a physically plausible and visually coherent way. Additionally, to enhance multi-view consistency, Multi-View Adaptive Score Distillation Sampling is devised to distill multi-view consistency prior and layout prior from pre-trained diffusion model by modulating attention map of instance token and spatial token across viewpoints. Benefiting from above elaborate designs, I2C-3D not only generates high-fidelity multi-view consistent compositional 3D assets but also supports 3D editing flexibly, facilitating complex scene generation. Extensive experiments demonstrate our I2C-3D outperforms existing methods in generation quality and multi-view consistency.",
+      "authors": [
+        "Chang Liu",
+        "Mingwen Shao",
+        "Xiang Lv",
+        "Xinyuan Chen",
+        "Lingzhuang Meng",
+        "Qiao Zhang",
+        "Zhengyi Gong",
+        "Jinghao Hu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-06-23T06:48:22+00:00",
+      "link": "https://arxiv.org/pdf/2606.24206v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "uses Gaussian primitives for multi-view consistent compositional 3D generation, relevant to novel view synthesis with Gaussian representations",
+      "llm_evidence_cn": "使用高斯图元进行多视图一致的组合3D生成，与使用高斯表示的新视角合成相关",
+      "llm_evidence": "使用高斯图元进行多视图一致的组合3D生成，与使用高斯表示的新视角合成相关",
+      "canonical_evidence": "使用高斯图元进行多视图一致的组合3D生成，与使用高斯表示的新视角合成相关",
+      "llm_tldr_en": "I2C-3D generates multi-view consistent compositional 3D assets with reasonable interactions using Gaussian primitives, addressing cross-view inconsistency and multi-object generation, which aligns with novel view synthesis goals.",
+      "llm_tldr_cn": "现有3D生成方法难以处理多对象组合场景且存在跨视图不一致。本文提出I2C-3D，通过建模高斯图元间的合理交互，生成多视图一致的组合3D资产。该方法利用优化过程保持一致性，实验证明在组合场景生成中质量优于先前工作。该研究为基于高斯表示的新视角合成提供了组合式解决方案。",
+      "llm_tldr": "现有3D生成方法难以处理多对象组合场景且存在跨视图不一致。本文提出I2C-3D，通过建模高斯图元间的合理交互，生成多视图一致的组合3D资产。该方法利用优化过程保持一致性，实验证明在组合场景生成中质量优于先前工作。该研究为基于高斯表示的新视角合成提供了组合式解决方案。",
+      "llm_tags": [
+        "query:pano-dgs:composite"
+      ],
+      "matched_query_tag": "query:pano-dgs:composite",
+      "matched_query_text": "Papers central to 请帮我查找全景3dgs的相关论文, especially work that connects or combines: 3D Gaussian Splatting method for novel view synthesis; reconstructing panoramic 360-degree scenes using Gaussian splatting; novel view synthesis for 360-degree immersive environments; omnidirectional rendering with 3D Gaussian Splatting; find papers on 3D Gaussian Splatting for panoramic 360 degree scene reconstruction; survey of omnidirectional novel view synthesis using Gaussian representations.",
+      "matched_requirement_id": "req-composite-pano-dgs",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.27223v1",
+      "source": "arxiv",
+      "title": "SatSplatDiff: Geometry-preserving generative refinement for high-fidelity satellite Gaussian Splatting",
+      "abstract": "Gaussian Splatting has been recently explored for satellite 3D reconstruction, demonstrating flexibility and efficiency in representing radiometrically diverse satellite scenes. However, the limited top viewpoint of satellite imagery results in insufficient supervision on building facades, leaving surface holes and degraded visual fidelity. Generative refinement, which leverages pretrained generative priors to iteratively refine and update the rendered images used as supervision targets, has recently been investigated to improve the visual fidelity of Gaussian-rendered images. However, since these models refine each view independently, the resulting images can generate hallucinations and break photo-consistency, leading to geometric degradation. To address these limitations, we propose SatSplatDiff, which aims to minimize geometric degradation prevalent in generative refinement. Building on photogrammetric DSM initialization and 2DGS-based shadow casting established in our prior work SatSplat, we first introduce monocular depth supervision and multi-scale geometric refinement to establish a geometrically accurate and well-regularized surface representation. We then apply shadow-guided generative refinement, where geometrically calculated shadow maps guide the Gaussians to maintain consistency with the underlying geometry, improving visual fidelity while reducing geometric degradation. Extensive evaluations on the IARPA2016 and DFC2019 datasets demonstrate state-of-the-art performance, reducing geometric MAE by up to 18% and improving visual fidelity (FID-CLIP) by 28-45% over existing baselines. Our method delivers up to 5x resolution enhancement with minimal hallucination and sensor-consistent appearance, demonstrating seamless cross-tile consistency and strong scalability for large-scale reconstruction. Source code is available at https://github.com/GDAOSU/SatSplatDiff",
+      "authors": [
+        "Jiyong Kim",
+        "Shuang Song",
+        "Ronjgun Qin"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-25T16:12:36+00:00",
+      "link": "https://arxiv.org/pdf/2606.27223v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "geometry-preserving generative refinement for satellite Gaussian splatting to improve view synthesis fidelity",
+      "llm_evidence_cn": "面向卫星高斯泼溅的几何保持生成式精炼，提升新颖视图合成保真度",
+      "llm_evidence": "面向卫星高斯泼溅的几何保持生成式精炼，提升新颖视图合成保真度",
+      "canonical_evidence": "面向卫星高斯泼溅的几何保持生成式精炼，提升新颖视图合成保真度",
+      "llm_tldr_en": "SatSplatDiff uses generative refinement with a geometry-preserving regularizer to improve visual fidelity of satellite Gaussian splatting, reducing hallucinations while maintaining multi-view consistency.",
+      "llm_tldr_cn": "卫星图像角度受限导致建筑立面监督不足，高斯泼溅渲染出现空洞和退化。本文提出几何保持的生成式精炼方法SatSplatDiff，利用预训练生成先验迭代更新渲染目标，并引入几何一致性约束抑制视图独立噪音和幻觉。实验表明该方法显著提升了卫星场景的视觉保真度，同时保持了多视图一致性。该工作为卫星三维重建中的高斯泼溅质量提升提供了有效方案。",
+      "llm_tldr": "卫星图像角度受限导致建筑立面监督不足，高斯泼溅渲染出现空洞和退化。本文提出几何保持的生成式精炼方法SatSplatDiff，利用预训练生成先验迭代更新渲染目标，并引入几何一致性约束抑制视图独立噪音和幻觉。实验表明该方法显著提升了卫星场景的视觉保真度，同时保持了多视图一致性。该工作为卫星三维重建中的高斯泼溅质量提升提供了有效方案。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
