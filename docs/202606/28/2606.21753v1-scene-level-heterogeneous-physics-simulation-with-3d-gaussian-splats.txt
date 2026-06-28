@@ -1,0 +1,911 @@
+Title: Scene-Level Heterogeneous Physics Simulation with 3D Gaussian Splats
+
+URL Source: https://arxiv.org/pdf/2606.21753v1
+
+Published Time: Tue, 23 Jun 2026 01:20:37 GMT
+
+Number of Pages: 16
+
+Markdown Content:
+# Scene-Level Heterogeneous Physics Simulation with 3D Gaussian Splats 
+
+## Xiaoyang Liu 1 Shangzhe Wu 2,† Kai Han 1,†
+
+> 1
+
+## The University of Hong Kong 2University of Cambridge 
+
+xiaoyangliu@connect.hku.hk sw2181@cam.ac.uk kaihanx@hku.hk 
+
+## https://visual-ai.github.io/raf/ Real captured 3DGS assets    
+
+> Manually created mesh assets
+
+Easy to capture 
+
+Physics friendly   
+
+> Real Captured 3DGS Assets
+> Manually Created Mesh Assets
+> Captured 3DGS Virtual mesh assets
+> Virtual particles inputs Kinematic assets
+> coupling
+> Unified
+
+Figure 1. Bridging the representation gap. Left : Photorealistic 3DGS assets are easy to capture but incompatible with physics engines, while traditional meshes are physics-ready but lack capture fidelity. Right : Our representation abstraction framework unifies heterogeneous assets — captured 3DGS, virtual meshes, and particle systems — within a single scene-level physical simulation. 
+
+## Abstract 
+
+3D Gaussian Splatting (3DGS) has achieved state-of-the-art photorealistic rendering, but the representation gap prevents these assets from being physically interactive. Production-grade physics engines do not understand the 3DGS representation, while prior physics-for-3DGS meth-ods are monolithic silos. These prior works are fundamen-tally limited, demonstrating only object-centric physics in isolated environments, such as on an ideal plane — they are incapable of interacting with complex static collision ge-ometry or heterogeneous assets. We propose a novel frame-work that, for the first time, bridges this gap by enabling 3DGS assets to participate in scene-level, heterogeneous, multi-solver physical simulations. Our core contribution is a Representation Abstraction Framework that “translates” all diverse assets—including 3DGS, virtual meshes, and fluids—into a unified physical particle set. This abstrac-tion is key to enabling complex behaviors, such as the non-rigid deformation of 3DGS assets, within a unified physics pipeline. This particle set, along with the static scene col-lision boundaries derived from scene capture, is processed within a solver-agnostic physics kernel. The physical re-sults are then mapped back to drive each asset’s specific vi-
+
+> †Corresponding authors.
+
+sual reconstruction. This architecture unlocks capabilities impossible with prior art. We demonstrate complex, two-way interactions between deformable 3DGS assets, stan-dard CG assets (like fluids and meshes), and large-scale captured static environments, showcasing realistic coupled phenomena that were previously unattainable. 
+
+## 1. Introduction 
+
+3D Gaussian splatting (3DGS) [20] has recently become the state-of-the-art (SOTA) for real-time, photorealistic novel-view synthesis. It represents scenes with millions of ex-plicit Gaussian splats, achieving unprecedented rendering quality and speed. However, while 3DGS has seen im-mense success in rendering static scenes or replaying pre-captured motion, these high-fidelity worlds remain largely “dead” [1, 17]—they lack physical interactivity. Transform-ing these assets from “passive renderables” to “active par-ticipants” is the next major frontier to unlock their full po-tential [2]. The core challenge in achieving this stems from a fun-damental representation gap [35]. On one hand, 3DGS is a powerful visual representation defined by covariance ( Σ), spherical harmonics ( C), and opacity ( σ). On the other hand, powerful, mature, production-grade physics engines (e.g., Unreal Engine [8], Houdini [29]) are representation-
+
+> arXiv:2606.21753v1 [cs.GR] 19 Jun 2026
+
+Table 1. Comparison of physics-based 3D Gaussian splatting methods. Our framework unifies high-fidelity captured objects (GS particles) with external standard assets (meshes/fluids) in a single scene-level simulation with advanced rendering.                                                         
+
+> PhysGaussian [35] DecoupledGaussian [33] Gaussian Splashing [10] GausSim [28] Ours
+> Core paradigm Unified (MPM) Decoupled & inpaint Unified (PBD) Unified (neural) Hybrid representation Dynamic object rep. GS particles only GS particles only GS particles only GS particles only Hybrid (GS + mesh/fluid) Sim. captured objects """""
+> Sim. external assets %%%%"
+> Heterogeneous interaction %%%%"(e.g., GS ↔mesh) Physics solver generality Single (MPM) Single (MPM) Single (PBD) Single (neural) Multiple (MPM, SPH, rigid...) Scene-level interaction %"%%"
+> Complex terrain support %(Ideal plane) %(Ideal plane) %(Ideal plane) %(Ideal plane/void) "(Full 3D) Rendering pipeline Custom rasterizer Custom rasterizer Custom (PBR) Custom rasterizer Industrial (Unreal Engine 5) Advanced lighting/shadows %%Limited %"(Lumen, RT)
+
+agnostic, operating on a completely different set of physi-cal representations (like particles, meshes, and rigid bodies) and supporting heterogeneous, multi-solver (MPM [30], SPH [13], PBD [25]) architectures. These engines cannot natively understand the novel 3DGS representation. To bridge this chasm, prior work was forced down a “siloed” path [5, 23, 35–37]: they built proprietary, mono-lithic physics solvers specifically for 3DGS. This approach, however, suffers from two fundamental flaws. First, it is homogeneous: it creates a non-extensible closed system in which only GS particles exist, making it fundamentally incapable of interacting with external, standard CG assets (like meshes, fluids, or rigid bodies). Second, it is isolated: it is not scene-level. It typically operates in a void or on an ideal plane and is fundamentally unable to support com-plex, pre-existing 3D static collision geometry. This “toy” approach is a dead end for scalable and general physics in complex worlds [9, 38]. In this paper, we argue against re-inventing the wheel with another siloed solver. Instead, we propose a novel Rep-resentation Abstraction Framework . Our framework acts as a bridge that, for the first time, unifies 3DGS captured as-sets, traditional CG assets, and complex static scenes within powerful, “off-the-shelf” heterogeneous physics engines. This framework aims to solve both flaws of the siloed path. First, to solve the homogeneous problem, we translate and abstract all diverse dynamic assets—whether 3DGS (as soft bodies), virtual meshes (as PBD deformable bodies), or external fluids (as SPH particles)—into a unified physical particle set. Second, to solve the isolated problem, we also consume the static scene boundaries ( Mstatic ), which are ex-tracted from the scene capture [33]. These two elements—the unified dynamic particles and the static scene boundaries—are then fed into a unified simulation context. Here, a modular heterogeneous solver handles all physical interactions between assets [26] and the static scene (e.g., particle-mesh collision, fluid-on-soft-body coupling). After simulation, our framework “reverse-translates” the physical results (e.g., deformation gradient 
+
+F ′, new position x′) and intelligently routes them to each asset’s own specific visual reconstruction pipeline: 3DGS assets use F ′ to update their covariance Σ′, while mesh as-sets use particle positions to drive barycentric skinning. We demonstrate this end-to-end system by validating it on a series of previously impossible, complex dynamic sce-narios. For example, we show a captured 3DGS soft-body bear deforming under a virtual SPH fluid splash while real-istically sliding across a captured static garden scene with complex geometry. Our work ultimately transforms 3DGS from static renderables into fully functional, interactable “physical sandboxes”, achieving dual physical and visual high-fidelity within a unified production renderer like Un-real Engine 5 [8]. In this paper, we make the following contributions: ( i)We propose the first framework to enable scene-level, het-erogeneous, multi-solver physics for 3D Gaussian Splat-ting. (ii ) We introduce a representation abstraction layer that translates diverse dynamic assets (3DGS, meshes, flu-ids) and complex static scenes into a single physical simula-tion context. ( iii ) We demonstrate complex, two-way phys-ical interactions between captured 3DGS assets, standard CG assets, and real-world static scene geometry. (iv ) We deliver a complete end-to-end pipeline with unified render-ing in Unreal Engine 5, leveraging advanced features such as Lumen global illumination. 
+
+## 2. Related work 
+
+2.1. Physics simulation of 3D Gaussian splatting 
+
+Despite 3DGS’s rapid adoption for high-fidelity rendering, prior efforts [5, 10, 16, 35] to endow it with physics have followed a monolithic and siloed paradigm. These works fall into two main categories: analytical solvers (e.g., Phys-Gaussian [35] and others treating kernels as material points in MPM or adapting them for PBD) and neural solvers (e.g., GausSim [28], which uses a center-of-mass systems model [31] governed by continuum mechanics to learn dynamics). While groundbreaking, this entire monolithic approach suffers from fundamental limitations that restrict its use to “toy” scenarios [2, 33]. First, it locks the asset into a single-solver model, preventing complex multi-material simulation. Second, and more critically, these GS-specific solvers are siloed and non-extensible. They are incapable of interacting with external, standard virtual assets (such as meshes, fluids, or rigid bodies). Consequently, these meth-ods are demonstrated in isolated environments, such as on an ideal plane, and cannot support complex, pre-existing 3D static collision geometry. In summary, the field has been missing a general and scalable solution to integrate high-fidelity GS assets into complex, scene-level simulations. Our work directly confronts this limitation. 
+
+2.2. Heterogeneous multi-solver physics 
+
+In the broader computer graphics community, high-fidelity physical simulation for production has long embraced a heterogeneous, multi-solver architecture [8, 12, 26, 29]. The power of modern physics engines lies not in a single, “one-size-fits-all” solver, but in the ability to couple mul-tiple, specialized solvers, managing complex interactions between assets represented in entirely different ways (e.g., coupling SPH for fluids, MPM for granulars, and PBD for cloth). The core capability of these industrial-strength sys-tems is a unified collision and coupling mechanism that manages interactions between these disparate solvers as a generalized process. These powerful engines are, however, representation-agnostic. They operate on a common currency of particles and explicit triangle meshes [5]. They have no native un-derstanding of rendering-oriented representations such as NeRF [24] or 3DGS [15, 20]. Therefore, a significant gap exists. Instead of “re-inventing the wheel” by building an-other limited, GS-specific solver, the more intelligent and scalable path is to bridge this gap. Our core contribution, a Representation Abstraction Framework , is precisely this bridge. 
+
+2.3. Neural scene representations 
+
+While implicit representations like NeRF [24] first achieved photorealism, their monolithic structure and slow rendering make them extremely difficult to physically simulate. This limitation led to the shift towards explicit or hybrid repre-sentations, culminating in 3D Gaussian splatting, whose ex-plicit, point-based nature is far more suitable for physical interaction than an implicit field. However, recent works on dynamic 3DGS (or 4DGS [27, 34]) focus predominantly on kinematic motion. These methods (e.g., [11]) only replay a pre-captured or generated motion sequence. They are not physics-based; they cannot simulate new dynamics or re-spond to novel physical interactions. Simulating new, phys-ically plausible dynamics for these assets remains a critical open challenge, which our work is the first to tackle within a general-purpose, heterogeneous, and scene-level simulation framework. 
+
+## 3. Method 
+
+We introduce a novel end-to-end framework that enables captured 3D Gaussian splatting (GS) assets to participate in complex, scene-level physical simulations with hetero-geneous virtual assets. The core challenge is that modern physics engines are not designed to process GS representa-tions, while existing GS-specific physics methods are siloed and cannot interact with complex, multi-solver scenes. Our key contribution is a Representation Abstraction Framework , which acts as a bridge to resolve this. As shown in Figure 2, our framework is organized into three stages: (1) heterogeneous asset preparation and abstraction, (2) a unified simulation kernel, and (3) heterogeneous visual recoupling and rendering. 
+
+3.1. Asset preparation and abstraction 
+
+The goal of this stage is to consume a diverse set of optional input assets (shown in Fig. 2, left) and translate them into the two key components required by our simulation kernel: a single static collision mesh ( Mstatic ) and a single unified particle list. 
+
+Populating the static world ( Mstatic ). The Mstatic de-fines all non-moving geometry our dynamic objects can interact with. It is a composite mesh assembled from all static sources, including both captured real-world data and optional imported assets. For in-the-wild scenes, we pro-cess multi-view images [3, 4, 22] through our captured as-set pipeline. This pipeline uses techniques like Gaussian segmentation [6] and object-scene restoration (leveraging planar-based Gaussian [7] and surface reconstruction [19]) to extract the base static geometry from the real scene cap-ture. Users can also augment the static world with their own custom geometry, such as imported 3D Gaussian splatting (3DGS) assets or virtual mesh assets. All selected static sources are processed and merged into the final watertight 
+
+Mstatic .
+
+Populating the dynamic world (unified particle list). All dynamic participants are processed by our representation abstraction layer and converted into a single unified parti-cle list. This layer handles a wide variety of asset types: 
+
+Captured 3DGS assets: Dynamic GS objects ( Gdyn ) are converted into a set of physical particles Xgs . If the asset has been pre-processed by the object-scene restoration pipeline of DecoupledGaussian [33], we use its dense points directly. Otherwise, for standard 3DGS captures, we define the ob-ject’s interior by computing a continuous opacity field d(x)Assets preparation & abstraction   
+
+> Real scene capture
+> Other 3DGS assets Virtual mesh assets
+> Virtual particles inputs Kinematic assets
+> Planar -based
+> Gaussian
+> Gaussian
+> segmentation
+> Object -scene
+> restoration
+> Surface
+> reconstruction Static boundary static
+
+M
+
+> Captured 3DGS assets
+> Optional assets or steps
+> Representation
+> abstraction
+
++ 
+
+> Visual asset cache Unified particles list
+
+Unified simulation kernel 
+
+> Heterogeneous solvers
+> (MPM, SPH, PBD, rigid body,
+> articulated body...)
+> Visual state recoupling
+
+Recoupling & rendering         
+
+> 3DGS:
+> Mesh:
+> Particles:
+> Unreal Engine 5 3DGS plugins
+> Final cinematic results
+> Initial state (t=0)
+> Common materials coupling:
+> Rigid body -Fluid
+> Rigid body -PBD cloth
+> Soft body -Fluid
+
+Figure 2. Architecture of our Representation Abstraction Framework . (1) Asset preparation & abstraction. Heterogeneous inputs (left), including real scene capture and various imported assets, are processed. A static collision mesh ( Mstatic ) is reconstructed from multi-view images using planar-based Gaussian. The representation abstraction layer translates all assets into a unified particle list. Visual-only data (e.g., {Σrest , wik }) is cached. (2) Unified simulation kernel. The kernel consumes the particles and static mesh, using a suite of het-erogeneous solvers (MPM, SPH, PBD-cloth, rigid-body, articulated-body) to output the updated physical state ( x′, F′). (3) Heterogeneous recoupling & rendering. The visual state recoupling step “reverse-translates” the physical state using the cache. It performs asset-specific reconstruction and serialization. These are loaded into Unreal Engine 5 to produce the final cinematic results. 
+
+[35] and sampling it: 
+
+d(x) = X
+
+> g∈G asset
+
+σg exp 
+
+
+
+− 12 (x − kg )T Σ−1 
+
+> g
+
+(x − kg )
+
+
+
+(1) For each resulting particle position xj , we instantiate a physical entity pj . This entity, which is consumed by the simulation kernel, encapsulates all necessary in-formation: its geometric and kinematic state (e.g., po-sition xj , mass mj , velocity vj ), its assigned physi-cal model ( ModelType j ), and its constitutive parameters (e.g., Young’s modulus E, Poisson’s ratio ν for MPM par-ticles). The full structure is defined as: 
+
+pj = {xj , m j , vj , ModelType j , E j , ν j , . . . } (2) Concurrently, the visual entity vj = {Σrest ,j , Cj , σ j } is stored in the visual asset cache for later recoupling. 
+
+Virtual meshes: Dynamic meshes are “particle-ized” us-ing Poisson disk sampling. 
+
+∀xi, xk ∈ X mesh , || xi − xk|| ≥ r for i̸ = k (3) We establish a binding [18] between the template mesh 
+
+Mtemplate and its particles by pre-computing barycentric weights {wik }, such that its rest position is defined by: 
+
+vrest  
+
+> i
+
+= X
+
+> k
+
+wik xk (4) This template mesh and its weights are also stored in the visual asset cache. 
+
+External particle systems (e.g., fluid): These inputs (Vir-tual Particles) are loaded directly as a set of initial particle positions Xparticle . Their ModelType is set (e.g., to SPH), and no separate visual entity is required. 
+
+Kinematic assets (e.g., robot arm [14]): These assets are not converted to particles. They are treated as standard vir-tual mesh assets (rigid bodies) whose motion is not solved by our physics kernel. Instead, their transforms are kine-matically prescribed by the user-defined animation. They act as one-way colliders, affecting other dynamic objects (like the rigid-body cubes) while remaining unaffected by them. 
+
+3.2. Unified simulation kernel 
+
+This stage acts as a modular, solver-agnostic physics kernel. As shown in Figure 2, the kernel takes two unified inputs from Stage 1: the complete static collision mesh ( Mstatic )and the unified particle list at the current time t.The particles are initialized with their current physical state ( xt, Ft), derived from the initial state ( t = 0) or the previous loop’s output. These inputs are processed by the heterogeneous solvers module, which manages and seamlessly interfaces with various specialized solvers (e.g., MPM, SPH, PBD-cloth, rigid body, and articulated body). The kernel’s core capability is its ability to robustly manage heterogeneous interactions. This includes handling complex, continuous force exchanges (e.g., pressure from SPH particles onto MPM particles) as well as discrete col-lision events. For discrete collision and frictional contact between all entities (e.g., particle-mesh or rigid-body-on-rigid-body), the kernel employs a unified impulse-based mechanism. As an example of this discrete coupling mechanism, when two entities i and j collide, a response impulse is computed to determine the post-collision velocities. Let rn and rt denote the normal and tangential components of the relative veloc-ity between the two colliding entities. The post-collision velocity components are determined by: 
+
+r∗ 
+
+> n
+
+= −er n (5) 
+
+r∗ 
+
+> t
+
+= rt max(0 , 1 − μ|rn|/|rt|) (6) where e is the coefficient of restitution and μ is the Coulomb friction coefficient. This unified impulse-based approach ensures non-penetrating and frictional response across all dynamic as-sets when they collide with each other or with Mstatic .Within each time step, the heterogeneous solvers are exe-cuted iteratively in a specific sequence — rigid-body and articulated-body solvers first, followed by MPM, SPH, and finally PBD — with updated particle states propagated be-tween solvers and refined through inter-solver iterations, ensuring that complex coupling forces and constraints are consistently resolved within the same step. More detailed solver and continuous coupling implementations are pro-vided in Supplementary S6. At the end of the step ∆t,the simulation kernel returns the updated physical state (xt+1 , Ft+1 ), which is passed to the final stage for visual reconstruction. 
+
+3.3. Heterogeneous recoupling and rendering 
+
+This final stage reverse-translates the sparse, abstract phys-ical data from the simulation kernel back into high-fidelity, renderable visual assets. This stage requires two inputs: the updated physical state ( x′, F′) from Stage 2, and the visual asset cache (containing {Σrest , w ik , ... }) from Stage 1. 
+
+Visual state recoupling. The visual state recoupling step performs asset-specific reconstruction in parallel for all dy-namic entities. As shown in Figure 2, different asset types use different reconstruction logic: • 3DGS assets: We propagate the physical deformation to the visual attributes. The new Gaussian center p′ 
+
+> j
+
+is set to the updated particle position. 
+
+p′ 
+
+> j
+
+= x′ 
+
+> j
+
+(7) The new covariance Σ′ 
+
+> j
+
+is computed by applying the physical deformation F′ 
+
+> j
+
+to the cached rest-state covari-ance Σrest ,j :
+
+Σ′ 
+
+> j
+
+= F′ 
+
+> j
+
+Σrest ,j F′ 
+
+> jT
+
+(8) The opacity σ′ 
+
+> j
+
+is assumed to be an invariant material property and is carried over from its rest state: 
+
+σ′ 
+
+> j
+
+= σj (9) Finally, the rotation (extracted from F′ 
+
+> j
+
+) is used to rotate the SH coefficients Cj . The mathematical derivation prov-ing this F propagation to Σ is physically consistent is pro-vided in Supplementary S3. • Mesh assets: We retrieve the asset’s template mesh 
+
+Mtemplate and its precomputed barycentric weights {wik }
+
+from the cache. The new deformed vertex position v′ 
+
+> i
+
+is computed by applying these same weights to the new par-ticle positions x′
+
+> k
+
+:
+
+v′ 
+
+> i
+
+= X
+
+> k
+
+wik x′ 
+
+> k
+
+(10) • Particle assets: For fluid assets (SPH), the physical parti-cle position is its own visual representation: p′ 
+
+> j
+
+= x′ 
+
+> j
+
+.
+
+Serialization and final rendering. The recoupled visual data is serialized into asset-aware formats (e.g., .ply files for 3DGS, .abc files for meshes, .pbd caches for parti-cles). These serialized files are then loaded into our final cinematic results pipeline. We utilize Unreal Engine 5 as our final renderer. The engine natively ingests the .abc 
+
+and .pbd caches, while our 3DGS plugins [32] (compati-ble Gaussian Splatting rendering components) load the per-frame .splat files. This final step allows all our co-simulated assets to be rendered together, interacting cor-rectly with advanced features like Lumen global illumina-tion and ray-traced shadows. 
+
+## 4. Experiments 
+
+We validate our framework across five complex scenarios that are, by design, unattainable by prior siloed methods. Each scenario exercises a distinct capability: scene-level composition, heterogeneous multi-solver coupling, articu-lated dynamics, complex geometry interaction, and integra-tion with imported 3DGS assets — all while maintaining photorealistic rendering via Unreal Engine 5. 
+
+4.1. Implementation details 
+
+Simulation kernel. We implement our core abstraction layer and simulation loop (described in Sec. 3). Our unified kernel, which is built upon the Genesis-world physics solver [12], acts as a modular, solver-agnostic kernel that manages and dispatches tasks to specialized solvers, including MPM Figure 3. Our qualitative showcase of new, scene-level heterogeneous simulations produced using our framework. Each row demon-strates a unique coupling of different asset types and physics solvers, executed within a captured 3DGS environment and rendered in Unreal Engine 5. Row 1: Fluid (SPH) on virtual mesh. A virtual fluid (SPH) is poured into an imported virtual mesh (bowl), interacting with both the bowl and the static 3DGS scene (garden table). Row 2: Fluid (SPH) on GS soft body (MPM). A high-viscosity fluid (SPH) is coupled with a captured 3DGS soft body (MPM donut), demonstrating complex multi-solver, two-way interaction on a plate. Row 3: Articulated rigid body manipulation. A kinematically-driven robotic arm (articulated-body solver) manipulates a virtual rigid body (cube) on a table.    
+
+> Row 4: Cloth (PBD) on captured statue. A virtual cloth (PBD solver) realistically drapes and slides over the complex, non-convex geome-try of a captured 3DGS statue, refuting the “ideal plane” limitation. Row 5: Rigid-body collision in 3DGS container. Multiple virtual rigid bodies (fruits) interact with each other and with the complex geometry of an imported 3DGS asset (the basket). These scenarios are, by design, unattainable by prior “siloed” methods.
+
+(for soft bodies), SPH (for fluids), PBD (for cloth), standard rigid-body dynamics (for objects), and articulated-body dy-namics (for kinematic chains). 
+
+Asset preparation. The preparation of static and dynamic assets follows the structure detailed in Section 3.1. For scene-level static geometry, two strategies are employed to construct the static collision mesh ( Mstatic ): direct capture and composition. For scenes captured in situ (e.g., Kitchen ,
+
+Statue ), we utilize our full asset pipeline to process multi-view images and extract the base static geometry ( Mstatic )from the real scene capture. For compositional scenarios (e.g., Garden , Rooms ), we load a primary 3DGS scene and then import additional assets—such as virtual mesh bowls or pre-captured 3DGS fruit baskets—which are also pro-cessed and merged into the final static collision geometry. Dynamic assets are uniformly converted into the unified particle list, regardless of their original source format. 
+
+Rendering. All scenarios are serialized (e.g., .splat ,
+
+.abc caches) and rendered in Unreal Engine 5 using a compatible 3DGS rendering component and leveraging Lu-men for global illumination and shadows. 
+
+Baselines for comparison. Our primary baselines are the “siloed” SOTA methods (e.g., PhysGaussian [35], GausSim [28]). Crucially, these baselines cannot be applied to our experimental settings. They are not designed for heteroge-neous, scene-level composition. Our qualitative showcase (Sec. 4.2) therefore demonstrates capabilities that are, by design, impossible for them. 
+
+4.2. Qualitative showcase of new capabilities 
+
+We present five complex scenarios, visualized in Figure 3 and our supplementary video, to demonstrate the breadth of new capabilities unlocked by our framework. These scenarios are chosen to validate our core claims by show-Figure 4. Ablation study on our unified kernel. Top row (Ours w/o unified simulation kernel ): Our ablated base-line. Without the heterogeneous coupling mechanism, the SPH fluid particles (e.g., Sauce ) and the MPM soft-body particles (e.g.,    
+
+> Donut ) do not interact, passing through each other in a physically implausible manner. Bottom row (Ours ): Our full framework. The unified kernel correctly handles the SPH-on-MPM collision and coupling, allowing the sauce to realistically collide with, de-form, and settle on top of the 3DGS Donut .
+
+casing: (1) scene composition (SPH on virtual mesh), (2) multi-solver coupling (SPH on MPM 3DGS), (3) articu-lated dynamics (robot arm), (4) complex geometry inter-action (PBD-cloth on statue), and (5) interaction with im-ported 3DGS assets (rigid-bodies in 3DGS container). As the figure’s caption details, these scenarios—which unify SOTA physics and rendering—are unattainable by prior siloed methods. 
+
+Summary of qualitative findings. These five scenarios, taken together, validate our core claims. They demon-strate the unification of a wide range of solvers and an ex-pansive set of heterogeneous assets (captured GS scenes, captured GS objects, imported GS assets, and virtual meshes/particles). Critically, Row 1 and Row 5 in Figure 3 demonstrate that our framework is a powerful composition engine for 3DGS, a capability far beyond the ideal plane limitations of prior “siloed” methods like PhysGaussian or GausSim. 
+
+4.3. Ablation study and comparative analysis 
+
+To scientifically validate the necessity and effectiveness of our core contributions, we conduct a series of rigorous ab-lation studies and visual comparisons. As no prior method supports heterogeneous, scene-level simulation, a direct nu-merical comparison with prior “siloed” methods (like Phys-Gaussian [35] or GausSim [28]) is not applicable. Instead, we ablate our own components to demonstrate their neces-sity. 
+
+4.3.1. Ablation study 
+
+We isolate three core components of our framework: the unified coupling kernel, the scene-level geometry, and the representation abstraction. 
+
+Validating the unified kernel. To demonstrate the neces-sity of our heterogeneous coupling mechanism, we com-pare our full model against an ablated version, Ours w/o unified simulation kernel . In this baseline, the SPH and MPM solvers operate in the same space but do not interact. As visualized in Figure 4, the ablated version (top row) fails, as the sauce and donut pass through each other, resulting in a physically implausible simulation. Our full model (bottom row) correctly handles the SPH-on-MPM coupling, where the (SPH) sauce collides with and deforms the (MPM) donut, demonstrating the critical importance of our unified kernel. 
+
+Validating scene-level interaction. To demonstrate that our framework has overcome the “ideal plane” limitation of prior “siloed” work, we compare our full model against an ablated baseline, Ours w/o static collision mesh . As visualized in Figure 5, the ablated baseline (top row) fails completely; without the complex Mstatic from our asset preparation workflow, the PBD-cloth solver defaults to an “ideal plane” and the cloth passes nonsensically through the captured statue. Our full method (bottom row) correctly uses the statue’s high-fidelity collision mesh, resulting in re-alistic and complex draping behavior. This directly demon-strates that our scene-level pipeline is essential for integrat-ing assets into captured environments. 
+
+Validating representation abstraction. Finally, we validate the importance of our visual recoupling step. We compare our full result against Ours w/o representation abstraction . As shown in Figure 6, the top row visualizes only the sparse, underlying simulation particles, failing to convey the photorealistic appearance of the asset. Our full method demonstrates how our recoupling “bridge” is essential for translating this sparse physical simulation back into a high-fidelity visual result. 
+
+4.3.2. Comparison with a photogrammetry pipeline 
+
+Having validated our pipeline’s internal components, we now validate our core motivation for using 3DGS. One might ask: why not use standard photogrammetry, which also produces physics-ready meshes from images? We demonstrate the fundamental trade-off addressed by our framework. We compare our method against a baseline generated from the same multi-view images using KiriEngine [21]. As shown in Figure 7, the photogrammetry baseline (left) exhibits severe geometric artifacts, appearing “blobby” or distorted on complex structures like bulldozer treads and table slats. In contrast, our pipeline (right), leveraging PGSR [7], preserves sharp and geometrically complete de-tails. This demonstrates that while traditional meshes are Figure 5. Ablation study on scene-level geometry. Top row (Ours w/o static collision mesh ): Our ablated baseline. Without the static collision mesh ( Mstatic ), the cloth simulation is limited to an “ideal plane” and incorrectly passes through the statue. Bottom row 
+
+(Ours ): Our full framework. The PBD-cloth solver correctly interacts with the complex, non-convex geometry of the captured 3DGS statue (represented by Mstatic ), resulting in realistic draping, folding, and sliding. Time
+
+> Ours w/o
+> representation
+> abstraction
+> Ours
+
+Figure 6. Ablation study on our representation abstraction. 
+
+Top row (Ours w/o representation abstraction ): Without the representation abstraction, only the sparse simulation particles are visible, lacking continuous surfaces and photorealis-tic appearance. Bottom row (Ours ): Our full recoupling layer re-covers high-fidelity visual attributes from the sparse physical state, demonstrating its necessity for photorealistic rendering. 
+
+natively physics-ready, they lack the fidelity required for complex scenes. Our framework bridges this gap, enabling high-fidelity 3DGS assets to participate in advanced physics simulations for the first time. 
+
+## 5. Conclusion 
+
+In this paper, we introduced the Representation Abstraction Framework (RAF), the first end-to-end pipeline to bridge the fundamental gap between 3DGS assets and industrial-strength heterogeneous physics engines. Our core innova-tion is an abstraction layer that unifies diverse visual repre-sentations into a single physical particle set consumable by a multi-solver kernel (MPM, SPH, PBD, etc.). This archi-tecture overcomes the limitations of prior “siloed” physics-for-GS methods, enabling scene-level composition, com-plex two-way heterogeneous coupling, and realistic interac-Photogrammetry Planar-based Gaussian 
+
+> Kitchen Garden
+
+Figure 7. Comparison with photogrammetry. Left (Photogram-metry): Standard mesh extraction from images suffers from severe geometric artifacts and missing details on fine structures. Right (Ours): By leveraging 3DGS, our pipeline preserves sharp, com-plex geometries, which our RAF further transforms from passive renderables into interactive physical assets. 
+
+tion with complex static geometry — all rendered with pho-torealistic fidelity in Unreal Engine 5. Our ablation studies confirmed the necessity of the unified kernel, scene-level geometry handling, and visual recoupling bridge. Currently, our pipeline targets offline, cinematic-quality production, where simulation accuracy and visual fidelity are prioritized over runtime performance; extending it to real-time inter-active scenarios and improving object-level separation in complex captured scenes are promising directions for future work. 
+
+Acknowledgement This work is supported by Hong Kong Research Grant Council - General Research Fund (Grant No. 17213825) and HKU Seed Fund for PI Re-search. 
+
+## References 
+
+[1] Jad Abou-Chakra, Krishan Rana, Feras Dayoub, and Niko S¨ underhauf. Physically embodied gaussian splatting: Em-bedding physical priors into a visual 3d world model for robotics. In CoRL , 2023. 1 [2] Yanqi Bao, Tianyu Ding, Jing Huo, Yaoli Liu, Yuxin Li, Wenbin Li, Yang Gao, and Jiebo Luo. 3d gaussian splatting: Survey, technologies, challenges, and opportunities. IEEE TCSVT , 2025. 1, 3 [3] Jonathan T Barron, Ben Mildenhall, Matthew Tancik, Peter Hedman, Ricardo Martin-Brualla, and Pratul P Srinivasan. Mip-nerf: A multiscale representation for anti-aliasing neu-ral radiance fields. In ICCV , 2021. 3 [4] Jonathan T Barron, Ben Mildenhall, Dor Verbin, Pratul P Srinivasan, and Peter Hedman. Mip-nerf 360: Unbounded anti-aliased neural radiance fields. In CVPR , 2022. 3 [5] Piotr Borycki, Weronika Smolak, Joanna Waczy´ nska, Marcin Mazur, Sławomir Tadeja, and Przemysław Spurek. Gasp: Gaussian splatting for physic-based simulations. 
+
+arXiv preprint arXiv:2409.05819 , 2024. 2, 3 [6] Jiazhong Cen, Jiemin Fang, Chen Yang, Lingxi Xie, Xi-aopeng Zhang, Wei Shen, and Qi Tian. Segment any 3d gaussians. In AAAI , 2025. 3 [7] Danpeng Chen, Hai Li, Weicai Ye, Yifan Wang, Weijian Xie, Shangjin Zhai, Nan Wang, Haomin Liu, Hujun Bao, and Guofeng Zhang. Pgsr: Planar-based gaussian splatting for efficient and high-fidelity surface reconstruction. IEEE TVCG , 2024. 3, 7 [8] Epic Games. Unreal engine. 1, 2, 3 [9] Ben Fei, Jingyi Xu, Rui Zhang, Qingyuan Zhou, Weidong Yang, and Ying He. 3d gaussian splatting as new era: A survey. IEEE TVCG , 2024. 2 [10] Yutao Feng, Xiang Feng, Yintong Shang, Ying Jiang, Chang Yu, Zeshun Zong, Tianjia Shao, Hongzhi Wu, Kun Zhou, Chenfanfu Jiang, et al. Gaussian splashing: Unified particles for versatile motion synthesis and rendering. In CVPR , 2025. 2[11] Quankai Gao, Qiangeng Xu, Zhe Cao, Ben Mildenhall, Wenchao Ma, Le Chen, Danhang Tang, and Ulrich Neu-mann. Gaussianflow: Splatting gaussian dynamics for 4d content creation. Transactions on Machine Learning Re-search , 2025. 3 [12] Genesis Authors. Genesis: A Generative and Universal Physics Engine for Robotics and Beyond, 2024. 3, 5 [13] Robert A Gingold and Joseph J Monaghan. Smoothed parti-cle hydrodynamics: theory and application to non-spherical stars. Monthly notices of the royal astronomical society ,1977. 2 [14] Sami Haddadin, Sven Parusel, Lars Johannsmeier, Saskia Golz, Simon Gabl, Florian Walch, Mohamadreza Sabaghian, Christoph J¨ ahne, Lukas Hausperger, and Simon Haddadin. The franka emika robot: A reference platform for robotics research and education. IEEE Robotics & Automation Mag-azine , 2022. 4 [15] Binbin Huang, Zehao Yu, Anpei Chen, Andreas Geiger, and Shenghua Gao. 2d gaussian splatting for geometrically ac-curate radiance fields. In ACM SIGGRAPH , 2024. 3 [16] Tianyu Huang, Yihan Zeng, Hui Li, Wangmeng Zuo, and Rynson WH Lau. Dreamphysics: Learning physical proper-ties of dynamic 3d gaussians with video diffusion priors. In 
+
+AAAI , 2025. 2 [17] Ying Jiang, Chang Yu, Tianyi Xie, Xuan Li, Yutao Feng, Huamin Wang, Minchen Li, Henry Lau, Feng Gao, Yin Yang, et al. Vr-gs: A physical dynamics-aware interactive gaussian splatting system in virtual reality. In ACM SIG-GRAPH , 2024. 1 [18] Ladislav Kavan, Steven Collins, Jiˇ r´ ı ˇZ´ ara, and Carol O’Sullivan. Geometric skinning with approximate dual quaternion blending. ACM TOG , 2008. 4 [19] Michael Kazhdan, Matthew Bolitho, and Hugues Hoppe. Poisson surface reconstruction. In Proceedings of the fourth Eurographics symposium on Geometry processing , 2006. 3 [20] Bernhard Kerbl, Georgios Kopanas, Thomas Leimk¨ uhler, and George Drettakis. 3d gaussian splatting for real-time radiance field rendering. ACM TOG , 2023. 1, 3 [21] Kiri Engine Co., Ltd. KiriEngine Photogrammetry Software. Official Website, 2024. 7 [22] Arno Knapitsch, Jaesik Park, Qian-Yi Zhou, and Vladlen Koltun. Tanks and temples: Benchmarking large-scale scene reconstruction. ACM TOG , 2017. 3 [23] Fangfu Liu, Hanyang Wang, Shunyu Yao, Shengjun Zhang, Jie Zhou, and Yueqi Duan. Physics3d: Learning physical properties of 3d gaussians via video diffusion. arXiv preprint arXiv:2406.04338 , 2024. 2 [24] Ben Mildenhall, Pratul P Srinivasan, Matthew Tancik, Jonathan T Barron, Ravi Ramamoorthi, and Ren Ng. Nerf: Representing scenes as neural radiance fields for view syn-thesis. ECCV , 2020. 3 [25] Matthias M¨ uller, Bruno Heidelberger, Marcus Hennix, and John Ratcliff. Position based dynamics. Journal of Visual Communication and Image Representation , 2007. 2 [26] NVIDIA, Google DeepMind, and Disney Research. An-nouncing Newton, an Open-Source Physics Engine for Robotics Simulation. NVIDIA Developer Blog, 2025. Ac-cessed on 2025-11-14. 2, 3 [27] Jiawei Ren, Liang Pan, Jiaxiang Tang, Chi Zhang, Ang Cao, Gang Zeng, and Ziwei Liu. Dreamgaussian4d: Genera-tive 4d gaussian splatting. arXiv preprint arXiv:2312.17142 ,2023. 3 [28] Yidi Shao, Mu Huang, Chen Change Loy, and Bo Dai. Gaus-sim: Foreseeing reality by gaussian simulator for elastic ob-jects. In ICCV , 2025. 2, 6, 7 [29] SideFX. Houdini 20.0. https://www.sidefx.com/ ,2024. Accessed on 2025-11-14. 1, 3 [30] Deborah Sulsky, Zhen Chen, and Howard L Schreyer. Aparticle method for history-dependent materials. Computer methods in applied mechanics and engineering , 1994. 2 [31] Demetri Terzopoulos, John Platt, Alan Barr, and Kurt Fleis-cher. Elastically deformable models. In Proceedings of the 14th annual conference on Computer graphics and interac-tive techniques , 1987. 3 [32] Volinga AI. Volinga: Interactive 3D Gaussian Splatting Viewer. Official Website, 2024. 5 [33] Miaowei Wang, Yibo Zhang, Weiwei Xu, Rui Ma, Changqing Zou, and Daniel Morris. Decoupledgaussian: Object-scene decoupling for physics-based interaction. In 
+
+CVPR , 2025. 2, 3 [34] Guanjun Wu, Taoran Yi, Jiemin Fang, Lingxi Xie, Xiaopeng Zhang, Wei Wei, Wenyu Liu, Qi Tian, and Xinggang Wang. 4d gaussian splatting for real-time dynamic scene rendering. In CVPR , 2024. 3 [35] Tianyi Xie, Zeshun Zong, Yuxing Qiu, Xuan Li, Yutao Feng, Yin Yang, and Chenfanfu Jiang. Physgaussian: Physics-integrated 3d gaussians for generative dynamics. In CVPR ,2024. 1, 2, 4, 6, 7 [36] Tianyuan Zhang, Hong-Xing Yu, Rundi Wu, Brandon Y Feng, Changxi Zheng, Noah Snavely, Jiajun Wu, and William T Freeman. Physdreamer: Physics-based interac-tion with 3d objects via video generation. In ECCV , 2024. [37] Haoyu Zhao, Hao Wang, Xingyue Zhao, Hao Fei, Hongqiu Wang, Chengjiang Long, and Hua Zou. Physsplat: Efficient physics simulation for 3d scenes via mllm-guided gaussian splatting. In ICCV , 2025. 2 [38] Siting Zhu, Guangming Wang, Xin Kong, Dezhi Kong, and Hesheng Wang. 3d gaussian splatting in robotics: A survey. 
+
+arXiv preprint arXiv:2410.12262 , 2024. 2 Scene-Level Heterogeneous Physics Simulation with 3D Gaussian Splats 
+
+## Supplementary Material 
+
+# Overview 
+
+In this supplementary material, we provide additional technical details and results. Section S1 details the particle initialization process; Section S2 derives the physical consistency of Gaussian covariance recoupling; Section S3 provides the performance analysis; Section S4 describes our physics solvers, and Section S5 explains the coupling mechanisms. 
+
+# Contents 
+
+S1. Particle initialization . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+S2. Physical consistency of Gaussian covariance recoupling . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+S3. Time complexity and performance analysis . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+S4. Physics simulation solvers . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+S5. The coupling mechanism of unified simulation kernel . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . S1. Particle initialization 
+
+S1.1. Particle filling for Gaussian splatting 
+
+To enable the physical simulation of 3D Gaussian Splat-ting (3DGS) assets, which are inherently surface-focused representations, we employ a robust internal particle filling mechanism to generate the necessary volumetric data. Fol-lowing prior methodologies, we first define the continuous opacity field d(x) derived from the static GS representation 
+
+Gstatic :
+
+d(x) = X
+
+> g∈G static
+
+σg exp 
+
+
+
+− 12 (x − kg )TΣ−1 
+
+> g
+
+(x − kg )
+
+
+
+This continuous field is discretized onto a dense Eulerian grid with a cell size of ∆x. We identify the interior re-gion of the object using a user-defined opacity threshold 
+
+σth . Specifically, a grid cell i is considered internal if its center opacity d(xi) > σ th .Once the internal volume is identified, we generate the physical particle set XGS by randomly sampling positions 
+
+xj within the designated internal grid cells. We employ a Poisson Disk Sampling strategy to ensure a quasi-uniform distribution of particles, preventing clustering and enhanc-ing simulation stability. The minimum sampling distance is set to rmin = 0 .5∆ x.Crucially, to address potential density disparities during multi-physics coupling, we implement a density homoge-nization step. If the native particle resolution of the 3DGS asset is significantly lower than that of interacting external solvers (e.g., high-resolution fluids), numerical instability or boundary leakage may occur. In such cases, we inject auxiliary ghost particles into the internal volume to match the target simulation density. These ghost particles partici-pate fully in the physical time integration to enforce robust contact constraints but are explicitly excluded from the ren-dering pipeline. 
+
+S1.2. Physics property allocation 
+
+Each sampled physical particle pj ∈ X GS , including the ghost particles generated for stability, must be assigned kinematic and constitutive properties for the Material Point Method (MPM) simulation. • Initial position and velocity: The initial position x0 
+
+> j
+
+is the sampled position. The initial velocity v0 
+
+> j
+
+is set to zero or inherited from a kinematic input. • Mass and volume: We assume the object has a constant, user-specified material density ρmat . The initial volume 
+
+V 0 
+
+> j
+
+of each particle is determined by the total volume of the object’s occupied space Vtotal divided by the to-tal number of particles Ntotal : V 0 
+
+> j
+
+= Vtotal /N total . The mass is then calculated as mj = ρmat V 0 
+
+> j
+
+. Vtotal is ap-proximated by summing the volume of all internal grid cells identified in Section S1. • Initial deformation gradient: The initial elastic defor-mation gradient is set to the identity matrix: FE,0 
+
+> j
+
+= I.• Visual entity recoupling: For subsequent visual recon-struction, we store the particle’s corresponding rest-state Gaussian covariance Σrest ,j in the Visual Asset Cache. 
+
+Σrest ,j is either initialized from the nearest existing GS kernel or set as an isotropic sphere diag( r2
+
+> p
+
+, r 2
+
+> p
+
+, r 2
+
+> p
+
+) where 
+
+rp is the particle radius inferred from V 0 
+
+> j
+
+. For ghost par-ticles, this step is skipped to ensure they remain invisible. 
+
+## S2. Physical consistency of Gaussian covari-ance recoupling 
+
+The visual recoupling of the 3D Gaussian covariance ma-trix Σ is derived from the principles of continuum mechan-ics, specifically how a local affine transformation affects a Gaussian function. A 3D Gaussian kernel G(X) in the material space Ω0 is defined by its center Xp and covariance matrix Ap (denoted as Σrest in our notation): 
+
+G(X) = e− 12 (X−Xp)T A−1 
+
+> p(X−Xp)
+
+Under a continuous deformation map x = ϕ(X, t ), the de-formed kernel G(x, t ) in the world space Ωt is: 
+
+G(x, t ) = e− 12 (ϕ−1(x,t )−Xp)T A−1 
+
+> p(ϕ−1(x,t )−Xp)
+
+Following PhysGaussian, we assume the material point un-dergoes a local affine transformation characterized by the first-order Taylor expansion around Xp:
+
+˜ϕ(X, t ) ≈ xp + Fp(X − Xp)
+
+where Fp = ∇Xϕ(X, t ) is the deformation gradient at point Xp. By inverting this affine map and substituting it back into the exponent, the deformed kernel ˜G(x, t ) re-mains a Gaussian distribution in the world space Ωt with a new center xp and a new covariance matrix ap (denoted as 
+
+Σ′ in our notation): 
+
+˜G(x, t ) = e− 12 (x−xp)T (FpApFTp )−1(x−xp)
+
+This derivation provides the physically grounded rule for updating the covariance matrix: 
+
+Σ′ = FΣrest FT
+
+This ensures that the shape and orientation of the 3D Gaus-sian ellipsoids evolve consistently with the underlying con-tinuum mechanics, preserving the non-rigid deformation (stretch and shear) induced by the simulation. S3. Time complexity and performance analysis 
+
+Rendering workflow and comparison. A core contri-bution of our framework is the seamless integration of physically augmented 3D Gaussian Splatting (3DGS) as-sets into industrial-grade rendering ecosystems, specifically Unreal Engine 5 (UE5). Unlike prior methods that rely on standalone, Python-based rasterizers for visualization, our pipeline involves exporting the deformed states to UE5 to leverage advanced features such as global illumination and complex shadowing. Since this workflow includes man-ual operations (e.g., asset importation, scene composition, and sequence rendering in UE5), a direct runtime com-parison with end-to-end, code-only rendering methods is neither feasible nor meaningful. Our focus is on achiev-ing cinematic-quality offline rendering rather than real-time frame rates. 
+
+Simulation costs. The computational cost of the physical simulation stage is inherently variable, governed largely by the user-defined simulation precision (grid resolution) and the complexity of the multi-physics coupling (e.g., particle density required for stability). However, the simulation re-mains efficient for offline content creation. For all five main demonstration scenarios presented in the paper, the physical simulation process was completed in under 10 minutes per sequence on a standard workstation. 
+
+Summary. We explicitly clarify that our method does not target real-time interactivity. Instead, the primary design goal is to unlock high-fidelity, heterogeneous interactions between captured 3DGS scenes and diverse virtual assets (meshes, particles)—scenarios that require complex solver coupling and are best served by an offline, high-quality ren-dering workflow. 
+
+## S4. Physics simulation solvers 
+
+S4.1. Rigid body dynamics 
+
+The Rigid Body Solver is designed to simulate articulated mechanisms and multi-body systems using the Reduced Coordinate formulation (also known as Generalized Co-ordinates). Unlike maximal coordinate methods that treat every link as a free body constrained by algebraic equa-tions, our solver parameterizes the system using joint an-gles q ∈ Rndof and joint velocities ˙q ∈ Rndof . This ap-proach naturally satisfies joint constraints and significantly improves computational efficiency for kinematic chains. 
+
+S4.1.1. Equations of motion 
+
+The dynamics of the articulated system are governed by the standard manipulator equation: 
+
+M(q)¨ q + C(q, ˙q) ˙ q + g(q) = τctrl + τext + τc (S1) where: • M(q) is the symmetric, positive-definite joint-space iner-tia matrix (Mass Matrix). • C(q, ˙q) ˙ q represents the Coriolis and centrifugal forces. • g(q) is the gravity vector generalized to joint space. • τctrl , τext , and τc are the torques/forces from actua-tion, external disturbances, and contact constraints, re-spectively. In our implementation, the bias terms h(q, ˙q) = C ˙q + g
+
+are computed efficiently using recursive kinematics. 
+
+S4.1.2. Composite rigid body algorithm (CRBA) 
+
+To compute the mass matrix M(q), we employ the Com-posite Rigid Body Algorithm (CRBA). The algorithm oper-ates in two passes. First, it computes the composite inertia 
+
+Ici for each link i, which represents the inertia of the subtree rooted at i as if all joints in the subtree were locked: 
+
+Ici = Ii + X
+
+> j∈children (i)
+> i
+
+X∗ 
+
+> j
+
+Icj j Xi (S2) where j Xi is the spatial transform from link i to j. Second, the entries of M are populated by projecting the compos-ite inertias onto the joint motion subspaces. This typically achieves O(N 2) complexity but is highly optimized for par-allel execution on GPUs. 
+
+S4.1.3. Implicit integration and linear solver 
+
+To ensure stability under high stiffness (PD control) and damping, we implement a semi-implicit integration scheme (often referred to as “Implicit Fast”). We explicitly modify the mass matrix to include the contributions of damping D
+
+and stiffness K matrices: 
+
+˜M = M + D∆t + K∆t2 (S3) The discrete-time linear system ˜M∆ ˙ q = ˜τ ∆t is then solved to find the change in velocity. We utilize a dense 
+
+LDL T Cholesky decomposition to factorize ˜M:
+
+˜M = LD diag LT (S4) Forward and backward substitution steps are then per-formed to solve for accelerations ¨q. This method provides robust behavior for stiff robotic mechanisms without requir-ing excessively small time steps. 
+
+S4.1.4. Kinematics and constraints 
+
+Forward kinematics are computed recursively from the root to leaves, updating the Cartesian position x and orientation 
+
+R of each link. Constraint forces τc arising from collisions and joint limits are solved using an impulse-based approach or Projected Gauss-Seidel (PGS) solver, integrated tightly with the forward dynamics loop. S4.2. Material point method (MPM) 
+
+The Material Point Method (MPM) solver in our unified kernel serves as the primary engine for simulating contin-uum materials, including elastoplastic solids, granular me-dia, and fluids. We implement the Moving Least Squares MPM (MLS-MPM) formulation combined with the Affine Particle-in-Cell (APIC) transfer scheme to ensure energy conservation and reduce numerical dissipation. 
+
+S4.2.1. Discretization and state variables 
+
+The continuum body is discretized into a set of Lagrangian particles p, each carrying mass mp, position xp, velocity 
+
+vp, deformation gradient Fp, and an affine velocity field matrix Cp. A background Eulerian Cartesian grid with cell size ∆x is employed as a scratchpad for computing spatial gradients and solving the equations of motion. 
+
+S4.2.2. Particle-to-grid transfer (P2G) 
+
+At the beginning of each time substep ∆t, mass and mo-mentum are transferred from particles to grid nodes i us-ing quadratic B-spline shape functions Ni(xp). Under the APIC formulation, the momentum transfer includes the affine velocity contribution to preserve angular momentum: 
+
+mi = X
+
+> p
+
+Ni(xp)mp (S5) 
+
+(mv)i = X
+
+> p
+
+Ni(xp)mp [vp + Cp(xi − xp)] (S6) In our MLS-MPM implementation, the internal forces de-rived from the material constitutive model are applied di-rectly during this transfer via the affine term. Let Ψ( F) be the elastic energy density. The first Piola-Kirchhoff stress 
+
+P(F) = ∂Ψ/∂ F is computed and fused into the momen-tum update to avoid explicit grid force accumulation: 
+
+(vi)new = (mv)i
+
+mi
+
++ ∆ tg − ∆tmi
+
+X
+
+> p
+
+VpP(Fp)T ∇Ni(xp)
+
+(S7) where Vp is the particle volume and g is the gravity vector. 
+
+S4.2.3. Constitutive model and plasticity 
+
+To handle finite deformations and plasticity, we adopt a Sin-gular Value Decomposition (SVD) based return-mapping algorithm. The trial deformation gradient is updated via the velocity gradient: 
+
+Ftrial p = ( I + ∆ tCp)Fnp (S8) We decompose Ftrial p = UpΣpVTp . Plasticity is applied by clamping the singular values Σp based on the specific material model (e.g., Drucker-Prager for sand, Von Mises for metal, or Fixed Corotated for elastic tissues), yielding the projected deformation gradient Fn+1  
+
+> p
+
+.
+
+S4.2.4. Grid-to-particle transfer (G2P) 
+
+After solving the grid velocities, the updated states are transferred back to the particles. The particle velocity and the affine velocity field are updated as follows: 
+
+vn+1  
+
+> p
+
+= X
+
+> i
+
+Ni(xp)vnew i (S9) 
+
+Cn+1  
+
+> p
+
+= 4∆x2
+
+X
+
+> i
+
+Ni(xp)vnew i (xi − xp)T (S10) Finally, particle positions are advected: xn+1  
+
+> p
+
+= xnp +∆tvn+1  
+
+> p
+
+.
+
+S4.3. Position-based dynamics (PBD) 
+
+The Position-Based Dynamics (PBD) solver is employed to simulate deformable objects such as cloth, soft bodies, and Lagrangian fluids. Our implementation adheres to the Extended Position-Based Dynamics (XPBD) formulation, which introduces a compliance parameter to decouple ma-terial stiffness from time step size and iteration counts. 
+
+S4.3.1. Simulation loop 
+
+The solver follows a predictor-corrector scheme. For each particle i, a tentative position x∗ 
+
+> i
+
+is first predicted using ex-plicit Euler integration based on external forces fext (e.g., gravity): 
+
+v∗ 
+
+> i
+
+= vni + ∆ tM−1fext , x∗ 
+
+> i
+
+= xni + ∆ tv∗ 
+
+> i
+
+(S11) Subsequently, the solver iteratively resolves a set of geo-metric constraints C(x) = 0 . The position correction ∆x
+
+for a constraint involving a set of particles is derived by minimizing the constraint potential energy: 
+
+∆λ = −C(x∗) − ˜αλ 
+
+P 
+
+> j
+
+wj |∇ j C(x∗)|2 + ˜ α (S12) 
+
+∆xi = wi∆λ∇iC(x∗) (S13) where wi = 1 /m i is the inverse mass, and ˜α = α/ ∆t2 is the discrete compliance derived from the physical compli-ance α. Finally, velocities are updated: vn+1  
+
+> i
+
+= ( xn+1  
+
+> i
+
+−
+
+xni )/∆t.
+
+S4.3.2. Structural constraints 
+
+We implement specific constraints for different material types: • Distance constraint (cloth/links): To model stretching resistance, we enforce the distance between two particles 
+
+i and j:
+
+Cdist (xi, xj ) = ∥xi − xj ∥ − l0 = 0 (S14) • Bending constraint (cloth): To simulate bending resis-tance in triangular meshes, we utilize the isometric bend-ing constraint based on the dihedral angle ϕ between ad-jacent triangle faces: 
+
+Cbend (x1, x2, x3, x4) = acos (n1 · n2) − π = 0 (S15) • Volume constraint (soft bodies): For tetrahedral meshes, volume conservation is enforced on each element to model material compressibility: 
+
+Cvol (x1, x2, x3, x4) = 16 (x21 × x31 ) · x41 − V0 = 0 
+
+(S16) 
+
+S4.3.3. Position-based fluids (PBF) 
+
+For liquid simulation, we adopt the PBF framework which enforces constant density. The density ρi at particle i is estimated using the Poly6 kernel Wpoly 6:
+
+ρi = X
+
+> j
+
+mj Wpoly 6(∥xi − xj ∥, h ) (S17) The density constraint requires Cdensity (x1, . . . , xn) = 
+
+> ρi
+> ρ0
+
+− 1 = 0 . Gradients are computed using the Spiky kernel 
+
+∇Wspiky to avoid clustering instability. Viscosity is handled via XSPH (Artificial viscosity), which smoothes the velocity field before the position up-date: 
+
+vnew i = vi + c X
+
+> j
+
+mj
+
+ρj
+
+(vj − vi)Wpoly 6(∥xi − xj ∥, h )
+
+(S18) where c is a tunable viscosity coefficient. 
+
+S4.4. Smoothed particle hydrodynamics (SPH) 
+
+The SPH solver provides a fully Lagrangian approach for simulating fluid dynamics, capable of handling free-surface flows and complex topological changes. Our implementa-tion supports both Weakly Compressible SPH (WCSPH) for efficiency in dynamic scenarios and Divergence-Free SPH (DFSPH) for enforcing strict incompressibility with larger time steps. 
+
+S4.4.1. Discretization 
+
+Fluid quantities at a particle i are interpolated from its neighbors j using a smoothing kernel Wij = W (∥xi −
+
+xj ∥, h ) with support radius h. The density ρi is evaluated via standard summation: 
+
+ρi = X
+
+> j
+
+mj Wij (S19) The momentum equation governing the fluid motion is given by: 
+
+dvi
+
+dt = Fpressure i
+
+mi
+
++ Fviscosity i
+
+mi
+
++ Fsurf ace i
+
+mi
+
++ g (S20) 
+
+S4.4.2. Pressure solvers 
+
+We provide two distinct formulations to resolve the pressure gradient term Fpressure :
+
+Weakly compressible SPH (WCSPH) In this formula-tion, pressure is explicitly computed from density devia-tions using the Tait equation of state, allowing for slight compressibility (typically < 1% ): 
+
+pi = kρ 0
+
+γ
+
+ ρi
+
+ρ0
+
+γ
+
+− 1
+
+
+
+(S21) where k is the stiffness constant and γ = 7 . The resulting pressure force is symmetric to ensure momentum conserva-tion: 
+
+Fpressure i = −mi
+
+X
+
+> j
+
+mj
+
+pi
+
+ρ2
+
+> i
+
++ pj
+
+ρ2
+
+> j
+
+!
+
+∇Wij (S22) 
+
+Divergence-free SPH (DFSPH) For scenarios requir-ing stiff incompressibility, we implement DFSPH, which enforces two constraints using iterative pressure Poisson solvers. First, a divergence-free solver modifies the veloci-ties to ensure ∇ · v = 0 before position integration: 
+
+Dρ Dt = −ρ(∇ · v) = 0 = ⇒ X
+
+> j
+
+mj (vi − vj ) · ∇ Wij = 0 
+
+(S23) Second, a constant-density solver corrects position updates to maintain ρ = ρ0 (or equivalently, corrects predicted den-sity error). This predictor-corrector scheme significantly improves stability under large time steps compared to WC-SPH. 
+
+S4.4.3. Viscosity and Surface Tension 
+
+To simulate viscous fluids, we apply a Laplacian-based vis-cosity force that dampens relative velocities between neigh-boring particles: 
+
+Fviscosity i = X
+
+> j
+
+mj
+
+ρj
+
+μ (vj − vi) · xij 
+
+∥xij ∥2 + ϵh 2 ∇Wij (S24) where μ is the dynamic viscosity coefficient. Additionally, surface tension is modeled as a pairwise cohesive force pro-portional to a tension coefficient γtension :
+
+Fsurf ace i = −γtension 
+
+X
+
+> j
+
+mj (xi − xj )W (∥xi − xj ∥)
+
+(S25) This term mimics molecular attraction, promoting the for-mation of droplets and minimizing surface area. S5. The coupling mechanism of unified simula-tion kernel 
+
+The Unified Simulation Kernel manages heterogeneous in-teractions by abstracting all assets into particles or meshes and utilizing specialized, coupled solvers. To ensure physi-cal plausibility and conservation laws across different inte-gration schemes, the coupling logic is categorized into three distinct mechanisms based on the solver types involved: (1) Signed Distance Field (SDF) based impulse response for Rigid-MPM/SPH interactions, (2) Position-based penetra-tion correction for Rigid-PBD interactions, and (3) Grid-mediated momentum exchange for MPM-SPH/PBD inter-actions. 
+
+S5.1. SDF-based impulse response (rigid-MPM and rigid-SPH) 
+
+For interactions between rigid bodies and Eulerian-Lagrangian hybrid solvers (MPM) or purely Lagrangian solvers (SPH), a velocity-level impulse method is em-ployed. This approach utilizes the high-resolution SDF of rigid geometries to modulate collision softness and friction. For a particle p (either an MPM grid node or an SPH particle) located at xp with velocity vp, we first compute the signed distance d(xp) and the surface normal n from the rigid body’s geometry. A blending weight w, determined by a softness parameter ϵ, allows for smooth contact handling: 
+
+w(d) = min 
+
+
+
+exp 
+
+
+
+− d
+
+max( η, ϵ )
+
+
+
+, 1
+
+
+
+(S26) where η is a small numerical stabilizer. The relative velocity with respect to the rigid body ve-locity vr is defined as vrel = vp − vr . We decompose vrel 
+
+into normal component vn = vrel · n and tangential vector 
+
+vt = vrel − vnn.If vn < 0 (penetration velocity), the post-collision rel-ative velocity is computed by applying restitution e and Coulomb friction μ. The normal impulse response is ˜vn =
+
+−ev n. The tangential response uses a friction cone con-straint: 
+
+˜vt = vt
+
+∥vt∥ max (0 , ∥vt∥ − μ|vn|) (S27) The final updated velocity of the particle is a blend of the rigid body velocity and the new relative velocity, weighted by w:
+
+vnew p = vr + w(˜ vt + ˜ vnn) + (1 − w)vrel (S28) Momentum conservation is strictly enforced by applying the reverse impulse −∆P/∆t as an external force to the rigid body solver. 
+
+S5.2. Position-based penetration correction (rigid-PBD) 
+
+Interactions between rigid bodies and Position-Based Dy-namics (PBD) particles rely on geometric projection rather than velocity impulses. This method prioritizes resolving interpenetration immediately at the position level. For a PBD particle with mass mp and radius r, collision is detected when the signed distance d(xp) < r . The par-ticle position is projected outward along the contact normal 
+
+n to resolve the overlap: 
+
+xnew p = xold p + k(r − d(xp)) n (S29) where k ∈ [0 , 1] represents the stiffness coefficient. Unlike the impulse-based method, friction is explicitly neglected in this formulation to maintain stability in the position projec-tion step. The velocity is implicitly updated via the positional change: vnew p = ( xnew p − xold p )/∆t. The resulting mo-mentum change ∆P = mp(vnew p − vold p ) is accumulated and applied as a reaction force on the coupled rigid body to satisfy Newton’s third law. 
+
+S5.3. Grid-mediated momentum exchange (MPM-SPH and MPM-PBD) 
+
+Coupling between the Material Point Method (MPM) and Lagrangian particles (SPH or PBD) is achieved via the background MPM Eulerian grid, which acts as a momen-tum exchange medium. This mechanism models a perfectly inelastic collision process within each time substep. For a given MPM grid node g, we identify the set of neighboring external particles Ng (SPH or PBD) within the local stencil. The algorithm forces a velocity synchroniza-tion where the grid velocity vg is overridden by the average velocity of the interacting particles: 
+
+vsync g = 1
+
+|N g |
+
+X
+
+> i∈N g
+
+vpi (S30) This operation implies an instantaneous “sticking” condi-tion. To conserve total momentum, the change in the grid’s momentum ∆Pg = mg (vsync g − vold g ) is calculated. This momentum difference is then distributed back to the exter-nal particles as a corrective feedback: 
+
+vnew pi = vpi − ∆Pg
+
+mpi
+
+(S31) This two-way transfer ensures that the MPM fluid effec-tively drags or is dragged by the immersed SPH/PBD parti-cles, behaving similarly to a mixture model with high drag coefficients.

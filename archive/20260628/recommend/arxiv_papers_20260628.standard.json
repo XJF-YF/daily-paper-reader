@@ -1,0 +1,55 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-28T21:10:18.385366+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 0,
+    "quick_skim_target": 11,
+    "quick_selected": 0
+  },
+  "deep_dive": [
+    {
+      "id": "2606.21753v1",
+      "source": "arxiv",
+      "title": "Scene-Level Heterogeneous Physics Simulation with 3D Gaussian Splats",
+      "abstract": "3D Gaussian Splatting (3DGS) has achieved state-of-the-art photorealistic rendering, but the representation gap prevents these assets from being physically interactive. Production-grade physics engines do not understand the 3DGS representation, while prior physics-for-3DGS methods are monolithic silos. These prior works are fundamentally limited, demonstrating only object-centric physics in isolated environments, such as on an ideal plane. They are incapable of interacting with complex static collision geometry or heterogeneous assets. We propose a novel framework that, for the first time, bridges this gap by enabling 3DGS assets to participate in scene-level, heterogeneous, multi-solver physical simulations. Our core contribution is a Representation Abstraction Framework that translates all diverse assets, including 3DGS, virtual meshes, and fluids, into a unified physical particle set. This abstraction is key to enabling complex behaviors, such as the non-rigid deformation of 3DGS assets, within a unified physics pipeline. This particle set, along with the static scene collision boundaries derived from scene capture, is processed within a solver-agnostic physics kernel. The physical results are then mapped back to drive each asset's specific visual reconstruction. This architecture unlocks capabilities impossible with prior art. We demonstrate complex, two-way interactions between deformable 3DGS assets, standard CG assets such as fluids and meshes, and large-scale captured static environments, showcasing realistic coupled phenomena that were previously unattainable.",
+      "authors": [
+        "Xiaoyang Liu",
+        "Shangzhe Wu",
+        "Kai Han"
+      ],
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "published": "2026-06-19T21:12:52+00:00",
+      "link": "https://arxiv.org/pdf/2606.21753v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "3D Gaussian Splatting for photorealistic rendering and physics simulation",
+      "llm_evidence_cn": "3D高斯泼溅用于逼真渲染与物理仿真",
+      "llm_evidence": "3D高斯泼溅用于逼真渲染与物理仿真",
+      "canonical_evidence": "3D高斯泼溅用于逼真渲染与物理仿真",
+      "llm_tldr_en": "Enables scene-level heterogeneous physics simulation with 3D Gaussian splats, bridging the gap between rendering and physical interaction.",
+      "llm_tldr_cn": "3D高斯泼溅虽能实现逼真渲染，但与物理引擎存在表示鸿沟。本文提出表示抽象层，使3DGS资产参与场景级、异构、多求解器物理仿真，首次实现与复杂碰撞几何的交互。实验证明该方法可支持多种物理效果，显著扩展3DGS在数字孪生、沉浸式环境中的应用范围。",
+      "llm_tldr": "3D高斯泼溅虽能实现逼真渲染，但与物理引擎存在表示鸿沟。本文提出表示抽象层，使3DGS资产参与场景级、异构、多求解器物理仿真，首次实现与复杂碰撞几何的交互。实验证明该方法可支持多种物理效果，显著扩展3DGS在数字孪生、沉浸式环境中的应用范围。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": []
+}

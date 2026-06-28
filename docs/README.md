@@ -6,29 +6,24 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-27
-- 运行时间：2026-06-27 21:04:00 UTC
+- 最新运行日期：2026-06-28
+- 运行时间：2026-06-28 21:11:44 UTC
 - 运行状态：成功
-- 本次总论文数：2
-- 精读区：0
-- 速读区：2
+- 本次总论文数：1
+- 精读区：1
+- 速读区：0
 
 ### 今日简报（AI）
-今日速读2篇，聚焦多视图一致3D生成与卫星高保真高斯泼溅技术。  
-最值得关注的方向：交互式碰撞融入多视图一致三维生成（7.0分），以及几何保持的卫星图像高保真高斯泼溅（6.0分）。  
-下一步可深入探究三维生成中的碰撞一致性机制，或拓展卫星渲染的保真度优化思路。
-- 详情：[/202606/27/README](/202606/27/README)
+今日精读一篇8分论文，聚焦3D高斯泼溅实现场景级异构物理模拟。该工作打通了物理仿真与神经渲染的壁垒，为可交互场景提供新范式。建议关注其在高动态环境建模中的应用潜力。
+- 详情：[/202606/28/README](/202606/28/README)
 
 ### 精读区论文标签
-- 本次无精读推荐。
+1. [Scene-Level Heterogeneous Physics Simulation with 3D Gaussian Splats](/202606/28/2606.21753v1-scene-level-heterogeneous-physics-simulation-with-3d-gaussian-splats)  
+   标签：评分：8.0/10、query:pano-dgs
+   evidence：3D高斯泼溅用于逼真渲染与物理仿真
 
 ### 速读区论文标签
-1. [Inclusive Interactive Collisions for Multi-View Consistent Compositional 3D Generation](/202606/27/2606.24206v1-inclusive-interactive-collisions-for-multi-view-consistent-compositional-3d-generation)  
-   标签：评分：7.0/10、query:pano-dgs
-   evidence：使用高斯图元进行多视图一致的组合3D生成，与使用高斯表示的新视角合成相关
-2. [SatSplatDiff: Geometry-preserving generative refinement for high-fidelity satellite Gaussian Splatting](/202606/27/2606.27223v1-satsplatdiff-geometry-preserving-generative-refinement-for-high-fidelity-satellite-gaussian-splatting)  
-   标签：评分：6.0/10、query:pano-dgs
-   evidence：面向卫星高斯泼溅的几何保持生成式精炼，提升新颖视图合成保真度
+- 本次无速读推荐。
 
 
 <div class="dpr-home-promo-card">

@@ -1,6 +1,9 @@
 * <a class="dpr-sidebar-root-link" href="#/">首页</a>
 * <a class="dpr-sidebar-root-link dpr-sidebar-noactive-link" href="javascript:void(0)" data-dpr-hash="#/tutorial/README">使用教程</a>
 * Daily Papers
+  * 2026-06-28 <!--dpr-date:20260628-->
+    * 精读区
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202606/28/2606.21753v1-scene-level-heterogeneous-physics-simulation-with-3d-gaussian-splats" data-sidebar-item="{&quot;title&quot;: &quot;Scene-Level Heterogeneous Physics Simulation with 3D Gaussian Splats&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2606.21753v1-scene-level-heterogeneous-physics-simulation-with-3d-gaussian-splats&quot;, &quot;score&quot;: &quot;8.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;pano-dgs&quot;}], &quot;evidence&quot;: &quot;3D高斯泼溅用于逼真渲染与物理仿真&quot;}">Scene-Level Heterogeneous Physics Simulation with 3D Gaussian Splats</a>
   * 2026-06-27 <!--dpr-date:20260627-->
     * 速读区
       * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202606/27/2606.24206v1-inclusive-interactive-collisions-for-multi-view-consistent-compositional-3d-generation" data-sidebar-item="{&quot;title&quot;: &quot;Inclusive Interactive Collisions for Multi-View Consistent Compositional 3D Generation&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2606.24206v1-inclusive-interactive-collisions-for-multi-view-consistent-compositional-3d-generation&quot;, &quot;score&quot;: &quot;7.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;pano-dgs&quot;}], &quot;evidence&quot;: &quot;使用高斯图元进行多视图一致的组合3D生成，与使用高斯表示的新视角合成相关&quot;}">Inclusive Interactive Collisions for Multi-View Consistent Compositional 3D Generation</a>
