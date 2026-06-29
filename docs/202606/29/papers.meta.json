@@ -1,0 +1,69 @@
+{
+  "label": "2026-06-29",
+  "date": "2026-06-29",
+  "generated_at": "2026-06-29T21:13:13",
+  "count": 4,
+  "papers": [
+    {
+      "paper_id": "202606/29/2606.28321v1-structsplat-generalizable-3d-gaussian-splatting-from-uncalibrated-sparse-views",
+      "section": "deep",
+      "title_en": "StructSplat: Generalizable 3D Gaussian Splatting from Uncalibrated Sparse Views",
+      "authors": "Jia-Chen Zhao, Beiqi Chen, Xinyang Chen, Guangcong Wang, Liqiang Nie",
+      "date": "2026-06-26",
+      "pdf": "https://arxiv.org/pdf/2606.28321v1",
+      "score": "8.0",
+      "evidence": "无需标定的稀疏视角可泛化3D高斯溅射",
+      "tldr": "现有可泛化3D高斯重建方法常需相机参数或依赖每场景优化，且几何与外观耦合。StructSplat采用结构化表示，通过像素对齐特征注入、语义先验和相机对齐策略，直接处理未标定稀疏视图。在DL3DV基准上PSNR达28.045，较AnySplat提升5.67 dB，跨数据集表现更佳。该方法无需相机参数即可实现高质量泛化重建。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "We present StructSplat, a feed-forward and generalizable 3D Gaussian reconstruction framework that operates directly on uncalibrated images without requiring camera parameters. Existing methods either rely on per-scene optimization or assume known camera poses, and often entangle geometry and appearance within a unified backbone, limiting reconstruction fidelity and generalization. Our key idea is to adopt a structured representation that organizes geometry, semantic, and texture cues with explicit roles in the reconstruction process. Specifically, we introduce a pixel-aligned feature injection mechanism to enable accurate texture modeling from 2D observations, incorporate semantic-aware priors to improve global consistency, and design a camera alignment strategy to prevent information leakage and improve generalization. Experiments show that our method significantly outperforms prior approaches on challenging benchmarks. On DL3DV, our method achieves 28.045 PSNR, surpassing AnySplat (22.377) by +5.67 dB. In cross-dataset evaluation, our method achieves +1.94 dB over AnySplat on ACID and +1.72 dB on RealEstate10K. Project page: https://structsplat.github.io Code: https://github.com/J-C-Zhao/StructSplat",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/29/2606.27509v1-structured-li-gs-structured-3d-gaussians-splatting-with-lidar-incorporation-and-spatial-constraints",
+      "section": "quick",
+      "title_en": "Structured-Li-GS: Structured 3D Gaussians Splatting with LiDAR Incorporation and Spatial Constraints",
+      "authors": "Huaiyuan Weng, Huibin Li, Chul Min Yeum",
+      "date": "2026-06-25",
+      "pdf": "https://arxiv.org/pdf/2606.27509v1",
+      "score": "7.0",
+      "evidence": "基于LiDAR的结构化3DGS框架，实现高质量重建",
+      "tldr": "现有3DGS方法需大量高斯原语且缺几何约束，限制重建精度与轻量化。本文提出Structured-Li-GS，利用LiDAR-惯性-视觉SLAM生成稠密彩色点云，将高斯锚定于子采样点云并从局部表面几何初始化椭球参数。训练融合光度、扁平化、偏移、深度和法线损失，无需致密化即实现高质量重建。在基准和自建数据集上以更少高斯超越SOTA，获得尺度准确的高保真结果。该工作为3D重建提供轻量高效且几何约束强的新方案。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "In this study, we develop a Structured framework for Gaussian Splatting (3DGS) with LiDAR integration (Structured-Li-GS). It is a lightweight Gaussian Splatting pipeline that leverages LiDAR-inertial-visual SLAM. Structured-Li-GS achieves high-quality 3D reconstructions with fewer Gaussians by training on accurate, dense, colorized point clouds. Gaussian primitives are anchored using sub-sampled point clouds, and their ellipsoidal parameters are initialized from local surface geometry. Our training strategy integrates a comprehensive set of loss terms, including photometric, flattening, offset, depth, and normal losses, guided by the dense point cloud, enabling accurate reconstruction without Gaussian densification. This approach produces up-to-scale, high-fidelity results with a moderate model size. For experimental validation, we develop a custom hardware-synchronized LiDAR-camera handheld scanner. Experiments on both benchmark datasets and our real-world in-house dataset demonstrate that Structured-Li-GS surpasses state-of-the-art methods while using fewer Gaussians.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/29/2606.27745v1-panoramic-scene-analysis-a-survey-from-distortion-aware-engineering-to-sphere-native-foundation-modeling",
+      "section": "quick",
+      "title_en": "Panoramic Scene Analysis: A Survey from Distortion-Aware Engineering to Sphere-Native Foundation Modeling",
+      "authors": "Qinfeng Zhu, Lei Fan",
+      "date": "2026-06-26",
+      "pdf": "https://arxiv.org/pdf/2606.27745v1",
+      "score": "7.0",
+      "evidence": "全景场景分析综述，涵盖失真处理与球面本征建模，为基础模型提供几何感知",
+      "tldr": "全景图像捕获完整球面视野，但平面投影引入几何失真，挑战传统视觉架构。本综述系统梳理从投影适配、失真感知工程到球面原生建模与几何感知tokenization的演进，沿架构设计与训练范式两维度组织文献，覆盖密集预测、多任务理解、开放世界感知等任务。关键发现：现有方法未能同时实现严格球面等变性与完全复用平面预训练权重，这一结构性鸿沟亟待突破。此外揭示评估协议中面积加权指标、接缝一致性等五大空白，并提出六点通用全景智能路线图。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Panoramic images capture the complete visual sphere in a single frame, providing spatial context unattainable by conventional cameras. Yet this completeness comes at a geometric cost: the 2-sphere cannot be faithfully mapped to the plane, and every planar representation introduces distortions that violate the assumptions underlying standard vision architectures. This survey traces the evolution of panoramic scene analysis along a methodological trajectory, from projection-based adaptation, through distortion-aware engineering, to sphere-native modeling and geometry-aware tokenization for foundation models, and argues that this evolution reflects a progressive deepening of geometric commitment rather than a simple accumulation of techniques. We organize the literature along two orthogonal dimensions: architectural design (how operators interact with spherical geometry) and training paradigm (how knowledge is transferred across domains). Covering dense prediction (semantic segmentation, depth estimation, and room layout estimation), unified multi-task understanding, open-world perception, vision-language reasoning, and dynamic video analysis, we identify a central unresolved tension: among the methods surveyed, none simultaneously delivers strict spherical equivariance and full reuse of perspective-pretrained foundation-model weights, and we argue that this is a structural rather than incidental gap. We further expose five systematic gaps in current evaluation protocols, namely the absence of spherical-area-weighted metrics, seam-consistency testing, polar-robustness stratification, cross-projection generalization, and open-world protocol standardization, and propose a six-point research roadmap toward general-purpose panoramic intelligence. The corresponding repository is publicly available at: https://github.com/zhuqinfeng1999/Awesome-Panoramic-Scene-Analysis.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/29/2606.24144v1-geometry-aware-style-transfer-in-3d-gaussian-splatting",
+      "section": "quick",
+      "title_en": "Geometry-Aware Style Transfer in 3D Gaussian Splatting",
+      "authors": "Min Hyeok Bang, Jun Hyeong Kim, Seung-Wook Kim, Se-Ho Lee",
+      "date": "2026-06-23",
+      "pdf": "https://arxiv.org/pdf/2606.24144v1",
+      "score": "6.0",
+      "evidence": "具备新视角能力的3D高斯泼溅风格迁移",
+      "tldr": "现有3D高斯泼溅风格化方法忽略了几何结构迁移。本文提出几何感知风格迁移框架，通过解耦优化交替更新颜色和几何参数，并设计几何感知对比特征匹配（GCFM）融合RGB、深度和边缘线索。实验表明该方法在定性保真度和定量指标上显著超越现有方法。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "In this paper, we present a novel geometry-aware style transfer framework for 3D Gaussian splatting (3DGS) that simultaneously transfers appearance attributes and geometric structures. Unlike prior works that primarily focus on color-based stylization and often overlook structural adaptation, our method explicitly incorporates geometry adaptation through a decoupled optimization scheme that alternately updates color and geometry parameters. This strategy alleviates potential interference between color and geometry updates, leading to stable and consistent scene-level geometry transformation. The decoupled optimization is enabled by the proposed geometry-aware contrastive feature matching (GCFM). GCFM integrates RGB, depth, and edge cues into a contrastive objective and is employed in both optimization phases to effectively transfer structural characteristics from style images to Gaussian primitives. Extensive experiments show that our approach achieves superior performance in both qualitative fidelity and quantitative metrics, significantly outperforming existing 3DGS-based stylization methods. Our code is available at \\href{https://github.com/oweixx/gast}{https://github.com/oweixx/gast}.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

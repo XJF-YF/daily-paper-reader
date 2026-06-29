@@ -1,0 +1,167 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-29T21:09:45.564049+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [
+    {
+      "id": "2606.28321v1",
+      "source": "arxiv",
+      "title": "StructSplat: Generalizable 3D Gaussian Splatting from Uncalibrated Sparse Views",
+      "abstract": "We present StructSplat, a feed-forward and generalizable 3D Gaussian reconstruction framework that operates directly on uncalibrated images without requiring camera parameters. Existing methods either rely on per-scene optimization or assume known camera poses, and often entangle geometry and appearance within a unified backbone, limiting reconstruction fidelity and generalization. Our key idea is to adopt a structured representation that organizes geometry, semantic, and texture cues with explicit roles in the reconstruction process. Specifically, we introduce a pixel-aligned feature injection mechanism to enable accurate texture modeling from 2D observations, incorporate semantic-aware priors to improve global consistency, and design a camera alignment strategy to prevent information leakage and improve generalization. Experiments show that our method significantly outperforms prior approaches on challenging benchmarks. On DL3DV, our method achieves 28.045 PSNR, surpassing AnySplat (22.377) by +5.67 dB. In cross-dataset evaluation, our method achieves +1.94 dB over AnySplat on ACID and +1.72 dB on RealEstate10K. Project page: https://structsplat.github.io Code: https://github.com/J-C-Zhao/StructSplat",
+      "authors": [
+        "Jia-Chen Zhao",
+        "Beiqi Chen",
+        "Xinyang Chen",
+        "Guangcong Wang",
+        "Liqiang Nie"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-26T17:59:06+00:00",
+      "link": "https://arxiv.org/pdf/2606.28321v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "generalizable 3D Gaussian splatting from uncalibrated sparse views",
+      "llm_evidence_cn": "无需标定的稀疏视角可泛化3D高斯溅射",
+      "llm_evidence": "无需标定的稀疏视角可泛化3D高斯溅射",
+      "canonical_evidence": "无需标定的稀疏视角可泛化3D高斯溅射",
+      "llm_tldr_en": "Presents StructSplat, a feed-forward and generalizable 3D Gaussian reconstruction framework from uncalibrated images, using structured representation with geometry, semantic, and texture cues.",
+      "llm_tldr_cn": "现有3D高斯重建方法依赖场景优化或已知相机参数，且将几何与外观混在一起。本文提出StructSplat，一种无需相机参数的可泛化前馈框架，采用结构化表示分离几何、语义和纹理角色，引入像素对齐特征注入和语义先验，实现更准确的纹理建模和全局一致性，在稀疏视角设置下表现优异。",
+      "llm_tldr": "现有3D高斯重建方法依赖场景优化或已知相机参数，且将几何与外观混在一起。本文提出StructSplat，一种无需相机参数的可泛化前馈框架，采用结构化表示分离几何、语义和纹理角色，引入像素对齐特征注入和语义先验，实现更准确的纹理建模和全局一致性，在稀疏视角设置下表现优异。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.27509v1",
+      "source": "arxiv",
+      "title": "Structured-Li-GS: Structured 3D Gaussians Splatting with LiDAR Incorporation and Spatial Constraints",
+      "abstract": "In this study, we develop a Structured framework for Gaussian Splatting (3DGS) with LiDAR integration (Structured-Li-GS). It is a lightweight Gaussian Splatting pipeline that leverages LiDAR-inertial-visual SLAM. Structured-Li-GS achieves high-quality 3D reconstructions with fewer Gaussians by training on accurate, dense, colorized point clouds. Gaussian primitives are anchored using sub-sampled point clouds, and their ellipsoidal parameters are initialized from local surface geometry. Our training strategy integrates a comprehensive set of loss terms, including photometric, flattening, offset, depth, and normal losses, guided by the dense point cloud, enabling accurate reconstruction without Gaussian densification. This approach produces up-to-scale, high-fidelity results with a moderate model size. For experimental validation, we develop a custom hardware-synchronized LiDAR-camera handheld scanner. Experiments on both benchmark datasets and our real-world in-house dataset demonstrate that Structured-Li-GS surpasses state-of-the-art methods while using fewer Gaussians.",
+      "authors": [
+        "Huaiyuan Weng",
+        "Huibin Li",
+        "Chul Min Yeum"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-25T19:49:22+00:00",
+      "link": "https://arxiv.org/pdf/2606.27509v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "structured 3DGS framework with LiDAR incorporation for high-quality reconstruction",
+      "llm_evidence_cn": "基于LiDAR的结构化3DGS框架，实现高质量重建",
+      "llm_evidence": "基于LiDAR的结构化3DGS框架，实现高质量重建",
+      "canonical_evidence": "基于LiDAR的结构化3DGS框架，实现高质量重建",
+      "llm_tldr_en": "Structured-Li-GS introduces a structured 3DGS pipeline with LiDAR-inertial-visual SLAM, achieving accurate reconstruction with fewer Gaussians without densification.",
+      "llm_tldr_cn": "本文提出Structured-Li-GS，一种整合LiDAR的结构化3DGS流水线。利用LiDAR-惯导-视觉SLAM生成精确稠密彩色点云，将高斯原胞锚定在子采样点云上，并从局部表面几何初始化椭球参数。训练策略包含光度、扁平化、偏移、深度和法向损失，无需高斯密集化即可获得高质量重建。该方法显著减少了高斯数量，降低了计算开销，为3DGS的实际应用提供了轻量高效方案。",
+      "llm_tldr": "本文提出Structured-Li-GS，一种整合LiDAR的结构化3DGS流水线。利用LiDAR-惯导-视觉SLAM生成精确稠密彩色点云，将高斯原胞锚定在子采样点云上，并从局部表面几何初始化椭球参数。训练策略包含光度、扁平化、偏移、深度和法向损失，无需高斯密集化即可获得高质量重建。该方法显著减少了高斯数量，降低了计算开销，为3DGS的实际应用提供了轻量高效方案。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.24144v1",
+      "source": "arxiv",
+      "title": "Geometry-Aware Style Transfer in 3D Gaussian Splatting",
+      "abstract": "In this paper, we present a novel geometry-aware style transfer framework for 3D Gaussian splatting (3DGS) that simultaneously transfers appearance attributes and geometric structures. Unlike prior works that primarily focus on color-based stylization and often overlook structural adaptation, our method explicitly incorporates geometry adaptation through a decoupled optimization scheme that alternately updates color and geometry parameters. This strategy alleviates potential interference between color and geometry updates, leading to stable and consistent scene-level geometry transformation. The decoupled optimization is enabled by the proposed geometry-aware contrastive feature matching (GCFM). GCFM integrates RGB, depth, and edge cues into a contrastive objective and is employed in both optimization phases to effectively transfer structural characteristics from style images to Gaussian primitives. Extensive experiments show that our approach achieves superior performance in both qualitative fidelity and quantitative metrics, significantly outperforming existing 3DGS-based stylization methods. Our code is available at \\href{https://github.com/oweixx/gast}{https://github.com/oweixx/gast}.",
+      "authors": [
+        "Min Hyeok Bang",
+        "Jun Hyeong Kim",
+        "Seung-Wook Kim",
+        "Se-Ho Lee"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-23T04:53:56+00:00",
+      "link": "https://arxiv.org/pdf/2606.24144v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "3D Gaussian Splatting style transfer with novel view capability",
+      "llm_evidence_cn": "具备新视角能力的3D高斯泼溅风格迁移",
+      "llm_evidence": "具备新视角能力的3D高斯泼溅风格迁移",
+      "canonical_evidence": "具备新视角能力的3D高斯泼溅风格迁移",
+      "llm_tldr_en": "Proposes geometry-aware style transfer for 3DGS, enabling stylized novel view synthesis.",
+      "llm_tldr_cn": "现有3DGS风格迁移仅关注颜色而忽略几何结构。本文提出几何感知的对比特征匹配（GCFM），通过解耦优化交替更新颜色和几何参数，实现外观与结构的同时迁移。该方法在风格化新视角渲染中保持了几何一致性，实验证明其优于现有方法，为3DGS场景编辑提供了新的几何感知方案，但未针对360度全景设计。",
+      "llm_tldr": "现有3DGS风格迁移仅关注颜色而忽略几何结构。本文提出几何感知的对比特征匹配（GCFM），通过解耦优化交替更新颜色和几何参数，实现外观与结构的同时迁移。该方法在风格化新视角渲染中保持了几何一致性，实验证明其优于现有方法，为3DGS场景编辑提供了新的几何感知方案，但未针对360度全景设计。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.27745v1",
+      "source": "arxiv",
+      "title": "Panoramic Scene Analysis: A Survey from Distortion-Aware Engineering to Sphere-Native Foundation Modeling",
+      "abstract": "Panoramic images capture the complete visual sphere in a single frame, providing spatial context unattainable by conventional cameras. Yet this completeness comes at a geometric cost: the 2-sphere cannot be faithfully mapped to the plane, and every planar representation introduces distortions that violate the assumptions underlying standard vision architectures. This survey traces the evolution of panoramic scene analysis along a methodological trajectory, from projection-based adaptation, through distortion-aware engineering, to sphere-native modeling and geometry-aware tokenization for foundation models, and argues that this evolution reflects a progressive deepening of geometric commitment rather than a simple accumulation of techniques. We organize the literature along two orthogonal dimensions: architectural design (how operators interact with spherical geometry) and training paradigm (how knowledge is transferred across domains). Covering dense prediction (semantic segmentation, depth estimation, and room layout estimation), unified multi-task understanding, open-world perception, vision-language reasoning, and dynamic video analysis, we identify a central unresolved tension: among the methods surveyed, none simultaneously delivers strict spherical equivariance and full reuse of perspective-pretrained foundation-model weights, and we argue that this is a structural rather than incidental gap. We further expose five systematic gaps in current evaluation protocols, namely the absence of spherical-area-weighted metrics, seam-consistency testing, polar-robustness stratification, cross-projection generalization, and open-world protocol standardization, and propose a six-point research roadmap toward general-purpose panoramic intelligence. The corresponding repository is publicly available at: https://github.com/zhuqinfeng1999/Awesome-Panoramic-Scene-Analysis.",
+      "authors": [
+        "Qinfeng Zhu",
+        "Lei Fan"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-26T05:54:38+00:00",
+      "link": "https://arxiv.org/pdf/2606.27745v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "survey on panoramic scene analysis, addressing distortion and spherical representation for foundation models",
+      "llm_evidence_cn": "全景场景分析综述，涵盖失真处理与球面本征建模，为基础模型提供几何感知",
+      "llm_evidence": "全景场景分析综述，涵盖失真处理与球面本征建模，为基础模型提供几何感知",
+      "canonical_evidence": "全景场景分析综述，涵盖失真处理与球面本征建模，为基础模型提供几何感知",
+      "llm_tldr_en": "This survey traces panoramic scene analysis from distortion-aware engineering to sphere-native foundation modeling, providing a comprehensive overview of methods and geometric commitments.",
+      "llm_tldr_cn": "本文系统回顾了全景场景分析的发展历程，从投影适配、失真感知工程到球面本征建模与几何感知tokenization。指出这一演变反映了对几何本质逐步深化的认知，而非简单的技术积累。综述了各类方法在场景理解、渲染等方面的进展，为未来全景新视图合成及3DGS在全景领域的应用提供了理论框架与方向指引。",
+      "llm_tldr": "本文系统回顾了全景场景分析的发展历程，从投影适配、失真感知工程到球面本征建模与几何感知tokenization。指出这一演变反映了对几何本质逐步深化的认知，而非简单的技术积累。综述了各类方法在场景理解、渲染等方面的进展，为未来全景新视图合成及3DGS在全景领域的应用提供了理论框架与方向指引。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "survey of omnidirectional novel view synthesis using Gaussian representations",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

@@ -6,24 +6,32 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-28
-- 运行时间：2026-06-28 21:11:44 UTC
+- 最新运行日期：2026-06-29
+- 运行时间：2026-06-29 21:13:06 UTC
 - 运行状态：成功
-- 本次总论文数：1
+- 本次总论文数：4
 - 精读区：1
-- 速读区：0
+- 速读区：3
 
 ### 今日简报（AI）
-今日精读一篇8分论文，聚焦3D高斯泼溅实现场景级异构物理模拟。该工作打通了物理仿真与神经渲染的壁垒，为可交互场景提供新范式。建议关注其在高动态环境建模中的应用潜力。
-- 详情：[/202606/28/README](/202606/28/README)
+今日精读一篇8分论文，速读三篇覆盖3D高斯泼溅优化、全景分析和风格迁移。最值得关注的是从非标定稀疏视图实现通用3D重建，以及结合激光雷达的结构化高斯泼溅。建议重点阅读《StructSplat》，其无需相机标定即可泛化生成高质量3D场景。
+- 详情：[/202606/29/README](/202606/29/README)
 
 ### 精读区论文标签
-1. [Scene-Level Heterogeneous Physics Simulation with 3D Gaussian Splats](/202606/28/2606.21753v1-scene-level-heterogeneous-physics-simulation-with-3d-gaussian-splats)  
+1. [StructSplat: Generalizable 3D Gaussian Splatting from Uncalibrated Sparse Views](/202606/29/2606.28321v1-structsplat-generalizable-3d-gaussian-splatting-from-uncalibrated-sparse-views)  
    标签：评分：8.0/10、query:pano-dgs
-   evidence：3D高斯泼溅用于逼真渲染与物理仿真
+   evidence：无需标定的稀疏视角可泛化3D高斯溅射
 
 ### 速读区论文标签
-- 本次无速读推荐。
+1. [Structured-Li-GS: Structured 3D Gaussians Splatting with LiDAR Incorporation and Spatial Constraints](/202606/29/2606.27509v1-structured-li-gs-structured-3d-gaussians-splatting-with-lidar-incorporation-and-spatial-constraints)  
+   标签：评分：7.0/10、query:pano-dgs
+   evidence：基于LiDAR的结构化3DGS框架，实现高质量重建
+2. [Panoramic Scene Analysis: A Survey from Distortion-Aware Engineering to Sphere-Native Foundation Modeling](/202606/29/2606.27745v1-panoramic-scene-analysis-a-survey-from-distortion-aware-engineering-to-sphere-native-foundation-modeling)  
+   标签：评分：7.0/10、query:pano-dgs
+   evidence：全景场景分析综述，涵盖失真处理与球面本征建模，为基础模型提供几何感知
+3. [Geometry-Aware Style Transfer in 3D Gaussian Splatting](/202606/29/2606.24144v1-geometry-aware-style-transfer-in-3d-gaussian-splatting)  
+   标签：评分：6.0/10、query:pano-dgs
+   evidence：具备新视角能力的3D高斯泼溅风格迁移
 
 
 <div class="dpr-home-promo-card">
