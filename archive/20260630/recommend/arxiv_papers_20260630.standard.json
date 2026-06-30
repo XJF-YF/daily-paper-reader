@@ -1,0 +1,366 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-30T22:03:03.759455+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 4,
+    "deep_cap": 6,
+    "deep_selected": 4,
+    "quick_candidates": 5,
+    "quick_skim_target": 11,
+    "quick_selected": 5
+  },
+  "deep_dive": [
+    {
+      "id": "2606.30352v1",
+      "source": "arxiv",
+      "title": "FastPano3D: Feed-Forward Indoor Panoramic 3D Reconstruction from a Single Image",
+      "abstract": "Recent advances in 3D scene reconstruction have highlighted the intricate trade-offs among rendering quality, inference efficiency, and data dependency. To address the challenge of rapidly reconstructing detailed 3D indoor scenes from minimal input, we introduce FastPano3D, an end-to-end framework that directly generates renderable 3D Gaussian representations from a single panoramic image. Unlike perspective-based methods, panoramic images inherently suffer from equirectangular projection distortions and spatially non-uniform feature distributions, making direct feed-forward Gaussian generation particularly challenging. In contrast to existing Gaussian Splatting based methods that rely on multi-view supervision or per-scene optimization, FastPano3D employs a lightweight feature encoder, adaptive Gaussian sampling, and a point-cloud-guided refinement strategy to achieve efficient and accurate scene generation without any test-time optimization. Our approach reconstructs high-fidelity 3D scenes within seconds, achieving up to 156 times faster inference than prior state-of-the-art methods such as Pano2Room, while using only half the parameters. Extensive experiments demonstrate that FastPano3D delivers rendering quality comparable to NeRF- and 3DGS-based reconstructions, establishing a new benchmark for rapid, single-view 3D scene inference.",
+      "authors": [
+        "Jianqiang Li",
+        "Liumei Zhang",
+        "Wenjia Guo",
+        "Tianlong Feng",
+        "Yongzhi Liao",
+        "Di Lu",
+        "Hanchi Ren",
+        "Jingjing Deng"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-29T14:23:12+00:00",
+      "link": "https://arxiv.org/pdf/2606.30352v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Direct feed-forward generation of 3D Gaussians from a single panoramic image",
+      "llm_evidence_cn": "从单张全景图像直接前馈生成3D高斯表示",
+      "llm_evidence": "从单张全景图像直接前馈生成3D高斯表示",
+      "canonical_evidence": "从单张全景图像直接前馈生成3D高斯表示",
+      "llm_tldr_en": "FastPano3D is an end-to-end framework that directly generates renderable 3D Gaussian representations from a single panoramic image, enabling fast 3D reconstruction of indoor scenes without multi-view supervision or per-scene optimization.",
+      "llm_tldr_cn": "针对从单张全景图快速重建室内3D场景的需求，FastPano3D提出端到端框架，直接从单张全景图像前馈生成可渲染的3D高斯表示，克服了等矩形投影畸变和特征分布不均的问题，无需多视图监督或逐场景优化，实现了高效的360度场景重建。",
+      "llm_tldr": "针对从单张全景图快速重建室内3D场景的需求，FastPano3D提出端到端框架，直接从单张全景图像前馈生成可渲染的3D高斯表示，克服了等矩形投影畸变和特征分布不均的问题，无需多视图监督或逐场景优化，实现了高效的360度场景重建。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "reconstructing panoramic 360-degree scenes using Gaussian splatting",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.29794v1",
+      "source": "arxiv",
+      "title": "UniTriSplat: A Unified 3D Gaussian Splatting Framework with Uniform Spherical Rasterization for Universal Cameras",
+      "abstract": "Existing 3D Gaussian Splatting (3DGS) frameworks rely on camera-specific rasterization, suffering from inconsistent solid-angle sampling and degraded performance across heterogeneous camera models (e.g., perspective, fisheye, omnidirectional). To address this limitation, we propose UniTriSplat, a unified 3DGS framework for universal cameras that reformulates Gaussian splatting on the unit sphere via HEALPix discretization. Leveraging the equal-area property of HEALPix, we construct a spherical sampling grid aligned with the angular resolution of input images. We derive the forward rendering and gradient propagation of Gaussians directly in the spherical radian domain, yielding uniform optimization behavior from narrow-FoV images to full 360-degree panoramas. To enhance perceptual reconstruction quality, we additionally introduce a HEALPix-aware SSIM loss that respects spherical neighborhood structure. Extensive experiments across diverse camera models demonstrate that UniTriSplat consistently improves cross-camera generalization while preserving geometric fidelity and rendering quality.",
+      "authors": [
+        "Yipeng Zhu",
+        "Huajian Huang",
+        "Tristan Braud",
+        "Sai-Kit Yeung"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-29T05:14:48+00:00",
+      "link": "https://arxiv.org/pdf/2606.29794v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Unified 3DGS framework for universal cameras including omnidirectional via spherical rasterization",
+      "llm_evidence_cn": "提出统一3DGS框架，通过球面栅格化支持全景等通用相机",
+      "llm_evidence": "提出统一3DGS框架，通过球面栅格化支持全景等通用相机",
+      "canonical_evidence": "提出统一3DGS框架，通过球面栅格化支持全景等通用相机",
+      "llm_tldr_en": "UniTriSplat reformulates Gaussian splatting on the unit sphere with HEALPix discretization, enabling consistent rendering across perspective, fisheye, and omnidirectional cameras.",
+      "llm_tldr_cn": "现有3DGS框架依赖相机特定栅格化，在全景等异构相机上性能退化。UniTriSplat在单位球面上使用HEALPix等面积离散化重新定义高斯泼溅，推导管球面域的渲染与梯度传播，实现跨相机均匀优化，显著提升全景场景的重建与渲染质量。",
+      "llm_tldr": "现有3DGS框架依赖相机特定栅格化，在全景等异构相机上性能退化。UniTriSplat在单位球面上使用HEALPix等面积离散化重新定义高斯泼溅，推导管球面域的渲染与梯度传播，实现跨相机均匀优化，显著提升全景场景的重建与渲染质量。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "omnidirectional rendering with 3D Gaussian Splatting",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.29976v1",
+      "source": "arxiv",
+      "title": "Learning Efficient 4D Gaussian Representations from Monocular Videos with Flow Splatting",
+      "abstract": "Reconstructing dynamic 3D scenes from monocular videos is challenging due to scene complexity and temporal dynamics. With the advancement of 3D Gaussian Splatting in novel view synthesis, existing methods extend 3D Gaussians to 4D domain with deformation fields, trajectories or spatiotemporal 4D volumes to model scene element deformation. However, these methods suffer from long training time, low rendering speed or high memory consumption for per-frame reconstruction of 4D volumes, without fully exploiting dense dynamic information. To address this issue, we propose Flow Splatting, which constructs the velocity field and enables the conventional splatting technique to render optical flow from the velocity field to supervise dynamics learning process from monocular videos. Specifically, we extend 4D volumes with time varying means and covariance to represent complex dynamics. Then, we construct and approximate the velocity field naturally based on this representations. While conventional volume rendering techniques support to render color fields, we extend the volume rendering strategy to splat the velocity field by considering the influence of camera motions. We conduct experiments on various benchmarks to demonstrate the efficiency and effectiveness of our method. Compared to the state-of-the-art methods, our model achieves better image quality with less time consumption and higher rendering speed.",
+      "authors": [
+        "Shengjun Zhang",
+        "Jinzhao Li",
+        "Xin Fei",
+        "Yueqi Duan"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-29T08:50:27+00:00",
+      "link": "https://arxiv.org/pdf/2606.29976v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "proposes Flow Splatting to learn efficient 4D Gaussian representations for dynamic novel view synthesis from monocular videos.",
+      "llm_evidence_cn": "提出流溅射从单目视频学习高效4D高斯表示，用于动态新视图合成。",
+      "llm_evidence": "提出流溅射从单目视频学习高效4D高斯表示，用于动态新视图合成。",
+      "canonical_evidence": "提出流溅射从单目视频学习高效4D高斯表示，用于动态新视图合成。",
+      "llm_tldr_en": "Flow Splatting constructs a velocity field and renders optical flow via conventional splatting to supervise dynamics, enabling efficient 4D Gaussian learning for novel view synthesis.",
+      "llm_tldr_cn": "针对现有4D高斯表示方法在动态场景重建中训练缓慢、内存消耗高的问题，本文提出流溅射技术。该方法通过构建速度场，并利用标准溅射技术从速度场渲染光流，从而为动态分量提供稠密监督信号，无需显式构建4D体素。实验表明，本方法在保持高质量新视图合成的同时，大幅缩短了训练时间并降低了内存占用，为高保真动态场景重建提供了高效的解决方案，拓展了高斯溅射在动态领域的实用性。",
+      "llm_tldr": "针对现有4D高斯表示方法在动态场景重建中训练缓慢、内存消耗高的问题，本文提出流溅射技术。该方法通过构建速度场，并利用标准溅射技术从速度场渲染光流，从而为动态分量提供稠密监督信号，无需显式构建4D体素。实验表明，本方法在保持高质量新视图合成的同时，大幅缩短了训练时间并降低了内存占用，为高保真动态场景重建提供了高效的解决方案，拓展了高斯溅射在动态领域的实用性。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.30017v1",
+      "source": "arxiv",
+      "title": "Monte Carlo Energy Aggregation for Mobile 3D Gaussian Splatting",
+      "abstract": "Recent advances in 3D Gaussian Splatting have demonstrated unprecedented success in novel view synthesis. However, the substantial inference and storage overhead driven by high-order Spherical Harmonics (SH) are primary bottlenecks for mobile platforms. In this paper, we present Flux-GS, a real-time Gaussian Splatting method designed to achieve high-fidelity rendering with significantly reduced overhead for resource-constrained mobile platforms. We first propose a Monte Carlo Specular Energy Aggregator, sampling third-order radiance residuals and aggregating specular energy into a compact latent space. In this way, our method effectively preserves visually salient lighting features in lower-order bands without expensive distillation or pre-training. To mitigate the high-frequency details lost during compression, we introduce an Attribute-Conditioned SH Enhancement module. This module predicts Gaussian-aware offsets based on intrinsic Gaussian attributes, which enhance the first-order SH representation prior to inference, without extra inference costs. Furthermore, the original single-view gradient-based densification is prone to producing excessive Gaussians and overfitting to a certain view. We address these limitations by proposing a Multi-view Alpha-based Densification and Pruning strategy. By leveraging multi-view guidance, we ensure multi-view structure consistency and the precise removal of redundant primitives. Extensive experiments demonstrate that Flux-GS achieves substantial parameter reduction while maintaining competitive visual quality, offering a robust and scalable solution for real-time mobile rendering. Code: \\textcolor{magenta}{\\href{https://xiaobiaodu.github.io/flux-gs-project/}{https://xiaobiaodu.github.io/flux-gs-project/}}.",
+      "authors": [
+        "Xiaobiao Du",
+        "YuAn Wang",
+        "Hao Li",
+        "Bosheng Wang",
+        "Xun Sun",
+        "Xin Yu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-29T09:21:57+00:00",
+      "link": "https://arxiv.org/pdf/2606.30017v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "mobile 3DGS method for novel view synthesis",
+      "llm_evidence_cn": "面向移动端的3DGS新视图合成方法",
+      "llm_evidence": "面向移动端的3DGS新视图合成方法",
+      "canonical_evidence": "面向移动端的3DGS新视图合成方法",
+      "llm_tldr_en": "Monte Carlo energy aggregation reduces SH overhead for real-time mobile 3DGS rendering without distilled pretraining.",
+      "llm_tldr_cn": "3D高斯泼溅虽然在视图合成中效果显著，但高阶球谐函数带来的计算和存储开销阻碍了移动端部署。本文提出Flux-GS方法，通过蒙特卡洛能量聚合器将高次辐射残差采样并压缩到紧凑的隐空间，有效保留视觉特征的同时大幅降低开销。实验表明该方法在移动平台上实现了高保真实时渲染，无需繁琐的蒸馏预训练。该工作为3DGS在资源受限设备上的实用化提供了新路径。",
+      "llm_tldr": "3D高斯泼溅虽然在视图合成中效果显著，但高阶球谐函数带来的计算和存储开销阻碍了移动端部署。本文提出Flux-GS方法，通过蒙特卡洛能量聚合器将高次辐射残差采样并压缩到紧凑的隐空间，有效保留视觉特征的同时大幅降低开销。实验表明该方法在移动平台上实现了高保真实时渲染，无需繁琐的蒸馏预训练。该工作为3DGS在资源受限设备上的实用化提供了新路径。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.28828v1",
+      "source": "arxiv",
+      "title": "Ground4D: Consistency-Aware 4D Reconstruction from Monocular Video",
+      "abstract": "Learning a 4D scene representation from a single monocular video that supports dynamic novel-view synthesis while maintaining faithful geometry over time remains challenging. Dynamic Gaussian Splatting achieves strong rendering performance through photometric optimization, yet does not explicitly enforce multi-view geometric consistency. In contrast, 3D foundation models recover coherent scene geometry and camera motion, but their point-based outputs are not designed for photorealistic rendering. We propose Ground4D, a geometry-grounded framework built on two stages. First, we perform geometry initialization via 3D foundation models, leveraging VGGT in a training-free manner to reconstruct multi-view-consistent 3D geometry and camera poses from monocular video. The recovered geometry provides a structured and reliable initialization for dynamic Gaussian representations. Second, we conduct geometry-consistency-aware refinement via dynamic Gaussian Splatting, optimizing the representation through differentiable rendering while maintaining multi-view geometric consistency across both observed and synthesized viewpoints. Furthermore, Ground4D inherently models the continuous 4D dynamics of the scene, naturally supporting rendering at arbitrary timestamps. By integrating foundation-level geometric priors into dynamic Gaussian optimization, Ground4D achieves stronger reconstruction fidelity and rendering performance, underscoring the role of geometry-grounded constraints in robust 4D scene modeling.",
+      "authors": [
+        "Qing Zhao",
+        "Weijian Deng",
+        "Pengxu Wei",
+        "Liang Lin"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-27T09:27:42+00:00",
+      "link": "https://arxiv.org/pdf/2606.28828v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "dynamic Gaussian Splatting for 4D novel view synthesis",
+      "llm_evidence_cn": "动态高斯泼溅用于4D新视图合成",
+      "llm_evidence": "动态高斯泼溅用于4D新视图合成",
+      "canonical_evidence": "动态高斯泼溅用于4D新视图合成",
+      "llm_tldr_en": "Ground4D uses 3D foundation models for geometry initialization then dynamic Gaussians for photorealistic 4D rendering from monocular video.",
+      "llm_tldr_cn": "从单目视频学习4D场景表示同时保持几何一致性和真实渲染仍具挑战。Ground4D提出两阶段框架：首先利用3D基础模型（VGGT）以训练无关方式重建多视图一致的几何与相机位姿，然后进行动态高斯泼溅优化以实现真实新视图合成。该方法结合了几何基础模型的鲁棒性和高斯渲染的高质量，在动态场景新视图合成任务中取得了领先性能，但未明确针对全景场景。",
+      "llm_tldr": "从单目视频学习4D场景表示同时保持几何一致性和真实渲染仍具挑战。Ground4D提出两阶段框架：首先利用3D基础模型（VGGT）以训练无关方式重建多视图一致的几何与相机位姿，然后进行动态高斯泼溅优化以实现真实新视图合成。该方法结合了几何基础模型的鲁棒性和高斯渲染的高质量，在动态场景新视图合成任务中取得了领先性能，但未明确针对全景场景。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.29303v1",
+      "source": "arxiv",
+      "title": "Occlusion-Robust Multi-Object Decoupling for Physics-Based Interaction",
+      "abstract": "We propose a mask-free method for lossless multi-object 3D reconstruction from sparse and occluded real-world views, enabling physically plausible interaction via Material Point Method (MPM) simulation. Our key insight is that object coupling stems from occlusion and limited viewpoints, which we address by formulating multi-object decoupling as a sparse-view reconstruction problem. Using 3D Gaussian Splatting as base representation, we first obtain coarse instance partitions with a SAM2-trained segmentation field. Rather than relying on masks, we reconstruct fragmented geometries by leveraging a joint Score Distillation Sampling (SDS) process, which integrates reference-view supervision with novel-view synthesis guided by 2D and 3D diffusion priors to enforce both texture fidelity and 3D consistency. Furthermore, we incorporate geometry-aware priors such as intra-object and inter-object similarity to regularize geometric reasoning. Experimental results demonstrate that our method produces complete, simulation-ready 3D objects without requiring manual masks, enabling realistic dynamic interactions on both synthetic and real-world datasets.",
+      "authors": [
+        "Xin Dong",
+        "Wenfeng Deng",
+        "Yansong Tang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-28T09:50:46+00:00",
+      "link": "https://arxiv.org/pdf/2606.29303v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "uses 3D Gaussian Splatting for multi-object reconstruction and novel view synthesis via SDS",
+      "llm_evidence_cn": "使用3D高斯泼溅进行多物体重建并通过SDS进行新视角合成",
+      "llm_evidence": "使用3D高斯泼溅进行多物体重建并通过SDS进行新视角合成",
+      "canonical_evidence": "使用3D高斯泼溅进行多物体重建并通过SDS进行新视角合成",
+      "llm_tldr_en": "Proposes mask-free multi-object 3D reconstruction using 3DGS as base representation and SDS for novel view synthesis, enabling physics-based interaction. It decouples objects from sparse, occluded views, generating high-quality geometry and appearance.",
+      "llm_tldr_cn": "现有方法处理遮挡场景的多物体重建困难。本文以3DGS为表示，结合分割场和分数蒸馏采样（SDS）实现无掩码的多物体解耦和新视角合成。稀疏遮挡视图下仍能重建高质量几何和外观，支持物理交互模拟，拓展了3DGS在复杂场景中的应用。",
+      "llm_tldr": "现有方法处理遮挡场景的多物体重建困难。本文以3DGS为表示，结合分割场和分数蒸馏采样（SDS）实现无掩码的多物体解耦和新视角合成。稀疏遮挡视图下仍能重建高质量几何和外观，支持物理交互模拟，拓展了3DGS在复杂场景中的应用。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.29329v1",
+      "source": "arxiv",
+      "title": "RAGA: Real Time Ray Traced Gaussian Shadow Casting for 3DGS Avatar-Scene Interaction",
+      "abstract": "We study the problem of physically plausible shadow casting when animating 3D Gaussian Splatting (3DGS) avatars, either individually or in multi-avatar and object-interaction scenarios, within existing 3DGS scenes. In contrast to prior methods that rely on binary hit tests and mesh-based shadow casters, our method performs shadow computation entirely in Gaussian space, without requiring any mesh reconstruction. We introduce RAGA, a Ray-Traced Gaussian Shadow Casting formulation based on exact ray-Gaussian line integrals. For each occluding Gaussian, we integrate the opacity profile along the shadow ray and normalize by the theoretical maximum integral, producing a weight that captures how the ray traverses the occluder rather than merely whether an intersection occurred. To reduce temporal variance from clothing deformations in animated avatars, we further introduce an avatar proxy representation that stabilizes shadow casting while preserving visual fidelity. We implement RAGA using custom CUDA kernels integrated with the NVIDIA OptiX framework; as such, our shadow tracer runs at rates of about 50 FPS. We evaluate on single-avatar, multi-avatar, and avatar-object interaction scenarios across multiple datasets, demonstrating substantially improved shadow realism, temporal stability, and scene coherence. Our project page is available at https://miraymen.github.io/raga/.",
+      "authors": [
+        "Aymen Mir",
+        "Riza Alp Guler",
+        "Jian Wang",
+        "Peter Wonka",
+        "Bing Zhou",
+        "Gerard Pons-Moll"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-28T10:55:32+00:00",
+      "link": "https://arxiv.org/pdf/2606.29329v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "real-time shadow casting for 3DGS avatars using ray-Gaussian integrals, enabling physically plausible rendering",
+      "llm_evidence_cn": "基于光线-高斯积分的实时阴影投射，实现3DGS虚拟角色和场景的物理合理渲染",
+      "llm_evidence": "基于光线-高斯积分的实时阴影投射，实现3DGS虚拟角色和场景的物理合理渲染",
+      "canonical_evidence": "基于光线-高斯积分的实时阴影投射，实现3DGS虚拟角色和场景的物理合理渲染",
+      "llm_tldr_en": "RAGA introduces real-time ray-traced shadow casting for 3DGS scenes entirely in Gaussian space using exact ray-Gaussian line integrals. Requires no meshes, enabling physically plausible shadows for avatar-scene interactions in real time.",
+      "llm_tldr_cn": "3DGS场景中虚拟角色阴影渲染多依赖网格或近似，质量有限。本文提出RAGA，完全在3DGS空间中进行光线投射阴影计算，通过精确的射线-高斯线积分产生阴影权重，无需网格。实时率高，在交互场景中生成物理合理的阴影，提升了3DGS渲染的真实感。",
+      "llm_tldr": "3DGS场景中虚拟角色阴影渲染多依赖网格或近似，质量有限。本文提出RAGA，完全在3DGS空间中进行光线投射阴影计算，通过精确的射线-高斯线积分产生阴影权重，无需网格。实时率高，在交互场景中生成物理合理的阴影，提升了3DGS渲染的真实感。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.29333v1",
+      "source": "arxiv",
+      "title": "HiReFF: High-Resolution Feedforward Human Reconstruction from Uncalibrated Sparse-View Video",
+      "abstract": "Uncalibrated volumetric video streaming for human reconstruction is essential for holographic communication and AR/VR, yet remains challenging due to the need for temporal consistency and computational efficiency from sparse-view inputs. Existing methods rely on per-scene optimization or calibrated cameras, while recent feed-forward models are limited to low-resolution (0.5K) single-frame synthesis. We present HiReFF, a feed-forward method for 2K-resolution 360° human video reconstruction from uncalibrated sparse-view videos. Our framework decomposes the problem into two key tasks: foreground 3D Gaussian reconstruction from sparse-view videos (four views separated by 90°) and computationally efficient high-resolution synthesis. To enable the former, we propose Scale-synchronized Camera Calibration to resolve scale ambiguity for multi-view supervision, and Gaussian-wise Foreground Masking to reconstruct clean foregrounds by modulating Gaussian parameters. For efficient high-resolution synthesis, our High-resolution Side-tuning achieves 2K rendering by augmenting the Gaussian head with supplementary features while keeping the backbone at 0.5K, drastically reducing computational overhead. Experiments demonstrate that HiReFF significantly outperforms existing methods in high-resolution streaming volumetric video reconstruction. https://iridescentjiang.github.io/HiReFF",
+      "authors": [
+        "Yiming Jiang",
+        "Hanzhang Tu",
+        "Wenfeng Song",
+        "Siyou Lin",
+        "Liang An",
+        "Shuai Li",
+        "Aimin Hao",
+        "Yebin Liu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-28T11:01:36+00:00",
+      "link": "https://arxiv.org/pdf/2606.29333v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "reconstructs 360-degree human videos using 3D Gaussians from uncalibrated sparse views, achieving 2K resolution high-fidelity synthesis.",
+      "llm_evidence_cn": "从无标定稀疏视角重建360度人体视频，利用3D高斯实现2K高保真合成。",
+      "llm_evidence": "从无标定稀疏视角重建360度人体视频，利用3D高斯实现2K高保真合成。",
+      "canonical_evidence": "从无标定稀疏视角重建360度人体视频，利用3D高斯实现2K高保真合成。",
+      "llm_tldr_en": "HiReFF presents a feed-forward method for 2K-resolution 360-degree human reconstruction from four uncalibrated views, decomposing into foreground 3D Gaussian reconstruction and efficient high-res synthesis.",
+      "llm_tldr_cn": "针对无标定稀疏视角下360度人体视频重建的挑战，本文提出HiReFF方法，采用前馈管道，将问题分解为前景3D高斯重建和高效高分辨率合成两步。从四个间隔90度的无标定视频流中直接生成2K分辨率的人体模型，避免了逐场景优化和相机标定。实验表明，该方法在保持时空一致性的同时，显著提升了重建分辨率，适用于全息通信和增强现实等沉浸式应用。该工作为基于3D高斯的全方位人体建模提供了高效方案。",
+      "llm_tldr": "针对无标定稀疏视角下360度人体视频重建的挑战，本文提出HiReFF方法，采用前馈管道，将问题分解为前景3D高斯重建和高效高分辨率合成两步。从四个间隔90度的无标定视频流中直接生成2K分辨率的人体模型，避免了逐场景优化和相机标定。实验表明，该方法在保持时空一致性的同时，显著提升了重建分辨率，适用于全息通信和增强现实等沉浸式应用。该工作为基于3D高斯的全方位人体建模提供了高效方案。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "omnidirectional rendering with 3D Gaussian Splatting",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.30545v1",
+      "source": "arxiv",
+      "title": "StereoGS: Sparse-View 3D Gaussian Splatting via Stereo Priors",
+      "abstract": "3D Gaussian Splatting (3DGS) has achieved remarkable success in real-time novel view synthesis, yet it suffers from severe overfitting under sparse-view settings due to insufficient geometric constraints. While recent methods introduce monocular depth priors to mitigate this, they inherently struggle with scale ambiguity and cross-view inconsistency, leading to defective geometry. In this paper, we propose StereoGS, a novel sparse-view 3DGS framework that integrates stereo priors to establish reliable binocular consistency. Unlike scale-agnostic monocular constraints, StereoGS introduces a Stereo Depth Regularization by constructing virtual stereo pairs during optimization and leveraging a foundation stereo model to enforce absolute scale and binocular-consistent structures. To further suppress overfitting and eliminate redundant primitives, we design a Gradient-Aware Opacity Decay strategy that dynamically penalizes Gaussians based on their relative opacity gradient magnitudes. Combined with a Consistency-Aware Dense Initialization using zero-shot multi-view depth estimation, StereoGS effectively anchors primitives to accurate scene surfaces. Extensive experiments on LLFF, DTU, Mip-NeRF360, and Blender datasets demonstrate that StereoGS achieves state-of-the-art performance in sparse-view settings without incurring any additional inference overhead. Project Page: https://stringerywh00.github.io/StereoGS_project_page/",
+      "authors": [
+        "Wenhao Yuan",
+        "Yiyuan Ge",
+        "Deli Cai"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-29T16:45:57+00:00",
+      "link": "https://arxiv.org/pdf/2606.30545v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "3D Gaussian Splatting for novel view synthesis with stereo priors",
+      "llm_evidence_cn": "使用立体先验的3D高斯泼溅新颖视角合成",
+      "llm_evidence": "使用立体先验的3D高斯泼溅新颖视角合成",
+      "canonical_evidence": "使用立体先验的3D高斯泼溅新颖视角合成",
+      "llm_tldr_en": "StereoGS improves sparse-view 3D Gaussian Splatting by integrating stereo priors to enforce binocular consistency and absolute scale, reducing overfitting without requiring panoramic data.",
+      "llm_tldr_cn": "针对稀疏视角下3D高斯泼溅（3DGS）的过拟合问题，StereoGS引入立体先验，通过构建虚拟立体对并利用基础立体模型实现双目一致性和绝对尺度约束，从而在仅用少量输入视角时仍能合成高质量的新颖视图，但该方法不涉及全景或360度场景。",
+      "llm_tldr": "针对稀疏视角下3D高斯泼溅（3DGS）的过拟合问题，StereoGS引入立体先验，通过构建虚拟立体对并利用基础立体模型实现双目一致性和绝对尺度约束，从而在仅用少量输入视角时仍能合成高质量的新颖视图，但该方法不涉及全景或360度场景。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
