@@ -1,0 +1,54 @@
+{
+  "label": "2026-07-01",
+  "date": "2026-07-01",
+  "generated_at": "2026-07-01T21:29:42",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202607/01/2606.31556v1-augsplat-radiance-field-informed-gaussian-splatting-for-sparse-view-settings",
+      "section": "deep",
+      "title_en": "AugSplat: Radiance Field-Informed Gaussian Splatting for Sparse-View Settings",
+      "authors": "Lorenzo Lazzaroni, Riccardo Bollati, Daniel Barath, Michael Niemeyer, Keisuke Tateno",
+      "date": "2026-06-30",
+      "pdf": "https://arxiv.org/pdf/2606.31556v1",
+      "score": "8.0",
+      "evidence": "利用辐射场先验改进稀疏视角下的3DGS新视角合成",
+      "tldr": "稀疏视图下的新视角合成面临挑战：神经辐射场重建好但计算慢，高斯溅射渲染快但依赖初始几何质量。本文提出AugSplat，先训练辐射场生成合成视图，再用其辅助监督高斯溅射优化。实验表明，AugSplat在mip-NeRF 360稀疏场景上显著提升重建质量，且推理保持实时。该方法简单有效，提升了高斯溅射在稀疏设置下的鲁棒性。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Generating high-quality novel views at real-time frame rates remains a central challenge in 3D vision, particularly in sparse-view scenarios. Neural radiance fields have demonstrated robust reconstruction from limited observations, but their reliance on volumetric rendering leads to high computational cost and slow inference. In contrast, Gaussian Splatting methods achieve real-time rendering through rasterization, but their optimization is highly sensitive to the quality of the initial geometry. This sensitivity becomes especially problematic in sparse-view settings, where limited observations often lead to incomplete or noisy point-cloud reconstructions. In this work, we present AugSplat, a simple framework for improving Gaussian Splatting in sparse-view regimes using radiance-field-based view augmentation. We first train a radiance field on the sparse input views and use it to synthesize additional images from nearby novel viewpoints, increasing the effective view-space coverage available for supervision. These synthetic views are then used as auxiliary supervision during Gaussian Splatting optimization. We study two variants: Staged AugSplat, which uses synthetic views for an initial optimization phase before switching to real images, and Dual AugSplat, which jointly trains on real and synthetic views with a decaying synthetic loss weight. Experiments on sparse-view mip-NeRF 360 scenes show that AugSplat improves reconstruction quality over standard Gaussian Splatting. Staged AugSplat achieves the strongest average performance, while Dual AugSplat provides a closely performing formulation that keeps real-image supervision active throughout training, and both variants preserve real-time rendering at inference.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/01/2606.28840v1-dlgstream-dynamic-language-embedded-guassian-splatting-for-open-vocabulary-enabled-free-viewpoint-video-streaming",
+      "section": "quick",
+      "title_en": "DLGStream: Dynamic Language-embedded Guassian Splatting for Open-vocabulary Enabled Free-viewpoint Video Streaming",
+      "authors": "Zhihui Ke, Yuyang Liu, Xiaobo Zhou, Tie Qiu",
+      "date": "2026-06-27",
+      "pdf": "https://arxiv.org/pdf/2606.28840v1",
+      "score": "7.0",
+      "evidence": "3D高斯泼溅用于自由视点视频的新视角合成",
+      "tldr": "3D高斯泼溅在自由视角视频重建中缺乏交互和编辑能力。现有语言高斯表示因帧尺寸小和帧率高而不适用于流式视频。本文提出DLGStream，采用双不透明度动态语言高斯表示，分别优化颜色和语言特征以避免性能下降；引入插值变形场减少时间冗余并实现帧插值。实验表明，在开放词汇分割和重建质量上表现优异，平均帧尺寸仅43 KB。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "3D Gaussian Splatting~(3DGS) has emerged as a promising paradigm for reconstructing streamable free-viewpoint video~(FVV) from multi-view videos. However, 3DGS-based FVVs typically lack user interaction and editing capabilities, which diminishes the immersive experience. Recent research has integrated language features from CLIP into 3DGS via distillation, enabling open-vocabulary queries and supporting many downstream applications. Nevertheless, the stringent requirements of FVV, low frame size and high FPS, make current language Gaussian representations unsuitable for language-embedded FVV. In this paper, we propose DLGStream, a novel language-embedded FVV representation that streams time-varying language features alongside Gaussian attributes to support 4D environment interaction, scene editing, and spatial intelligence. Specifically, we propose a dual-opacity dynamic language Gaussian representation, which maintains two opacity attributes for color and language features to deal with performance degradation that occurs when colors and features are jointly optimized. Furthermore, we introduce an interpolation-based deformation field to reduce temporal redundancy. This deformation field can also be used for 4D frame interpolation, boosting FVV sequences from low to high FPS. Experimental results demonstrate that DLGStream achieves superior performance in both on open-vocabulary segmentation and reconstruction quality with an average frame size of merely 43 KB. The code is available on \\href{https://github.com/kkkzh/DLGStream}{https://github.com/kkkzh/DLGStream}.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/01/2606.31637v1-intrinsic-decomposition-and-editing-of-3d-gaussian-splats",
+      "section": "quick",
+      "title_en": "Intrinsic decomposition and editing of 3D Gaussian splats",
+      "authors": "Alexandre Lanvin, Jeffrey Hu, Simon Lucas, Adrien Bousseau, George Drettakis",
+      "date": "2026-06-30",
+      "pdf": "https://arxiv.org/pdf/2606.31637v1",
+      "score": "6.0",
+      "evidence": "3D高斯泼溅的固有分解用于编辑和新视角合成",
+      "tldr": "本文将图像的内在分解（漫反射反照率×着色+视角相关残差）扩展到3D高斯泼溅辐射场。提出将场景分解为独立的高斯基元集，分别表示反照率、着色等层。通过数据驱动预测指导优化过程，从多视图照片中解耦内在成分。提供编辑工作流：用户仅需修改单张图像中平面纹理的反照率，即可在任意视角下重新渲染具有合理光照的编辑场景。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Intrinsic decomposition which expresses image colors as the product of diffuse albedo and shading, possibly augmented with view-dependent residuals has a long history in image editing as it enables the modification of object colors and textures without altering lighting. We extend intrinsic decomposition to radiance fields represented with Gaussian splatting by proposing solutions to three key aspects of such decomposition. First, we describe how to model the intrinsic decomposition as independent sets of Gaussian primitives, which allows each set to adapt to the characteristics of the layer it represents. Second, we present an optimization procedure guided by data-driven predictions to disentangle multi-view photographs of a scene into the aforementioned intrinsic sets. Finally, we provide an editing workflow where users modify the texture of planar surfaces simply by modifying the albedo of that surface in one image. Capturing this edit within the intrinsic radiance field allows re-rendering of the edited scene with plausible lighting under arbitrary viewpoints.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
