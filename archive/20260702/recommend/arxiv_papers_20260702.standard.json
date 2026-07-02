@@ -1,0 +1,131 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-02T21:17:18.993669+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2607.00832v1",
+      "source": "arxiv",
+      "title": "Pano2World: End-to-End 3D Generation via Unified Multi-View Sequences",
+      "abstract": "A single panorama captures the full visual sphere from one camera center, yet confines users to looking around in place without enabling true scene exploration. Converting a single panorama into a persistent, renderable 3D representation for free-viewpoint navigation has attracted growing interest; existing methods either adopt iterative per-view completion that propagates inpainting results to update the underlying geometry, leading to progressive error accumulation and cumbersome multi-step pipelines, or leverage the temporal consistency priors of video generation models, yet the continuous-trajectory constraint intrinsic to such models limits their flexibility in covering scenes from multiple directions simultaneously. We present Pano2World, which takes a single indoor panorama as input and directly outputs a persistent, explorable 3D Gaussian scene. Given the source panorama, Pano2World first reconstructs a coarse 3D Gaussian proxy and renders it at adaptively sampled nearby poses to obtain geometrically aligned guidance panoramas; a panoramic diffusion model then jointly denoises all target views via View-Aware Attention Routing, where each target view simultaneously receives geometric constraints from its corresponding guidance panorama and global semantic guidance from the source panorama, naturally enforcing cross-view consistency. To avoid the information loss incurred by decoding the multi-view hidden features formed during joint denoising back to the pixel domain via VAE, we introduce Latent Feature Adapter, a geometry-aware bridge module that directly distills these hidden features into a scene latent, subsequently decoded into the final 3D Gaussian scene. Experiments demonstrate that Pano2World significantly outperforms existing methods on the multi-position panoramic novel-view synthesis benchmark.",
+      "authors": [
+        "Zhenjia Li",
+        "Jinrang Jia",
+        "Yifeng Shi"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-07-01T11:54:02+00:00",
+      "link": "https://arxiv.org/pdf/2607.00832v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "converts single panorama to 3D for free-viewpoint navigation",
+      "llm_evidence_cn": "将单张全景图转换为3D表示实现自由视点导航",
+      "llm_evidence": "将单张全景图转换为3D表示实现自由视点导航",
+      "canonical_evidence": "将单张全景图转换为3D表示实现自由视点导航",
+      "llm_tldr_en": "Pano2World generates a 3D scene from a single panorama using multi-view sequences, enabling free-viewpoint exploration.",
+      "llm_tldr_cn": "论文提出Pano2World，从单张全景图端到端生成可渲染的3D场景。该方法统一多视图序列，避免了逐视图补全的累积误差，支持自由视点导航，直接解决了全景图到沉浸式3D场景的转换难题，是全景3DGS相关工作的直接匹配。",
+      "llm_tldr": "论文提出Pano2World，从单张全景图端到端生成可渲染的3D场景。该方法统一多视图序列，避免了逐视图补全的累积误差，支持自由视点导航，直接解决了全景图到沉浸式3D场景的转换难题，是全景3DGS相关工作的直接匹配。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "reconstructing panoramic 360-degree scenes using Gaussian splatting",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.00885v1",
+      "source": "arxiv",
+      "title": "Improving Sparse-View 3DGS Generalization via Flat Minima Optimization",
+      "abstract": "Recent advances in neural rendering have established 3D Gaussian Splatting (3DGS) as a highly efficient representation for novel view synthesis, enabling fast training and real-time rendering with strong fidelity. However, when supervision is limited to sparse input views, 3DGS tends to overfit to the observed images and generalize poorly to unseen viewpoints. We address this challenge from the perspective of flat minima (FM) optimization, which seeks solutions that remain stable under small parameter perturbations. Viewing Gaussian parameters as trainable weights, we adapt FM principles to the geometric and dynamic nature of 3DGS with a lightweight training framework. Our method regularizes optimization with controlled Gaussian perturbations that account for each Gaussian's anisotropy and the training progress, preserving fine details while improving robustness to sparse-view overfitting. To further stabilize this flat minima optimization process, we introduce periodic reinitialization, which temporarily returns non-positional parameters to their initial states for a short window. Together, these techniques integrate seamlessly into existing 3DGS pipelines without architectural changes. Experiments on LLFF and Mip-NeRF360 datasets demonstrate improved quantitative metrics and perceptual quality under sparse-view supervision, producing reconstructions that are sharper, more stable, and better generalized to novel viewpoints.",
+      "authors": [
+        "Kangmin Seo",
+        "Sangeek Hyun",
+        "MinKyu Lee",
+        "Jae-Pil Heo"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-07-01T12:52:57+00:00",
+      "link": "https://arxiv.org/pdf/2607.00885v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "improves 3DGS novel view synthesis under sparse views",
+      "llm_evidence_cn": "改进稀疏视图下的3DGS新视角合成",
+      "llm_evidence": "改进稀疏视图下的3DGS新视角合成",
+      "canonical_evidence": "改进稀疏视图下的3DGS新视角合成",
+      "llm_tldr_en": "Applies flat minima optimization to regularize 3DGS, improving generalization from sparse input views.",
+      "llm_tldr_cn": "论文针对稀疏视图下3DGS过拟合和泛化差的问题，将平坦最小值优化原理适配到3DGS几何动态特性，通过可控高斯扰动正则化训练，显著提升了稀疏视图下的新视角合成质量，为训练数据受限场景提供了轻量级解决方案。",
+      "llm_tldr": "论文针对稀疏视图下3DGS过拟合和泛化差的问题，将平坦最小值优化原理适配到3DGS几何动态特性，通过可控高斯扰动正则化训练，显著提升了稀疏视图下的新视角合成质量，为训练数据受限场景提供了轻量级解决方案。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.00595v1",
+      "source": "arxiv",
+      "title": "GADA: Geometry-Aware Deformable Aggregation for Image-Based Gaussian Splatting",
+      "abstract": "Gaussian Splatting has achieved significant improvements by incorporating warping-based techniques. However, such methods suffer from pixel-level inaccuracies due to uncertain geometry. This uncertainty leads to spatial misalignments in the warped images, which disrupt residual learning used in warping-based methods and fundamentally limit the gains of correction, particularly on thin structures and high-frequency details. Driven by our insight that useful visual cues are not lost but locally preserved under slight displacement, we propose Geometry-Aware Deformable Aggregation (GADA). This method introduces an iterative refinement module with deformable offsets to actively correct spatial misalignments and recover these displaced cues. Furthermore, to address the limitations of standard pipelines where visibility checks (i.e., thresholding) often discard valid pixels and multi-view warped image fusion relies on naive mean aggregation, our module is coupled with an implicit confidence weighting mechanism that selectively suppresses unreliable evidence. Consequently, our approach outperforms prior warping-based Gaussian Splatting, preserving high-frequency quality while achieving 2.13 times faster FPS.",
+      "authors": [
+        "Siwoo Lim",
+        "Sunjae Yoon",
+        "Gwanhyeong Koo",
+        "Chang D. Yoo"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-01T08:18:46+00:00",
+      "link": "https://arxiv.org/pdf/2607.00595v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "improves Gaussian Splatting novel view synthesis via deformable aggregation",
+      "llm_evidence_cn": "通过可变形聚合改进高斯溅射的新视角合成",
+      "llm_evidence": "通过可变形聚合改进高斯溅射的新视角合成",
+      "canonical_evidence": "通过可变形聚合改进高斯溅射的新视角合成",
+      "llm_tldr_en": "GADA corrects spatial misalignments in warped images for Gaussian Splatting, enhancing detail recovery.",
+      "llm_tldr_cn": "论文提出GADA，针对基于扭曲的高斯溅射方法中几何不确定导致的像素级错位问题，引入迭代精化模块与可变形偏移主动纠正错位并恢复丢失的高频细节，显著提升了新视角合成的质量，尤其在薄结构和细节区域。",
+      "llm_tldr": "论文提出GADA，针对基于扭曲的高斯溅射方法中几何不确定导致的像素级错位问题，引入迭代精化模块与可变形偏移主动纠正错位并恢复丢失的高频细节，显著提升了新视角合成的质量，尤其在薄结构和细节区域。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
