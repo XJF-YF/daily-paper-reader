@@ -1,0 +1,69 @@
+{
+  "label": "2026-07-04",
+  "date": "2026-07-04",
+  "generated_at": "2026-07-04T21:06:07",
+  "count": 4,
+  "papers": [
+    {
+      "paper_id": "202607/04/2606.28635v2-aegir-modeling-area-emitters-for-indoor-inverse-rendering-using-gaussian-splatting",
+      "section": "deep",
+      "title_en": "AEGIR: Modeling Area Emitters for Indoor Inverse Rendering using Gaussian Splatting",
+      "authors": "Mohamed Shawky Sabae, Philipp Langsteiner, Jan-Niklas Dihlmann, Hendrik Lensch",
+      "date": "2026-06-26",
+      "pdf": "https://arxiv.org/pdf/2606.28635v2",
+      "score": "8.0",
+      "evidence": "使用高斯泼溅进行新视角合成和逆渲染",
+      "tldr": "室内逆渲染中分离光照与材质高度歧义，现有可重光照高斯溅射方法用点光源或环境图近似，导致光照衰减错误和阴影不真实。AEGIR显式建模局部面光源并融入可重光照高斯溅射表示，通过可微延迟渲染管线联合优化发射器、材质与几何，使用多重重要性采样和针对性正则化实现准确局部光传输。实验表明该方法显著提升光照重建质量及下游任务如可控重光照与虚拟物体插入，尤其在复杂局部光照场景下表现优越。该方法为高斯溅射逆渲染中物理真实的光照建模提供了新思路。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Inverse rendering requires separating illumination from surface materials, which is highly ambiguous due to their tight coupling in observed images. While Gaussian Splatting is efficient for novel view synthesis, existing relightable methods approximate scene lighting using discrete point lights, global environment maps, or implicit representations. By ignoring the physical spatial extent of real-world emitters, these approaches produce incorrect light attenuation and unrealistic shadows. We present AEGIR (Area Emitters for Gaussian Inverse Rendering), a framework that explicitly models local area emitters within a relightable Gaussian Splatting representation. Joint optimization of emitters, materials, and geometry is challenging due to flexible emitter parameterization, which increases both the number of parameters and the ambiguity between illumination and materials. We address this by introducing a differentiable deferred rendering pipeline that integrates multiple importance sampling with targeted regularization. As a result, AEGIR accurately simulates local light transport and achieves more consistent decomposition. Experiments show that explicit area emitters improve illumination reconstruction and enhance downstream tasks, including novel view synthesis, controlled relighting, and virtual object insertion, particularly in scenes with complex local lighting.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/04/2607.01633v1-bridging-3d-gaussians-and-semantic-occupancy-for-comprehensive-open-vocabulary-scene-understanding-from-unposed-images",
+      "section": "deep",
+      "title_en": "Bridging 3D Gaussians and Semantic Occupancy for Comprehensive Open-Vocabulary Scene Understanding from Unposed Images",
+      "authors": "Hu Zhu, Bohan Li, Xianda Guo, Yanlun Peng, Zheng Zhu, Xin Jin, Wenjun Zeng, Chang Wen Chen",
+      "date": "2026-07-02",
+      "pdf": "https://arxiv.org/pdf/2607.01633v1",
+      "score": "8.0",
+      "evidence": "3D高斯泼溅用于场景理解和渲染",
+      "tldr": "现有前馈高斯方法从稀疏无位姿图像重建时，对未观测区域约束弱。COVScene通过可微体积提升将可渲染高斯原语与密集语义占用场耦合，使体积正则化反向传播到高斯不透明度、几何和语义特征。结合语义感知几何Transformer、多任务解码、几何基础蒸馏和占用熵正则化，在ScanNet和ScanNet++上实现渲染质量、开放词汇分割和语义占用预测的显著提升，无需外部标定。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Comprehensive 3D scene understanding from sparse, unposed images requires a model to recover renderable geometry, open-vocabulary semantics, and free/occupied 3D space without relying on external camera calibration. Recent feed-forward Gaussian methods improve pose-free reconstruction and semantic rendering, but their Gaussian primitives are mainly optimized through image-space objectives and remain weakly constrained in unobserved regions. We propose \\textit{COVScene}, a pose-free semantic Gaussian framework that couples renderable Gaussian primitives with a dense semantic occupancy field through differentiable volumetric lifting. Instead of converting Gaussians to voxels only at evaluation time, COVScene lifts the predicted semantic Gaussians inside the training computation graph, so volumetric regularization provides gradients to Gaussian opacity, geometry, and semantic features. The framework combines a semantic-aware Geometry Transformer, multi-task Gaussian decoding, geometric foundation distillation, and occupancy entropy regularization to support novel view synthesis, open-vocabulary semantic querying, and semantic occupancy prediction within a single representation. Experiments on ScanNet and ScanNet++ show that COVScene maintains competitive rendering quality, improves open-vocabulary segmentation, and achieves stronger semantic occupancy prediction than the self-supervised baseline without direct voxel-level supervision.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/04/2606.29782v1-graph-gsreg-leveraging-3d-scene-graphs-for-gaussian-splatting-registration",
+      "section": "quick",
+      "title_en": "Graph-GSReg: Leveraging 3D Scene Graphs for Gaussian Splatting Registration",
+      "authors": "Jaewon Lee, Mangyu Kong, Euntai Kim",
+      "date": "2026-06-29",
+      "pdf": "https://arxiv.org/pdf/2606.29782v1",
+      "score": "7.0",
+      "evidence": "3D高斯泼溅场景配准与融合",
+      "tldr": "针对多3D高斯泼溅场景合并这一重要但未充分探索的问题，现有方法或需大量训练数据，或依赖粗初始化且计算昂贵。本文提出Graph-GSReg，通过从3DGS及其渲染图像构建3D场景图，将注册问题转化为图注册问题，实现高层次语义与结构理解；并引入自监督测试时优化消除融合空洞和浮点伪影。在真实和合成基准上，方法在注册精度和合并场景渲染质量上均表现优异，为大规模3D建图提供了高效准确的解决方案。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Merging multiple 3D Gaussian Splatting (3DGS) scenes into a single unified Gaussian representation is essential for large-scale 3D mapping and long-term map management. Despite its importance, this area remains underexplored, and existing solutions exhibit several limitations. Learning-based methods attempt direct correspondence between Gaussian primitives and require training on large 3DGS datasets. Image-based optimization methods depend heavily on coarse initialization from generic foundation models and often incur expensive refinement. We present \\ourmodel. Our method constructs a 3D scene graph from a 3DGS and its rendered images, \\textit{reformulating 3DGS registration as a graph registration problem}. The proposed 3D scene graph represents each 3DGS at a higher-level representation, enabling a globally consistent understanding of semantic information and structural context for accurate registration. To further construct a seamless unified scene, we introduce a Self-Supervised Test-Time Optimization. Naively merging two 3D Gaussian scenes often suffers from occlusion artifacts such as hollows and floaters. To alleviate this issue, we refine the merged Gaussians to preserve visual consistency between the original scenes and the merged scene. We evaluate our method on real and synthetic benchmarks, demonstrating competitive registration accuracy and merged scene rendering quality.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/04/2606.29303v2-occlusion-robust-multi-object-decoupling-for-physics-based-robotic-interaction",
+      "section": "quick",
+      "title_en": "Occlusion-Robust Multi-Object Decoupling for Physics-Based Robotic Interaction",
+      "authors": "Xin Dong, Lihan Zhang, Tianru Dai, Wenfeng Deng, Yansong Tang",
+      "date": "2026-06-28",
+      "pdf": "https://arxiv.org/pdf/2606.29303v2",
+      "score": "6.0",
+      "evidence": "使用3D高斯泼溅进行新视图合成",
+      "tldr": "稀疏遮挡视图下的多物体3D重建常因物体耦合而失效，本文提出无掩码方法解决此问题。基于3D高斯泼溅和SAM2分割场获取粗略实例分区，通过联合得分蒸馏采样（SDS）结合参考视图监督和2D/3D扩散先验，重建完整几何并保持纹理保真度。同时引入物体内和物体间相似性等几何先验正则化，无需手动掩码即可生成完整、仿真就绪的3D物体。实验在合成、机器人和真实数据集上验证，支持物理合理的动态交互。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "We propose a mask-free method for lossless multi-object 3D reconstruction from sparse and occluded real-world views, enabling physically plausible robotic interaction via Material Point Method (MPM) simulation. Our key insight is that object coupling stems from occlusion and limited viewpoints, which we address by formulating multi-object decoupling as a sparse-view reconstruction problem. Using 3D Gaussian Splatting as base representation, we first obtain coarse instance partitions with a SAM2-trained segmentation field. Rather than relying on masks, we reconstruct fragmented geometries by leveraging a joint Score Distillation Sampling (SDS) process, which integrates reference-view supervision with novel-view synthesis guided by 2D and 3D diffusion priors to enforce both texture fidelity and 3D consistency. Furthermore, we incorporate geometry-aware priors such as intra-object and inter-object similarity to regularize geometric reasoning. Experimental results demonstrate that our method produces complete, simulation-ready 3D objects without requiring manual masks, enabling realistic dynamic interactions on both synthetic, robotic and real-world datasets.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
