@@ -1,0 +1,176 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-05T21:04:33.286854+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2606.28656v1",
+      "source": "arxiv",
+      "title": "SemDynReg: Semantics-Guided Deformation Regularization for Dynamic 3D Gaussian Splatting",
+      "abstract": "Deformable 3D Gaussian Splatting (3DGS) has emerged as an efficient approach for rendering dynamic scenes in a wide range of 3D applications. However, existing deformation field-based approaches largely lack explicit object-level modeling, often resulting in inconsistent Gaussian deformations within individual objects and unwanted coupling between different objects. To address this limitation, we introduce a semantics-guided framework that enforces dynamic regularization at the object level, aiming to achieve spatially consistent object-wise deformation. Specifically, we first extract segmentation masks using the Segment Anything Model (SAM) and derive semantic features from input images. An object-ID map is then constructed via feature relevance matching with a predefined object dictionary. Guided by this object-ID map, we identify the pixel-wise top-k contributing Gaussians for each object and impose consistency regularization on their deformation parameters, including position, scale, and rotation. Unlike prior methods that learn deformation fields without explicit object-level constraints, our approach incorporates semantic cues to guide deformation behavior at the object level. Experimental results demonstrate that our semantics-aware regularization improves object-level deformation consistency and outperforms baseline methods in rendering quality, achieving higher PSNR and SSIM and lower LPIPS in dynamic 3DGS rendering. Our project page is available at https://dyn-reg-3dgs.github.io/.",
+      "authors": [
+        "Ruitao Chen",
+        "Mozhang Guo",
+        "Jinge Li"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-06-27T00:18:55+00:00",
+      "link": "https://arxiv.org/pdf/2606.28656v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Deformable 3D Gaussian Splatting for dynamic novel view synthesis with semantic regularization",
+      "llm_evidence_cn": "使用语义引导的变形正则化进行动态新颖视图合成",
+      "llm_evidence": "使用语义引导的变形正则化进行动态新颖视图合成",
+      "canonical_evidence": "使用语义引导的变形正则化进行动态新颖视图合成",
+      "llm_tldr_en": "SemDynReg introduces semantics-guided deformation regularization for dynamic 3DGS, enforcing object-level consistency and reducing unwanted coupling between objects, achieving high-quality dynamic novel view synthesis.",
+      "llm_tldr_cn": "动态三维高斯溅射在物体变形中常出现不一致和耦合问题。本文提出SemDynReg，利用SAM提取分割掩码和语义特征，构建物体ID图，在变形场中施加对象级正则化。实验表明，该方法在动态场景渲染中显著提升了物体内变形一致性，减少伪影，为动态高斯溅射提供了有效的语义约束策略。",
+      "llm_tldr": "动态三维高斯溅射在物体变形中常出现不一致和耦合问题。本文提出SemDynReg，利用SAM提取分割掩码和语义特征，构建物体ID图，在变形场中施加对象级正则化。实验表明，该方法在动态场景渲染中显著提升了物体内变形一致性，减少伪影，为动态高斯溅射提供了有效的语义约束策略。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.30014v1",
+      "source": "arxiv",
+      "title": "Shell-Supervised Gaussian Splatting for Urban Real-to-Sim Reconstruction",
+      "abstract": "Real-to-sim reconstruction for embodied AI requires geometry that is useful for collision reasoning, navigation, and agent-environment interaction, not only photorealistic novel-view synthesis. However, close-range urban facades are difficult for video-to-3D reconstruction: glass, reflections, repeated windows, and weak texture can produce visually plausible renderings with unstable surface geometry. We introduce shell-supervised Gaussian Splatting, a reconstruction-stage framework that uses an external facade structural shell as lightweight geometric supervision for video-driven Gaussian reconstruction. The method aligns an exterior shell to the video reconstruction frame, renders per-view depth, camera-space normal, and valid-mask maps, and applies these cues through mask-gated losses during Gaussian optimization. This design preserves RGB-driven appearance while regularizing only visible shell-supported facade regions. Experiments on anonymized close-range urban facade scenes show improved facade orientation and visible-surface point-cloud consistency over photo-only, monocular-cue, and surface-oriented Gaussian baselines, while maintaining comparable held-out rendering quality.",
+      "authors": [
+        "Yuan Yang",
+        "Peijun Lu",
+        "Fangzhou Lu",
+        "Sai Fan",
+        "Siqi Yan",
+        "Chenyuan Zhang",
+        "Haobo Liang",
+        "Yichen Wang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-29T09:19:24+00:00",
+      "link": "https://arxiv.org/pdf/2606.30014v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Gaussian Splatting with shell supervision for urban novel view synthesis",
+      "llm_evidence_cn": "使用外壳监督的高斯溅射用于城市新视图合成",
+      "llm_evidence": "使用外壳监督的高斯溅射用于城市新视图合成",
+      "canonical_evidence": "使用外壳监督的高斯溅射用于城市新视图合成",
+      "llm_tldr_en": "Shell-Supervised Gaussian Splatting uses an external facade shell to provide geometric supervision for video-driven Gaussian reconstruction, improving the utility of generated geometry for embodied AI tasks.",
+      "llm_tldr_cn": "城市立面重建中，仅靠光度损失会产生不稳定几何。该工作引入轻量外壳结构作为几何监督，对齐视频重建帧并渲染深度、法线图，联合优化高斯参数。在城市场景中，该方法在保持新视图合成质量的同时提供了更可靠的几何结构，适用于具身AI任务。",
+      "llm_tldr": "城市立面重建中，仅靠光度损失会产生不稳定几何。该工作引入轻量外壳结构作为几何监督，对齐视频重建帧并渲染深度、法线图，联合优化高斯参数。在城市场景中，该方法在保持新视图合成质量的同时提供了更可靠的几何结构，适用于具身AI任务。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.28720v1",
+      "source": "arxiv",
+      "title": "CubifyGS: Object-Centric 3D Gaussian Splatting for Lifelong Dynamic Scene Maintenance",
+      "abstract": "Lifelong scene mapping under rigid object rearrangement remains a fundamental challenge in robotics. While 3D Gaussian Splatting (3DGS) enables high-fidelity modeling, primitive-level updates often cause persistent ghosting and slow recovery. We propose CubifyGS, an object-level mapping framework that shifts dynamic maintenance from passive re-optimization to active asset management. CubifyGS models movable instances as reusable Gaussian assets, detects object appearance and disappearance, and updates maps through asset retrieval, rigid transformation, and explicit pruning rather than reconstruction from scratch. To address geometric voids and local photometric mismatch after such edits, we further propose an event-triggered adaptive optimization strategy that focuses computation on affected regions. We validate our approach on a newly constructed high-fidelity dynamic benchmark, demonstrating that CubifyGS improves artifact suppression and maintenance efficiency over representative reproducible baselines in the evaluated object-rearrangement setting.",
+      "authors": [
+        "Bohan Ren",
+        "Dianyi Yang",
+        "Shiyang Liu",
+        "Yu Gao",
+        "Jiadong Tang",
+        "Zhilin Lai",
+        "Yi Yang",
+        "Mengyin Fu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-27T04:00:55+00:00",
+      "link": "https://arxiv.org/pdf/2606.28720v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "3D Gaussian Splatting for object-level dynamic scene maintenance, applicable to novel view synthesis",
+      "llm_evidence_cn": "将3D高斯溅射用于对象级动态场景维护，可支持新颖视图合成",
+      "llm_evidence": "将3D高斯溅射用于对象级动态场景维护，可支持新颖视图合成",
+      "canonical_evidence": "将3D高斯溅射用于对象级动态场景维护，可支持新颖视图合成",
+      "llm_tldr_en": "CubifyGS proposes an object-level 3DGS framework for lifelong dynamic scene mapping, treating movable instances as reusable Gaussian assets, enabling efficient map updates and novel view synthesis without full retraining.",
+      "llm_tldr_cn": "机器人长期场景维护中，3DGS的原始级更新易产生鬼影且恢复缓慢。本文提出CubifyGS，将可移动实例建模为可重用高斯资产，通过资产检索、刚体变换和显式剪枝进行动态更新，避免从头重建。实验表明，在物体重排场景中实现快速、一致的映射，同时保持高保真渲染能力，为动态场景理解提供了新的对象级范式。",
+      "llm_tldr": "机器人长期场景维护中，3DGS的原始级更新易产生鬼影且恢复缓慢。本文提出CubifyGS，将可移动实例建模为可重用高斯资产，通过资产检索、刚体变换和显式剪枝进行动态更新，避免从头重建。实验表明，在物体重排场景中实现快速、一致的映射，同时保持高保真渲染能力，为动态场景理解提供了新的对象级范式。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.01803v1",
+      "source": "arxiv",
+      "title": "PixGS: Pixel-Space Diffusion for Direct 3D Gaussian Splat Generation",
+      "abstract": "Recent advances in 3D content generation from text or images have achieved impressive results, yet view inconsistency from 2D generators and the scarcity of high-quality 3D data remain significant bottlenecks. Existing solutions typically adapt large-scale pre-trained text-to-image latent diffusion models to generate 3D Gaussian Splats (3DGS). However, these approaches often rely on training complex cascade pipelines that are computationally expensive and scalability-limited. Most critically, the quality of generated 3D assets is inherently constrained by each component capacity and compressed latent space, leading to decoding artifacts and accumulated errors. To address these limitations, we propose PixGS, a single-stage pipeline for direct high-quality 3DGS generation, which leverages recent advances in pixel-space diffusion to bypass lossy latent compression while still benefiting from the vast 2D generative priors. By directly denoising 3D Gaussian attributes at each timestep, our method enables precise, splat-level regularization of both appearance and geometry. Furthermore, we introduce a comprehensive supervision strategy that incorporates surface normals, depth, and high-frequency structural information, which is often overlooked in prior works. Experiments demonstrate that PixGS outperforms current state-of-the-art methods while maintaining a fast inference speed (1s on a single A100 GPU), offering a robust and efficient alternative to multi-stage generation pipelines.",
+      "authors": [
+        "Duy Cao",
+        "Phong Nguyen-Ha"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR",
+        "cs.RO"
+      ],
+      "published": "2026-07-02T07:18:37+00:00",
+      "link": "https://arxiv.org/pdf/2607.01803v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "generates 3D Gaussian Splats for novel view synthesis",
+      "llm_evidence_cn": "生成3D高斯泼溅用于新视角合成",
+      "llm_evidence": "生成3D高斯泼溅用于新视角合成",
+      "canonical_evidence": "生成3D高斯泼溅用于新视角合成",
+      "llm_tldr_en": "PixGS is a single-stage pipeline that directly generates high-quality 3D Gaussian Splats from text or images using pixel-space diffusion.",
+      "llm_tldr_cn": "针对现有3D内容生成方法存在视角不一致和压缩伪影的问题，PixGS提出单阶段像素空间扩散模型直接生成3D高斯泼溅。该方法无需复杂级联架构，在保持生成质量的同时避免了解码误差累积。实验表明PixGS在文本/图像到3D生成任务上达到先进水平，生成的3DGS可直接用于新视角渲染。",
+      "llm_tldr": "针对现有3D内容生成方法存在视角不一致和压缩伪影的问题，PixGS提出单阶段像素空间扩散模型直接生成3D高斯泼溅。该方法无需复杂级联架构，在保持生成质量的同时避免了解码误差累积。实验表明PixGS在文本/图像到3D生成任务上达到先进水平，生成的3DGS可直接用于新视角渲染。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "label": "2026-07-05",
+  "date": "2026-07-05",
+  "generated_at": "2026-07-05T21:07:30",
+  "count": 4,
+  "papers": [
+    {
+      "paper_id": "202607/05/2606.28656v1-semdynreg-semantics-guided-deformation-regularization-for-dynamic-3d-gaussian-splatting",
+      "section": "deep",
+      "title_en": "SemDynReg: Semantics-Guided Deformation Regularization for Dynamic 3D Gaussian Splatting",
+      "authors": "Ruitao Chen, Mozhang Guo, Jinge Li",
+      "date": "2026-06-27",
+      "pdf": "https://arxiv.org/pdf/2606.28656v1",
+      "score": "9.0",
+      "evidence": "使用语义引导的变形正则化进行动态新颖视图合成",
+      "tldr": "动态3DGS中缺乏对象级建模导致高斯变形不一致和对象间耦合。本文提出SemDynReg框架，利用SAM提取语义特征构建对象ID图，对每个对象的前k个高斯施加变形参数一致性正则化。该方法在多个动态场景中提升了渲染质量，PSNR和SSIM提高，LPIPS降低。首次将语义引导的变形正则化引入动态3DGS，实现显式对象级约束。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Deformable 3D Gaussian Splatting (3DGS) has emerged as an efficient approach for rendering dynamic scenes in a wide range of 3D applications. However, existing deformation field-based approaches largely lack explicit object-level modeling, often resulting in inconsistent Gaussian deformations within individual objects and unwanted coupling between different objects. To address this limitation, we introduce a semantics-guided framework that enforces dynamic regularization at the object level, aiming to achieve spatially consistent object-wise deformation. Specifically, we first extract segmentation masks using the Segment Anything Model (SAM) and derive semantic features from input images. An object-ID map is then constructed via feature relevance matching with a predefined object dictionary. Guided by this object-ID map, we identify the pixel-wise top-k contributing Gaussians for each object and impose consistency regularization on their deformation parameters, including position, scale, and rotation. Unlike prior methods that learn deformation fields without explicit object-level constraints, our approach incorporates semantic cues to guide deformation behavior at the object level. Experimental results demonstrate that our semantics-aware regularization improves object-level deformation consistency and outperforms baseline methods in rendering quality, achieving higher PSNR and SSIM and lower LPIPS in dynamic 3DGS rendering. Our project page is available at https://dyn-reg-3dgs.github.io/.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/05/2606.30014v1-shell-supervised-gaussian-splatting-for-urban-real-to-sim-reconstruction",
+      "section": "deep",
+      "title_en": "Shell-Supervised Gaussian Splatting for Urban Real-to-Sim Reconstruction",
+      "authors": "Yuan Yang, Peijun Lu, Fangzhou Lu, Sai Fan, Siqi Yan, Chenyuan Zhang, Haobo Liang, Yichen Wang",
+      "date": "2026-06-29",
+      "pdf": "https://arxiv.org/pdf/2606.30014v1",
+      "score": "8.0",
+      "evidence": "使用外壳监督的高斯溅射用于城市新视图合成",
+      "tldr": "城市立面重建中，玻璃、反射和弱纹理导致视觉逼真但表面几何不稳定，难以用于具身AI的碰撞推理。本文提出壳监督高斯喷射，利用外部建筑结构壳作为轻量几何监督，通过渲染深度、法线和有效掩码，并施加掩码门控损失，在保持渲染质量的同时，显著改善了立面朝向和点云一致性。该方法为真实到模拟重建提供了更实用的几何方案。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Real-to-sim reconstruction for embodied AI requires geometry that is useful for collision reasoning, navigation, and agent-environment interaction, not only photorealistic novel-view synthesis. However, close-range urban facades are difficult for video-to-3D reconstruction: glass, reflections, repeated windows, and weak texture can produce visually plausible renderings with unstable surface geometry. We introduce shell-supervised Gaussian Splatting, a reconstruction-stage framework that uses an external facade structural shell as lightweight geometric supervision for video-driven Gaussian reconstruction. The method aligns an exterior shell to the video reconstruction frame, renders per-view depth, camera-space normal, and valid-mask maps, and applies these cues through mask-gated losses during Gaussian optimization. This design preserves RGB-driven appearance while regularizing only visible shell-supported facade regions. Experiments on anonymized close-range urban facade scenes show improved facade orientation and visible-surface point-cloud consistency over photo-only, monocular-cue, and surface-oriented Gaussian baselines, while maintaining comparable held-out rendering quality.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/05/2606.28720v1-cubifygs-object-centric-3d-gaussian-splatting-for-lifelong-dynamic-scene-maintenance",
+      "section": "quick",
+      "title_en": "CubifyGS: Object-Centric 3D Gaussian Splatting for Lifelong Dynamic Scene Maintenance",
+      "authors": "Bohan Ren, Dianyi Yang, Shiyang Liu, Yu Gao, Jiadong Tang, Zhilin Lai, Yi Yang, Mengyin Fu",
+      "date": "2026-06-27",
+      "pdf": "https://arxiv.org/pdf/2606.28720v1",
+      "score": "7.0",
+      "evidence": "将3D高斯溅射用于对象级动态场景维护，可支持新颖视图合成",
+      "tldr": "针对3DGS基元级更新在物体重排中导致鬼影和恢复慢的问题，提出对象级映射框架CubifyGS，将可移动实例视为可重用高斯资产，通过资产检索、刚性变换与显式剪枝实现主动地图更新，并引入事件触发自适应优化修复几何与光度缺陷。在新基准上，该方法显著抑制伪影并提升维护效率。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Lifelong scene mapping under rigid object rearrangement remains a fundamental challenge in robotics. While 3D Gaussian Splatting (3DGS) enables high-fidelity modeling, primitive-level updates often cause persistent ghosting and slow recovery. We propose CubifyGS, an object-level mapping framework that shifts dynamic maintenance from passive re-optimization to active asset management. CubifyGS models movable instances as reusable Gaussian assets, detects object appearance and disappearance, and updates maps through asset retrieval, rigid transformation, and explicit pruning rather than reconstruction from scratch. To address geometric voids and local photometric mismatch after such edits, we further propose an event-triggered adaptive optimization strategy that focuses computation on affected regions. We validate our approach on a newly constructed high-fidelity dynamic benchmark, demonstrating that CubifyGS improves artifact suppression and maintenance efficiency over representative reproducible baselines in the evaluated object-rearrangement setting.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/05/2607.01803v1-pixgs-pixel-space-diffusion-for-direct-3d-gaussian-splat-generation",
+      "section": "quick",
+      "title_en": "PixGS: Pixel-Space Diffusion for Direct 3D Gaussian Splat Generation",
+      "authors": "Duy Cao, Phong Nguyen-Ha",
+      "date": "2026-07-02",
+      "pdf": "https://arxiv.org/pdf/2607.01803v1",
+      "score": "6.0",
+      "evidence": "生成3D高斯泼溅用于新视角合成",
+      "tldr": "当前3D内容生成受限于视图不一致和高质量数据稀缺，现有方法依赖复杂级联流水线且受潜在空间压缩影响。本文提出PixGS，一种单阶段像素空间扩散模型，直接去噪3D高斯属性，避免有损解码伪影。该方法引入表面法线、深度和高频结构监督，在单张A100 GPU上1秒内生成高质量3D资产，性能超越现有SOTA。PixGS为高效3D生成提供了鲁棒且可扩展的替代方案。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Recent advances in 3D content generation from text or images have achieved impressive results, yet view inconsistency from 2D generators and the scarcity of high-quality 3D data remain significant bottlenecks. Existing solutions typically adapt large-scale pre-trained text-to-image latent diffusion models to generate 3D Gaussian Splats (3DGS). However, these approaches often rely on training complex cascade pipelines that are computationally expensive and scalability-limited. Most critically, the quality of generated 3D assets is inherently constrained by each component capacity and compressed latent space, leading to decoding artifacts and accumulated errors. To address these limitations, we propose PixGS, a single-stage pipeline for direct high-quality 3DGS generation, which leverages recent advances in pixel-space diffusion to bypass lossy latent compression while still benefiting from the vast 2D generative priors. By directly denoising 3D Gaussian attributes at each timestep, our method enables precise, splat-level regularization of both appearance and geometry. Furthermore, we introduce a comprehensive supervision strategy that incorporates surface normals, depth, and high-frequency structural information, which is often overlooked in prior works. Experiments demonstrate that PixGS outperforms current state-of-the-art methods while maintaining a fast inference speed (1s on a single A100 GPU), offering a robust and efficient alternative to multi-stage generation pipelines.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
