@@ -1,0 +1,69 @@
+{
+  "label": "2026-07-06",
+  "date": "2026-07-06",
+  "generated_at": "2026-07-06T20:46:21",
+  "count": 4,
+  "papers": [
+    {
+      "paper_id": "202607/06/2606.32036v1-pointsplat-compact-gaussian-splatting-via-human-centric-prediction",
+      "section": "quick",
+      "title_en": "PointSplat: Compact Gaussian Splatting via Human-Centric Prediction",
+      "authors": "Yujie Guo, Yudong Jin, Lingteng Qiu, Zehong Shen, Zhen Xu, Jing Zhang, Xianchao Shen, Hujun Bao, Sida Peng, Xiaowei Zhou",
+      "date": "2026-06-30",
+      "pdf": "https://arxiv.org/pdf/2606.32036v1",
+      "score": "7.0",
+      "evidence": "以人为中心的紧凑高斯溅射，直接预测3D高斯",
+      "tldr": "针对前馈式3D人体重建在视点间存在大量冗余导致表示不紧凑的问题，提出PointSplat方法，直接在3D空间预测高斯原语。通过粗几何代理和射线投射线剪枝冗余点，利用点图像变换器融合特征并一次前向预测高斯属性。显著减少高斯数并提升新视角渲染质量，对视图数量和分辨率变化表现出强鲁棒性。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Producing 3D human representations from input views on the fly is essential for immersive live streaming systems, where representation compactness is as critical as high fidelity given limited computational power and transmission bandwidth. Although recent feed-forward reconstruction methods achieve impressive quality through the view-centric prediction of 3D representations, they repeatedly encode the same subject content across multiple views, leading to significant inter-view redundancy. Our key insight is to perform predictions directly in 3D space, enabling the network to learn and produce a highly compact representation. To this end, we propose PointSplat, a novel human-centric approach that directly infers Gaussian primitives from an input point set. The proposed method first estimates a coarse geometric proxy and performs ray casting to prune redundant points and establish explicit 2D--3D correspondences. Subsequently, it employs a Point-Image Transformer to fuse appearance and geometry features, predicting Gaussian attributes in a single forward pass. This design restricts predictions to foreground regions of interest, substantially reducing the total number of Gaussians while improving novel-view rendering quality. Extensive experiments demonstrate that PointSplat achieves higher efficiency and quality while exhibiting strong robustness to variations in view count and image resolution across multiple datasets.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/06/2607.02372v1-learning-spectral-and-polarimetric-clues-for-one-to-multimodal-novel-view-synthesis",
+      "section": "quick",
+      "title_en": "Learning Spectral and Polarimetric Clues for One-to-Multimodal Novel View Synthesis",
+      "authors": "Federico Lincetto, Gianluca Agresti, Mattia Rossi, Piergiorgio Sartor, Pietro Zanuttigh",
+      "date": "2026-07-02",
+      "pdf": "https://arxiv.org/pdf/2607.02372v1",
+      "score": "7.0",
+      "evidence": "无需特殊传感器的多模态新视图合成",
+      "tldr": "针对多模态神经渲染需要昂贵传感器和校准的问题，本文提出SPoILeR方法。通过多模态预训练学习RGB与红外、偏振、多光谱等模态的关联，微调阶段仅用RGB图像即可合成其他模态的新视角。实验证明该方法能准确渲染未提供真实传感器输入的多模态图像，显著降低数据采集成本。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Neural rendering techniques allow for accurate reconstruction of the geometry and color appearance of 3D scenes. Some methods have extended their use to additional imaging modalities, such as multispectral, infrared, or polarimetric data. However, all of these approaches require expensive sensors and calibrated setups to capture new multimodal frames for each new scene. We propose Spectral and Polarimetric Implicit Learned Representation (SPoILeR), a novel method to obtain multi-view consistent renderings of unconventional modalities for scenes where either only RGB frames or very few of the additional modalities are available. Thanks to a multimodal pre-training phase, the model learns the mutual correlation between different modalities. This step allows predicting accurate renderings of unconventional modalities during a fine-tuning phase supervised only by RGB images. Experimental results show that the approach can accurately render infrared, polarimetric, and multispectral frames for scenes where no input sample captured by these types of sensors is provided.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/06/2606.29513v1-scenes-as-objects-not-primitives-instance-structured-3d-tokenization-from-unposed-views",
+      "section": "quick",
+      "title_en": "Scenes as Objects, Not Primitives: Instance-Structured 3D Tokenization from Unposed Views",
+      "authors": "Mijin Yoo, In Cho, Subin Jeon, Jiwoo Lee, Eunbyung Park, Seon Joo Kim",
+      "date": "2026-06-28",
+      "pdf": "https://arxiv.org/pdf/2606.29513v1",
+      "score": "6.0",
+      "evidence": "从无位姿视图分解场景为实例结构化的3D高斯",
+      "tldr": "现有前馈重建方法输出非结构化的点云或高斯集，实例级结构需事后恢复。本文提出从无位姿多视图图像直接分解实例结构化3D token组的框架，每组包含实例token和锚点token，解码为3D高斯。该方法在无类实例分割上超越逐场景优化，新视图合成竞争力强，并直接支持实例级编辑和开放词汇检索。对象实例成为表示的原生接口，无需3D标注。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "A 3D scene is understood through its objects, not the primitives that compose them. Yet feed-forward reconstruction methods output dense, unstructured sets of points or Gaussians, leaving object-level structure to be recovered after the fact. We propose a feed-forward framework that decomposes a scene into instance-structured 3D token groups directly from unposed multi-view images -- compact object-centric units from which reconstruction, segmentation, and manipulation all follow. Each token group pairs an instance token capturing entity-level identity with anchor tokens that encode local geometry and appearance, which are decoded into a set of 3D Gaussians. This two-level factorization decouples object identity from local appearance, making object instances a native interface of the representation rather than a derived product. The token groups are learned through differentiable rendering with joint reconstruction and segmentation supervision, requiring no 3D annotations. Our feed-forward model surpasses per-scene optimization baselines in class-agnostic instance segmentation while remaining competitive in novel view synthesis. Beyond these metrics, the same token groups directly unlock instance-level scene editing -- removing, translating, or inserting objects by operating on their groups -- as well as efficient open-vocabulary 3D instance retrieval, where retrieval complexity scales with the number of instances rather than primitives.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/06/2606.32033v1-spherope-zero-shot-optimization-free-360-panorama-generation-with-spherical-rope",
+      "section": "quick",
+      "title_en": "SpheRoPE: Zero-Shot Optimization-Free 360 Panorama Generation with Spherical RoPE",
+      "authors": "Or Hirschorn, Aaron Olender, Eli Alshan, Ianir Ideses, Lior Fritz, Sagie Benaim",
+      "date": "2026-06-30",
+      "pdf": "https://arxiv.org/pdf/2606.32033v1",
+      "score": "6.0",
+      "evidence": "360度全景生成用于沉浸式环境",
+      "tldr": "360全景生成面临训练数据稀缺和推理延迟的挑战。SpheRoPE通过将球形先验直接注入预训练扩散Transformer实现零样本生成：低频位置编码重参数化为3D笛卡尔坐标以建模球面流形，高频通道谐波量化保证等距柱状投影的严格周期性。配合语义失真无分类器引导，无需微调或优化即可生成全景图像与视频。在Flux等骨干网络上达到有竞争力性能，为开放域360内容创作开辟新路径。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "We present a zero-shot, training-free and optimization-free framework for generating 360 panoramic images and videos by directly injecting spherical priors into pre-trained diffusion transformers. Existing methods either rely on costly fine-tuning on scarce panoramic data that limits generalization, or leverage multi-step optimization that incurs prohibitive inference latency. We observe that contemporary generative models natively exhibit some panoramic priors from large-scale training. However, these emergent capabilities are insufficient, as the models fundamentally fail to satisfy the rigorous topological constraints imposed by equirectangular projection (ERP). We introduce a zero-shot and optimization-free approach that resolves these constraints at inference time. Spherical RoPE replaces standard rotary position embeddings: low-frequency channels are re-parameterized as 3D Cartesian coordinates to natively encode the spherical manifold, while high-frequency channels are harmonically quantized to enforce exact periodicity. Coupled with complementary Semantic Distortion classifier-free guidance (CFG) that explicitly steers geometry, we avoid retraining and inherit the full creative breadth of state-of-the-art models. Our approach generalizes across diverse backbones and 360 generation modalities. We demonstrate this across text-to-panorama using Flux.1, Flux.2, and LTX-Video backbones, achieving competitive performance against baselines, all while remaining training-free. Project page: https://orhir.github.io/SpheRoPE",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
