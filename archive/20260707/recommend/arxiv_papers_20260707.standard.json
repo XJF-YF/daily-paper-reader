@@ -1,0 +1,486 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-07T21:12:07.900208+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 3,
+    "deep_cap": 6,
+    "deep_selected": 3,
+    "quick_candidates": 9,
+    "quick_skim_target": 11,
+    "quick_selected": 9
+  },
+  "deep_dive": [
+    {
+      "id": "2607.02721v1",
+      "source": "arxiv",
+      "title": "Provable Pruning for Efficient 3D Gaussian Splatting via Coresets",
+      "abstract": "3D Gaussian Splatting (3DGS) enables high-quality real-time novel-view synthesis, but practical scenes often contain millions of Gaussians, making compression essential for deployment on limited hardware. Existing reduction methods are effective but mostly heuristic: they provide no multiplicative approximation guarantee for the rendered objective, and thus rely heavily on costly post-pruning finetuning to recover quality. We ask a basic question: can a 3DGS scene be provably replaced by a much smaller weighted subset (coreset) while preserving the objective of interest? We first show that, in the unrestricted setting, no non-trivial multiplicative 3DGS coreset exists. We then show that multiplicative guarantees are not impossible, but resolution-dependent. For a prescribed rendering resolution, such as representative views or grids of views/rays, we provide the first weighted coreset construction theorem for 3DGS. The construction samples Gaussians by sensitivity: provable importance scores measuring each Gaussian's role in the full-scene objective. Finally, under explicit validity and log-transmittance stability assumptions, we turn this objective guarantee into a rendering guarantee. Empirically, our method is strongest where deployment needs it most: aggressive compression with no or minimal recovery compute. In prune-only and very short finetuning regimes, it achieves state-of-the-art performance, showing that principled importance estimation can be both theoretically meaningful and practically useful. Open-source code is available at https://github.com/waseem-m/3dgs_provable_coresets.",
+      "authors": [
+        "Waseem Mousa",
+        "Alaa Maalouf"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR",
+        "cs.LG"
+      ],
+      "published": "2026-07-02T19:15:54+00:00",
+      "link": "https://arxiv.org/pdf/2607.02721v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "provable pruning for 3DGS to improve novel view synthesis efficiency",
+      "llm_evidence_cn": "基于可证明剪枝的3DGS方法提升新视角合成效率",
+      "llm_evidence": "基于可证明剪枝的3DGS方法提升新视角合成效率",
+      "canonical_evidence": "基于可证明剪枝的3DGS方法提升新视角合成效率",
+      "llm_tldr_en": "Proposes a coreset-based pruning method for 3D Gaussian Splatting that provides theoretical guarantees for preserving rendering quality, enabling efficient novel view synthesis on limited hardware.",
+      "llm_tldr_cn": "针对3DGS场景中高斯数量过多导致部署困难的问题，本文提出基于核心集的可证明剪枝方法。首次从理论上证明在无限制条件下不存在非平凡乘法保证的核心集，但指出在分辨率依赖条件下可达到保证。该方法无需昂贵的后修剪微调即可保持渲染质量，为3DGS的高效部署提供了理论基础。",
+      "llm_tldr": "针对3DGS场景中高斯数量过多导致部署困难的问题，本文提出基于核心集的可证明剪枝方法。首次从理论上证明在无限制条件下不存在非平凡乘法保证的核心集，但指出在分辨率依赖条件下可达到保证。该方法无需昂贵的后修剪微调即可保持渲染质量，为3DGS的高效部署提供了理论基础。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.03765v1",
+      "source": "arxiv",
+      "title": "Sparse-View Surface Reconstruction using Gaussian Splatting through High-Confidence Depth Propagation with Normal Priors",
+      "abstract": "3D reconstruction from sparse views is a challenging task in 3D computer vision. Recent studies on 3D Gaussian Splatting (3DGS) have achieved remarkable results with sparse views in novel view synthesis, yet reconstructing high-quality geometric surfaces from sparse views remains a challenge, due to the limited geometry clues and the discreteness of Gaussians. In this paper, we propose a novel 3DGS-based method for high-fidelity surface reconstruction from sparse views. Our key insight is to introduce a normal-guided depth propagation approach, which can extend depth information from high-confidence regions to constrain the depth in low-confidence areas. Additionally, we propose an abnormal depth edge-aware regularization to address depth discontinuities caused by the discreteness of Gaussians. Extensive experiments on DTU and Tanks-and-Temples datasets demonstrate that our method outperforms the state-of-the-art methods in sparse view surface reconstruction. Project page: https://hanl2010.github.io/DP-GS.",
+      "authors": [
+        "Liang Han",
+        "Bangcai Wei",
+        "Junsheng Zhou",
+        "Yu-Shen Liu",
+        "Zhizhong Han"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-04T08:33:40+00:00",
+      "link": "https://arxiv.org/pdf/2607.03765v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "sparse-view surface reconstruction using Gaussian Splatting with depth propagation",
+      "llm_evidence_cn": "基于高斯泼溅的稀疏视角表面重建，结合深度传播",
+      "llm_evidence": "基于高斯泼溅的稀疏视角表面重建，结合深度传播",
+      "canonical_evidence": "基于高斯泼溅的稀疏视角表面重建，结合深度传播",
+      "llm_tldr_en": "Enhances sparse-view 3DGS surface reconstruction by propagating depth from high-confidence regions using normal priors, improving geometry quality.",
+      "llm_tldr_cn": "针对稀疏视角下3DGS表面重建几何线索不足的问题，本文提出法向引导的深度传播方法，将高置信区域的深度信息扩展到低置信区域，并增加异常深度边缘约束。该方法在仅使用少量输入视图的情况下，显著提升了重建表面的保真度和完整性，拓展了3DGS在几何重建中的应用。",
+      "llm_tldr": "针对稀疏视角下3DGS表面重建几何线索不足的问题，本文提出法向引导的深度传播方法，将高置信区域的深度信息扩展到低置信区域，并增加异常深度边缘约束。该方法在仅使用少量输入视图的情况下，显著提升了重建表面的保真度和完整性，拓展了3DGS在几何重建中的应用。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.05347v1",
+      "source": "arxiv",
+      "title": "WildSplat: Feedforward Gaussian Splatting from Unposed In-the-Wild Images",
+      "abstract": "While feedforward 3D reconstruction excels at efficient novel view synthesis, it typically falters when faced with scenes under varying illumination. To this end, we introduce WildSplat, the first feedforward 3D Gaussian Splatting framework capable of appearance-conditioned novel-view synthesis for unposed in-the-wild images. To handle inconsistent photometric conditions, we propose a dual-branch architecture that explicitly decouples geometry from appearance. The geometry branch extracts an appearance-invariant 3D structure and jointly predicts camera poses. To govern the rendering appearance, the appearance branch injects target appearance cues into the content features via a globally pre-modulated cross-attention mechanism. To further prevent feature entanglement, we introduce a joint multi-reference training strategy that stabilizes the training process. Extensive experiments show that WildSplat surpasses existing optimization-based and feedforward methods, achieving state-of-the-art performance in in-the-wild novel view synthesis and appearance editing from sparse inputs in a single forward pass.",
+      "authors": [
+        "Xiyu Zhang",
+        "Jingyu Zhuang",
+        "Hongjia Zhai",
+        "Zizheng Yan",
+        "Jinwei Chen",
+        "Guofeng Zhang",
+        "Qingnan Fan"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-06T17:29:44+00:00",
+      "link": "https://arxiv.org/pdf/2607.05347v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "feedforward Gaussian Splatting for unposed in-the-wild novel view synthesis",
+      "llm_evidence_cn": "面向无位姿野外图像的前馈式高斯泼溅新视角合成",
+      "llm_evidence": "面向无位姿野外图像的前馈式高斯泼溅新视角合成",
+      "canonical_evidence": "面向无位姿野外图像的前馈式高斯泼溅新视角合成",
+      "llm_tldr_en": "First feedforward 3DGS framework for appearance-conditioned novel view synthesis from unposed in-the-wild images, decoupling geometry and appearance.",
+      "llm_tldr_cn": "针对野外图像光照变化和缺失位姿的问题，本文提出WildSplat，首个前馈式3DGS框架。采用双分支架构解耦几何与外观：几何分支提取外观不变结构并联合预测相机姿态，外观分支通过全局预调制交叉注意力注入目标外观线索。该方法在无需位姿输入且光照多变场景下实现了质量可比的渲染，拓展了3DGS在野外环境的实用性。",
+      "llm_tldr": "针对野外图像光照变化和缺失位姿的问题，本文提出WildSplat，首个前馈式3DGS框架。采用双分支架构解耦几何与外观：几何分支提取外观不变结构并联合预测相机姿态，外观分支通过全局预调制交叉注意力注入目标外观线索。该方法在无需位姿输入且光照多变场景下实现了质量可比的渲染，拓展了3DGS在野外环境的实用性。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.30545v2",
+      "source": "arxiv",
+      "title": "StereoGS: Sparse-View 3D Gaussian Splatting via Stereo Priors",
+      "abstract": "3D Gaussian Splatting (3DGS) has achieved remarkable success in real-time novel view synthesis, yet it suffers from severe overfitting under sparse-view settings due to insufficient geometric constraints. While recent methods introduce monocular depth priors to mitigate this, they inherently struggle with scale ambiguity and cross-view inconsistency, leading to defective geometry. In this paper, we propose StereoGS, a novel sparse-view 3DGS framework that integrates stereo priors to establish reliable binocular consistency. Unlike scale-agnostic monocular constraints, StereoGS introduces a Stereo Depth Regularization by constructing virtual stereo pairs during optimization and leveraging a foundation stereo model to enforce absolute scale and binocular-consistent structures. To further suppress overfitting and eliminate redundant primitives, we design a Gradient-Aware Opacity Decay strategy that dynamically penalizes Gaussians based on their relative opacity gradient magnitudes. Combined with a Consistency-Aware Dense Initialization using zero-shot multi-view depth estimation, StereoGS effectively anchors primitives to accurate scene surfaces. Extensive experiments on LLFF, DTU, Mip-NeRF360, and Blender datasets demonstrate that StereoGS achieves state-of-the-art performance in sparse-view settings without incurring any additional inference overhead. Project Page: https://stringerywh00.github.io/StereoGS_project_page/",
+      "authors": [
+        "Wenhao Yuan",
+        "Yiyuan Ge",
+        "Deli Cai"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-29T16:45:57+00:00",
+      "link": "https://arxiv.org/pdf/2606.30545v2",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "3D Gaussian Splatting for novel view synthesis",
+      "llm_evidence_cn": "3D高斯泼溅用于新视角合成",
+      "llm_evidence": "3D高斯泼溅用于新视角合成",
+      "canonical_evidence": "3D高斯泼溅用于新视角合成",
+      "llm_tldr_en": "StereoGS introduces stereo depth priors to 3D Gaussian Splatting for sparse-view novel view synthesis, addressing overfitting and scale ambiguity, achieving high-quality results with binocular consistency.",
+      "llm_tldr_cn": "针对3D高斯泼溅在稀疏视角下因缺乏几何约束而过拟合的问题，StereoGS提出了立体深度正则化方法，在优化中构建虚拟立体对并利用基础立体模型增强双目一致性。实验表明，该方法有效恢复了绝对尺度，在多个数据集上提升了新视角合成的几何精度和渲染质量。这项工作为稀疏视角3DGS提供了可靠的几何先验方案。",
+      "llm_tldr": "针对3D高斯泼溅在稀疏视角下因缺乏几何约束而过拟合的问题，StereoGS提出了立体深度正则化方法，在优化中构建虚拟立体对并利用基础立体模型增强双目一致性。实验表明，该方法有效恢复了绝对尺度，在多个数据集上提升了新视角合成的几何精度和渲染质量。这项工作为稀疏视角3DGS提供了可靠的几何先验方案。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.00832v2",
+      "source": "arxiv",
+      "title": "Pano2World: End-to-End 3D Generation via Unified Multi-View Sequences",
+      "abstract": "A single panorama captures the full visual sphere from one camera center, yet confines users to looking around in place without enabling true scene exploration. Converting a single panorama into a persistent, renderable 3D representation for free-viewpoint navigation has attracted growing interest; existing methods either adopt iterative per-view completion that propagates inpainting results to update the underlying geometry, leading to progressive error accumulation and cumbersome multi-step pipelines, or leverage the temporal consistency priors of video generation models, yet the continuous-trajectory constraint intrinsic to such models limits their flexibility in covering scenes from multiple directions simultaneously. We present Pano2World, which takes a single indoor panorama as input and directly outputs a persistent, explorable 3D Gaussian scene. Given the source panorama, Pano2World first reconstructs a coarse 3D Gaussian proxy and renders it at adaptively sampled nearby poses to obtain geometrically aligned guidance panoramas; a panoramic diffusion model then jointly denoises all target views via View-Aware Attention Routing, where each target view simultaneously receives geometric constraints from its corresponding guidance panorama and global semantic guidance from the source panorama, naturally enforcing cross-view consistency. To avoid the information loss incurred by decoding the multi-view hidden features formed during joint denoising back to the pixel domain via VAE, we introduce Latent Feature Adapter, a geometry-aware bridge module that directly distills these hidden features into a scene latent, subsequently decoded into the final 3D Gaussian scene. Experiments demonstrate that Pano2World significantly outperforms existing methods on the multi-position panoramic novel-view synthesis benchmark.",
+      "authors": [
+        "Zhenjia Li",
+        "Jinrang Jia",
+        "Yifeng Shi"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-07-01T11:54:02+00:00",
+      "link": "https://arxiv.org/pdf/2607.00832v2",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "panorama to 3D for free-viewpoint navigation in 360 immersive environments",
+      "llm_evidence_cn": "全景到3D用于360度沉浸式环境的自由视角导航",
+      "llm_evidence": "全景到3D用于360度沉浸式环境的自由视角导航",
+      "canonical_evidence": "全景到3D用于360度沉浸式环境的自由视角导航",
+      "llm_tldr_en": "Pano2World converts a single panorama into a 3D representation for free-viewpoint navigation without requiring Gaussian splatting. It addresses limitations of iterative per-view completion and video model constraints.",
+      "llm_tldr_cn": "针对单张全景图局限于固定视点、无法自由探索场景的问题，现有方法存在误差累积或灵活性不足。本文提出Pano2World，将单张全景图转化为可渲染的3D表示，支持自由视点导航。通过统一多视图序列实现端到端3D生成，避免了多步流水线和轨迹约束。实验表明该方法生成质量高且灵活。",
+      "llm_tldr": "针对单张全景图局限于固定视点、无法自由探索场景的问题，现有方法存在误差累积或灵活性不足。本文提出Pano2World，将单张全景图转化为可渲染的3D表示，支持自由视点导航。通过统一多视图序列实现端到端3D生成，避免了多步流水线和轨迹约束。实验表明该方法生成质量高且灵活。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "novel view synthesis for 360-degree immersive environments",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.01698v2",
+      "source": "arxiv",
+      "title": "Signal Structure-Aware Gaussian Splatting for Large-Scale Scene Reconstruction",
+      "abstract": "3D Gaussian Splatting has demonstrated remarkable potential in novel view synthesis. In contrast to small-scale scenes, large-scale scenes inevitably contain sparsely observed regions with excessively sparse initial points. In this case, supervising Gaussians initialized from low-frequency sparse points with high-frequency images often induces uncontrolled densification and redundant primitives, degrading both efficiency and quality. Intuitively, this issue can be mitigated with scheduling strategies, which can be categorized into two paradigms: modulating target signal frequency via densification and modulating sampling frequency via image resolution. However, previous scheduling strategies are primarily hardcoded, failing to perceive the convergence behavior of scene frequency. To address this, we reframe the scene reconstruction problem from the perspective of signal structure recovery and propose SIG, a novel scheduler that synchronizes image supervision with Gaussian frequencies. Specifically, we derive the average sampling frequency and bandwidth of 3D representations, and then regulate the training image resolution and the Gaussian densification process based on scene frequency convergence. Furthermore, we introduce Sphere-Constrained Gaussians, which leverage the spatial prior of initialized point clouds to control Gaussian optimization. Our framework enables frequency-consistent, geometry-aware, and floater-free training, achieving state-of-the-art performance by a substantial margin in both efficiency and rendering quality in large-scale scenes. The code is available at: https://github.com/weiyixue999/Signal_Structure_Aware_Gaussian",
+      "authors": [
+        "Weiyi Xue",
+        "Fan Lu",
+        "Chi Zhang",
+        "Tianhang Wang",
+        "Sanqing Qu",
+        "Zehan Zheng",
+        "Boyuan Zheng",
+        "Junqiao Zhao",
+        "Guang Chen"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-02T04:41:51+00:00",
+      "link": "https://arxiv.org/pdf/2607.01698v2",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "3D Gaussian Splatting novel view synthesis for large-scale scenes",
+      "llm_evidence_cn": "面向大规模场景的3D高斯溅射新视角合成",
+      "llm_evidence": "面向大规模场景的3D高斯溅射新视角合成",
+      "canonical_evidence": "面向大规模场景的3D高斯溅射新视角合成",
+      "llm_tldr_en": "Proposes signal structure-aware scheduling for 3DGS to handle sparse regions in large-scale scenes, improving efficiency and quality.",
+      "llm_tldr_cn": "针对大规模场景中稀疏观测区域导致的高斯过度密集与冗余问题，提出信号结构感知调度策略，通过自适应调节信号频率或采样频率来优化训练，在保持高质量新视角合成的同时提升效率，实验证明优于固定调度方案。该方法无需改变网络结构，可广泛适用于现有3DGS框架。",
+      "llm_tldr": "针对大规模场景中稀疏观测区域导致的高斯过度密集与冗余问题，提出信号结构感知调度策略，通过自适应调节信号频率或采样频率来优化训练，在保持高质量新视角合成的同时提升效率，实验证明优于固定调度方案。该方法无需改变网络结构，可广泛适用于现有3DGS框架。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.03390v1",
+      "source": "arxiv",
+      "title": "TemporalGS: Training-Free Plug-and-Play Acceleration for 3D Gaussian Splatting Rendering via Temporal Priors",
+      "abstract": "3D Gaussian Splatting (3DGS) has revolutionized novel-view synthesis with its fast and high-fidelity rendering. However, rendering at high FPS and low latency across various scenes remains a challenge, especially when large amounts of 3D Gaussian ellipsoids appear in the scene. To address this issue, we introduce TemporalGS, to the best of our knowledge, the first training-free plug-and-play algorithmic approach to accelerate 3DGS rendering without any post-training or post-processing, implemented on top of tile-based software rasterization. The key idea is that, instead of rendering frames independently as 3DGS, we leverage the temporal priors, represented by novel geometry and appearance buffers, etc., to reduce redundancy of Gaussian preprocessing, sorting, and rasterization operations of consecutive frames. Specifically, we propose two acceleration strategies: (1) temporal dynamic culling, which filters out Gaussians that contribute less to current frame rendering; (2) selective rendering, which renders only a small portion of tiles that cannot be approximated by the temporal priors. By adapting and interleaving these two strategies, TemporalGS yields a simple but effective plug-and-play solution for 3DGS rendering speed-up without any training. Extensive experiments show that TemporalGS achieves comparable or even better performance compared to existing state-of-the-art post-training or post-processing-based 3DGS rendering acceleration approaches. TemporalGS can significantly enhance the rendering speed of various 3DGS methods, achieving up to $1.48\\times$ acceleration, while maintaining competitive rendering quality. We further extend our TemporalGS to hardware rasterization-based 3DGS to show the portability of our algorithm.",
+      "authors": [
+        "Yuhongze Zhou",
+        "Zihao Yang",
+        "Xinxin Zuo",
+        "Juwei Lu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "published": "2026-07-03T14:46:58+00:00",
+      "link": "https://arxiv.org/pdf/2607.03390v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Accelerates 3DGS rendering using temporal priors without retraining",
+      "llm_evidence_cn": "无需训练，利用时间先验加速3DGS渲染",
+      "llm_evidence": "无需训练，利用时间先验加速3DGS渲染",
+      "canonical_evidence": "无需训练，利用时间先验加速3DGS渲染",
+      "llm_tldr_en": "Introduces TemporalGS, a training-free plug-and-play method that leverages temporal priors to accelerate 3DGS rendering by reducing redundant computation across frames.",
+      "llm_tldr_cn": "针对3DGS渲染高帧率低延迟的挑战，提出TemporalGS，无需重新训练的后处理加速算法，利用帧间几何和外观缓存的时间先验，在软件光栅化上减少计算量，实现显著加速而不损失质量。该方法是第一个训练无关的加速方案。",
+      "llm_tldr": "针对3DGS渲染高帧率低延迟的挑战，提出TemporalGS，无需重新训练的后处理加速算法，利用帧间几何和外观缓存的时间先验，在软件光栅化上减少计算量，实现显著加速而不损失质量。该方法是第一个训练无关的加速方案。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.03209v1",
+      "source": "arxiv",
+      "title": "Fast 3D Foundation Model Initialized Gaussian Splatting",
+      "abstract": "This paper introduces a fast method for high-quality 3D Gaussian Splatting (3DGS) reconstruction without traditional Structure-from-Motion (SfM). The proposed approach leverages 3D Foundation Models (3DFMs) for camera pose and point-cloud initialization, then jointly optimizes both camera poses and Gaussian primitives using a depth-guided loss function. This enables fast convergence even from rough initialization with as few as 50-60 input views. To further improve reconstruction quality in sparse-view scenarios, an MLP-based pose refinement module is introduced alongside depth-guided supervision from the foundation model. Extensive experiments on Mip-NeRF 360, Tanks and Temples, and RobustNeRF demonstrate that the proposed method achieves competitive reconstruction quality (23.61 dB PSNR, 0.19 LPIPS) while reducing training time to approximately three minutes per scene. The proposed method produces ready-to-use 3DGS models at a fraction of the time required by existing pipelines, making it suitable for near real-time applications in robotics, VR, and autonomous navigation.",
+      "authors": [
+        "Anurag Dalal",
+        "Daniel Hagen",
+        "Kjell G. Robbersmyr",
+        "Kristian Muri Knausgård"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR",
+        "cs.RO"
+      ],
+      "published": "2026-07-03T11:24:27+00:00",
+      "link": "https://arxiv.org/pdf/2607.03209v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "3DGS reconstruction without SfM using foundation model initialization for novel view synthesis",
+      "llm_evidence_cn": "使用基础模型初始化跳过SfM的3DGS重建用于新视图合成",
+      "llm_evidence": "使用基础模型初始化跳过SfM的3DGS重建用于新视图合成",
+      "canonical_evidence": "使用基础模型初始化跳过SfM的3DGS重建用于新视图合成",
+      "llm_tldr_en": "Fast 3DFM-GS uses 3D foundation models to initialize camera poses and point clouds for 3DGS, enabling fast convergence without SfM and improving sparse-view quality.",
+      "llm_tldr_cn": "传统3DGS依赖SfM初始化，耗时长且对稀疏视图脆弱。本文利用3D基础模型直接估计相机姿态和点云，联合优化高斯原语和姿态，无需SfM。深度引导损失和MLP姿态细化模块使重建在50-60张视图下快速收敛，在多个基准上达到竞争质量。",
+      "llm_tldr": "传统3DGS依赖SfM初始化，耗时长且对稀疏视图脆弱。本文利用3D基础模型直接估计相机姿态和点云，联合优化高斯原语和姿态，无需SfM。深度引导损失和MLP姿态细化模块使重建在50-60张视图下快速收敛，在多个基准上达到竞争质量。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.03771v1",
+      "source": "arxiv",
+      "title": "City-Level 3D Surface Reconstruction with Viewpoint Orientation Partitioning and Scene Completion",
+      "abstract": "Multi-view 3D surface reconstruction is a longstanding challenge in computer vision. Although recent large-scale reconstruction methods based on 3D Gaussian Splatting (3DGS) achieve impressive novel-view synthesis, producing high-quality surfaces over large scenes remains difficult, due to complex geometry, long optimization, and limited memory. In this paper, we propose a novel yet simple partitioning method to efficiently and faithfully reconstruct large-scale scene surfaces. Our key insight lies in a scene partitioning method based on viewpoint orientation. This partitioning approach ensures that views with similar orientations are jointly involved for more accurate depth estimations, leading to precise surface reconstructions and balanced computation on multiple GPUs in parallel. In addition, we propose a strategy to detect and repair missing regions in the initial point cloud caused by sparse viewpoints or insufficient textures, thereby further improving the geometric quality. Extensive experiments on the GauU-Scene, MatrixCity, and UrbanScene3D datasets demonstrate that our method outperforms the state-of-the-art approaches in surface reconstruction for large-scale scenes. Project page: https://hanl2010.github.io/VOP-GS.",
+      "authors": [
+        "Liang Han",
+        "Wenyuan Zhang",
+        "Junsheng Zhou",
+        "Yu-Shen Liu",
+        "Zhizhong Han"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-04T08:44:12+00:00",
+      "link": "https://arxiv.org/pdf/2607.03771v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "City-level surface reconstruction using 3DGS with viewpoint orientation partitioning",
+      "llm_evidence_cn": "使用基于视点方向分区的3DGS进行城市级表面重建",
+      "llm_evidence": "使用基于视点方向分区的3DGS进行城市级表面重建",
+      "canonical_evidence": "使用基于视点方向分区的3DGS进行城市级表面重建",
+      "llm_tldr_en": "Proposes viewpoint orientation partitioning for 3DGS-based large-scale surface reconstruction, improving depth accuracy and surface quality.",
+      "llm_tldr_cn": "针对城市级大场景3DGS表面重建的挑战，提出基于视点方向的分区方法，将相似视点的视图联合用于深度估计，提高表面重建精度，在多个大规模数据集上取得优于现有方法的结果。该方法简单有效，可扩展到更大场景。",
+      "llm_tldr": "针对城市级大场景3DGS表面重建的挑战，提出基于视点方向的分区方法，将相似视点的视图联合用于深度估计，提高表面重建精度，在多个大规模数据集上取得优于现有方法的结果。该方法简单有效，可扩展到更大场景。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.03872v1",
+      "source": "arxiv",
+      "title": "SharpSplat: Edge-Regularized 3D Gaussian Splatting for High Fidelity Urban Building Reconstruction from UAV images",
+      "abstract": "Reconstructing high-fidelity 3D building models from UAV imagery is essential for large-scale digital twin development. However, existing 3D Gaussian Splatting (3DGS) techniques often struggle with building facades, failing to capture sharp geometric transitions. To address this, we propose a semantic edge regularization framework that supervises 3DGS to produce crisp architectural boundaries. Our method leverages SAM 3 to generate precise building masks, from which we extract architecturally significant edges. During training, we align rendered image gradients with these extracted edges, forcing the Gaussians to converge into sharp structural geometries. Evaluations across campus environments, dense urban centers, and custom residential datasets demonstrate significant improvements in edge fidelity without requiring architectural modifications to the 3DGS pipeline. Our approach proves robust across diverse building types, roof geometries, and urban densities.",
+      "authors": [
+        "Porus Vaid",
+        "Shivam Chopra",
+        "Vaibhav Kumar"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-04T13:31:22+00:00",
+      "link": "https://arxiv.org/pdf/2607.03872v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "3D Gaussian Splatting for building reconstruction",
+      "llm_evidence_cn": "3D高斯泼溅用于建筑重建",
+      "llm_evidence": "3D高斯泼溅用于建筑重建",
+      "canonical_evidence": "3D高斯泼溅用于建筑重建",
+      "llm_tldr_en": "SharpSplat uses semantic edge regularization to refine 3DGS for urban building facades, achieving sharp geometric boundaries from UAV imagery.",
+      "llm_tldr_cn": "针对3D高斯泼溅在建筑立面重建中边缘模糊的问题，SharpSplat提出了语义边缘正则化框架，利用SAM生成建筑掩码并提取显著边缘，在训练中对齐渲染梯度与提取边缘。在校园和密集城区场景的评估中，该方法显著提升了建筑边界的锐度，为数字孪生应用提供了高保真几何重建方案。",
+      "llm_tldr": "针对3D高斯泼溅在建筑立面重建中边缘模糊的问题，SharpSplat提出了语义边缘正则化框架，利用SAM生成建筑掩码并提取显著边缘，在训练中对齐渲染梯度与提取边缘。在校园和密集城区场景的评估中，该方法显著提升了建筑边界的锐度，为数字孪生应用提供了高保真几何重建方案。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.03875v1",
+      "source": "arxiv",
+      "title": "MACRO: Training-free Multi-plane Attention for Closeup Render Optimization",
+      "abstract": "Close-up rendering, zooming into a scene well beyond any training camera, is important for virtual production and interactive 3D content, yet remains an open challenge. 3D Gaussian splatting (3DGS) enables high-fidelity, real-time novel view synthesis, but its rendering quality degrades at close range. Recent diffusion-based methods that enhance the rendering by conditioning on reference images from the training set produce significant artifacts in this setting. We analyze this failure and identify its root cause: the scale gap between the close-up and reference views. We show that the features in reference-conditioned enhancement models are not scale-invariant, causing cross-view attention to retrieve incorrect correspondences when the same content appears at different scales, and that this mismatch cannot be corrected in latent space because the VAE encoder is not scale-equivariant. Building on this analysis we introduce MACRO, Multi-plane Attention for Closeup Render Optimization, a training-free method for high-quality close-up novel view synthesis from 3DGS. MACRO resolves the scale gap by leveraging the scene's known 3D structure: it decomposes the close-up into depth planes, crops and resizes references in image space to match the scale of each plane before encoding, and applies a depth-aware attention mask so each token attends only to scale-matched references. The method requires no architectural changes or additional training. We further contribute two new close-up novel view synthesis benchmarks, the first standardized evaluation protocol for this setting, and demonstrate state-of-the-art results on both, outperforming existing 3DGS and diffusion-based methods on both reconstruction and perceptual metrics. Project page: https://nitzanhod.github.io/MACRO",
+      "authors": [
+        "Nitzan Hodos",
+        "Roy Amoyal",
+        "Lior Fritz",
+        "Ianir Ideses",
+        "Sagie Benaim",
+        "Netalee Efrat"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-04T13:36:06+00:00",
+      "link": "https://arxiv.org/pdf/2607.03875v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "improves 3DGS rendering quality at close-up views for novel view synthesis",
+      "llm_evidence_cn": "改进3DGS在近景视角的渲染质量，用于新视图合成",
+      "llm_evidence": "改进3DGS在近景视角的渲染质量，用于新视图合成",
+      "canonical_evidence": "改进3DGS在近景视角的渲染质量，用于新视图合成",
+      "llm_tldr_en": "MACRO addresses the quality degradation of 3DGS at close-up views by identifying scale discrepancy in cross-view attention, proposing a training-free multi-plane attention method to correct correspondences.",
+      "llm_tldr_cn": "3D高斯溅射在近景渲染中质量下降，现有扩散增强方法因尺度不一致产生伪影。本文MACRO通过分析发现尺度差距是根源，提出无训练的多平面注意力机制，校正跨视图注意力对应关系。该方法无需额外训练即可提升近景渲染质量，适用于虚拟制作等场景。",
+      "llm_tldr": "3D高斯溅射在近景渲染中质量下降，现有扩散增强方法因尺度不一致产生伪影。本文MACRO通过分析发现尺度差距是根源，提出无训练的多平面注意力机制，校正跨视图注意力对应关系。该方法无需额外训练即可提升近景渲染质量，适用于虚拟制作等场景。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.04661v1",
+      "source": "arxiv",
+      "title": "Targeted Structure Completion for Sparse-View 3D Reconstruction in Autonomous Driving",
+      "abstract": "Reconstructing 3D scene structures from sparse, low-overlap observations remains a fundamental challenge in autonomous driving. Recent state-of-the-art frameworks achieve promising results by incorporating voxel-based Gaussians, but incur substantial computational redundancy due to a uniform volumetric processing strategy. To bridge the gap between the efficiency of pixel-based Gaussian methods and the structural completeness of voxel-based Gaussian approaches, we propose FocusGS, a simple yet effective framework that shifts the paradigm from global densification to targeted structural completion. Our central insight is that structural completion should be decoupled from deterministic regions, with computation concentrated exclusively on areas exhibiting geometric ambiguity. Specifically, FocusGS addresses the localization challenge by deriving a 3D Geometric Ambiguity Manifold to accurately isolate localized areas prone to occlusion and high geometric uncertainty. To overcome the subsequent manifold completion challenge, we design a lightweight targeted structure completion module that selectively instantiates and optimizes continuous Gaussian queries strictly within this unstructured, sparse topological subspace. Extensive experiments demonstrate that FocusGS achieves a superior efficiency-quality trade-off, advancing state-of-the-art performance on driving-centric benchmarks while naturally reducing the total number of Gaussians by ~74% and decreasing rendering time by ~34%.",
+      "authors": [
+        "Guoqing Wang",
+        "Pin Tang",
+        "Xiangxuan Ren",
+        "Liping Hou",
+        "Chao Ma"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-07-06T04:31:45+00:00",
+      "link": "https://arxiv.org/pdf/2607.04661v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "3D Gaussian Splatting for autonomous driving scenes with sparse views",
+      "llm_evidence_cn": "面向自动驾驶稀疏视图的3D高斯溅射重建",
+      "llm_evidence": "面向自动驾驶稀疏视图的3D高斯溅射重建",
+      "canonical_evidence": "面向自动驾驶稀疏视图的3D高斯溅射重建",
+      "llm_tldr_en": "FocusGS improves sparse-view 3D reconstruction from autonomous driving data by shifting from global densification to targeted structural completion using Gaussian methods.",
+      "llm_tldr_cn": "自动驾驶中稀疏低重叠观测的3D重建面临挑战，现有体素高斯方法计算冗余。本文提出FocusGS，将结构完成从确定性区域解耦，仅对不确定区域进行目标式填充。在高效保留像素级高斯方法优势的同时，实现结构完整性，在KITTI等数据集上性能优异。",
+      "llm_tldr": "自动驾驶中稀疏低重叠观测的3D重建面临挑战，现有体素高斯方法计算冗余。本文提出FocusGS，将结构完成从确定性区域解耦，仅对不确定区域进行目标式填充。在高效保留像素级高斯方法优势的同时，实现结构完整性，在KITTI等数据集上性能优异。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

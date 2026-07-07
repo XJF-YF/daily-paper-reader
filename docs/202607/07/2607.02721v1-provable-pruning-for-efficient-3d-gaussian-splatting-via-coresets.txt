@@ -1,0 +1,5031 @@
+Title: Provable Pruning for Efficient 3D Gaussian Splatting via Coresets
+
+URL Source: https://arxiv.org/pdf/2607.02721v1
+
+Published Time: Tue, 07 Jul 2026 00:14:03 GMT
+
+Number of Pages: 39
+
+Markdown Content:
+## Provable Pruning for Efficient 3D Gaussian Splatting via Coresets 
+
+Waseem Mousa 1 Alaa Maalouf 11Department of Computer Science, University of Haifa 
+
+Project page and open-source code: github.com/waseem-m/3dgs_provable_coresets 
+
+Abstract 
+
+3D Gaussian Splatting (3DGS) enables high-quality real-time novel-view synthesis, but practical scenes often contain millions of Gaussians, making compression essential for deployment on limited hardware. Existing reduction methods are effective but mostly heuristic: they provide no multiplicative approximation guarantee for the rendered objective, and thus rely heavily on costly post-pruning finetuning to recover quality. We ask a basic question: can a 3DGS scene be provably replaced by a much smaller weighted subset (coreset) while preserving the objective of interest? We first show that, in the unrestricted setting, no non-trivial multiplicative 3DGS coreset exists. We then show that multiplicative guarantees are not impossible, but resolution-dependent. For a prescribed rendering resolution, such as representative views or grids of views/rays, we provide the first weighted coreset construction theorem for 3DGS. The construction samples Gaussians by sensitivity: provable importance scores measuring each Gaussian’s role in the full-scene objective. Finally, under explicit validity and log-transmittance stability assumptions, we turn this objective guarantee into a rendering guarantee. Empirically, our method is strongest where deployment needs it most: aggressive compression with no or minimal recovery compute. In prune-only and very short finetuning regimes, it achieves state-of-the-art performance, showing that principled importance estimation can be both theoretically meaningful and practically useful. Open-source code is available at github.com/waseem-m/3dgs_provable_coresets. 
+
+Figure 1: Our method prunes a pretrained 3D Gaussian scene while provably preserving the quality on a set of queries. In the regime where no finetuning is used, our approach preserves rendering quality better than competing pruning heuristics, especially at aggressive pruning ratios. 
+
+1 Introduction 
+
+3D Gaussian Splatting (3DGS) has become a central representation for real-time novel-view synthesis, combining explicit Gaussian scene models with visibility-aware differentiable splatting and strong fidelity– speed tradeoffs [ 1– 8]. Yet, high-quality reconstructions often require large Gaussian sets, creating significant 1
+
+> arXiv:2607.02721v1 [cs.CV] 2 Jul 2026
+
+memory, storage, bandwidth, and runtime costs, especially on resource-limited hardware. This has motivated growing work on 3DGS pruning and global compaction [9–22]. 
+
+The gap. While these methods demonstrate that strong compression is often possible, they leave two key bottlenecks. First, the compressed Gaussian set is often followed by a costly recovery stage, requiring substantial hardware resources and many fine-tuning iterations. Second, existing approaches are largely heuristic, providing no provable guarantees on approximation error or subset size. 
+
+Our approach: Coresets for 3DGS. To this end, we study 3DGS pruning through the lens of coresets: small weighted subsets that approximately preserve a target objective over a prescribed family of queries. This leads to our central question: Can a full 3DGS scene be provably replaced by a much smaller weighted subset of the gaussian while preserving the target rendering objective, and under what assumptions is such a guarantee possible? This question is especially important in low-compute settings. When only a prune-only evaluation or a very short recovery phase is feasible, the selected subset directly determines performance. A principled compression method should therefore identify which Gaussians are most important for preserving the rendered objective, while providing explicit control over the approximation error, not requiring intense fine-tuning steps. 
+
+The challenge. While coreset construction frameworks provide such guarantees for many objectives [ 23 –26 ], including subset-selection approaches for neural-network compression [ 27 – 29 ], the main obstacle in 3DGS is visibility: front-to-back compositing couples Gaussians through transmittance, so changing or removing one early Gaussian can affect the contribution of many later Gaussians. We therefore ask whether 3DGS admits any non-trivial multiplicative coreset guarantee at all, and if not in full generality, what restrictions recover a useful theorem in practice. 
+
+A glimpse into our findings. Our answer is twofold: In the unrestricted setting, no general multiplicative coreset theorem is possible: if the query family is rich enough to isolate individual Gaussians, then every Gaussian can become indispensable. However, this unrestricted view is stronger than what is needed for rendering. In practice, approximation is required only over a finite set of queries (views) induced by the desired rendering resolution, e.g., desired grid/set of views or rays. Under this finite-query formulation, together with a fixed full-scene objective, frozen itemwise contributions, and stable transmittance/occlusion, we prove a weighted coreset construction theorem. The resulting Gaussian subset size scales only logarithmically with the number of representative queries/resolution. The construction is based on assigning each Gaussian a sensitivity scores, which quantify the importance of it with respect to the objective and guide the sampling procedure. Thus, our main theoretical message is: non-trivial 3DGS coresets are impossible in full generality, but provable pruning is possible under practically meaningful restrictions. 
+
+Our Contribution. This work develops a theory-guided framework for 3DGS compression/pruning and evaluates it in low-compute deployment regimes. Our main contributions are: 1. Impossibility in full generality. We prove that no non-trivial multiplicative coreset guarantee can hold for unrestricted 3DGS rendering: when the query family is rich enough to isolate individual Gaussians, every Gaussian may become necessary; see theorem 1. 2. Resolution-dependent provable 3DGS pruning (coreset). First, for a desired rendering resolution (a given set or a grid of views/rays), and a fixed full-scene reference decomposition, we provide the first provable pruning (coreset construction) algorithm for 3DGS; the remaining Gaussian subset size scales logarithmically by the size of the desired views set (resolution); see section 3.2 and theorem 2. Then, we prove that transfer from a fixed-objective guarantee for true 3DGS re-rendering is possible under explicit validity and log-transmittance stability assumptions; see section 3.3 and theorem 3. 3. Extension beyond finite resolutions (query sets). We extend the representative-query theorem from 2finite query families to compact query regions using representative covers and Lipschitz control; see section 3.4 and theorem 4. 4. Open-source implementation. We release the sensitivity computation, coreset construction, pruning, and evaluation pipeline at github.com/waseem-m/3dgs_provable_coresets. Extensive experiments indicate that our theoretically inspired method delivers strong performance across the evaluated settings, with particularly clear gains in prune-only/no-finetuning evaluation and very short finetuning budgets, where costly recovery is not feasible; see sections 3.5 and 4. 
+
+2 Related Work 
+
+3D Gaussian Splatting. 3DGS introduced an explicit radiance-field representation built from anisotropic Gaussians, interleaved optimization and density control, and visibility-aware splatting, enabling fast training and real-time rendering [ 1 ]. A large follow-up literature refined this framework in several directions, including anti-aliasing and scale robustness [ 2 , 5 ], structured or view-adaptive parameterizations [ 3 ], stronger geometric fidelity [ 4 ], and alternative optimization or densification dynamics [ 6 , 30 , 31 ]. Broader surveys document how quickly 3DGS has expanded across optimization, systems, and applications [ 7 , 8 ]. For our purposes, the key point is that once 3DGS became a strong rendering primitive, Gaussian-set size and cost became central research problems [9, 10]. 
+
+3DGS compaction and pruning. A growing literature targets the memory, storage, and runtime costs of large 3D scenes, including budgeted training or densification methods [ 9 , 10 ]. Others reduce model size through pruning, compact parameterizations, or global reduction [ 11 –18 ]. A third group emphasizes coding and storage efficiency through progressive or quantized representations [ 19 – 21 ]. Compression surveys now provide a broader taxonomy of this landscape [ 8, 22 ]. Pruning [ 15 , 16 ] is especially attractive because it is post hoc and representation-preserving: it outputs a smaller standard 3DGS scene that can be rendered by existing pipelines, without specialized runtime libraries or separate decoding, while directly reducing memory and rendering cost. 
+
+Coresets and provable pruning. Coresets are small weighted subsets that approximate an objective over a query family [ 32 – 36 ]. Coresets have been applied to many problems, including regression, subspace approximation, k-means, neural-network training, test-time active fine tuning, and domain adaptations [ 37 –48 ]. Sensitivity sampling and broader coreset frameworks are standard routes to obtaining such coresets [ 23 , 25 ,49 , 50 ]. Specifically, provable subset-selection results were developed for neural-network pruning, including data-dependent and data-independent neuron pruning [ 27 –29 , 51 ]. These results are closest in spirit to our goal, but they assume objectives with a fixed itemwise decomposition once the input is fixed. 
+
+3 3DGS Pruning via Coresets 
+
+3DGS scene. 3DGS represents a scene by a set of Gaussians. Let N > 0 be an integer, a 3DGS scene is a set G = {g1, . . . , g N } of N Gaussians, where for every i ∈ [N ]: gi = ( μi, Σi, α i, c i) such that μi ∈ R3
+
+is the mean, Σi ∈ R3×3 is the positive definite covariance matrix, αi ∈ [0 , 1] is the opacity, and ci is the view-dependent intensity of a color channel. 
+
+Our goal. For a given query (camera pose and a pixel to render), to render the desired pixel, Gaussians are composited through front-to-back order: each Gaussian contributes according to its projected footprint, color, and opacity, scaled by the transmittance left by earlier Gaussians. We seek a multiplicative approximation 3guarantee over a family of rendering queries. To mathematically formulate this in a standard relative-error form, each query (we wish to approximate) specifies the camera parameters (pose) together with a specific output channel in a pixel to approximate, producing a nonnegative scalar objective for one RGB channel. Thus, a guarantee over all queries implies approximation for all selected views, pixels, and channels, and therefore for the full RGB render. 
+
+Rendering query. Formally, let Λ = {R, G, B } denote the output channels. A rendering query is 
+
+q = ( C, x, λ ) ∈ Q , where C = ( R, t ) are the camera extrinsics 1 with R ∈ SO (3) and t ∈ R3, defining the world-to-camera map p 7 → Rp + t, x is an image-plane location (a pixel), and λ ∈ Λ is an output channel. Thus, a query q corresponds to one color channel of one pixel from a camera pose. 
+
+Scalar rendering function. For gi ∈ G, let k(gi, q ) be the projected Gaussian-kernel value of Gaussian gi
+
+at pixel x under the camera pose C, let ρ(gi, q ) := αik(gi, q ) be its attenuation factor, and let ≺G,q denote the front-to-back order induced by the view depths of the Gaussians in G under pose C. The full-scene prefix transmittance of Gaussian gi is T (G, g i, q ) := Q 
+
+> j≺G,q i
+
+(1 − ρ(gj , q )) , and its full-scene contribution is a(G, g i, q ) := ci(q)ρ(gi, q )T (G, g i, q ). The resulting per-channel scalar rendered value of scene G is 
+
+A(G, q ) := P 
+
+> gi∈G
+
+a(G, g i, q ). A note is given here 2.
+
+A pruned 3DGS scene. A weighted pruned scene is represented by a vector w ∈ [0 , ∞)N , where wi = 0 
+
+removes Gaussian gi and wi > 0 reweights it. ∥w∥0 is the number of nonzero entries of w (number of retained Gaussians). Its true reduced-scene render is Aw(G, q ) := P 
+
+> gi∈G
+
+wici(q)ρ(gi, q )Tw(G, g i, q ), where 
+
+Tw(G, g i, q ) := Q 
+
+> j≺G,q i
+
+(1 − wj ρ(gj , q )) . Note that, in this paper, a 3DGS coreset is a weighted pruned scene whose induced objective approximates the full-scene objective over a family of queries/views. 
+
+Definition 1 (Multiplicative ε-coreset for 3DGS) . Let N > 0, G = {g1, . . . , g N } be a 3DGS scene, and let U ⊆ Q be a family of rendering queries. Let w ∈ [0 , ∞)N represent a weighted pruned scene. Recall 
+
+A, the nonnegative scalar objective of the full scene (per-channel scalar rendering function), and let Aw be the corresponding objective induced by w. We call w an ε-coreset for G on U if |A(G, q ) − Aw(G, q )| ≤ 
+
+εA (G, q ), for every q ∈ U .
+
+3.1 The Unrestricted Case: No General 3DGS Coreset 
+
+We first ask whether unrestricted 3DGS rendering admits a non-trivial multiplicative coreset guarantee. 
+
+Theorem 1 (General-case impossibility) . For every N ≥ 1 and every 0 < ε < 1, there exist a 3DGS scene 
+
+G = {g1, . . . , g N } and a query family Q such that no weighted reduced scene specified w ∈ [0 , ∞)N with 
+
+∥w∥0 < N is an ε-coreset for the true rendered objective Aw on Q.Proof overview. We construct a counterexample. Let G = {g1, . . . , g N } be any scene for which the query family is rich enough to isolate each Gaussian individually: for every i ∈ [N ], there exists a query qi ∈ Q 
+
+such that Gaussian gi is the unique positive contributor at qi. Then A(G, q i) = a(G, g i, q i) > 0 and all other Gaussians contribute zero at qi. Now let w ∈ [0 , ∞)N satisfy ∥w∥0 < N . Some index i ∈ [N ] must satisfy 
+
+wi = 0 . At the corresponding isolating query qi, the reduced scene therefore satisfies Aw(G, q i) = 0 , while the full scene satisfies A(G, q i) > 0. Hence |A(G, q i) − Aw(G, q i)| = A(G, q i), so the relative error at qi
+
+is exactly 1. Therefore w cannot be an ε-coreset for any 0 < ε < 1. The full proof, including an explicit footprint-isolation construction for finite-support rasterized 3DGS splats, is given in section C.2.         
+
+> 1For simplicity, we assume fixed camera intrinsics and fixed image domain throughout, and omit them from the notation.
+> 2Note that the quantities k(gi, q ),ρ(gi, q ),T(G, g i, q ), and the ordering ≺G,q , depend only on the camera extrinsics C, the pixel
+> x, and the Gaussian model G, and are invariant to the output channel λ.
+
+4Algorithm 1 Sensitivity-based 3DGS coreset pruning 
+
+Require: Pretrained 3DGS scene G = {gi}ni=1 , and a budget (pruned model size) m
+
+Ensure: Pruned weighted 3DGS scene G′ 
+
+> 1:
+
+Build finite queries Q′ from representative cameras, pixels/tiles, and RGB channels.  
+
+> 2:
+
+For each gi ∈ G and q ∈ Q ′, compute imp( gi, q ) := a(G, g i, q )/A (G, q ). 
+
+> 3:
+
+Set s(gi) := max q∈Q ′ imp( gi, q ), S := Pnj=1 s(gj ), p(gi) := s(gi)/S.  
+
+> 4:
+
+Sample m Gaussians i.i.d. from G according to p; let Ni be the number of times gi is sampled.  
+
+> 5:
+
+Assign weight wi := Ni/(m p (gi)) for every sampled Gaussian; w = ( w1, · · · , w n) 
+
+> 6:
+
+return w
+
+The interpretation: if the query family is rich enough to isolate individual Gaussians, then every Gaussian is indispensable. A coreset theorem must restrict the query family, the objective, or both. 
+
+3.2 Coresets for 3DGS Under Representative Queries 
+
+The unrestricted impossibility result shows that non-trivial guarantees require structure. We therefore restrict attention to a finite representative query family induced by the target views together with a nonnegative scalar objective and a stability condition on prefix transmittance perturbations. We then define the sampling rule and state the fixed-objective and rendered guarantees. 
+
+Setting: Finite query set Let Q′ ⊆ Q be a finite family of representative queries: guarantees are required over a controlled set of camera poses and image samples, not over a continuum of all possible cameras and rays. In 3DGS terms, Q′ defines the view-space discretization of the guarantee: its density determines how finely the approximation covers camera translations and rotations, while its image samples define the pixels, tiles, or channels being scored. 
+
+Our approach: Gaussian sensitivity. We seek to quantify the importance of each Gaussian. Intuitively, a Gaussian may contribute very differently across queries: it may be highly influential for some views, rays, or pixels, and nearly irrelevant for others. We therefore first define the contribution of each Gaussian to each query. We then define its global importance, or sensitivity, as the maximum relative contribution over all queries. This identifies Gaussians whose removal could cause large approximation errors, and distinguishes them from Gaussians that are consistently negligible. First, we disregard queries where A(G, q ) = 0 since no Gaussian is required for them. For each Gaussian gi ∈ G and each query q ∈ Q ′, we introduce the importance 
+
+of gi with respect to q: imp (gi, q ) := a(G,g i,q ) 
+
+> A(G,q )
+
+, We then define the Gaussian’s sensitivity score as: 
+
+s(gi) := max  
+
+> q∈Q ′
+
+imp (gi, q ) = max  
+
+> q∈Q ′
+
+a(G, g i, q )/A (G, q ), (1) and the total sensitivity of the scene is S := P 
+
+> gi∈G
+
+s(gi). Thus s(gi) is the largest normalized contribution of Gaussian i over the representative family. 
+
+Pruning pipeline: 3DGS Coreset via Sensitivity sampling. For every Gaussian gi, define p(gi) := s(gi)/S .For a target sample size m, sample (i.i.d) m Gaussian G′ = {g′
+
+> 1
+
+, . . . , g ′
+
+> m
+
+} from the scene G, where each g′ 
+
+> i
+
+is sampled with probability p(g′
+
+> i
+
+). Define ni to be the number of times gi was sampled. The output weight vector w ∈ [0 , ∞)N is then wi := ni
+
+mp (gi) . Equivalently, each sampled occurrence of Gaussian gi contributes an inverse-probability weight (mp (gi)) −1. The resulting weighted reduced scene is supported on at most m
+
+Gaussians and is unbiased for the fixed-objective relaxation on every fixed query. Algorithm 1 summarizes the pipeline. 5Relaxed objective. For the coreset theorem, we also introduce the auxiliary fixed-objective relaxation 
+
+Ath  
+
+> w
+
+(G, q ) := P 
+
+> gi∈G
+
+wia(G, g i, q ). Here each itemwise term a(G, g i, q ) is frozen under the transmittance of the full scene G. This is a deliberate theoretical relaxation: once the subset changes, the true rendered objective Aw no longer decomposes into fixed per-Gaussian terms, whereas Ath  
+
+> w
+
+does. The later rendered theorem shows how a guarantee for Ath  
+
+> w
+
+can be transferred back to Aw under explicit transmittance-stability assumptions. 
+
+Theorem 2 (Query size dependent 3DGS coreset) . Let G be a 3DGS scene, and let Q′ be a desired finite set of queries. Let εc, δ ∈ (0 , 1) , and let w be the weight vector produced by the pruning pipeline above (e.g., the output of a call to Alg. 1 with G and m as inputs). If m ≥ 3Sε2
+
+> c
+
+log 
+
+ 2|Q ′|
+
+> δ
+
+
+
+, then, with probability at least 1 − δ,
+
+w is an εc-coreset for the fixed-objective relaxation Ath on Q′, i.e., A(G, q ) − Ath  
+
+> w
+
+(G, q ) ≤ εcA(G, q ) for all q ∈ Q ′. Moreover, inherently ∥w∥0 ≤ m.Proof overview. For any fixed q ∈ Q ′, the estimator Ath  
+
+> w
+
+(G, q ) is an average of i.i.d. nonnegative random variables with mean A(G, q ). The sensitivity bound implies that each sampled term is at most SA (G, q ) after normalization. A standard multiplicative concentration bound therefore gives a relative-error guarantee for one query, and a union bound over the finite family Q′ yields the simultaneous statement. The full proof is given in section C.3. The fixed-objective theorem is not yet a theorem about true re-rendering. The reason is structural: once the reduced scene changes, the prefix transmittances change as well, so later Gaussian contributions are no longer fixed functions of the full scene. 
+
+3.3 Transfer to true rendering under mild transmittance stability 
+
+To transfer the fixed-objective guarantee back to true rendering, we add one more ingredient: a stability requirement saying that the reduced scene preserves the relevant prefix transmittances up to controlled multiplicative distortion. 
+
+Definition 2 (Weighted rendering validity) . A weight vector w ∈ [0 , ∞)N is called valid on the query set 
+
+Q′ if 0 ≤ wiρ(gi, q ) < 1 for every q ∈ Q ′ and i ∈ [N ]. This ensures that every factor in Tw(G, g i, q ) is nonnegative, so the reduced-scene transmittances are well-defined. 
+
+Assumption 1 (Log-transmittance stability) . There exists γ ≥ 0 such that for every q ∈ Q ′ and i ∈ [N ]
+
+with wi > 0, one has |log T (G, g i, q ) − log Tw(G, g i, q )| ≤ γ. This assumption captures the regime in which pruning and reweighting do not drastically alter the occlusion and transmittance structure along the representative queries. 
+
+Theorem 3 (Finite-query rendered coreset under mild assumptions) . Let w be the weight vector produced by the sensitivity-based sampling rule, and suppose that w is valid on Q′ and satisfies Assumption 1. Under the same sample-size condition as in theorem 2, with probability at least 1 − δ, w is an εr-coreset for the true rendered objective A on Q′, where εr := max 
+
+n
+
+1 − e−γ (1 − εc), e γ (1 + εc) − 1
+
+o
+
+. Equivalently, 
+
+|A(G, q ) − Aw(G, q )| ≤ εrA(G, q ) for all q ∈ Q ′.Proof overview. Theorem 2 controls Ath  
+
+> w
+
+(G, q ) relative to A(G, q ). The log-transmittance stability assumption then implies that, for each retained Gaussian and representative query, the reduced-scene transmittance differs from the full-scene transmittance by at most a factor e±γ . Summing these termwise bounds yields a multiplicative sandwich between Aw(G, q ) and Ath  
+
+> w
+
+(G, q ), and combining the two estimates gives the rendered guarantee. The full proof is given in section C.4. 63.4 Compact-region extension 
+
+The finite-query theorem controls a prescribed representative Q′. It is useful to ask when such a guarantee transfers from finitely many representatives to a continuous region of nearby queries. We state a standard representative-cover extension: if every query in a compact region is close to some representative query, and both the full and reduced rendered objectives vary smoothly inside the region, then the guarantee extends to the whole region with an additional cover-radius error. 
+
+Assumption 2 (Compact nondegenerate query region) . Let Qr ⊆ Q be a compact query region equipped with a metric dQ (think of Qr as a local region of camera poses, pixels, and channels around a representative set). On Qr, assume: (i) Qr is compact, (ii) the full rendered objective q 7 → A(G, q ) is Lipschitz on Qr with constant Lfull , (iii) the reduced rendered objective q 7 → Aw(G, q ) is Lipschitz on Qr with constant Lw, and (iv) the full rendered objective is bounded away from zero: A(G, q ) ≥ Amin > 0, for every q ∈ Q r.
+
+Definition 3 (ρ-net) . A finite set Q′ 
+
+> r
+
+⊆ Q r is a ρ-net of Qr if for every q ∈ Q r there exists q′ ∈ Q ′ 
+
+> r
+
+such that 
+
+dQ(q, q ′) ≤ ρ. 
+
+The Lipschitz requirement is a local regularity condition. It is expected to hold on regions where the active set of Gaussians is finite, the front-to-back order does not change discontinuously, and the camera-to-ray map, color functions, and projected kernel values vary smoothly. In other words, the region should not cross a sharp visibility or ordering discontinuity. The appendix gives the formal smoothness-to-Lipschitz argument; see section C.5. 
+
+Theorem 4 (Compact-region extension from representatives) . Assume Assumption 2. Let Q′ 
+
+> r
+
+⊆ Q r be a finite ρ-net. Suppose that the reduced scene satisfies the multiplicative guarantee on the representative set: 
+
+|A(G, q ′) − Aw(G, q ′)| ≤ ε0A(G, q ′), for every q′ ∈ Q ′
+
+> r
+
+. Then for every q ∈ Q r, |A(G, q ) − Aw(G, q )| ≤ 
+
+εreg A(G, q ), where εreg := ε0 +
+
+ (1+ ε0)Lfull +Lw
+
+ρAmin .
+
+Proof overview. For any query q ∈ Q r, choose a representative q′ ∈ Q ′ 
+
+> r
+
+within distance ρ. The error at q
+
+is decomposed into three terms: the change of the full render A(G, ·) from q to q′, the representative-set approximation error at q′, and the change of the reduced render Aw(G, ·) from q′ back to q. The two change terms are controlled by the Lipschitz constants, while the middle term is controlled by the representative-set coreset guarantee. The lower bound A(G, q ) ≥ Amin converts the resulting additive cover-radius term into relative error. The full proof is given in section C.5. When theorem 3 holds on Q′
+
+> r
+
+, we may take Q′ = Q′ 
+
+> r
+
+and instantiate ε0 by the finite-query rendered coreset error εr. Thus, theorem 4 extends the finite rendered guarantee from a representative query set to a compact region, at the cost of an additional term proportional to the cover radius ρ.
+
+3.5 Sensitivity at Multiple Resolutions 
+
+The finite-query coreset theorem is stated for per-channel objectives, but the same argument applies to any finite collection of nonnegative objectives obtained by aggregating these channel contributions. In particular, one may define the query space at different rendering resolutions: individual color channels, pixels, tiles, or scenes. Each choice simply changes what is treated as a single query objective before applying the same sensitivity-sampling argument. The Chernoff analysis is unchanged: the sampled random variables now correspond to the chosen aggregated objective rather than to a single color channel, and the resulting guarantee preserves that objective over the finite query family. 7Table 1: Per-dataset average prune-only results at prune ratios 0.90 and 0.99. Rows are prune ratios and methods; columns are grouped by dataset and metric. Bold indicates best per dataset/metric/ratio; colored cells mark the top three methods.                                                                                                                
+
+> Prune Method Mip-NeRF 360 Deep Blending Tanks & Temples PSNR ↑SSIM ↑LPIPS ↓PSNR ↑SSIM ↑LPIPS ↓PSNR ↑SSIM ↑LPIPS ↓
+> 0.90 GHAP 16.76 0.458 0.494 20.53 0.744 0.437 14.83 0.488 0.483 PUP 15.79 0.535 0.429 19.52 0.765 0.393 13.38 0.577 0.406
+> Trim 14.45 0.413 0.480 16.52 0.642 0.429 12.46 0.471 0.458 Unif 13.16 0.391 0.516 15.69 0.654 0.501 10.22 0.437 0.482 Ours 18.16 0.580 0.417 22.16 0.790 0.390 16.35 0.599 0.407 0.99 GHAP 10.19 0.177 0.664 10.14 0.401 0.653 7.94 0.224 0.675 PUP 10.67 0.227 0.624 10.13 0.428 0.621 8.94 0.320 0.627 Trim 9.58 0.136 0.661 7.66 0.132 0.683 6.23 0.104 0.668 Unif 10.27 0.174 0.642 7.84 0.189 0.696 6.92 0.163 0.658 Ours 13.97 0.396 0.600 15.62 0.660 0.526 11.98 0.435 0.606
+
+Per-pixel construction. This variant treats each camera and image-plane location as a query, aggregates the RGB-channel contributions of each Gaussian into a single nonnegative pixel-level objective (luminance or total color contribution); Sensitivities are computed based on this objective. Rather than preserving each channel separately, the coreset preserves the aggregated pixel objective. 
+
+Per-tile and Per-scene construction. The per-tile variant further coarsens the query resolution. Each rendered image is partitioned into non-overlapping tiles, for example matching the tile granularity used by the 3DGS rasterization kernel. For each tile, a Gaussian’s contribution is accumulated over the pixels and channels inside that tile, and sensitivities are computed with respect to the resulting tile-level objective. This gives a finite-query coreset guarantee for tile-aggregated rendering objectives. The per-scene variant uses the coarsest aggregation level. Here, each Gaussian’s contribution is accumulated over the entire representative rendering set: all selected views, pixels, and channels. Sensitivities are therefore computed with respect to the full scene-level objective used for scoring. This is the variant used in our experiments. 
+
+Additional variants. The coreset framework motivates sensitivity-based selection, but the exact score aggregation can be engineered for practical robustness. In addition to the core color-aware L1-style contribution score, our ablations evaluate L2 variants, namely computing the sensitivities based on aL2 (G, g i, q ) := 
+
+c2 
+
+> i
+
+(q)ρ2(gi, q )T 2(G, g i, q ), which emphasize large contribution discrepancies, and nocolor variants, namely 
+
+anc (G, g i, q ) := ρ(gi, q )T (G, g i, q ), which remove the color factor to focus the score more strongly on geometry, opacity, visibility, and coverage. AL2 and Anc are also defined accordingly. These variants are empirical engineering extensions of the core method: they preserve the same sensitivity-driven selection pipeline. 
+
+4 Experimental Results 
+
+Our experimental study targets scarce-compute deployment: aggressive compression at high prune ratios, prune-only evaluation, and short finetuning budgets where long post-pruning recovery is not affordable. The results report how much fidelity each reduction rule preserves immediately after pruning and how the reduced models change under small recovery budgets. The prune-only setting corresponds to zero post-pruning optimization. The short-recovery setting uses low finetuning budgets of 10, 50, 100, and 200 iterations. This 80.90 0.93 0.95 0.97 0.99                         
+
+> 2
+> 4
+> 6
+> PSNR Gain (dB)  0.90 0.93 0.95 0.97 0.99
+> 0.1
+> 0.2
+> 0.3
+> SSIM Gain
+> 0.90 0.93 0.95 0.97 0.99
+> 0.05
+> 0.1
+> 0.15
+> LPIPS Gain
+> 0.90 0.93 0.95 0.97 0.99
+> Prune Ratio
+> 10
+> 12
+> 14
+> 16
+> 18
+> PSNR
+> 0.90 0.93 0.95 0.97 0.99
+> Prune Ratio
+> 0.2
+> 0.3
+> 0.4
+> 0.5
+> 0.6
+> SSIM
+> 0.90 0.93 0.95 0.97 0.99
+> Prune Ratio
+> 0.45
+> 0.50
+> 0.55
+> 0.60
+> 0.65
+> LPIPS
+> Ours (scene) GHAP PUP Trim Unif
+
+Figure 2: Combined prune-only curves and deltas for mip-NeRF 360: prune-only deltas (top row), and the prune-only curves (bottom row). For prune-only results, our method is significantly stronger than the competing methods across all metrics. emphasizes the regime in which the retained subset must already be strong, rather than relying on a long retraining phase. Experiments were conducted on a PC equipped with one NVIDIA A100-SXM4-40GB GPU and AMD EPYC 7742 64-Core CPUs. 
+
+Datasets. We use the same 13 scenes used by the 3DGS work [ 1 ] and other competing methods: Nine scenes from the Mip-NeRF 360 dataset [ 52 ], two scenes (truck and train) from the Tanks & Temples dataset [ 53 ], and two scenes (drjohnson and playroom) from the Deep Blending dataset [54]. 
+
+Reported results. We report PSNR, SSIM, and LPIPS as the primary image-quality metrics. We also report the pruned-Gaussian ratio and the post-pruning optimization budget where applicable. 
+
+Competing methods are: (1) GHAP: Gaussian Herding across Pens [ 17 ]; (2) PUP 3D-GS: Principled Uncertainty Pruning for 3D Gaussian Splatting [ 16 ]; (3) Trimming the Fat [ 15 ]; (4) Uniform sampling is used as a query-agnostic baseline. Our method is denoted Ours . Unless stated otherwise, in all experiments, we use the per-scene sensitivity variant. We also evaluate all variants later in this section. 
+
+Prune-only results at aggressive compression. We evaluate prune-only fidelity at the strongest compression levels where at most 20% of the Gaussians are retained. As shown in table 1, for prune ratios 0.9 and 0.99 ,our method variants consistently outperform the competing methods across all test datasets, achieving the best PSNR, SSIM, and LPIPS scores in the prune-only setting. The same trend persists across the remaining compression ratios: {0.80 , 0.85 , 0.90 } and {0.95 , 0.97 , 0.99 } which are reported, respectively, in table 2 and table 3 in the appendix due to space. 
+
+Prune-only curves and delta trends. figure 2 sweeps the high prune-ratio regime on mip-NeRF 360 and reports PSNR, SSIM, and LPIPS. The upper panels report delta plots that isolate the gap between our method and each competing method: positive deltas indicate an advantage for our method, with PSNR and SSIM computed as ours minus competitor, and LPIPS computed as competitor minus ours. It clearly shows how each method degrades as compression becomes more aggressive. While our method already shows a large advantage, this gap widens at higher prune ratios for PSNR and SSIM, and remains consistently strong for LPIPS. The only exception is the delta to uniform pruning, whose gap can shrink at the highest prune ratios because uniform pruning already starts from very poor fidelity. The same trends are observed on all of the other datasets in figure 6 of the appendix. 90 25 50 75 100 125 150 175 200                                                                     
+
+> 12
+> 14
+> 16
+> 18
+> 20
+> Prune 0.95
+> PSNR
+> PSNR
+> 025 50 75 100 125 150 175 200
+> 0.30
+> 0.35
+> 0.40
+> 0.45
+> 0.50
+> 0.55
+> 0.60
+> SSIM
+> SSIM
+> 025 50 75 100 125 150 175 200
+> 0.46
+> 0.48
+> 0.50
+> 0.52
+> 0.54
+> 0.56
+> LPIPS
+> LPIPS
+> 025 50 75 100 125 150 175 200
+> 12
+> 14
+> 16
+> 18
+> 20
+> Prune 0.97
+> PSNR
+> 025 50 75 100 125 150 175 200
+> 0.25
+> 0.30
+> 0.35
+> 0.40
+> 0.45
+> 0.50
+> 0.55
+> SSIM
+> 025 50 75 100 125 150 175 200
+> 0.50
+> 0.52
+> 0.54
+> 0.56
+> 0.58
+> 0.60
+> LPIPS
+> 025 50 75 100 125 150 175 200
+> Recovery Iterations
+> 10
+> 12
+> 14
+> 16
+> 18
+> Prune 0.99
+> PSNR
+> 025 50 75 100 125 150 175 200
+> Recovery Iterations
+> 0.15
+> 0.20
+> 0.25
+> 0.30
+> 0.35
+> 0.40
+> 0.45
+> 0.50
+> SSIM
+> 025 50 75 100 125 150 175 200
+> Recovery Iterations
+> 0.58
+> 0.60
+> 0.62
+> 0.64
+> 0.66
+> LPIPS
+> Mip-NeRF360: recovery comparison at high prune ratios
+> Ours (scene) GHAP PUP Trim Unif
+
+Figure 3: Short-recovery comparison against other methods on mip-NeRF 360 at prune ratios 0.95, 0.97, and 0.99. 
+
+Short-recovery results. The short-recovery experiments separate two effects: the fidelity preserved im-mediately after pruning, and the amount each method can recover under a small finetuning budget. Matched comparisons against com-peting methods at prune ratios 0.95 ,
+
+0.97 , and 0.99 are shown in figure 3 for mip-NeRF 360. Our methods maintain a clear advantage through-out the low-budget recovery regime, largely because they start from a stronger reduced model. The gap is most pronounced at shorter finetun-ing budgets and higher prune ratios, precisely where recovery compute is most limited. The main exception is GHAP, which begins to approach our performance after 200 finetuning iterations. This is expected, since GHAP is a global compaction method rather than standard pruning: by merging and adapting Gaussians, it has more opportunity to recover quality during finetuning. However, this also makes it less suitable for the strict prune-only or very-short-recovery setting, where the goal is to obtain an immediately strong vanilla-compatible subset with minimal post-processing. The same phenomenon is observed on the other tested datasets; see figures 11 and 12. 
+
+Figure 4: Short-recovery comparison of our methods variants on mip-NeRF 360 at prune ratios 0.95, 0.97, and 0.99. 
+
+Ablations: Effect of sensitivity res-olution and engineering variant. 
+
+We compare the different sensitiv-ity resolution variants, varying the pruning ratio and reporting PSNR, LPIPS, and SSIM, both in the prune-only setting (figure 5) and after the short recovery stage (figure 4). We evaluate the per-channel, per-pixel, per-tile, and per-scene variants intro-duced in Section 3.5, together with simple engineering variants of the scene-level score, such as remov-ing the color term or using an ℓ2
+
+aggregation instead of ℓ1. Across both settings, the same trend is ob-served: per-scene sensitivity and its engineered variant perform best, followed by per-tile, per-pixel, and per-channel scoring. This suggests that aggregating contributions over larger rendering objectives yields a more stable importance signal, especially for identifying Gaussians that are useful across many pixels and views rather than only for isolated 10 0.90 0.93 0.95 0.97 0.99              
+
+> Prune Ratio
+> 10
+> 12
+> 14
+> 16
+> 18
+> PSNR
+> PSNR vs Prune Ratio
+> 0.90 0.93 0.95 0.97 0.99
+> Prune Ratio
+> 0.1
+> 0.2
+> 0.3
+> 0.4
+> 0.5
+> 0.6
+> SSIM
+> SSIM vs Prune Ratio
+> 0.90 0.93 0.95 0.97 0.99
+> Prune Ratio
+> 0.40
+> 0.45
+> 0.50
+> 0.55
+> 0.60
+> 0.65
+> LPIPS
+> LPIPS vs Prune Ratio
+> Ours (channel) Ours (pixel) Ours (tile) Ours (image) Ours (scene) Ours (scene-L2-nc)
+
+Figure 5: Ablation: prune-only on Mip-NeRF 360 (prune ratios 0.90–0.99) across our variants. channel-level queries. The fact that the trend persists after recovery further shows that the aggregated sensitivities provide a better initialization for finetuning, not only better immediate pruning. Finally, the strong performance of the engineered variant indicates that the sensitivity framework is robust but not saturated: the theoretical principle already gives high-quality subsets, while simple implementation choices in the aggregation rule can still provide additional gains. 
+
+5 Conclusion, Limitations, and Scope 
+
+We studied 3D Gaussian Splatting pruning from a provable coreset perspective. Our results show that the right question is not whether unrestricted 3DGS admits a universal multiplicative coreset: it does not. Rather, meaningful guarantees become possible once the target rendering resolution is specified through a representative family of views, rays, pixels, or aggregated objectives. Under this structured regime, we proved a sensitivity-based coreset construction for 3DGS and showed how its fixed-objective guarantee can be transferred to true re-rendering under explicit validity and log-transmittance stability assumptions. Beyond the theory, the same sensitivity principle leads to a practical pruning rule that is especially effective when recovery compute is scarce. Across prune-only and very short finetuning regimes, our method preserves rendering quality better than competing pruning heuristics at aggressive compression ratios. This suggests that coreset-based importance estimation is not only a useful theoretical lens for understanding when 3DGS compression is possible, but also a practical tool for deployment settings where one cannot rely on long post-pruning optimization. We hope this work provides a foundation for future compression methods that combine the efficiency of vanilla-compatible pruning with explicit approximation guarantees. 
+
+Limitations. Our guarantees apply to the structured regime formalized in the paper, not to unrestricted continuous rendering, where we prove that non-trivial multiplicative coresets are impossible. The positive results hold for representative query families induced by a target rendering resolution, such as grids of camera poses, rays, pixels, or tiles, and transfer to rendering under validity and log-transmittance stability assumptions. Empirically, we focus on prune-only evaluation and very short finetuning budgets. This low-compute regime is where subset quality matters most, since little recovery compute is available to repair poor pruning decisions. Methods that rely on longer recovery or specialized compression pipelines may become more competitive under larger optimization budgets, but they are largely orthogonal to our contribution: our pruning rule can provide a strong vanilla-compatible initialization before additional refinement. See section D.1 for the extended discussion. 
+
+Code availability. The open-source implementation and evaluation pipeline are available at github.com/ waseem-m/3dgs_provable_coresets. 11 References 
+
+[1] Bernhard Kerbl, Georgios Kopanas, Thomas Leimkühler, and George Drettakis. 3D gaussian splatting for real-time radiance field rendering. ACM Transactions on Graphics , 42(4):139:1–139:14, 2023. doi: 10.1145/3592433. [2] Zehao Yu, Anpei Chen, Binbin Huang, Torsten Sattler, and Andreas Geiger. Mip-Splatting: Alias-free 3D gaussian splatting. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) , pages 19447–19456, 2024. doi: 10.1109/CVPR52733.2024.01839. [3] Tao Lu, Mulin Yu, Linning Xu, Yuanbo Xiangli, Limin Wang, Dahua Lin, and Bo Dai. Scaffold-GS: Structured 3D gaussians for view-adaptive rendering. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) , pages 20654–20664, 2024. doi: 10.1109/ CVPR52733.2024.01952. [4] Binbin Huang, Zehao Yu, Anpei Chen, Andreas Geiger, and Shenghua Gao. 2D gaussian splatting for geometrically accurate radiance fields. In SIGGRAPH 2024 Conference Papers , pages 32:1–32:11, 2024. doi: 10.1145/3641519.3657428. [5] Zhihao Liang, Qi Zhang, Wenbo Hu, Lei Zhu, Ying Feng, and Kui Jia. Analytic-Splatting: Anti-aliased 3D gaussian splatting via analytic integration. In Computer Vision – ECCV 2024 , pages 281–297, 2024. doi: 10.1007/978-3-031-72643-9_17. [6] Shakiba Kheradmand, Daniel Rebain, Gopal Sharma, Weiwei Sun, Yang-Che Tseng, Hossam Isack, Abhishek Kar, Andrea Tagliasacchi, and Kwang Moo Yi. 3D gaussian splatting as markov chain monte carlo. In Advances in Neural Information Processing Systems , 2024. doi: 10.52202/079017-2573. [7] Yanqi Bao, Tianyu Ding, Jing Huo, Yaoli Liu, Yuxin Li, Wenbin Li, Yang Gao, and Jiebo Luo. 3D gaussian splatting: Survey, technologies, challenges, and opportunities. IEEE Transactions on Circuits and Systems for Video Technology , 35(7):6832–6852, 2025. doi: 10.1109/TCSVT.2025.3538684. [8] Milena T. Bagdasarian, Paul Knoll, Yi-Hsin Li, Florian Barthel, Anna Hilsmann, Peter Eisert, and Wieland Morgenstern. 3DGS.zip: A survey on 3D gaussian splatting compression methods. Computer Graphics Forum , 44(2):e70078, 2025. doi: 10.1111/cgf.70078. [9] Guangchi Fang and Bing Wang. Mini-Splatting: Representing scenes with a constrained number of gaussians. In Computer Vision – ECCV 2024 , pages 165–181, 2024. doi: 10.1007/978-3-031-72980-5_ 10. [10] Saswat Subhajyoti Mallick, Rahul Goel, Bernhard Kerbl, Markus Steinberger, Francisco Vicente Carrasco, and Fernando De La Torre. Taming 3DGS: High-quality radiance fields with limited resources. In SIGGRAPH Asia 2024 Conference Papers , pages 2:1–2:11, 2024. doi: 10.1145/3680528.3687694. [11] Zhiwen Fan, Kevin Wang, Kairun Wen, Zehao Zhu, Dejia Xu, and Zhangyang Wang. LightGaussian: Unbounded 3D gaussian compression with 15x reduction and 200+ FPS. In Advances in Neural Information Processing Systems , 2024. doi: 10.52202/079017-4447. [12] Sharath Girish, Kamal Gupta, and Abhinav Shrivastava. EAGLES: Efficient accelerated 3D gaussians with lightweight EncodingS. In Computer Vision – ECCV 2024 , pages 54–71, 2024. doi: 10.1007/ 978-3-031-73036-8_4. 12 [13] Joo Chan Lee, Daniel Rho, Xiangyu Sun, Jong Hwan Ko, and Eunbyung Park. Compact 3D gaussian representation for radiance field. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) , pages 21719–21728, 2024. doi: 10.1109/CVPR52733.2024.02052. [14] Shuzhao Xie, Weixiang Zhang, Chen Tang, Yunpeng Bai, Rongwei Lu, Shijia Ge, and Zhi Wang. MesonGS: Post-training compression of 3D gaussians via efficient attribute transformation. In Computer Vision – ECCV 2024 , pages 434–452, 2024. doi: 10.1007/978-3-031-73414-4_25. [15] Muhammad Salman Ali, Maryam Qamar, Sung-Ho Bae, and Enzo Tartaglione. Trimming the fat: Efficient compression of 3D gaussian splats through pruning. In Proceedings of the 35th British Machine Vision Conference (BMVC) , 2024. [16] Alex Hanson, Allen Tu, Vasu Singla, Mayuka Jayawardhana, Matthias Zwicker, and Tom Goldstein. PUP 3D-GS: Principled uncertainty pruning for 3D gaussian splatting. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) , pages 5949–5958, 2025. doi: 10.1109/CVPR52734.2025.00558. [17] Tao Wang, Mengyu Li, Geduo Zeng, Cheng Meng, and Qiong Zhang. Gaussian herding across pens: An optimal transport perspective on global gaussian reduction for 3DGS. In Advances in Neural Information Processing Systems , 2025. [18] Yangming Zhang, Wenqi Jia, Wei Niu, and Miao Yin. GaussianSpa: An “optimizing-sparsifying” simplification framework for compact and high-quality 3D gaussian splatting. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) , pages 26673–26682, 2025. doi: 10.1109/CVPR52734.2025.02484. [19] Yihang Chen, Mengyao Li, Qianyi Wu, Weiyao Lin, Mehrtash Harandi, and Jianfei Cai. PCGS: Progressive compression of 3D gaussian splatting. Proceedings of the AAAI Conference on Artificial Intelligence , 40(4):3111–3119, 2026. doi: 10.1609/aaai.v40i4.37304. [20] Joo Chan Lee, Jong Hwan Ko, and Eunbyung Park. Optimized minimal 3D gaussian splatting. In 
+
+Advances in Neural Information Processing Systems , 2025. [21] Haishan Wang, Mohammad Hassan Vali, and Arno Solin. Compressing 3D gaussian splatting by noise-substituted vector quantization. In Scandinavian Conference on Image Analysis (SCIA) , pages 338–352, 2025. doi: 10.1007/978-3-031-95911-0_24. [22] Muhammad Salman Ali, Chaoning Zhang, Marco Cagnazzo, Giuseppe Valenzise, Enzo Tartaglione, and Sung-Ho Bae. Compression in 3D gaussian splatting: A survey of methods, trends, and future directions. IEEE Transactions on Circuits and Systems for Video Technology , 2026. doi: 10.1109/ TCSVT.2026.3676048. [23] Dan Feldman and Michael Langberg. A unified framework for approximating and clustering data. In 
+
+Proceedings of the 43rd Annual ACM Symposium on Theory of Computing , pages 569–578, 2011. doi: 10.1145/1993636.1993712. [24] Vladimir Braverman, Dan Feldman, Harry Lang, Adiel Statman, and Samson Zhou. New frameworks for offline and streaming coreset constructions. arXiv preprint arXiv:1612.00889 , 2016. [25] Jeff M. Phillips. Coresets and sketches. In Csaba D. Tóth, Joseph O’Rourke, and Jacob E. Goodman, editors, Handbook of Discrete and Computational Geometry , pages 1269–1288. Chapman and Hall/CRC, 3rd edition, 2017. doi: 10.1201/9781315119601-48. 13 [26] Dan Feldman. Core-sets: An updated survey. WIREs Data Mining and Knowledge Discovery , 10(1): e1335, 2020. doi: 10.1002/widm.1335. [27] Cenk Baykal, Lucas Liebenwein, Igor Gilitschenski, Dan Feldman, and Daniela Rus. Data-dependent coresets for compressing neural networks with applications to generalization bounds. In International Conference on Learning Representations , 2019. [28] Murad Tukan, Loay Mualem, and Alaa Maalouf. Pruning neural networks via coresets and convex geometry: Towards no assumptions. In Advances in Neural Information Processing Systems , pages 38003–38019, 2022. doi: 10.52202/068431-2754. [29] Lucas Liebenwein, Cenk Baykal, Harry Lang, Dan Feldman, and Daniela Rus. Provable filter pruning for efficient neural networks. In International Conference on Learning Representations , 2020. [30] Zheng Zhang, Wenbo Hu, Yixing Lao, Tong He, and Hengshuang Zhao. Pixel-GS: Density control with pixel-aware gradient for 3D gaussian splatting. In Computer Vision – ECCV 2024 , pages 326–342, 2024. doi: 10.1007/978-3-031-72655-2_19. [31] Zongxin Ye, Wenyu Li, Sidun Liu, Peng Qiao, and Yong Dou. AbsGS: Recovering fine details in 3D gaussian splatting. In Proceedings of the 32nd ACM International Conference on Multimedia , pages 1053–1061, 2024. doi: 10.1145/3664647.3681361. [32] Pankaj K. Agarwal, Sariel Har-Peled, and Kasturi R. Varadarajan. Geometric approximation via coresets. In Jacob E. Goodman, János Pach, and Emo Welzl, editors, Combinatorial and Computational Geometry ,pages 1–30. Cambridge University Press, 2005. doi: 10.1017/9781009701259.002. [33] Mihai Bădoiu and Kenneth L. Clarkson. Smaller core-sets for balls. In Proceedings of the Fourteenth Annual ACM-SIAM Symposium on Discrete Algorithms (SODA) , pages 801–802, 2003. [34] Piyush Kumar and E. Alper Yıldırım. Minimum-volume enclosing ellipsoids and core sets. Journal of Optimization Theory and Applications , 126(1):1–21, 2005. doi: 10.1007/s10957-005-2653-6. [35] Alaa Maalouf, Ibrahim Jubran, and Dan Feldman. Fast and accurate least-mean-squares solvers. In 
+
+Advances in Neural Information Processing Systems , pages 8307–8318, 2019. [36] Alaa Maalouf, Murad Tukan, Vladimir Braverman, and Daniela Rus. AutoCoreset: An automatic practical coreset construction framework. In Proceedings of the 40th International Conference on Machine Learning , pages 23451–23466, 2023. [37] Alaa Maalouf, Adiel Statman, and Dan Feldman. Tight sensitivity bounds for smaller coresets. In 
+
+Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining , pages 2051–2061, 2020. doi: 10.1145/3394486.3403256. [38] Olivier Bachem, Mario Lucic, and Andreas Krause. Scalable k-means clustering via lightweight coresets. In Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining , pages 1119–1127, 2018. doi: 10.1145/3219819.3219973. [39] Olivier Bachem, Mario Lucic, and Andreas Krause. Practical coreset constructions for machine learning. 
+
+arXiv preprint arXiv:1703.06476 , 2017. [40] Ibrahim Jubran, Murad Tukan, Alaa Maalouf, and Dan Feldman. Sets clustering. In Proceedings of the 37th International Conference on Machine Learning , pages 4994–5005, 2020. 14 [41] Murad Tukan, Samson Zhou, Alaa Maalouf, Daniela Rus, Vladimir Braverman, and Dan Feldman. Provable data subset selection for efficient neural networks training. In Proceedings of the 40th International Conference on Machine Learning , pages 34533–34555, 2023. [42] Ozan Sener and Silvio Savarese. Active learning for convolutional neural networks: A Core-Set approach. In International Conference on Learning Representations , 2018. [43] Baharan Mirzasoleiman, Jeff Bilmes, and Jure Leskovec. Coresets for data-efficient training of machine learning models. In Proceedings of the 37th International Conference on Machine Learning , pages 6950–6960, 2020. [44] Yu Yang, Hao Kang, and Baharan Mirzasoleiman. Towards sustainable learning: Coresets for data-efficient deep learning. In Proceedings of the 40th International Conference on Machine Learning ,pages 39314–39330, 2023. [45] Guy Rosman, Liam Paull, and Daniela Rus. Hybrid control and learning with coresets for autonomous vehicles. In 2017 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) , pages 6894–6901, 2017. doi: 10.1109/IROS.2017.8206612. [46] Ibrahim Jubran, Alaa Maalouf, and Dan Feldman. Overview of accurate coresets. Wiley Interdisciplinary Reviews: Data Mining and Knowledge Discovery , 11(6):e1429, 2021. doi: 10.1002/widm.1429. [47] Neha Hulkund, Alaa Maalouf, Levi Cai, Daniel Yang, Tsun-Hsuan Wang, Abigail O’Neil, Timm Haucke, Sandeep Mukherjee, Vikram Ramaswamy, Judy Hansen Shen, Gabriel Tseng, Mike Walmsley, Daniela Rus, Ken Goldberg, Hannah Kerner, Irene Chen, Yogesh Girdhar, and Sara Beery. DataS 3: Dataset subset selection for specialization. arXiv preprint arXiv:2504.16277 , 2025. [48] Alaa Khamis and Alaa Maalouf. Efficient test-time finetuning of LLMs via convex reconstruction and gradient caching. arXiv preprint arXiv:2605.30337 , 2026. [49] Alaa Maalouf, Gilad Eini, Ben Mussay, Dan Feldman, and Margarita Osadchy. A unified approach to coreset learning. IEEE Transactions on Neural Networks and Learning Systems , 35(5):6893–6905, 2024. doi: 10.1109/TNNLS.2022.3213169. [50] Murad Tukan, Alaa Maalouf, and Dan Feldman. Coresets for near-convex functions. In Advances in Neural Information Processing Systems , pages 997–1009, 2020. [51] Ben Mussay, Margarita Osadchy, Vladimir Braverman, Samson Zhou, and Dan Feldman. Data-independent neural pruning via coresets. In International Conference on Learning Representations ,2020. [52] Jonathan T. Barron, Ben Mildenhall, Dor Verbin, Pratul P. Srinivasan, and Peter Hedman. Mip-NeRF 360: Unbounded anti-aliased neural radiance fields. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) , pages 5470–5479, 2022. [53] Arno Knapitsch, Jaesik Park, Qian-Yi Zhou, and Vladlen Koltun. Tanks and temples: Benchmarking large-scale scene reconstruction. ACM Transactions on Graphics , 36(4):78:1–78:13, 2017. doi: 10.1145/3072959.3073599. [54] Peter Hedman, Julien Philip, True Price, Jan-Michael Frahm, George Drettakis, and Gabriel Brostow. Deep blending for free-viewpoint image-based rendering. ACM Transactions on Graphics , 37(6): 257:1–257:15, 2018. doi: 10.1145/3272127.3275084. 15 A Reproducibility and Experimental Protocol 
+
+This section collects the experimental information that is distributed across the main paper and states how the extended results should be read. The experiments are designed to isolate the quality of the retained Gaussian subset in the low-compute regime, first without post-pruning optimization and then under a common short recovery budget. 
+
+A.1 Evaluation setting and datasets 
+
+We evaluate the same 13 scenes described in section 4: nine scenes from mip-NeRF 360, two scenes from Tanks & Temples, and two scenes from Deep Blending. The prune-only experiments evaluate the reduced scenes immediately after pruning. The short-recovery experiments use 10, 50, 100, and 200 post-pruning finetuning iterations. All experiments were run on one NVIDIA A100-SXM4-40GB GPU with AMD EPYC 7742 64-Core CPUs. 
+
+A.2 Metrics and competing methods 
+
+We report PSNR, SSIM, and LPIPS. Higher PSNR and SSIM are better, while lower LPIPS is better. The competing methods are GHAP, PUP 3D-GS, Trimming the Fat, and uniform sampling. Unless stated otherwise, “Ours” denotes the per-scene sensitivity variant used in the main comparison. 
+
+A.3 Sensitivity variants 
+
+The ablations compare per-channel, per-pixel, per-tile, per-image, and per-scene aggregation. They also include the implementation-specific L1/L 2 and color/nocolor variants introduced in section 3.5. These variants change the aggregation or score definition while retaining the same sensitivity-driven selection pipeline. 
+
+A.4 How to read the extended results 
+
+Dataset averages summarize the broad trend, while the per-scene plots reveal whether those averages hide scene-specific reversals. Recovery plots separate the quality retained immediately after pruning from the quality recovered through additional optimization. The wider ablations test whether the ordering of the sensitivity variants remains stable across datasets, prune ratios, and recovery budgets. 
+
+B Extended Experimental Results and Ablations 
+
+This section contains the complete experimental record supporting the main results: full prune-only tables and dataset-level curves, short-recovery comparisons, per-scene prune-only plots, and the complete sensitivity-variant ablations. The numerical results and plotted curves are unchanged from the submitted paper; they are reorganized here by experimental question. 16 B.1 Complete prune-only tables 
+
+The following tables report the prune-only results over all 13 scenes. Because no recovery optimization is applied, these numbers directly measure the fidelity of the selected reduced scene. 17 Table 2: Prune-only results at prune ratios 0.80, 0.85, and 0.90 over all 13 scenes. Rows are scenes split into PSNR / SSIM / LPIPS, with each bracket followed by a per-dataset average row, and columns are grouped by prune ratio and method. Bold indicates best per scene/metric within each prune-ratio group; colored cells mark the top three methods. 
+
+Scene Metric Prune 0.80 Prune 0.85 Prune 0.90 GHAP PUP Trim Unif Ours GHAP PUP Trim Unif Ours GHAP PUP Trim Unif Ours 
+
+
+
+Flowers PSNR ↑ 16.06 16.89 14.34 10.71 17.23 15.18 15.69 12.74 10.39 16.66 14.01 14.31 11.12 10.03 15.91 
+
+SSIM ↑ 0.350 0.454 0.369 0.224 0.428 0.314 0.418 0.306 0.199 0.404 0.267 0.367 0.227 0.174 0.372 
+
+LPIPS ↓ 0.525 0.456 0.501 0.603 0.481 0.550 0.483 0.543 0.626 0.503 0.584 0.521 0.600 0.651 0.532 Treehill PSNR ↑ 18.47 18.03 13.00 13.23 19.21 17.70 17.08 11.97 12.63 18.74 16.55 15.89 10.96 12.39 18.10 
+
+SSIM ↑ 0.432 0.542 0.281 0.399 0.576 0.405 0.509 0.227 0.368 0.553 0.367 0.461 0.172 0.349 0.516 
+
+LPIPS ↓ 0.512 0.448 0.553 0.537 0.417 0.531 0.479 0.577 0.558 0.442 0.555 0.520 0.602 0.578 0.479 
+
+Bicycle PSNR ↑ 19.07 18.88 15.41 15.11 19.93 17.90 17.82 14.04 14.47 19.12 16.19 16.61 12.52 14.07 18.01 
+
+SSIM ↑ 0.477 0.579 0.444 0.378 0.588 0.430 0.530 0.364 0.338 0.549 0.363 0.464 0.263 0.309 0.494 
+
+LPIPS ↓ 0.433 0.360 0.426 0.502 0.357 0.460 0.394 0.469 0.531 0.385 0.498 0.440 0.522 0.557 0.427 
+
+Bonsai PSNR ↑ 21.99 19.03 22.90 12.42 19.86 20.38 16.68 21.24 11.79 19.16 18.09 14.10 19.17 11.31 18.24 SSIM ↑ 0.726 0.774 0.764 0.473 0.736 0.676 0.701 0.706 0.426 0.698 0.602 0.587 0.624 0.359 0.651 
+
+LPIPS ↓ 0.388 0.322 0.310 0.427 0.344 0.422 0.367 0.351 0.453 0.377 0.466 0.424 0.402 0.487 0.417 Counter PSNR ↑ 21.16 20.14 21.30 16.26 22.83 19.83 17.94 19.34 14.85 21.58 17.93 15.19 17.03 13.30 19.92 
+
+SSIM ↑ 0.691 0.780 0.753 0.639 0.797 0.650 0.725 0.691 0.586 0.764 0.588 0.634 0.604 0.504 0.717 
+
+LPIPS ↓ 0.381 0.297 0.295 0.380 0.301 0.413 0.339 0.336 0.409 0.334 0.455 0.396 0.394 0.458 0.377 
+
+Garden PSNR ↑ 18.86 17.83 14.35 16.75 19.36 17.41 16.44 12.77 15.94 18.26 15.33 14.75 11.09 15.07 16.95 
+
+SSIM ↑ 0.491 0.597 0.468 0.510 0.604 0.435 0.531 0.383 0.467 0.546 0.360 0.446 0.284 0.418 0.476 
+
+LPIPS ↓ 0.402 0.304 0.407 0.409 0.313 0.435 0.352 0.462 0.443 0.356 0.483 0.415 0.526 0.481 0.416 Kitchen PSNR ↑ 19.24 17.37 18.34 14.27 19.31 17.69 15.19 16.09 13.36 17.96 15.68 12.89 13.52 11.92 16.40 
+
+SSIM ↑ 0.659 0.733 0.726 0.615 0.766 0.603 0.657 0.651 0.569 0.717 0.525 0.550 0.548 0.467 0.651 
+
+LPIPS ↓ 0.369 0.257 0.267 0.327 0.258 0.412 0.310 0.320 0.361 0.299 0.466 0.385 0.394 0.437 0.358 
+
+Room PSNR ↑ 23.17 24.30 24.34 18.03 21.51 21.81 22.44 22.20 16.76 20.78 19.56 19.89 19.63 14.73 19.78 SSIM ↑ 0.762 0.852 0.822 0.715 0.796 0.729 0.819 0.773 0.669 0.774 0.675 0.766 0.696 0.588 0.744 LPIPS ↓ 0.367 0.272 0.284 0.386 0.314 0.395 0.303 0.324 0.417 0.339 0.437 0.352 0.377 0.465 0.376 Stump PSNR ↑ 20.00 22.13 18.06 16.86 22.34 18.93 20.49 16.61 16.19 21.50 17.50 18.51 15.05 15.65 20.12 
+
+SSIM ↑ 0.487 0.677 0.492 0.430 0.683 0.442 0.623 0.409 0.390 0.655 0.377 0.540 0.303 0.353 0.599 
+
+LPIPS ↓ 0.446 0.314 0.409 0.476 0.305 0.471 0.352 0.451 0.502 0.329 0.505 0.406 0.505 0.526 0.374 Mip-NeRF 360 
+
+PSNR ↑ 19.78 19.40 18.01 14.85 20.18 18.54 17.75 16.33 14.04 19.30 16.76 15.79 14.45 13.16 18.16 
+
+SSIM ↑ 0.564 0.665 0.569 0.487 0.664 0.521 0.612 0.501 0.446 0.629 0.458 0.535 0.413 0.391 0.580 
+
+LPIPS ↓ 0.425 0.337 0.384 0.450 0.343 0.454 0.375 0.426 0.478 0.374 0.494 0.429 0.480 0.516 0.417 
+
+
+
+DrJohnson PSNR ↑ 24.48 23.88 21.68 22.17 23.74 22.92 21.84 19.42 19.88 22.95 20.69 19.14 16.59 18.00 21.92 
+
+SSIM ↑ 0.812 0.832 0.770 0.776 0.813 0.781 0.798 0.711 0.730 0.796 0.730 0.743 0.608 0.688 0.773 
+
+LPIPS ↓ 0.371 0.320 0.333 0.399 0.346 0.401 0.354 0.368 0.429 0.367 0.441 0.400 0.418 0.461 0.396 
+
+Playroom PSNR ↑ 24.85 24.70 22.36 16.85 25.08 23.18 22.67 19.84 15.25 23.95 20.36 19.90 16.44 13.39 22.39 
+
+SSIM ↑ 0.827 0.850 0.802 0.727 0.849 0.801 0.825 0.755 0.686 0.831 0.757 0.786 0.675 0.620 0.807 
+
+LPIPS ↓ 0.359 0.314 0.337 0.454 0.325 0.388 0.342 0.377 0.491 0.350 0.432 0.386 0.440 0.541 0.385 Deep Blending 
+
+PSNR ↑ 24.67 24.29 22.02 19.51 24.41 23.05 22.25 19.63 17.56 23.45 20.53 19.52 16.52 15.69 22.16 
+
+SSIM ↑ 0.820 0.841 0.786 0.752 0.831 0.791 0.812 0.733 0.708 0.814 0.744 0.765 0.642 0.654 0.790 
+
+LPIPS ↓ 0.365 0.317 0.335 0.426 0.336 0.395 0.348 0.372 0.460 0.359 0.437 0.393 0.429 0.501 0.390 
+
+
+
+Train PSNR ↑ 16.61 15.15 15.47 10.68 16.88 15.59 13.79 14.12 10.01 16.21 14.20 12.05 12.29 8.72 15.32 
+
+SSIM ↑ 0.573 0.629 0.606 0.462 0.612 0.525 0.572 0.544 0.420 0.579 0.463 0.494 0.458 0.338 0.537 
+
+LPIPS ↓ 0.415 0.373 0.362 0.469 0.382 0.455 0.419 0.408 0.497 0.417 0.505 0.481 0.473 0.534 0.461 
+
+Truck PSNR ↑ 18.61 16.96 16.76 12.79 19.38 17.25 15.98 14.94 12.32 18.52 15.47 14.71 12.64 11.73 17.37 
+
+SSIM ↑ 0.638 0.746 0.657 0.591 0.739 0.584 0.714 0.583 0.567 0.706 0.514 0.661 0.484 0.536 0.662 
+
+LPIPS ↓ 0.367 0.247 0.324 0.376 0.272 0.408 0.278 0.376 0.399 0.307 0.461 0.331 0.443 0.431 0.354 
+
+Tanks & Temples 
+
+PSNR ↑ 17.61 16.05 16.11 11.74 18.13 16.42 14.89 14.53 11.17 17.37 14.83 13.38 12.46 10.22 16.35 
+
+SSIM ↑ 0.606 0.687 0.632 0.526 0.675 0.555 0.643 0.564 0.494 0.643 0.488 0.577 0.471 0.437 0.599 
+
+LPIPS ↓ 0.391 0.310 0.343 0.423 0.327 0.431 0.348 0.392 0.448 0.362 0.483 0.406 0.458 0.482 0.407 
+
+18 Table 3: Prune-only results at prune ratios 0.95, 0.97, and 0.99 over all 13 scenes. Rows are scenes split into PSNR / SSIM / LPIPS, with each bracket followed by a per-dataset average row, and columns are grouped by prune ratio and method. Bold indicates best per scene/metric within each prune-ratio group; colored cells mark the top three methods. 
+
+Scene Metric Prune 0.95 Prune 0.97 Prune 0.99 GHAP PUP Trim Unif Ours GHAP PUP Trim Unif Ours GHAP PUP Trim Unif Ours 
+
+
+
+Flowers PSNR ↑ 12.08 12.45 9.54 9.65 14.74 10.94 11.49 8.85 9.44 13.92 8.91 10.31 8.03 9.15 12.60 
+
+SSIM ↑ 0.198 0.278 0.140 0.146 0.322 0.159 0.220 0.101 0.132 0.289 0.092 0.141 0.052 0.110 0.241 
+
+LPIPS ↓ 0.642 0.584 0.671 0.682 0.581 0.680 0.625 0.711 0.699 0.617 0.761 0.690 0.771 0.727 0.687 
+
+Treehill PSNR ↑ 14.50 14.18 9.98 11.99 17.13 13.01 13.27 9.56 11.72 16.51 10.24 11.61 9.05 10.62 15.51 
+
+SSIM ↑ 0.308 0.384 0.118 0.324 0.457 0.265 0.336 0.089 0.306 0.422 0.159 0.242 0.059 0.245 0.380 
+
+LPIPS ↓ 0.594 0.577 0.634 0.604 0.537 0.622 0.608 0.655 0.619 0.571 0.674 0.654 0.682 0.655 0.626 
+
+Bicycle PSNR ↑ 13.66 14.91 10.97 13.66 16.45 12.13 13.80 10.34 13.46 15.60 10.38 11.78 9.70 13.07 14.40 
+
+SSIM ↑ 0.254 0.365 0.145 0.278 0.416 0.178 0.304 0.097 0.263 0.376 0.081 0.192 0.042 0.234 0.318 
+
+LPIPS ↓ 0.560 0.510 0.594 0.587 0.492 0.604 0.554 0.635 0.602 0.534 0.679 0.627 0.693 0.633 0.611 
+
+Bonsai PSNR ↑ 14.93 11.75 16.03 10.60 16.94 12.94 10.73 14.08 10.11 15.98 10.71 9.75 11.42 9.60 14.36 
+
+SSIM ↑ 0.474 0.415 0.488 0.245 0.585 0.380 0.310 0.397 0.186 0.545 0.219 0.171 0.231 0.093 0.474 
+
+LPIPS ↓ 0.527 0.497 0.475 0.534 0.468 0.561 0.533 0.514 0.552 0.499 0.605 0.568 0.564 0.573 0.546 
+
+Counter PSNR ↑ 15.24 12.51 13.95 11.62 17.49 13.52 11.47 12.42 10.94 16.07 11.00 10.09 10.23 9.64 13.78 
+
+SSIM ↑ 0.498 0.499 0.471 0.363 0.647 0.438 0.423 0.390 0.281 0.606 0.303 0.281 0.238 0.148 0.536 
+
+LPIPS ↓ 0.518 0.477 0.477 0.531 0.443 0.556 0.521 0.523 0.563 0.485 0.616 0.589 0.594 0.611 0.553 
+
+Garden PSNR ↑ 12.45 12.48 9.21 13.92 15.25 10.77 11.26 8.42 13.28 14.29 8.48 9.36 7.53 10.13 12.58 
+
+SSIM ↑ 0.253 0.330 0.165 0.348 0.387 0.190 0.266 0.113 0.306 0.342 0.091 0.163 0.053 0.182 0.276 
+
+LPIPS ↓ 0.556 0.509 0.604 0.537 0.503 0.607 0.566 0.649 0.573 0.555 0.700 0.663 0.724 0.668 0.647 
+
+Kitchen PSNR ↑ 12.86 10.12 10.60 9.37 14.44 11.06 8.81 9.33 7.91 13.44 8.31 7.16 7.54 6.48 12.02 
+
+SSIM ↑ 0.404 0.392 0.402 0.292 0.556 0.326 0.304 0.322 0.198 0.502 0.205 0.168 0.193 0.080 0.421 
+
+LPIPS ↓ 0.544 0.506 0.512 0.556 0.448 0.589 0.576 0.581 0.618 0.506 0.662 0.676 0.680 0.684 0.608 
+
+Room PSNR ↑ 16.33 16.89 15.97 12.36 18.18 14.36 15.27 13.79 11.49 17.12 11.29 12.71 10.74 9.76 15.29 
+
+SSIM ↑ 0.585 0.672 0.568 0.459 0.695 0.514 0.607 0.481 0.391 0.665 0.352 0.469 0.290 0.244 0.598 
+
+LPIPS ↓ 0.501 0.428 0.454 0.536 0.434 0.543 0.475 0.501 0.567 0.471 0.613 0.551 0.583 0.618 0.523 
+
+Stump PSNR ↑ 15.31 16.14 13.45 15.07 18.02 14.06 14.87 12.77 14.69 16.85 12.38 13.27 11.99 14.00 15.19 
+
+SSIM ↑ 0.273 0.409 0.180 0.313 0.491 0.205 0.330 0.125 0.286 0.421 0.090 0.215 0.064 0.235 0.321 
+
+LPIPS ↓ 0.558 0.482 0.575 0.553 0.455 0.592 0.527 0.611 0.572 0.508 0.664 0.598 0.660 0.610 0.594 Mip-NeRF 360 
+
+PSNR ↑ 14.15 13.49 12.19 12.02 16.52 12.53 12.33 11.06 11.45 15.53 10.19 10.67 9.58 10.27 13.97 
+
+SSIM ↑ 0.361 0.416 0.297 0.308 0.506 0.295 0.344 0.235 0.261 0.463 0.177 0.227 0.136 0.174 0.396 
+
+LPIPS ↓ 0.556 0.508 0.555 0.569 0.484 0.595 0.554 0.598 0.596 0.527 0.664 0.624 0.661 0.642 0.600 
+
+
+
+DrJohnson PSNR ↑ 16.95 15.64 13.01 15.00 20.17 14.77 13.67 11.32 12.72 18.83 11.30 10.94 9.39 9.47 16.20 
+
+SSIM ↑ 0.630 0.645 0.413 0.597 0.733 0.557 0.561 0.288 0.492 0.703 0.360 0.372 0.111 0.194 0.630 
+
+LPIPS ↓ 0.502 0.467 0.493 0.510 0.439 0.536 0.510 0.532 0.545 0.468 0.592 0.570 0.580 0.602 0.516 
+
+Playroom PSNR ↑ 15.98 15.77 11.66 9.93 19.94 13.19 13.34 8.96 8.33 18.39 8.98 9.33 5.92 6.22 15.04 
+
+SSIM ↑ 0.677 0.713 0.529 0.451 0.771 0.609 0.656 0.405 0.359 0.748 0.442 0.485 0.152 0.184 0.690 
+
+LPIPS ↓ 0.510 0.468 0.557 0.644 0.439 0.573 0.531 0.650 0.700 0.474 0.715 0.672 0.787 0.791 0.537 Deep Blending 
+
+PSNR ↑ 16.46 15.70 12.34 12.47 20.06 13.98 13.51 10.14 10.53 18.61 10.14 10.13 7.66 7.84 15.62 
+
+SSIM ↑ 0.653 0.679 0.471 0.524 0.752 0.583 0.608 0.347 0.426 0.725 0.401 0.428 0.132 0.189 0.660 
+
+LPIPS ↓ 0.506 0.468 0.525 0.577 0.439 0.554 0.520 0.591 0.623 0.471 0.653 0.621 0.683 0.696 0.526 
+
+
+
+Train PSNR ↑ 11.81 10.18 9.72 7.95 14.01 10.32 8.99 8.40 7.38 13.11 8.00 7.43 6.84 6.49 11.41 
+
+SSIM ↑ 0.368 0.390 0.322 0.255 0.481 0.310 0.321 0.240 0.201 0.449 0.212 0.221 0.135 0.120 0.400 
+
+LPIPS ↓ 0.579 0.561 0.561 0.594 0.523 0.621 0.604 0.609 0.624 0.561 0.683 0.665 0.670 0.665 0.620 
+
+Truck PSNR ↑ 12.71 12.98 9.35 10.93 15.62 10.94 11.96 7.74 9.83 14.54 7.88 10.46 5.62 7.34 12.55 
+
+SSIM ↑ 0.414 0.566 0.323 0.490 0.590 0.353 0.506 0.228 0.393 0.544 0.237 0.420 0.074 0.207 0.470 
+
+LPIPS ↓ 0.534 0.432 0.538 0.483 0.436 0.582 0.495 0.588 0.555 0.490 0.667 0.588 0.666 0.651 0.592 
+
+Tanks & Temples 
+
+PSNR ↑ 12.26 11.58 9.53 9.44 14.81 10.63 10.48 8.07 8.60 13.83 7.94 8.94 6.23 6.92 11.98 
+
+SSIM ↑ 0.391 0.478 0.323 0.372 0.535 0.332 0.414 0.234 0.297 0.496 0.224 0.320 0.104 0.163 0.435 
+
+LPIPS ↓ 0.557 0.496 0.550 0.538 0.480 0.601 0.549 0.599 0.590 0.525 0.675 0.627 0.668 0.658 0.606 
+
+19 Table 4: Per-dataset average prune-only results at prune ratios 0.80, 0.85, 0.90, 0.95, 0.97, and 0.99. Rows are prune ratios and methods; columns are grouped by dataset and metric. Bold indicates best per dataset/metric/ratio; colored cells mark the top three methods. 
+
+Prune Method Mip-NeRF 360 Deep Blending Tanks & Temples PSNR ↑ SSIM ↑ LPIPS ↓ PSNR ↑ SSIM ↑ LPIPS ↓ PSNR ↑ SSIM ↑ LPIPS ↓
+
+0.80 GHAP 19.78 0.564 0.425 24.67 0.820 0.365 17.61 0.606 0.391 PUP 19.40 0.665 0.337 24.29 0.841 0.317 16.05 0.687 0.310 
+
+Trim 18.01 0.569 0.384 22.02 0.786 0.335 16.11 0.632 0.343 Unif 14.85 0.487 0.450 19.51 0.752 0.426 11.74 0.526 0.423 Ours 20.18 0.664 0.343 24.41 0.831 0.336 18.13 0.675 0.327 0.85 GHAP 18.54 0.521 0.454 23.05 0.791 0.395 16.42 0.555 0.431 PUP 17.75 0.612 0.375 22.25 0.812 0.348 14.89 0.643 0.348 
+
+Trim 16.33 0.501 0.426 19.63 0.733 0.372 14.53 0.564 0.392 Unif 14.04 0.446 0.478 17.56 0.708 0.460 11.17 0.494 0.448 Ours 19.30 0.629 0.374 23.45 0.814 0.359 17.37 0.643 0.362 0.90 GHAP 16.76 0.458 0.494 20.53 0.744 0.437 14.83 0.488 0.483 PUP 15.79 0.535 0.429 19.52 0.765 0.393 13.38 0.577 0.406 
+
+Trim 14.45 0.413 0.480 16.52 0.642 0.429 12.46 0.471 0.458 Unif 13.16 0.391 0.516 15.69 0.654 0.501 10.22 0.437 0.482 Ours 18.16 0.580 0.417 22.16 0.790 0.390 16.35 0.599 0.407 0.95 GHAP 14.15 0.361 0.556 16.46 0.653 0.506 12.26 0.391 0.557 PUP 13.49 0.416 0.508 15.70 0.679 0.468 11.58 0.478 0.496 Trim 12.19 0.297 0.555 12.34 0.471 0.525 9.53 0.323 0.550 Unif 12.02 0.308 0.569 12.47 0.524 0.577 9.44 0.372 0.538 Ours 16.52 0.506 0.484 20.06 0.752 0.439 14.81 0.535 0.480 
+
+0.97 GHAP 12.53 0.295 0.595 13.98 0.583 0.554 10.63 0.332 0.601 PUP 12.33 0.344 0.554 13.51 0.608 0.520 10.48 0.414 0.549 Trim 11.06 0.235 0.598 10.14 0.347 0.591 8.07 0.234 0.599 Unif 11.45 0.261 0.596 10.53 0.426 0.623 8.60 0.297 0.590 Ours 15.53 0.463 0.527 18.61 0.725 0.471 13.83 0.496 0.525 
+
+0.99 GHAP 10.19 0.177 0.664 10.14 0.401 0.653 7.94 0.224 0.675 PUP 10.67 0.227 0.624 10.13 0.428 0.621 8.94 0.320 0.627 Trim 9.58 0.136 0.661 7.66 0.132 0.683 6.23 0.104 0.668 Unif 10.27 0.174 0.642 7.84 0.189 0.696 6.92 0.163 0.658 Ours 13.97 0.396 0.600 15.62 0.660 0.526 11.98 0.435 0.606 
+
+20 B.2 Dataset-level prune-only curves and delta trends 
+
+The following plots show how each method degrades as the prune ratio increases. The delta panels use a sign convention in which positive values indicate an advantage for our method for all three metrics. 
+
+Figure 6: Prune-only averages per dataset. 
+
+B.3 Short-recovery results 
+
+The first group fixes our per-scene variant and shows how its quality changes with prune ratio and recovery budget. The second group compares our method with all competing methods at the most aggressive prune ratios. 21 0.90 0.93 0.95 0.97 0.99 
+
+Prune Ratio 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+22 
+
+> PSNR dB
+
+0.90 0.93 0.95 0.97 0.99 
+
+Prune Ratio 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+0.65 
+
+> SSIM
+
+0.90 0.93 0.95 0.97 0.99 
+
+Prune Ratio 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60     
+
+> LPIPS (lower better)
+> Iter 0 Iter 10 Iter 50 Iter 100 Iter 200
+
+Mip-NeRF360: Ours per-scene recovery vs. prune ratio Figure 7: Transposed short-recovery curves for our scene-variant on mip-NeRF 360. The x-axis is prune ratio and each curve corresponds to a recovery iteration. 0.90 0.93 0.95 0.97 0.99 
+
+Prune Ratio 
+
+16 
+
+18 
+
+20 
+
+22 
+
+24 
+
+> PSNR dB
+
+0.90 0.93 0.95 0.97 0.99 
+
+Prune Ratio 
+
+0.675 
+
+0.700 
+
+0.725 
+
+0.750 
+
+0.775 
+
+0.800 
+
+0.825 
+
+> SSIM
+
+0.90 0.93 0.95 0.97 0.99 
+
+Prune Ratio 
+
+0.375 
+
+0.400 
+
+0.425 
+
+0.450 
+
+0.475 
+
+0.500 
+
+0.525     
+
+> LPIPS (lower better)
+> Iter 0 Iter 10 Iter 50 Iter 100 Iter 200
+
+Deep Blend: Ours per-scene recovery vs. prune ratio 
+
+Figure 8: Transposed short-recovery curves for our scene-variant on Deep Blending, using the same layout as figure 7. 0.90 0.93 0.95 0.97 0.99 
+
+Prune Ratio 
+
+12 
+
+13 
+
+14 
+
+15 
+
+16 
+
+17 
+
+18 
+
+19 
+
+> PSNR dB
+
+0.90 0.93 0.95 0.97 0.99 
+
+Prune Ratio 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+0.65 
+
+> SSIM
+
+0.90 0.93 0.95 0.97 0.99 
+
+Prune Ratio 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60     
+
+> LPIPS (lower better)
+> Iter 0 Iter 10 Iter 50 Iter 100 Iter 200
+
+Tanks & Temples: Ours per-scene recovery vs. prune ratio 
+
+Figure 9: Transposed short-recovery curves for our scene-variant on Tanks & Temples, using the same layout as figure 7. 22 0 25 50 75 100 125 150 175 200 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+> Prune 0.95
+> PSNR
+
+PSNR 
+
+0 25 50 75 100 125 150 175 200 
+
+0.30 
+
+0.35 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+> SSIM
+
+SSIM 
+
+0 25 50 75 100 125 150 175 200 
+
+0.46 
+
+0.48 
+
+0.50 
+
+0.52 
+
+0.54 
+
+0.56 
+
+> LPIPS
+
+LPIPS 
+
+0 25 50 75 100 125 150 175 200 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+> Prune 0.97
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.25 
+
+0.30 
+
+0.35 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.50 
+
+0.52 
+
+0.54 
+
+0.56 
+
+0.58 
+
+0.60 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+> Prune 0.99
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+0.15 
+
+0.20 
+
+0.25 
+
+0.30 
+
+0.35 
+
+0.40 
+
+0.45 
+
+0.50 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+0.58 
+
+0.60 
+
+0.62 
+
+0.64 
+
+0.66 
+
+> LPIPS
+
+Mip-NeRF360: recovery comparison at high prune ratios 
+
+Ours (scene) GHAP PUP Trim Unif Figure 10: Short-recovery comparison on mip-NeRF 360 at prune ratios 0.95, 0.97, and 0.99. Curves compare our scene-variant against GHAP, PUP 3D-GS, Trimming the Fat, and Uniform. 0 25 50 75 100 125 150 175 200 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+22 
+
+24 
+
+> Prune 0.95
+> PSNR
+
+PSNR 
+
+0 25 50 75 100 125 150 175 200 
+
+0.50 
+
+0.55 
+
+0.60 
+
+0.65 
+
+0.70 
+
+0.75 
+
+0.80 
+
+> SSIM
+
+SSIM 
+
+0 25 50 75 100 125 150 175 200 
+
+0.400 
+
+0.425 
+
+0.450 
+
+0.475 
+
+0.500 
+
+0.525 
+
+0.550 
+
+0.575 
+
+> LPIPS
+
+LPIPS 
+
+0 25 50 75 100 125 150 175 200 
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+22 
+
+> Prune 0.97
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.4 
+
+0.5 
+
+0.6 
+
+0.7 
+
+0.8 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+8
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+> Prune 0.99
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+0.2 
+
+0.3 
+
+0.4 
+
+0.5 
+
+0.6 
+
+0.7 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+0.50 
+
+0.55 
+
+0.60 
+
+0.65 
+
+0.70 
+
+> LPIPS
+
+Deep Blend: recovery comparison at high prune ratios 
+
+Ours (scene) GHAP PUP Trim Unif 
+
+Figure 11: Short-recovery comparison on Deep Blending at prune ratios 0.95, 0.97, and 0.99. 23 0 25 50 75 100 125 150 175 200 
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+> Prune 0.95
+> PSNR
+
+PSNR 
+
+0 25 50 75 100 125 150 175 200 
+
+0.35 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+> SSIM
+
+SSIM 
+
+0 25 50 75 100 125 150 175 200 
+
+0.44 
+
+0.46 
+
+0.48 
+
+0.50 
+
+0.52 
+
+0.54 
+
+0.56 
+
+> LPIPS
+
+LPIPS 
+
+0 25 50 75 100 125 150 175 200 
+
+8
+
+10 
+
+12 
+
+14 
+
+16 
+
+> Prune 0.97
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.25 
+
+0.30 
+
+0.35 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.48 
+
+0.50 
+
+0.52 
+
+0.54 
+
+0.56 
+
+0.58 
+
+0.60 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+6
+
+8
+
+10 
+
+12 
+
+14 
+
+> Prune 0.99
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+0.1 
+
+0.2 
+
+0.3 
+
+0.4 
+
+0.5 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+0.58 
+
+0.60 
+
+0.62 
+
+0.64 
+
+0.66 
+
+> LPIPS
+
+Tanks & Temples: recovery comparison at high prune ratios 
+
+Ours (scene) GHAP PUP Trim Unif Figure 12: Short-recovery comparison on Tanks & Temples at prune ratios 0.95, 0.97, and 0.99. 
+
+B.4 Prune-only per-scene graphs 
+
+The dataset averages are expanded below into 39 scene-level panels. These plots show where the average trend is uniform and where individual scenes behave differently. This appendix section expands the main average-over-scenes prune-only graphs into per-scene plots. The three figures below cover 13 scenes × 3 metrics, for a total of 39 prune-only panels. Each panel plots metric value on the y-axis against prune ratio on the x-axis, with curves for our method variants and the competing methods. These plots support per-scene variability analysis and show whether averaged trends hide scene-specific failures or strengths. 0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+10 
+
+15 
+
+20 
+
+25 
+
+> drjohnson
+
+PSNR 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+0.2 
+
+0.4 
+
+0.6 
+
+0.8 
+
+SSIM 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+0.4 
+
+0.5 
+
+0.6 
+
+LPIPS 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+Prune Ratio 
+
+5
+
+10 
+
+15 
+
+20 
+
+25 
+
+> playroom
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+Prune Ratio 
+
+0.2 
+
+0.4 
+
+0.6 
+
+0.8 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+Prune Ratio 
+
+0.3 
+
+0.4 
+
+0.5 
+
+0.6 
+
+0.7 
+
+0.8 
+
+Deep Blend: per-scene prune-only curves 
+
+Ours (channel) 
+
+Ours (pixel) 
+
+Ours (tile) 
+
+Ours (image) 
+
+Ours (scene) 
+
+GHAP 
+
+PUP 
+
+Trim 
+
+Unif 
+
+Figure 13: Per-scene prune-only curves for Deep Blending. 0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+6
+
+8
+
+10 
+
+12 
+
+14 
+
+16 
+
+> train
+
+PSNR 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+0.1 
+
+0.2 
+
+0.3 
+
+0.4 
+
+0.5 
+
+0.6 
+
+SSIM 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+0.4 
+
+0.5 
+
+0.6 
+
+LPIPS 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+Prune Ratio 
+
+5
+
+10 
+
+15 
+
+20 
+
+> truck
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+Prune Ratio 
+
+0.2 
+
+0.4 
+
+0.6 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+Prune Ratio 
+
+0.3 
+
+0.4 
+
+0.5 
+
+0.6 
+
+Tanks & Temples: per-scene prune-only curves 
+
+Ours (channel) 
+
+Ours (pixel) 
+
+Ours (tile) 
+
+Ours (image) 
+
+Ours (scene) 
+
+GHAP 
+
+PUP 
+
+Trim 
+
+Unif 
+
+Figure 14: Per-scene prune-only curves for Tanks & Temples. 24 0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+8
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+> flowers
+
+PSNR 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+0.05 
+
+0.10 
+
+0.15 
+
+0.20 
+
+0.25 
+
+0.30 
+
+0.35 
+
+0.40 
+
+0.45 
+
+SSIM 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+0.65 
+
+0.70 
+
+0.75 
+
+LPIPS 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+> treehill
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+0.1 
+
+0.2 
+
+0.3 
+
+0.4 
+
+0.5 
+
+0.6 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+0.65 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+> bicycle
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+0.1 
+
+0.2 
+
+0.3 
+
+0.4 
+
+0.5 
+
+0.6 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+0.35 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+0.65 
+
+0.70 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+22 
+
+> bonsai
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+0.1 
+
+0.2 
+
+0.3 
+
+0.4 
+
+0.5 
+
+0.6 
+
+0.7 
+
+0.8 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+0.30 
+
+0.35 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+22 
+
+> counter
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+0.2 
+
+0.3 
+
+0.4 
+
+0.5 
+
+0.6 
+
+0.7 
+
+0.8 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+0.30 
+
+0.35 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+8
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+> garden
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+0.1 
+
+0.2 
+
+0.3 
+
+0.4 
+
+0.5 
+
+0.6 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+0.3 
+
+0.4 
+
+0.5 
+
+0.6 
+
+0.7 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+6
+
+8
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+> kitchen
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+0.1 
+
+0.2 
+
+0.3 
+
+0.4 
+
+0.5 
+
+0.6 
+
+0.7 
+
+0.8 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+0.3 
+
+0.4 
+
+0.5 
+
+0.6 
+
+0.7 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+22 
+
+24 
+
+> room
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+0.2 
+
+0.3 
+
+0.4 
+
+0.5 
+
+0.6 
+
+0.7 
+
+0.8 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+0.30 
+
+0.35 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+Prune Ratio 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+22 
+
+> stump
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+Prune Ratio 
+
+0.1 
+
+0.2 
+
+0.3 
+
+0.4 
+
+0.5 
+
+0.6 
+
+0.7 
+
+0.80 0.85 0.90 0.93 0.95 0.97 0.99 
+
+Prune Ratio 
+
+0.30 
+
+0.35 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+0.65 
+
+Mip-NeRF360: per-scene prune-only curves 
+
+Ours (channel) 
+
+Ours (pixel) 
+
+Ours (tile) 
+
+Ours (image) 
+
+Ours (scene) 
+
+GHAP 
+
+PUP 
+
+Trim 
+
+Unif Figure 15: Per-scene prune-only curves for mip-NeRF 360. 
+
+B.5 Sensitivity ablations and wider recovery curves 
+
+The following figures report the complete ablations of our method and the wider short-recovery comparison. Together they test whether the relative ordering of the aggregation levels persists after limited optimization and across all three datasets. 25 The following figures report the full ablations of our method, including per-channel, per-pixel, per-tile, per-image, and per-scene aggregation levels, as well as implementation-specific L1/L2 and color/nocolor variants where needed for reproducibility. The final three figures give the wider short-recovery comparison across prune ratios 0.90, 0.93, 0.95, 0.97, and 0.99. 0 25 50 75 100 125 150 175 200 
+
+18 
+
+20 
+
+22 
+
+24 
+
+> Prune 0.80
+> PSNR
+
+PSNR 
+
+Ours (channel) 
+
+Ours (image) 
+
+Ours (pixel) 
+
+Ours (scene) 
+
+Ours (tile) 
+
+0 25 50 75 100 125 150 175 200 
+
+0.60 
+
+0.65 
+
+0.70 
+
+> SSIM
+
+SSIM 
+
+0 25 50 75 100 125 150 175 200 
+
+0.30 
+
+0.32 
+
+0.34 
+
+0.36 
+
+0.38 
+
+> LPIPS
+
+LPIPS 
+
+0 25 50 75 100 125 150 175 200 
+
+16 
+
+18 
+
+20 
+
+22 
+
+> Prune 0.85
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.55 
+
+0.60 
+
+0.65 
+
+0.70 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.34 
+
+0.36 
+
+0.38 
+
+0.40 
+
+0.42 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+14 
+
+16 
+
+18 
+
+20 
+
+22 
+
+> Prune 0.90
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+0.65 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.375 
+
+0.400 
+
+0.425 
+
+0.450 
+
+0.475 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+22 
+
+> Prune 0.93
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.4 
+
+0.5 
+
+0.6 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.425 
+
+0.450 
+
+0.475 
+
+0.500 
+
+0.525 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+> Prune 0.95
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.3 
+
+0.4 
+
+0.5 
+
+0.6 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.450 
+
+0.475 
+
+0.500 
+
+0.525 
+
+0.550 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+> Prune 0.97
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.3 
+
+0.4 
+
+0.5 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.500 
+
+0.525 
+
+0.550 
+
+0.575 
+
+0.600 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+> Prune 0.99
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+0.2 
+
+0.3 
+
+0.4 
+
+0.5 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+0.58 
+
+0.60 
+
+0.62 
+
+0.64 
+
+> LPIPS
+
+Mip-NeRF360: Ours variant recovery ablation 
+
+Figure 16: Recovery ablation across our variants for mip-NeRF 360. 26 0 25 50 75 100 125 150 175 200 
+
+20 
+
+22 
+
+24 
+
+26 
+
+28 
+
+> Prune 0.80
+> PSNR
+
+PSNR 
+
+Ours (channel) 
+
+Ours (image) 
+
+Ours (pixel) 
+
+Ours (scene) 
+
+Ours (tile) 
+
+0 25 50 75 100 125 150 175 200 
+
+0.775 
+
+0.800 
+
+0.825 
+
+0.850 
+
+0.875 
+
+> SSIM
+
+SSIM 
+
+0 25 50 75 100 125 150 175 200 
+
+0.30 
+
+0.32 
+
+0.34 
+
+0.36 
+
+0.38 
+
+> LPIPS
+
+LPIPS 
+
+0 25 50 75 100 125 150 175 200 
+
+18 
+
+20 
+
+22 
+
+24 
+
+26 
+
+> Prune 0.85
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.70 
+
+0.75 
+
+0.80 
+
+0.85 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.325 
+
+0.350 
+
+0.375 
+
+0.400 
+
+0.425 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+15.0 
+
+17.5 
+
+20.0 
+
+22.5 
+
+25.0 
+
+> Prune 0.90
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.65 
+
+0.70 
+
+0.75 
+
+0.80 
+
+0.85 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.35 
+
+0.40 
+
+0.45 
+
+0.50 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+12.5 
+
+15.0 
+
+17.5 
+
+20.0 
+
+22.5 
+
+25.0 
+
+> Prune 0.93
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.6 
+
+0.7 
+
+0.8 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+12.5 
+
+15.0 
+
+17.5 
+
+20.0 
+
+22.5 
+
+> Prune 0.95
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.5 
+
+0.6 
+
+0.7 
+
+0.8 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+10.0 
+
+12.5 
+
+15.0 
+
+17.5 
+
+20.0 
+
+22.5 
+
+> Prune 0.97
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.4 
+
+0.5 
+
+0.6 
+
+0.7 
+
+0.8 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+10.0 
+
+12.5 
+
+15.0 
+
+17.5 
+
+20.0 
+
+> Prune 0.99
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+0.3 
+
+0.4 
+
+0.5 
+
+0.6 
+
+0.7 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+0.50 
+
+0.55 
+
+0.60 
+
+0.65 
+
+0.70 
+
+> LPIPS
+
+Deep Blend: Ours variant recovery ablation Figure 17: Recovery ablation across our variants for Deep Blending. 27 0 25 50 75 100 125 150 175 200 
+
+16 
+
+17 
+
+18 
+
+19 
+
+20 
+
+21 
+
+> Prune 0.80
+> PSNR
+
+PSNR 
+
+Ours (channel) 
+
+Ours (image) 
+
+Ours (pixel) 
+
+Ours (scene) 
+
+Ours (tile) 
+
+0 25 50 75 100 125 150 175 200 
+
+0.60 
+
+0.65 
+
+0.70 
+
+0.75 
+
+> SSIM
+
+SSIM 
+
+0 25 50 75 100 125 150 175 200 
+
+0.28 
+
+0.30 
+
+0.32 
+
+0.34 
+
+0.36 
+
+0.38 
+
+> LPIPS
+
+LPIPS 
+
+0 25 50 75 100 125 150 175 200 
+
+14 
+
+16 
+
+18 
+
+20 
+
+> Prune 0.85
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.55 
+
+0.60 
+
+0.65 
+
+0.70 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.325 
+
+0.350 
+
+0.375 
+
+0.400 
+
+0.425 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+> Prune 0.90
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.4 
+
+0.5 
+
+0.6 
+
+0.7 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.35 
+
+0.40 
+
+0.45 
+
+0.50 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+> Prune 0.93
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.4 
+
+0.5 
+
+0.6 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+> Prune 0.95
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.3 
+
+0.4 
+
+0.5 
+
+0.6 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.45 
+
+0.50 
+
+0.55 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+8
+
+10 
+
+12 
+
+14 
+
+16 
+
+> Prune 0.97
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.2 
+
+0.3 
+
+0.4 
+
+0.5 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.50 
+
+0.55 
+
+0.60 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+6
+
+8
+
+10 
+
+12 
+
+14 
+
+> Prune 0.99
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+0.1 
+
+0.2 
+
+0.3 
+
+0.4 
+
+0.5 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+0.58 
+
+0.60 
+
+0.62 
+
+0.64 
+
+0.66 
+
+> LPIPS
+
+Tanks & Temples: Ours variant recovery ablation Figure 18: Recovery ablation across our variants for Tanks & Temples. 28 0 25 50 75 100 125 150 175 200 
+
+14 
+
+16 
+
+18 
+
+20 
+
+22 
+
+> Prune 0.90
+> PSNR
+
+PSNR 
+
+Ours (scene) 
+
+GHAP 
+
+PUP 
+
+Trim 
+
+Unif 
+
+0 25 50 75 100 125 150 175 200 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+0.65 
+
+> SSIM
+
+SSIM 
+
+0 25 50 75 100 125 150 175 200 
+
+0.375 
+
+0.400 
+
+0.425 
+
+0.450 
+
+0.475 
+
+0.500 
+
+> LPIPS
+
+LPIPS 
+
+0 25 50 75 100 125 150 175 200 
+
+14 
+
+16 
+
+18 
+
+20 
+
+22 
+
+> Prune 0.93
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.35 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+0.65 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.425 
+
+0.450 
+
+0.475 
+
+0.500 
+
+0.525 
+
+0.550 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+> Prune 0.95
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.30 
+
+0.35 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.46 
+
+0.48 
+
+0.50 
+
+0.52 
+
+0.54 
+
+0.56 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+> Prune 0.97
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.3 
+
+0.4 
+
+0.5 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.50 
+
+0.52 
+
+0.54 
+
+0.56 
+
+0.58 
+
+0.60 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+> Prune 0.99
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+0.2 
+
+0.3 
+
+0.4 
+
+0.5 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+0.58 
+
+0.60 
+
+0.62 
+
+0.64 
+
+0.66 
+
+> LPIPS
+
+Mip-NeRF360: full recovery comparison Figure 19: Full short-recovery comparison for mip-NeRF 360 across prune ratios 0.90–0.99. 0 25 50 75 100 125 150 175 200 
+
+16 
+
+18 
+
+20 
+
+22 
+
+24 
+
+26 
+
+> Prune 0.90
+> PSNR
+
+PSNR 
+
+Ours (scene) 
+
+GHAP 
+
+PUP 
+
+Trim 
+
+Unif 
+
+0 25 50 75 100 125 150 175 200 
+
+0.65 
+
+0.70 
+
+0.75 
+
+0.80 
+
+0.85 
+
+> SSIM
+
+SSIM 
+
+0 25 50 75 100 125 150 175 200 
+
+0.35 
+
+0.40 
+
+0.45 
+
+0.50 
+
+> LPIPS
+
+LPIPS 
+
+0 25 50 75 100 125 150 175 200 
+
+14 
+
+16 
+
+18 
+
+20 
+
+22 
+
+24 
+
+26 
+
+> Prune 0.93
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.55 
+
+0.60 
+
+0.65 
+
+0.70 
+
+0.75 
+
+0.80 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+22 
+
+24 
+
+> Prune 0.95
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.5 
+
+0.6 
+
+0.7 
+
+0.8 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+22 
+
+> Prune 0.97
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.4 
+
+0.5 
+
+0.6 
+
+0.7 
+
+0.8 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+8
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+> Prune 0.99
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+0.2 
+
+0.3 
+
+0.4 
+
+0.5 
+
+0.6 
+
+0.7 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+0.50 
+
+0.55 
+
+0.60 
+
+0.65 
+
+0.70 
+
+> LPIPS
+
+Deep Blend: full recovery comparison 
+
+Figure 20: Full short-recovery comparison for Deep Blending across prune ratios 0.90–0.99. 29 0 25 50 75 100 125 150 175 200 
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+> Prune 0.90
+> PSNR
+
+PSNR 
+
+Ours (scene) 
+
+GHAP 
+
+PUP 
+
+Trim 
+
+Unif 
+
+0 25 50 75 100 125 150 175 200 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+0.65 
+
+0.70 
+
+> SSIM
+
+SSIM 
+
+0 25 50 75 100 125 150 175 200 
+
+0.350 
+
+0.375 
+
+0.400 
+
+0.425 
+
+0.450 
+
+0.475 
+
+> LPIPS
+
+LPIPS 
+
+0 25 50 75 100 125 150 175 200 
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+> Prune 0.93
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+0.65 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.400 
+
+0.425 
+
+0.450 
+
+0.475 
+
+0.500 
+
+0.525 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+> Prune 0.95
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.35 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.425 
+
+0.450 
+
+0.475 
+
+0.500 
+
+0.525 
+
+0.550 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+8
+
+10 
+
+12 
+
+14 
+
+16 
+
+> Prune 0.97
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.3 
+
+0.4 
+
+0.5 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.48 
+
+0.50 
+
+0.52 
+
+0.54 
+
+0.56 
+
+0.58 
+
+0.60 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+6
+
+8
+
+10 
+
+12 
+
+14 
+
+> Prune 0.99
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+0.1 
+
+0.2 
+
+0.3 
+
+0.4 
+
+0.5 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+0.58 
+
+0.60 
+
+0.62 
+
+0.64 
+
+0.66 
+
+> LPIPS
+
+Tanks & Temples: full recovery comparison Figure 21: Full short-recovery comparison for Tanks & Temples across prune ratios 0.90–0.99. 0.90 0.93 0.95 0.97 0.99 
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+> Mip-NeRF360
+> PSNR
+
+PSNR vs Prune Ratio 
+
+0.90 0.93 0.95 0.97 0.99 
+
+0.1 
+
+0.2 
+
+0.3 
+
+0.4 
+
+0.5 
+
+0.6 
+
+> SSIM
+
+SSIM vs Prune Ratio 
+
+0.90 0.93 0.95 0.97 0.99 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+0.65 
+
+> LPIPS
+
+LPIPS vs Prune Ratio 
+
+0.90 0.93 0.95 0.97 0.99 
+
+8
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+22 
+
+> Deep Blend
+> PSNR
+
+0.90 0.93 0.95 0.97 0.99 
+
+0.3 
+
+0.4 
+
+0.5 
+
+0.6 
+
+0.7 
+
+0.8 
+
+> SSIM
+
+0.90 0.93 0.95 0.97 0.99 
+
+0.35 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+0.65 
+
+0.70 
+
+> LPIPS
+
+0.90 0.93 0.95 0.97 0.99 
+
+Prune Ratio 
+
+6
+
+8
+
+10 
+
+12 
+
+14 
+
+16 
+
+> Tanks & Temples
+> PSNR
+
+0.90 0.93 0.95 0.97 0.99 
+
+Prune Ratio 
+
+0.1 
+
+0.2 
+
+0.3 
+
+0.4 
+
+0.5 
+
+0.6 
+
+> SSIM
+
+0.90 0.93 0.95 0.97 0.99 
+
+Prune Ratio 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+0.65 
+
+> LPIPS
+
+Ours (channel) Ours (pixel) Ours (tile) Ours (image) Ours (scene) Ours (scene-L2-nc) 
+
+Figure 22: Ablation study. 30 0 25 50 75 100 125 150 175 200 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+> Mip-NeRF360
+> Prune 0.95
+> PSNR
+
+PSNR 
+
+0 25 50 75 100 125 150 175 200 
+
+0.30 
+
+0.35 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+> SSIM
+
+SSIM 
+
+0 25 50 75 100 125 150 175 200 
+
+0.44 
+
+0.46 
+
+0.48 
+
+0.50 
+
+0.52 
+
+0.54 
+
+0.56 
+
+> LPIPS
+
+LPIPS 
+
+0 25 50 75 100 125 150 175 200 
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+> Mip-NeRF360
+> Prune 0.97
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.20 
+
+0.25 
+
+0.30 
+
+0.35 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.48 
+
+0.50 
+
+0.52 
+
+0.54 
+
+0.56 
+
+0.58 
+
+0.60 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+> Mip-NeRF360
+> Prune 0.99
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.2 
+
+0.3 
+
+0.4 
+
+0.5 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.56 
+
+0.58 
+
+0.60 
+
+0.62 
+
+0.64 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+22 
+
+24 
+
+> Deep Blend
+> Prune 0.95
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.50 
+
+0.55 
+
+0.60 
+
+0.65 
+
+0.70 
+
+0.75 
+
+0.80 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+22 
+
+> Deep Blend
+> Prune 0.97
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.4 
+
+0.5 
+
+0.6 
+
+0.7 
+
+0.8 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+8
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+20 
+
+> Deep Blend
+> Prune 0.99
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.3 
+
+0.4 
+
+0.5 
+
+0.6 
+
+0.7 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.50 
+
+0.55 
+
+0.60 
+
+0.65 
+
+0.70 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+10 
+
+12 
+
+14 
+
+16 
+
+18 
+
+> Tanks & Temples
+> Prune 0.95
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.30 
+
+0.35 
+
+0.40 
+
+0.45 
+
+0.50 
+
+0.55 
+
+0.60 
+
+0.65 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.425 
+
+0.450 
+
+0.475 
+
+0.500 
+
+0.525 
+
+0.550 
+
+0.575 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+8
+
+10 
+
+12 
+
+14 
+
+16 
+
+> Tanks & Temples
+> Prune 0.97
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+0.2 
+
+0.3 
+
+0.4 
+
+0.5 
+
+0.6 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+0.475 
+
+0.500 
+
+0.525 
+
+0.550 
+
+0.575 
+
+0.600 
+
+0.625 
+
+> LPIPS
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+6
+
+8
+
+10 
+
+12 
+
+14 
+
+> Tanks & Temples
+> Prune 0.99
+> PSNR
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+0.1 
+
+0.2 
+
+0.3 
+
+0.4 
+
+0.5 
+
+> SSIM
+
+0 25 50 75 100 125 150 175 200 
+
+Recovery Iterations 
+
+0.56 
+
+0.58 
+
+0.60 
+
+0.62 
+
+0.64 
+
+0.66 
+
+> LPIPS
+
+Recovery variant ablation at high prune ratios 
+
+Ours (channel) Ours (pixel) Ours (tile) Ours (image) Ours (scene) Ours (scene-L2-nc) Figure 23: Ablation study. 
+
+C Theoretical Details and Complete Proofs 
+
+This section gives the complete formal development in the same logical order as the main paper: setup and notation, unrestricted impossibility, the finite-query fixed-objective theorem, transfer to true rendering, and extension from representatives to compact query regions. 31 C.1 Full setup and notation 
+
+For readability, we restate the two core definitions used throughout the appendix. 
+
+Definition 4 (Multiplicative ε-coreset for 3DGS, restated) . Let N > 0, let G = {g1, . . . , g N } be a 3DGS scene, and let U ⊆ Q be a family of rendering queries. Let w ∈ [0 , ∞)N represent a weighted pruned scene. Recall A, the nonnegative scalar objective of the full scene, and let Aw be the corresponding objective induced by w. We call w an ε-coreset for G on U if 
+
+|A(G, q ) − Aw(G, q )| ≤ εA (G, q ) for every q ∈ U .
+
+Definition 5 (Weighted rendering validity, restated) . A weight vector w ∈ [0 , ∞)N is called valid on Q′ if 
+
+0 ≤ wiρ(gi, q ) < 1 for every q ∈ Q ′ and every i ∈ [N ].
+
+Remark 1. The theoretical objective Ath  
+
+> w
+
+(G, q ) is a classical coreset-style weighted sum of fixed itemwise terms a(G, g i, q ). The true rendered objective Aw(G, q ) is the physically meaningful quantity of interest but is coupled through the reduced-scene transmittances Tw(G, g i, q ).
+
+C.2 General-case impossibility: restated theorem and proof 
+
+We now give the full construction behind theorem 1. The construction uses the finite projected footprints used by rasterized 3DGS implementations. Mathematically, an untruncated Gaussian has infinite support, so exact footprint isolation is not available for the ideal infinite-support kernel. In practical splatting, however, each projected Gaussian is evaluated only on a bounded screen-space footprint, such as a constant-radius Mahalanobis ellipse, commonly described as a 3σ footprint. The following proof is stated for this truncated-footprint rendered objective. 
+
+Theorem 5 (General-case impossibility, restated) . For every N ≥ 1 and every 0 < ε < 1, there exist a 3DGS scene G = {g1, . . . , g N } and a query family Q such that no weighted reduced scene specified w ∈ [0 , ∞)N
+
+with ∥w∥0 < N is an ε-coreset for the true rendered objective Aw on Q.Proof. Fix N ≥ 1 and 0 < ε < 1. We construct a scene and a finite query family for which each query isolates exactly one Gaussian. Fix one image-plane location x0 and one color channel λ ∈ Λ. Choose N camera poses C1, . . . , C N and construct N Gaussians g1, . . . , g N such that, for every i ∈ [N ], under camera pose Ci, the truncated projected footprint of gi contains x0, while the truncated projected footprint of every gj with j̸ = i does not contain x0.This is possible in the unrestricted setting: place the Gaussian centers far apart in 3D, choose camera pose Ci
+
+to view gi at the selected pixel x0, and choose the projected covariances sufficiently small so that all other Gaussians lie outside the finite rasterized footprint at that pixel. For each Gaussian gi = ( μi, Σi, α i, c i), choose Σi positive definite and choose αi ∈ (0 , 1) . Decrease the opacities if necessary so that 
+
+0 ≤ ρ(gj , q i) < 1 for every i, j ∈ [N ].
+
+This is possible because the query family constructed below is finite. Choose the scalar appearance in channel 
+
+λ so that the isolated Gaussian has positive color contribution at its corresponding query. Define the query family 
+
+Q := {q1, . . . , q N }, qi := ( Ci, x 0, λ ).
+
+32 By construction of the truncated projected footprints, for every i ∈ [N ],
+
+k(gi, q i) > 0,
+
+whereas for every j̸ = i,
+
+k(gj , q i) = 0 .
+
+Therefore 
+
+ρ(gi, q i) = αik(gi, q i) > 0, ρ(gj , q i) = 0 for every j̸ = i. 
+
+Since 0 ≤ ρ(gj , q i) < 1 for all i, j , every prefix transmittance factor 1 − ρ(gj , q i) is positive. In particular, 
+
+T (G, g i, q i) > 0.
+
+Thus, at query qi, Gaussian gi is the unique positive contributor: 
+
+a(G, g i, q i) = ci(qi)ρ(gi, q i)T (G, g i, q i) > 0,
+
+while for every j̸ = i,
+
+a(G, g j , q i) = cj (qi)ρ(gj , q i)T (G, g j , q i) = 0 ,
+
+because ρ(gj , q i) = 0 . Consequently, 
+
+A(G, q i) = 
+
+> N
+
+X
+
+> j=1
+
+a(G, g j , q i) = a(G, g i, q i) > 0.
+
+Now let w ∈ [0 , ∞)N be any weighted pruned scene with ∥w∥0 < N . Then there exists an index i ∈ [N ] such that wi = 0 . Consider the corresponding query qi. For every j̸ = i, Gaussian gj has zero truncated-footprint contribution at qi. The only Gaussian with positive full-scene contribution at qi is gi, but its reduced weight is zero. Therefore 
+
+Aw(G, q i) = 0 .
+
+On the other hand, 
+
+A(G, q i) > 0.
+
+Hence 
+
+|A(G, q i) − Aw(G, q i)| = A(G, q i) > εA (G, q i),
+
+because 0 < ε < 1. Thus w fails the multiplicative coreset guarantee at query qi.Since the argument holds for every w with ∥w∥0 < N , no weighted reduced scene supported on fewer than 
+
+N Gaussians is an ε-coreset for this scene and the query family Q.
+
+C.3 Full proof of the finite-query fixed-objective theorem 
+
+Lemma 1 (Multiplicative Chernoff for bounded variables) . Let Z1, . . . , Z m be i.i.d. random variables with 
+
+0 ≤ Zt ≤ 1 and E[Zt] = μ. Then for every 0 < ε ≤ 1,
+
+Pr 
+
+"
+
+1
+
+m
+
+> m
+
+X
+
+> t=1
+
+Zt − μ > εμ 
+
+#
+
+≤ 2 exp 
+
+
+
+− ε2μm 
+
+3
+
+
+
+.
+
+33 Theorem 6 (Query size dependent 3DGS coreset, restated) . Let G be a 3DGS scene, and let Q′ ⊆ Q be a finite set of representative queries after discarding queries with A(G, q ) = 0 . Let εc, δ ∈ (0 , 1) , and let w be the random weight vector produced by the sensitivity-based sampling rule of section 3.2. If 
+
+m ≥ 3Sε2
+
+> c
+
+log 
+
+ 2|Q ′|
+
+δ
+
+
+
+,
+
+then, with probability at least 1 − δ, w is an εc-coreset for the fixed-objective relaxation Ath on Q′, i.e., 
+
+A(G, q ) − Ath  
+
+> w
+
+(G, q ) ≤ εcA(G, q ) for all q ∈ Q ′.
+
+Moreover, ∥w∥0 ≤ m.Proof. Let I+ := {i ∈ [N ] : s(gi) > 0} and, for i ∈ I+, let pi := s(gi)/S . Sample indices J1, . . . , J m
+
+independently from I+ with Pr[ Jt = i] = pi. Let ni be the number of times index i ∈ I+ is sampled, and set 
+
+wi := 
+
+
+
+ni
+
+mp i
+
+, i ∈ I+,
+
+0, i / ∈ I+.
+
+Fix one query q ∈ Q ′. Since A(G, q ) > 0 by construction of Q′, define 
+
+Yt(q) := a(G, g Jt , q )
+
+pJt A(G, q ) .
+
+Then 
+
+E[Yt(q)] = X
+
+> i∈I+
+
+pi
+
+a(G, g i, q )
+
+piA(G, q ) = 1
+
+A(G, q )
+
+X
+
+> i∈I+
+
+a(G, g i, q ) = 1 ,
+
+because a(G, g i, q ) = 0 whenever s(gi) = 0 . By the definition of sensitivity, 
+
+a(G, g i, q )
+
+A(G, q ) ≤ s(gi) ⇒ Yt(q) ≤ s(gi)
+
+pi
+
+= S for every i ∈ I+.
+
+Hence 0 ≤ Yt(q)/S ≤ 1 and E[Yt(q)/S ] = 1 /S . Applying lemma 1 to Zt(q) := Yt(q)/S yields 
+
+Pr 
+
+"
+
+1
+
+m
+
+> m
+
+X
+
+> t=1
+
+Yt(q) − 1 > ε c
+
+#
+
+≤ 2 exp 
+
+
+
+− ε2 
+
+> c
+
+m
+
+3S
+
+
+
+.
+
+But 
+
+1
+
+m
+
+> m
+
+X
+
+> t=1
+
+Yt(q) = 1
+
+A(G, q )
+
+X
+
+> i∈I+
+
+ni
+
+mp i
+
+a(G, g i, q ) = Ath  
+
+> w
+
+(G, q )
+
+A(G, q ) .
+
+Therefore 
+
+Pr 
+
+h
+
+Ath  
+
+> w
+
+(G, q ) − A(G, q ) > ε cA(G, q )
+
+i
+
+≤ 2 exp 
+
+
+
+− ε2 
+
+> c
+
+m
+
+3S
+
+
+
+.
+
+Choosing 
+
+m ≥ 3Sε2
+
+> c
+
+log 
+
+ 2|Q ′|
+
+δ
+
+
+
+makes the right-hand side at most δ/ |Q ′|. A union bound over all q ∈ Q ′ proves the simultaneous claim. The support bound ∥w∥0 ≤ m is immediate from the construction. 34 C.4 Transfer to true rendering under log-transmittance stability 
+
+Assumption 3 (Log-transmittance stability, restated) . There exists γ ≥ 0 such that for every q ∈ Q ′ and every i ∈ [N ] with wi > 0, one has 
+
+|log T (G, g i, q ) − log Tw(G, g i, q )| ≤ γ. 
+
+Lemma 2 (Exact transmittance-ratio consequence) . Under Assumption 3, for every q ∈ Q ′ and every i ∈ [N ]
+
+with wi > 0,
+
+e−γ T (G, g i, q ) ≤ Tw(G, g i, q ) ≤ eγ T (G, g i, q ).
+
+Proof. By Assumption 3, 
+
+−γ ≤ log Tw(G, g i, q ) − log T (G, g i, q ) ≤ γ. 
+
+Exponentiating gives 
+
+e−γ ≤ Tw(G, g i, q )
+
+T (G, g i, q ) ≤ eγ .
+
+Multiplying by T (G, g i, q ) proves the claim. 
+
+Lemma 3 (Transfer from the theoretical objective to true rendering) . Assume w is valid on Q′ and satisfies Assumption 3. Then for every q ∈ Q ′,
+
+e−γ Ath  
+
+> w
+
+(G, q ) ≤ Aw(G, q ) ≤ eγ Ath  
+
+> w
+
+(G, q ).
+
+Proof. By definition, 
+
+Aw(G, q ) = X
+
+> gi∈G
+
+wici(q)ρ(gi, q )Tw(G, g i, q ).
+
+Applying lemma 2 termwise to indices with wi > 0 and using nonnegativity gives 
+
+e−γ wici(q)ρ(gi, q )T (G, g i, q ) ≤ wici(q)ρ(gi, q )Tw(G, g i, q ) ≤ eγ wici(q)ρ(gi, q )T (G, g i, q ).
+
+For indices with wi = 0 , all terms are zero. Summing over gi ∈ G yields the result. 
+
+Theorem 7 (Finite-query rendered coreset under mild assumptions, restated) . Let w be the random weight vector produced by the sensitivity-based sampling rule of section 3.2, and suppose that w is valid on Q′ and satisfies Assumption 3. Under the same sample-size condition as in theorem 6, with probability at least 1 − δ,
+
+w is an εr-coreset for the true rendered objective on Q′, where 
+
+εr := max 
+
+n
+
+1 − e−γ (1 − εc), e γ (1 + εc) − 1
+
+o
+
+.
+
+Equivalently, 
+
+|A(G, q ) − Aw(G, q )| ≤ εrA(G, q ) for all q ∈ Q ′.
+
+Moreover, ∥w∥0 ≤ m.Proof. By theorem 6, with probability at least 1 − δ,
+
+(1 − εc)A(G, q ) ≤ Ath  
+
+> w
+
+(G, q ) ≤ (1 + εc)A(G, q ) for every q ∈ Q ′.
+
+On the same event, lemma 3 gives 
+
+e−γ Ath  
+
+> w
+
+(G, q ) ≤ Aw(G, q ) ≤ eγ Ath  
+
+> w
+
+(G, q ).
+
+35 Combining them yields 
+
+e−γ (1 − εc)A(G, q ) ≤ Aw(G, q ) ≤ eγ (1 + εc)A(G, q ).
+
+Therefore 
+
+A(G, q ) − Aw(G, q ) ≤  1 − e−γ (1 − εc)A(G, q ),
+
+and 
+
+Aw(G, q ) − A(G, q ) ≤  eγ (1 + εc) − 1A(G, q ).
+
+Taking the maximum of the two one-sided bounds proves the stated εr-coreset guarantee. The support bound follows from theorem 6. 
+
+C.5 Compact-region extension from representatives: restated statements and proof 
+
+Assumption 4 (Compact nondegenerate query region, restated) . Let Qr ⊆ Q be a query region endowed with a metric dQ. Assume: 1. Qr is compact; 2. the full rendered objective q 7 → A(G, q ) is Lipschitz on Qr with constant Lfull ;3. the reduced rendered objective q 7 → Aw(G, q ) is Lipschitz on Qr with constant Lw;4. the full rendered objective is bounded away from zero: 
+
+A(G, q ) ≥ Amin > 0 for every q ∈ Q r.
+
+Proposition 1 (Why the Lipschitz assumption is reasonable) . Suppose on a region Qr: (i) the relevant set of Gaussians is finite; (ii) the front-to-back order does not jump discontinuously inside Qr; (iii) the camera-to-ray map is smooth; (iv) each color function q 7 → ci(q) is smooth; and (v) each projected kernel contribution q 7 → k(gi, q ) is smooth. Then the full rendered objective q 7 → A(G, q ) and the reduced rendered objective q 7 → Aw(G, q ) are smooth on Qr and hence Lipschitz on Qr when Qr is compact. Proof. Each per-Gaussian contribution is a finite product and composition of smooth functions of q: a color factor, a projected-kernel factor, and a transmittance factor built from finitely many smooth attenuation terms. A finite sum of smooth functions is smooth. Every smooth function on a compact set is Lipschitz. 
+
+Definition 6 (ρ-net, restated) . A finite set Q′ 
+
+> r
+
+⊆ Q r is a ρ-net of Qr if for every q ∈ Q r there exists q′ ∈ Q ′
+
+> r
+
+such that 
+
+dQ(q, q ′) ≤ ρ. 
+
+Theorem 8 (Compact-region extension from representatives, restated) . Assume Assumption 4. Let Q′ 
+
+> r
+
+⊆ Q r
+
+be a finite ρ-net. Suppose that the reduced scene satisfies the multiplicative guarantee on the representative set: 
+
+A(G, q ′) − Aw(G, q ′) ≤ ε0A(G, q ′) for every q′ ∈ Q ′
+
+> r
+
+.
+
+Then for every q ∈ Q r,
+
+|A(G, q ) − Aw(G, q )| ≤ ε0 +
+
+ (1 + ε0)Lfull + Lw
+
+ρAmin 
+
+!
+
+A(G, q ).
+
+36 Proof. Fix q ∈ Q r and choose q′ ∈ Q ′ 
+
+> r
+
+such that dQ(q, q ′) ≤ ρ. By the triangle inequality, 
+
+|A(G, q ) − Aw(G, q )| ≤ A(G, q ) − A(G, q ′) + A(G, q ′) − Aw(G, q ′) + Aw(G, q ′) − Aw(G, q ) .
+
+By Lipschitz continuity, 
+
+A(G, q ) − A(G, q ′) ≤ Lfull ρ, Aw(G, q ′) − Aw(G, q ) ≤ Lwρ. 
+
+By the representative-set guarantee, 
+
+A(G, q ′) − Aw(G, q ′) ≤ ε0A(G, q ′).
+
+Using Lipschitz continuity once more, 
+
+A(G, q ′) ≤ A(G, q ) + Lfull ρ. 
+
+Substituting gives 
+
+|A(G, q ) − Aw(G, q )| ≤ Lfull ρ + ε0
+
+ A(G, q ) + Lfull ρ + Lwρ
+
+= ε0A(G, q ) +  (1 + ε0)Lfull + Lw
+
+ρ. 
+
+Finally, since A(G, q ) ≥ Amin ,
+
+ (1 + ε0)Lfull + Lw
+
+ρ ≤
+
+ (1 + ε0)Lfull + Lw
+
+ρAmin 
+
+A(G, q ).
+
+Combining the two displays proves the claim. 
+
+Corollary 1 (Regionwise target-error form) . Fix ¯ε > ε 0. If 
+
+ρ ≤ (¯ ε − ε0)Amin 
+
+(1 + ε0)Lfull + Lw
+
+,
+
+then 
+
+|A(G, q ) − Aw(G, q )| ≤ ¯εA (G, q ) for every q ∈ Q r.
+
+Proof. Substitute the chosen upper bound on ρ into theorem 8. 
+
+Corollary 2 (Representative-to-region theorem with explicit coreset parameters) . Assume Assumption 4 on 
+
+Qr, let Q′ 
+
+> r
+
+⊆ Q r be a finite ρ-net, and assume the hypotheses of theorem 7 hold on Q′ 
+
+> r
+
+with parameters 
+
+(εc, γ r, δ r) and sensitivity sum Sr. If 
+
+mr ≥ 3Sr
+
+ε2
+
+> c
+
+log 2|Q ′
+
+> r
+
+|
+
+δr
+
+,
+
+then with probability at least 1 − δr,
+
+|A(G, q ) − Aw(G, q )| ≤ ε0,r +
+
+ (1 + ε0,r )Lfull + Lw
+
+ρAmin 
+
+!
+
+A(G, q ) for all q ∈ Q r,
+
+where 
+
+ε0,r := max 
+
+n
+
+1 − e−γr (1 − εc), e γr (1 + εc) − 1
+
+o
+
+.
+
+Proof. Apply theorem 7 on the representative set Q′ 
+
+> r
+
+and then apply theorem 8 with ε0 = ε0,r .37 Theorem 9 (Finite union of compact regions) . Let Qreg = SRr=1 Qr be a finite union of compact query regions satisfying Assumption 4, and for each r let Q′ 
+
+> r
+
+⊆ Q r be a representative net. Suppose the hypotheses of corollary 2 hold on each region with failure probability δr, and that 
+
+> R
+
+X
+
+> r=1
+
+δr ≤ δ. 
+
+Then with probability at least 1 − δ, every regional conclusion holds simultaneously on all Qr, hence on all of Qreg .Proof. Apply corollary 2 on each region and then take a union bound over r = 1 , . . . , R .
+
+D Additional Discussion, Limitations, and Societal Impact 
+
+The final section expands the scope discussion from the main paper and records the broader implications of making 3DGS models cheaper to store, transmit, and render. 
+
+D.1 Limitations and scope: extended 
+
+Our results are designed for the structured regime formalized in this paper. The guarantees are not meant to cover unrestricted continuous rendering, where we prove that non-trivial multiplicative coresets are impossible. Instead, our positive results apply to representative query families induced by a target rendering resolution, e.g., a grid of camera poses, rays, pixels, or tiles, and extend to compact query regions under Lipschitz regularity and sufficient query coverage. This matches the practical setting in which 3DGS models are evaluated on finite sets of desired views, or with finite jumps from camera pose to another when deployed on a robot. The rendered guarantee also requires validity and log-transmittance stability. These assumptions are not merely technical: they identify the regime in which a fixed-objective coreset approximation can be faithfully transferred to true re-rendering after pruning. They make explicit how much visibility and occlusion structure must be preserved for provable rendering control. Empirically, our focus is the low-compute regime: prune-only evaluation and very short finetuning budgets. This is precisely where principled subset selection is most important, since there is little recovery compute available to repair a poor pruning decision. Methods that rely on longer recovery or specialized compression pipelines may become more competitive when large post-pruning optimization budgets are available. These directions are largely orthogonal to our contribution: our pruning rule can serve as a strong initialization before applying post-pruning refinement or other recovery procedures. Our goal is therefore not to replace all 3DGS compression techniques, but to provide a principled, vanilla-compatible pruning approach with strong performance when recovery compute is scarce. 
+
+D.2 Societal impacts 
+
+This work may have positive societal impact by making 3D Gaussian Splatting models more efficient to store, transmit, and render. By reducing memory and compute requirements, provable pruning can help deploy high-quality 3D representations on resource-constrained devices, lower energy consumption, and make real-time 3D applications more accessible in areas such as robotics, telepresence, education, cultural heritage, and scientific visualization. The theoretical guarantees may also improve reliability by making compression behavior more predictable than purely heuristic pruning. 38 At the same time, more efficient 3D scene representations may also have negative societal impacts. Easier deployment of compact, high-quality 3D models could support misuse in surveillance, unauthorized reconstruction of private spaces, or the creation and distribution of realistic synthetic or misleading 3D content. Compression may also make such models easier to share at scale, increasing the risk of misuse. These risks are not introduced uniquely by our method, but our work could lower the computational barriers for both beneficial and harmful applications. Therefore, deployment should respect privacy, consent, dataset licensing, and application-specific safety constraints. 
+
+D.3 Broader perspective 
+
+The theory developed here suggests that 3DGS coresets are best understood not as a blanket theorem over arbitrary continuous query spaces, but as a layered statement: 1. impossibility in the unrestricted general case; 2. existence on a finite representative family for a fixed objective; 3. transfer to true rendering under explicit transmittance stability; and 4. extension to compact regions by representative covers. This formulation is intentionally conservative, but it makes the logical structure of the proof transparent and leaves no hidden gap between the negative and positive parts of the claim. 39
