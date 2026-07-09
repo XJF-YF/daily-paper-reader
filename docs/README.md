@@ -6,49 +6,28 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-08
-- 运行时间：2026-07-08 21:14:14 UTC
+- 最新运行日期：2026-07-09
+- 运行时间：2026-07-09 21:28:16 UTC
 - 运行状态：成功
-- 本次总论文数：9
-- 精读区：3
-- 速读区：6
+- 本次总论文数：2
+- 精读区：1
+- 速读区：1
 
 ### 今日简报（AI）
-今日精选9篇论文，精读聚焦3D高斯泼溅的结构一致细节合成与贝叶斯不确定性建模，速读涉动态场景及像素级生成。
-最值得看的两篇精读：《AnchorSplat》实现高效结构一致细节合成，《Rendering-Aware Bayesian》提供原生不确定性估计与自适应复杂度控制。
-优先学习精读中的细节合成与不确定性建模方法，可显著提升3D场景渲染质量与鲁棒性。
-- 详情：[/202607/08/README](/202607/08/README)
+今日精读一篇无位姿前馈3D重建抗漂移研究，速读多模态3D高斯预训练框架。  
+最值得关注的是《NoDrift3R》通过光线图谱耦合解决无位姿场景下的累积漂移问题（8.0分），而《GaussFusion》探索3D高斯预训练的多模态潜力（6.0分）。  
+建议普通读者优先精读第一篇，其思路对隐式/显式3D重建的鲁棒性提升有直接启发。
+- 详情：[/202607/09/README](/202607/09/README)
 
 ### 精读区论文标签
-1. [AnchorSplat: Fast and Structure Consistent Detail Synthesis for Gaussian Splatting](/202607/08/2607.01290v2-anchorsplat-fast-and-structure-consistent-detail-synthesis-for-gaussian-splatting)  
+1. [NoDrift3R: Raymap-Guided Coupling for Drift-Robust Unposed Feed-Forward 3D Reconstruction](/202607/09/2607.07168v1-nodrift3r-raymap-guided-coupling-for-drift-robust-unposed-feed-forward-3d-reconstruction)  
    标签：评分：8.0/10、query:pano-dgs
-   evidence：基于3D高斯溅射的细节合成，服务于新颖视图合成
-2. [Rendering-Aware Bayesian 3D Gaussian Splatting with Native Uncertainty and Adaptive Complexity Control](/202607/08/2607.05522v1-rendering-aware-bayesian-3d-gaussian-splatting-with-native-uncertainty-and-adaptive-complexity-control)  
-   标签：评分：8.0/10、query:pano-dgs
-   evidence：贝叶斯3D高斯溅射用于新颖视图合成并提供不确定性估计
-3. [SSA-3DGS: Unsupervised Removal of Screen-Space Artifacts for 3D Gaussian Splatting](/202607/08/2607.05598v1-ssa-3dgs-unsupervised-removal-of-screen-space-artifacts-for-3d-gaussian-splatting)  
-   标签：评分：8.0/10、query:pano-dgs
-   evidence：通过去除伪影直接改进3DGS新视角合成质量
+   evidence：无位姿前馈3D高斯泼溅用于新视角合成
 
 ### 速读区论文标签
-1. [GUSH3R: Everyone Everywhere All at Once as Gaussians](/202607/08/2607.05243v1-gush3r-everyone-everywhere-all-at-once-as-gaussians)  
-   标签：评分：7.0/10、query:pano-dgs
-   evidence：前馈动态人-场景重建为3D高斯用于新视角合成
-2. [PixGS: Pixel-Space Diffusion for Direct 3D Gaussian Splat Generation](/202607/08/2607.01803v2-pixgs-pixel-space-diffusion-for-direct-3d-gaussian-splat-generation)  
+1. [GaussFusion: Towards Multimodal 3D Gaussian Pretraining](/202607/09/2607.05906v1-gaussfusion-towards-multimodal-3d-gaussian-pretraining)  
    标签：评分：6.0/10、query:pano-dgs
-   evidence：直接生成3D高斯溅射用于新视角合成
-3. [CGGS: Consistency-Augmented Geometric Gaussian Splatting for Ego-centric 3D Scene Generation](/202607/08/2607.03819v1-cggs-consistency-augmented-geometric-gaussian-splatting-for-ego-centric-3d-scene-generation)  
-   标签：评分：6.0/10、query:pano-dgs
-   evidence：文本驱动的3D高斯溅射新视图合成方法
-4. [CGGS: Consistency-Augmented Geometric Gaussian Splatting for Ego-centric 3D Scene Generation](/202607/08/2607.03819v2-cggs-consistency-augmented-geometric-gaussian-splatting-for-ego-centric-3d-scene-generation)  
-   标签：评分：6.0/10、query:pano-dgs
-   evidence：文本驱动的3D高斯溅射新视图合成方法（v2）
-5. [AdaptiveSplat:Texture Aware Controllable 3D Gaussian Allocation for Feed-Forward Reconstruction](/202607/08/2607.04256v1-adaptivesplattexture-aware-controllable-3d-gaussian-allocation-for-feed-forward-reconstruction)  
-   标签：评分：6.0/10、query:pano-dgs
-   evidence：通过纹理感知的高斯分配提高3DGS重建效率
-6. [GaussFusion: Towards Multimodal 3D Gaussian Pretraining](/202607/08/2607.05906v1-gaussfusion-towards-multimodal-3d-gaussian-pretraining)  
-   标签：评分：6.0/10、query:pano-dgs
-   evidence：面向3D高斯表示的多模态预训练，可服务于下游的新颖视图合成任务
+   evidence：3D高斯表示的多模态预训练，赋能下游新视图合成
 
 
 <div class="dpr-home-promo-card">

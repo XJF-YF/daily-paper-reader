@@ -1,0 +1,39 @@
+{
+  "label": "2026-07-09",
+  "date": "2026-07-09",
+  "generated_at": "2026-07-09T21:28:25",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202607/09/2607.07168v1-nodrift3r-raymap-guided-coupling-for-drift-robust-unposed-feed-forward-3d-reconstruction",
+      "section": "deep",
+      "title_en": "NoDrift3R: Raymap-Guided Coupling for Drift-Robust Unposed Feed-Forward 3D Reconstruction",
+      "authors": "Xiangyu Sun, Liu Liu, Seungkwon Yang, Jingbing Han, Seungtae Nam, Zhizhong Su, Eunbyung Park",
+      "date": "2026-07-08",
+      "pdf": "https://arxiv.org/pdf/2607.07168v1",
+      "score": "8.0",
+      "evidence": "无位姿前馈3D高斯泼溅用于新视角合成",
+      "tldr": "无位姿前馈3D重建在长图像序列中因累积的相机位姿漂移导致性能严重下降。针对此问题，本文提出NoDrift3R框架，通过Raymap引导耦合模块（RGC）将高斯中心锚定到射线地图几何，联合优化RGB重建、射线图一致性和相机正则化，形成几何与外观的双向反馈环。同时引入双频视点调度策略，结合从易到难的间隔扩展与短间隔对回放，稳定训练。实验表明，该方法在域内和跨域数据集上显著提升渲染质量和位姿估计精度，尤其对长序列具有强鲁棒性，揭示了显式几何-外观协同是可扩展且抗漂移的关键。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Pose-Free Feed-forward 3D Gaussian Splatting (3DGS) has recently emerged as a powerful paradigm for fast scene reconstruction. However, its performance degrades significantly in long image sequences due to cumulative camera pose estimation drift, which propagates errors into geometric modeling and severely limits rendering fidelity. In this work, we revisit the long-sequence bottleneck and identify pose drift as the primary factor restricting reconstruction quality. Furthermore, while SfM-based pseudo ground-truth poses introduce sensor noise, purely rendering-based supervision often leads to optimization instability and local minima due to the entangled optimization of geometry and pose. To address the challenges, we propose a synergistic pose-free framework that explicitly couples geometry and appearance via a Raymap-Guided Coupling Module (RGC). Concretely, we anchor Gaussian centers to raymap-induced geometry and jointly optimize RGB reconstruction, raymap consistency, and camera regularization under a unified objective, yielding a bidirectional feedback loop: stronger geometry improves rendering, and appearance supervision in turn refines geometry and pose. To further stabilize learning across wide temporal ranges, we introduce a Dual-Frequency Viewpoint Scheduling strategy that combines easy-to-hard interval expansion with replay of short-interval pairs. Extensive experiments across in-domain and cross-domain datasets show consistent gains in both rendering and pose estimation, with notably improved robustness on long sequences. Ablation studies validate our central insight: explicitly designed geometry-appearance synergy is the key to scalable and drift-robust pose-free feed-forward 3D reconstruction.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/09/2607.05906v1-gaussfusion-towards-multimodal-3d-gaussian-pretraining",
+      "section": "quick",
+      "title_en": "GaussFusion: Towards Multimodal 3D Gaussian Pretraining",
+      "authors": "Zhixuan You, Jihua Zhu, Yiding Sun, Zihao Guo, Haozhe Cheng, Dongxu Zhang, Lin Chen, Hainan Luo",
+      "date": "2026-07-07",
+      "pdf": "https://arxiv.org/pdf/2607.05906v1",
+      "score": "6.0",
+      "evidence": "3D高斯表示的多模态预训练，赋能下游新视图合成",
+      "tldr": "3D高斯泼溅作为一种显式表示，同时建模几何与外观，但现有预训练方法如高斯掩码重建仅捕获局部结构，语义监督有限。为此提出GaussFusion多模态预训练框架，通过跨模态语义对齐将图像和文本监督集成到掩码高斯建模中，使高斯编码器学习视觉与语言级语义信息。进一步提出高斯显著性引导的多尺度空洞掩码（GSHM），基于高斯显著性构建空间连续掩码区域并采用多尺度空洞掩码，促使编码器捕捉细粒度局部模式与全局结构依赖。在ModelNet40和ScanObjectNN上分别比Gaussian-MAE提升0.61%和3.85%，验证了高斯表示的可迁移性。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "3D Gaussian Splatting provides an explicit representation that jointly models geometry and appearance, serving as a scalable foundation for 3D representation learning. Existing pre-training methods for Gaussian representations, such as masked Gaussian reconstruction, primarily capture local structures but offer limited semantic supervision. In this paper, we propose GaussFusion, a multimodal pre-training framework for 3D Gaussian representations. GaussFusion integrates image and text supervision into masked Gaussian modeling through cross-modal semantic alignment, enabling the Gaussian encoder to learn both visual and language-level semantic information during pre-training. To better adapt masked modeling to the non-uniform distribution of Gaussian primitives, we further propose Gaussian Salience-guided Multi-scale Hole Masking (GSHM). GSHM constructs spatially continuous masked regions based on Gaussian salience. By applying hole masks at multiple scales, GSHM encourages the encoder to capture both fine-grained local patterns and broader structural dependencies. Extensive experiments on downstream tasks demonstrate that GaussFusion improves the transferability of Gaussian representations. Notably, GaussFusion outperforms Gaussian-MAE on ModelNet40 and ScanObjectNN (PB-T50-RS) by 0.61\\% and 3.85\\%, respectively.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
