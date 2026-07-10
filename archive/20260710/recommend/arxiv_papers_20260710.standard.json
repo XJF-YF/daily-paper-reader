@@ -1,0 +1,139 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-10T20:47:36.127359+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2607.08769v1",
+      "source": "arxiv",
+      "title": "Geometry and Gradient-based Partitioning for Panoramic Outdoor Reconstruction",
+      "abstract": "Scaling 3D Gaussian Splatting (3DGS) to large outdoor scenes is costly in both data acquisition and computation. Adopting panoramic images with equirectangular projection (ERP) can reduce capture effort via their full $360^{\\circ}$ field of view, yet the resulting omnipresent visibility invalidates existing partitioning strategies that rely on local camera frustums, causing block-wise optimization to degenerate into global training. Thus, we propose PanoLOG, a two-stage coarse-to-fine framework equipped with a Geometry and Gradient-based Partitioning Strategy tailored for large-scale panoramic 3DGS reconstruction. In the global coarse stage, PanoLOG leverages sky-sphere modeling and panoramic monocular depth supervision for reliable geometry, while in the refinement stage, G$^2$PS builds adaptive bounding volumes via parallax-driven uncertainty and assigns cameras via gradient-based importance scoring. Furthermore, we construct Pano360, the first benchmark on large-scale panoramic dataset for outdoor scene reconstruction. Extensive experiments demonstrate that G$^2$PS achieves state-of-the-art rendering quality while maintaining scalable, block-parallel training. Our models, training code, and dataset are publicly available.",
+      "authors": [
+        "Weijian Chen",
+        "Weibo Yao",
+        "Yuhang Zhang",
+        "Xiaolin Tang",
+        "Guo Wang",
+        "Weijun Zhang",
+        "Xitong Gao",
+        "Yihao Chen",
+        "Hongde Qin",
+        "Lu Qi"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-09T17:59:43+00:00",
+      "link": "https://arxiv.org/pdf/2607.08769v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "panoramic 3DGS reconstruction with partitioning strategy",
+      "llm_evidence_cn": "全景三维高斯泼溅重建与分区策略",
+      "llm_evidence": "全景三维高斯泼溅重建与分区策略",
+      "canonical_evidence": "全景三维高斯泼溅重建与分区策略",
+      "llm_tldr_en": "PanoLOG proposes a geometry and gradient-based partitioning strategy for large-scale panoramic 3D Gaussian Splatting reconstruction, enabling efficient block-wise optimization by addressing omnipresent visibility.",
+      "llm_tldr_cn": "针对大型室外场景全景3DGS重建中现有分区策略失效的问题，本文提出PanoLOG框架。通过天空球建模和全景单目深度监督实现全局粗几何，再基于几何和梯度进行自适应分区，实现高效分块优化。实验表明该方法在保持全局一致性的同时大幅降低计算开销，是全景3DGS重建的突破性工作。",
+      "llm_tldr": "针对大型室外场景全景3DGS重建中现有分区策略失效的问题，本文提出PanoLOG框架。通过天空球建模和全景单目深度监督实现全局粗几何，再基于几何和梯度进行自适应分区，实现高效分块优化。实验表明该方法在保持全局一致性的同时大幅降低计算开销，是全景3DGS重建的突破性工作。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "find papers on 3D Gaussian Splatting for panoramic 360 degree scene reconstruction",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.08250v1",
+      "source": "arxiv",
+      "title": "On the Design of Mixture-of-Experts for Dynamic Gaussian Splatting",
+      "abstract": "Dynamic scene reconstruction remains challenging due to the heterogeneous and spatially varying nature of real-world motion. Although recent 3D Gaussian Splatting methods have introduced diverse deformation formulations for dynamic novel view synthesis, each method typically relies on a single deformation model within its representation, which limits robustness across diverse dynamic scenarios. In this work, we study a fundamental problem-multi-deformation modeling for dynamic 3D Gaussian representations-under two distinct integration constraints that differ in when and how multiple deformation experts interact during training. From a Mixture-of-Experts (MoE) perspective, we view multi-deformation modeling as the problem of combining multiple specialized deformation models within a unified 3D representation. We first introduce Mixture of Deformation Experts (MoDE), which integrates multiple deformation experts directly into the deformable Gaussian Splatting pipeline through joint optimization. In MoDE, experts operate on a shared canonical Gaussian representation, enabling multi-deformation modeling without introducing additional training stages or modifying the original optimization schedule. In contrast, we further present Mixture of Experts for Dynamic Gaussian Splatting (MoE-GS) under a different integration constraint, where deformation experts are optimized independently and combined through a separate routing stage. As a result, expert interaction occurs over non-canonical Gaussian representations after individual optimization. Together, these two approaches provide alternative strategies for multi-deformation modeling, clarifying how integration constraints shape the design and behavior of deformation experts in dynamic 3D Gaussian representations. Our code is available at: https://github.com/cvsp-lab/MoE-GS-studio.",
+      "authors": [
+        "In-Hwan Jin",
+        "Hyeongju Mun",
+        "Joonsoo Kim",
+        "Kugjin Yun",
+        "Kyeongbo Kong"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-09T08:54:46+00:00",
+      "link": "https://arxiv.org/pdf/2607.08250v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "dynamic novel view synthesis with 3D Gaussian Splatting",
+      "llm_evidence_cn": "使用3D高斯泼溅进行动态新视角合成",
+      "llm_evidence": "使用3D高斯泼溅进行动态新视角合成",
+      "canonical_evidence": "使用3D高斯泼溅进行动态新视角合成",
+      "llm_tldr_en": "Proposes mixture-of-experts design for dynamic 3D Gaussian Splatting to improve robustness across diverse motions.",
+      "llm_tldr_cn": "针对动态场景重建中单一变形模型鲁棒性不足的问题，论文从混合专家视角研究多变形建模，提出两种集成约束方法，用于动态3D高斯表示中多个变形专家的组合。实验表明该方法能有效处理多样化动态场景，提升动态新视角合成质量。",
+      "llm_tldr": "针对动态场景重建中单一变形模型鲁棒性不足的问题，论文从混合专家视角研究多变形建模，提出两种集成约束方法，用于动态3D高斯表示中多个变形专家的组合。实验表明该方法能有效处理多样化动态场景，提升动态新视角合成质量。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.08765v1",
+      "source": "arxiv",
+      "title": "Enhancing In-context Panoramic Generation via Geometric-aware Pretraining",
+      "abstract": "In this work, we present Canvas360, a two-stage framework for in-context panoramic generation that combines geometry-aware pretraining with downstream task-specific fine-tuning. To address the lack of large-scale, high-quality training data tailored to in-context panoramic tasks, we propose Canvas360Dataset, a collection of 1M high-quality paired panoramic samples for style transfer, inpainting, outpainting, and editing, enabling effective supervision across diverse in-context generation scenarios. On the modeling side, Canvas360 enhances text-to-panorama generation through parallel depth generation, velocity circular padding, and similarity loss regularization, enabling the model to learn geometry-aware representations, capture object distortion details, and improve geometric consistency and global coherence. Furthermore, empowered by strong panoramic priors, Canvas360 enables a unified in-context panoramic generation framework that supports diverse downstream tasks via token-level concatenation, surpassing prior methods in both task coverage and modeling flexibility. Extensive experiments show that Canvas360 improves panoramic image fidelity, achieving particularly strong performance on the panorama-specific FAED metric and competitive or leading results across the reported quantitative evaluations. More information can be found on our project page: https://zry000.github.io/Canvas360/",
+      "authors": [
+        "Haoran Feng",
+        "Ruiyang Zhang",
+        "Longyi Zhang",
+        "Dizhe Zhang",
+        "Lu Qi"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-09T17:59:06+00:00",
+      "link": "https://arxiv.org/pdf/2607.08765v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "panoramic generation framework with geometry-aware pretraining",
+      "llm_evidence_cn": "具有几何感知预训练的全景生成框架",
+      "llm_evidence": "具有几何感知预训练的全景生成框架",
+      "canonical_evidence": "具有几何感知预训练的全景生成框架",
+      "llm_tldr_en": "Proposes Canvas360, a two-stage framework for in-context panoramic generation using geometry-aware pretraining and fine-tuning, achieving high-quality panoramic outputs.",
+      "llm_tldr_cn": "针对上下文全景生成缺乏大规模高质量数据的问题，该文提出Canvas360框架，先进行几何感知预训练（并行深度生成、速度循环填充等），再在下游任务微调。构建了包含100万对全景样本的数据集。实验证明了该方法在风格迁移、修复等任务上的有效性。",
+      "llm_tldr": "针对上下文全景生成缺乏大规模高质量数据的问题，该文提出Canvas360框架，先进行几何感知预训练（并行深度生成、速度循环填充等），再在下游任务微调。构建了包含100万对全景样本的数据集。实验证明了该方法在风格迁移、修复等任务上的有效性。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "novel view synthesis for 360-degree immersive environments",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

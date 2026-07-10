@@ -1,0 +1,54 @@
+{
+  "label": "2026-07-10",
+  "date": "2026-07-10",
+  "generated_at": "2026-07-10T20:51:11",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202607/10/2607.08769v1-geometry-and-gradient-based-partitioning-for-panoramic-outdoor-reconstruction",
+      "section": "deep",
+      "title_en": "Geometry and Gradient-based Partitioning for Panoramic Outdoor Reconstruction",
+      "authors": "Weijian Chen, Weibo Yao, Yuhang Zhang, Xiaolin Tang, Guo Wang, Weijun Zhang, Xitong Gao, Yihao Chen, Hongde Qin, Lu Qi",
+      "date": "2026-07-09",
+      "pdf": "https://arxiv.org/pdf/2607.08769v1",
+      "score": "10.0",
+      "evidence": "全景三维高斯泼溅重建与分区策略",
+      "tldr": "针对大规模户外场景3DGS重建成本高且全景图像导致现有分区策略失效的问题，提出PanoLOG两级框架：全局粗阶段利用天空球建模和全景单目深度监督；细化阶段采用G^2PS策略，通过视差驱动的不确定性和梯度重要性评分构建自适应包围盒并分配相机。在Pano360数据集上实现SOTA渲染质量，支持可扩展分块并行训练。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Scaling 3D Gaussian Splatting (3DGS) to large outdoor scenes is costly in both data acquisition and computation. Adopting panoramic images with equirectangular projection (ERP) can reduce capture effort via their full $360^{\\circ}$ field of view, yet the resulting omnipresent visibility invalidates existing partitioning strategies that rely on local camera frustums, causing block-wise optimization to degenerate into global training. Thus, we propose PanoLOG, a two-stage coarse-to-fine framework equipped with a Geometry and Gradient-based Partitioning Strategy tailored for large-scale panoramic 3DGS reconstruction. In the global coarse stage, PanoLOG leverages sky-sphere modeling and panoramic monocular depth supervision for reliable geometry, while in the refinement stage, G$^2$PS builds adaptive bounding volumes via parallax-driven uncertainty and assigns cameras via gradient-based importance scoring. Furthermore, we construct Pano360, the first benchmark on large-scale panoramic dataset for outdoor scene reconstruction. Extensive experiments demonstrate that G$^2$PS achieves state-of-the-art rendering quality while maintaining scalable, block-parallel training. Our models, training code, and dataset are publicly available.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/10/2607.08250v1-on-the-design-of-mixture-of-experts-for-dynamic-gaussian-splatting",
+      "section": "quick",
+      "title_en": "On the Design of Mixture-of-Experts for Dynamic Gaussian Splatting",
+      "authors": "In-Hwan Jin, Hyeongju Mun, Joonsoo Kim, Kugjin Yun, Kyeongbo Kong",
+      "date": "2026-07-09",
+      "pdf": "https://arxiv.org/pdf/2607.08250v1",
+      "score": "7.0",
+      "evidence": "使用3D高斯泼溅进行动态新视角合成",
+      "tldr": "动态场景重建中，现有3D高斯泼溅方法多采用单一变形模型，面对复杂运动鲁棒性不足。本文将多变形建模视为混合专家问题，提出两种策略：MoDE在联合优化中集成多个变形专家到共享规范高斯表示；MoE-GS则独立优化专家后通过路由组合非规范表示。两种方法从不同集成约束角度实现了多变形建模，揭示了变形专家设计的关键因素，为动态场景建模提供新思路。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Dynamic scene reconstruction remains challenging due to the heterogeneous and spatially varying nature of real-world motion. Although recent 3D Gaussian Splatting methods have introduced diverse deformation formulations for dynamic novel view synthesis, each method typically relies on a single deformation model within its representation, which limits robustness across diverse dynamic scenarios. In this work, we study a fundamental problem-multi-deformation modeling for dynamic 3D Gaussian representations-under two distinct integration constraints that differ in when and how multiple deformation experts interact during training. From a Mixture-of-Experts (MoE) perspective, we view multi-deformation modeling as the problem of combining multiple specialized deformation models within a unified 3D representation. We first introduce Mixture of Deformation Experts (MoDE), which integrates multiple deformation experts directly into the deformable Gaussian Splatting pipeline through joint optimization. In MoDE, experts operate on a shared canonical Gaussian representation, enabling multi-deformation modeling without introducing additional training stages or modifying the original optimization schedule. In contrast, we further present Mixture of Experts for Dynamic Gaussian Splatting (MoE-GS) under a different integration constraint, where deformation experts are optimized independently and combined through a separate routing stage. As a result, expert interaction occurs over non-canonical Gaussian representations after individual optimization. Together, these two approaches provide alternative strategies for multi-deformation modeling, clarifying how integration constraints shape the design and behavior of deformation experts in dynamic 3D Gaussian representations. Our code is available at: https://github.com/cvsp-lab/MoE-GS-studio.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/10/2607.08765v1-enhancing-in-context-panoramic-generation-via-geometric-aware-pretraining",
+      "section": "quick",
+      "title_en": "Enhancing In-context Panoramic Generation via Geometric-aware Pretraining",
+      "authors": "Haoran Feng, Ruiyang Zhang, Longyi Zhang, Dizhe Zhang, Lu Qi",
+      "date": "2026-07-09",
+      "pdf": "https://arxiv.org/pdf/2607.08765v1",
+      "score": "6.0",
+      "evidence": "具有几何感知预训练的全景生成框架",
+      "tldr": "全景图像生成面临训练数据稀缺和几何一致性不足的挑战。Canvas360提出两阶段框架，通过几何感知预训练（并行深度生成、速度循环填充、相似性损失）学习全景先验，并构建1M高质量配对数据集。实验表明，该方法在FAED指标上表现突出，定量评估领先。该工作实现了统一的上下文全景生成框架，支持风格迁移、修补等多种任务。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "In this work, we present Canvas360, a two-stage framework for in-context panoramic generation that combines geometry-aware pretraining with downstream task-specific fine-tuning. To address the lack of large-scale, high-quality training data tailored to in-context panoramic tasks, we propose Canvas360Dataset, a collection of 1M high-quality paired panoramic samples for style transfer, inpainting, outpainting, and editing, enabling effective supervision across diverse in-context generation scenarios. On the modeling side, Canvas360 enhances text-to-panorama generation through parallel depth generation, velocity circular padding, and similarity loss regularization, enabling the model to learn geometry-aware representations, capture object distortion details, and improve geometric consistency and global coherence. Furthermore, empowered by strong panoramic priors, Canvas360 enables a unified in-context panoramic generation framework that supports diverse downstream tasks via token-level concatenation, surpassing prior methods in both task coverage and modeling flexibility. Extensive experiments show that Canvas360 improves panoramic image fidelity, achieving particularly strong performance on the panorama-specific FAED metric and competitive or leading results across the reported quantitative evaluations. More information can be found on our project page: https://zry000.github.io/Canvas360/",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
