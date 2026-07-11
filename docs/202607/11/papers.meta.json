@@ -1,0 +1,54 @@
+{
+  "label": "2026-07-11",
+  "date": "2026-07-11",
+  "generated_at": "2026-07-11T19:56:51",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202607/11/2607.04127v1-real-time-lidar-gaussian-splatting-slam",
+      "section": "deep",
+      "title_en": "Real-Time LiDAR Gaussian Splatting SLAM",
+      "authors": "Seungjun Tak, Yewon Jeon, Jaeik Hwang, SukMin Hwang, Seongbo Ha, Hyeonwoo Yu",
+      "date": "2026-07-05",
+      "pdf": "https://arxiv.org/pdf/2607.04127v1",
+      "score": "8.0",
+      "evidence": "基于LiDAR的实时3DGS SLAM，使用球形光栅化稠密建图",
+      "tldr": "针对实时LiDAR SLAM中稠密建图与计算效率的矛盾，提出紧耦合快速G-ICP配准与球面光栅化的高斯泼溅框架，利用几何先验初始化、剪枝与加密高斯，并通过置信度反馈增强跟踪。在Newer College数据集上以>20 FPS实现86.78% F-score，为首次实时LiDAR高斯泼溅SLAM，兼具稳定性与可扩展性。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "We present a real-time LiDAR-based framework for Gaussian Splatting SLAM that tightly couples fast G-ICP registration with spherical rasterization-based dense mapping for large-scale sequences. Leveraging LiDAR geometry rather than appearance, we reuse tracking-estimated local covariances to initialize Gaussians with range-aware scales and to derive surface normals for geometry-aware map optimization. We further introduce a covariance-derived geometry score that measures local complexity and drives pruning in planar regions and selective densification in structurally rich areas, while optimized Gaussians and LiDAR-specific confidence cues are fed back to improve tracking robustness. On the Newer College dataset, our method achieves an F-score of 86.78\\% using purely online trajectories at real-time speed ($>$20 FPS), and additional experiments on other datasets confirm its stability and scalability.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/11/2607.04761v1-degensegs-geometrically-and-semantically-decoupled-surgical-scene-understanding-in-4d-gaussian-splatting",
+      "section": "quick",
+      "title_en": "DeGenseGS: Geometrically and Semantically Decoupled Surgical Scene Understanding in 4D Gaussian Splatting",
+      "authors": "Yimo Wang, Bin Kang, Shuojue Yang, Yueming Jin",
+      "date": "2026-07-06",
+      "pdf": "https://arxiv.org/pdf/2607.04761v1",
+      "score": "7.0",
+      "evidence": "用于手术场景理解的4D高斯溅射，几何与语义解耦",
+      "tldr": "现有4D手术场景理解中语义与几何刚性耦合导致不对齐。本文提出DeGenseGS，通过HexPlane时空纠缠模块解耦语义与几何变形，并设计光栅化原生语义提取和角度对齐优化。在CholecSeg8k和EndoVis18上取得SOTA。该方法实现了几何完整性和语义-解剖对齐，支持变形下的连续分割。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Real-time, text-promptable 4D reconstruction is indispensable for autonomous surgical interaction. Severe misalignment between semantic meaning and physical anatomy still persists, largely because existing solutions integrate Vision-Language Models into deformable fields via a rigid coupling scheme that tightly binds semantic features to geometric warping. In this paper, we propose DeGenseGS, Geometrically and Semantically Decoupled Surgical Scene Understanding in 4D Gaussian Splatting, a novel framework that independently models semantic evolution and geometric deformation. Specifically, we propose a HexPlane-based spatiotemporal entanglement module that uses shared kinematic latents to synchronize semantic mutations with scene dynamics, while explicitly disentangling semantic updates from geometric deformation. To further ensure robustness against reconstruction artifacts, we devise a Rasterization-Native Semantic Extraction mechanism that infers semantics from topologically continuous feature maps. Additionally, we incorporate an angular-aligned optimization strategy that conforms to the native hyperspherical latent space, thereby preventing semantic distortion. Extensive evaluations on the CholecSeg8k and EndoVis18 datasets demonstrate that DeGenseGS achieves state-of-the-art performance. Our framework yields enhanced geometric completeness and robust semantic-anatomic alignment, enabling spatially continuous segmentation despite drastic tissue deformation and topological transitions.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/11/2607.04144v1-semantic-guided-progressive-object-removal-with-gaussian-splatting",
+      "section": "quick",
+      "title_en": "Semantic-Guided Progressive Object Removal with Gaussian Splatting",
+      "authors": "Xianliang Huang, Chen Xiao, Yuanxiang Ni, Guanming Liu, Mingkai Liu, Dikai Fan, Xiao Liu, Hao Zhang",
+      "date": "2026-07-05",
+      "pdf": "https://arxiv.org/pdf/2607.04144v1",
+      "score": "6.0",
+      "evidence": "利用高斯泼溅结合语义引导进行3D物体移除",
+      "tldr": "针对3D场景中移除物体时未能有效利用多视图语义信息且难以处理复杂几何的问题，本文提出语义引导的渐进式物体移除框架。该方法基于DINOv2提取多视图语义特征，通过语义引导块匹配完成缺失区域并保持跨视图一致性，再引入区域渐进细化策略按子区域选择性优化。在Gaussian Splatting基础上实现高效高清重建。实验表明该方法在感知质量和3D物体移除连贯性上显著优于现有方法。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Removing unwanted objects from reconstructed 3D scenes is an important task in computer vision, supporting applications in AR/VR, robotics, and digital content creation. Existing methods typically complete the entire masked region in a single step and without effectively utilizing semantic information from other views, leading to difficulties in handling complex geometric details and textures. In this work, we propose a novel framework that integrates Semantic-guided Block Matching (SBM) and Region-Wise Progressive Refinement (RPR) for high-quality 3D object removal. First, we leverage DINOv2 to encode semantic guidance from multi-view observations, and the best match tokens are decoded to complete missing regions in the target view while maintaining cross-view consistency. Second, we introduce a RPR strategy that segments the target mask into multiple subregions and selectively refines those with poor visual quality. Our method is built upon Gaussian Splatting, ensuring high-fidelity scene reconstruction with efficient computation. Experimental results demonstrate that our approach outperforms existing Gaussian-based methods in terms of perceptual quality and coherence in 3D object removal.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

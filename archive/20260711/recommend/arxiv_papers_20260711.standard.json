@@ -1,0 +1,138 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-11T19:54:55.802044+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2607.04127v1",
+      "source": "arxiv",
+      "title": "Real-Time LiDAR Gaussian Splatting SLAM",
+      "abstract": "We present a real-time LiDAR-based framework for Gaussian Splatting SLAM that tightly couples fast G-ICP registration with spherical rasterization-based dense mapping for large-scale sequences. Leveraging LiDAR geometry rather than appearance, we reuse tracking-estimated local covariances to initialize Gaussians with range-aware scales and to derive surface normals for geometry-aware map optimization. We further introduce a covariance-derived geometry score that measures local complexity and drives pruning in planar regions and selective densification in structurally rich areas, while optimized Gaussians and LiDAR-specific confidence cues are fed back to improve tracking robustness. On the Newer College dataset, our method achieves an F-score of 86.78\\% using purely online trajectories at real-time speed ($>$20 FPS), and additional experiments on other datasets confirm its stability and scalability.",
+      "authors": [
+        "Seungjun Tak",
+        "Yewon Jeon",
+        "Jaeik Hwang",
+        "SukMin Hwang",
+        "Seongbo Ha",
+        "Hyeonwoo Yu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "published": "2026-07-05T05:55:32+00:00",
+      "link": "https://arxiv.org/pdf/2607.04127v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Real-time LiDAR-based 3DGS SLAM with spherical rasterization for dense mapping",
+      "llm_evidence_cn": "基于LiDAR的实时3DGS SLAM，使用球形光栅化稠密建图",
+      "llm_evidence": "基于LiDAR的实时3DGS SLAM，使用球形光栅化稠密建图",
+      "canonical_evidence": "基于LiDAR的实时3DGS SLAM，使用球形光栅化稠密建图",
+      "llm_tldr_en": "Proposes a real-time LiDAR-Gaussian SLAM integrating G-ICP and spherical rasterization, achieving high F-score on large-scale datasets with online trajectory.",
+      "llm_tldr_cn": "针对大尺度序列的LiDAR SLAM，提出实时3D高斯溅射框架，紧密耦合快速G-ICP配准与球形光栅化稠密建图。利用LiDAR几何先验初始化高斯并优化跟踪，在Newer College数据集上达到86.78%的F-score，实现纯在线轨迹的高质量重建。",
+      "llm_tldr": "针对大尺度序列的LiDAR SLAM，提出实时3D高斯溅射框架，紧密耦合快速G-ICP配准与球形光栅化稠密建图。利用LiDAR几何先验初始化高斯并优化跟踪，在Newer College数据集上达到86.78%的F-score，实现纯在线轨迹的高质量重建。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.04761v1",
+      "source": "arxiv",
+      "title": "DeGenseGS: Geometrically and Semantically Decoupled Surgical Scene Understanding in 4D Gaussian Splatting",
+      "abstract": "Real-time, text-promptable 4D reconstruction is indispensable for autonomous surgical interaction. Severe misalignment between semantic meaning and physical anatomy still persists, largely because existing solutions integrate Vision-Language Models into deformable fields via a rigid coupling scheme that tightly binds semantic features to geometric warping. In this paper, we propose DeGenseGS, Geometrically and Semantically Decoupled Surgical Scene Understanding in 4D Gaussian Splatting, a novel framework that independently models semantic evolution and geometric deformation. Specifically, we propose a HexPlane-based spatiotemporal entanglement module that uses shared kinematic latents to synchronize semantic mutations with scene dynamics, while explicitly disentangling semantic updates from geometric deformation. To further ensure robustness against reconstruction artifacts, we devise a Rasterization-Native Semantic Extraction mechanism that infers semantics from topologically continuous feature maps. Additionally, we incorporate an angular-aligned optimization strategy that conforms to the native hyperspherical latent space, thereby preventing semantic distortion. Extensive evaluations on the CholecSeg8k and EndoVis18 datasets demonstrate that DeGenseGS achieves state-of-the-art performance. Our framework yields enhanced geometric completeness and robust semantic-anatomic alignment, enabling spatially continuous segmentation despite drastic tissue deformation and topological transitions.",
+      "authors": [
+        "Yimo Wang",
+        "Bin Kang",
+        "Shuojue Yang",
+        "Yueming Jin"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-06T07:56:17+00:00",
+      "link": "https://arxiv.org/pdf/2607.04761v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "4D Gaussian Splatting for surgical scene understanding, geometrically and semantically decoupled",
+      "llm_evidence_cn": "用于手术场景理解的4D高斯溅射，几何与语义解耦",
+      "llm_evidence": "用于手术场景理解的4D高斯溅射，几何与语义解耦",
+      "canonical_evidence": "用于手术场景理解的4D高斯溅射，几何与语义解耦",
+      "llm_tldr_en": "DeGenseGS proposes a decoupled 4D Gaussian Splatting framework for surgical scene understanding, independently modeling semantic and geometric deformations via a HexPlane-based spatiotemporal entanglement module, enabling real-time text-promptable reconstruction.",
+      "llm_tldr_cn": "DeGenseGS针对手术场景中语义与几何错位的问题，提出几何和语义解耦的4D高斯溅射框架。通过基于HexPlane的时空纠缠模块，独立建模语义演变和几何变形，实现了可实时文本提示的4D重建。该方法有效缓解了刚性耦合导致的语义-几何不对齐，为自主手术交互提供了高保真度的场景理解能力。",
+      "llm_tldr": "DeGenseGS针对手术场景中语义与几何错位的问题，提出几何和语义解耦的4D高斯溅射框架。通过基于HexPlane的时空纠缠模块，独立建模语义演变和几何变形，实现了可实时文本提示的4D重建。该方法有效缓解了刚性耦合导致的语义-几何不对齐，为自主手术交互提供了高保真度的场景理解能力。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.04144v1",
+      "source": "arxiv",
+      "title": "Semantic-Guided Progressive Object Removal with Gaussian Splatting",
+      "abstract": "Removing unwanted objects from reconstructed 3D scenes is an important task in computer vision, supporting applications in AR/VR, robotics, and digital content creation. Existing methods typically complete the entire masked region in a single step and without effectively utilizing semantic information from other views, leading to difficulties in handling complex geometric details and textures. In this work, we propose a novel framework that integrates Semantic-guided Block Matching (SBM) and Region-Wise Progressive Refinement (RPR) for high-quality 3D object removal. First, we leverage DINOv2 to encode semantic guidance from multi-view observations, and the best match tokens are decoded to complete missing regions in the target view while maintaining cross-view consistency. Second, we introduce a RPR strategy that segments the target mask into multiple subregions and selectively refines those with poor visual quality. Our method is built upon Gaussian Splatting, ensuring high-fidelity scene reconstruction with efficient computation. Experimental results demonstrate that our approach outperforms existing Gaussian-based methods in terms of perceptual quality and coherence in 3D object removal.",
+      "authors": [
+        "Xianliang Huang",
+        "Chen Xiao",
+        "Yuanxiang Ni",
+        "Guanming Liu",
+        "Mingkai Liu",
+        "Dikai Fan",
+        "Xiao Liu",
+        "Hao Zhang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-07-05T07:11:48+00:00",
+      "link": "https://arxiv.org/pdf/2607.04144v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "uses Gaussian Splatting for 3D object removal with semantic guidance",
+      "llm_evidence_cn": "利用高斯泼溅结合语义引导进行3D物体移除",
+      "llm_evidence": "利用高斯泼溅结合语义引导进行3D物体移除",
+      "canonical_evidence": "利用高斯泼溅结合语义引导进行3D物体移除",
+      "llm_tldr_en": "Proposes a semantic-guided progressive object removal framework for 3D scenes using Gaussian Splatting, employing block matching and progressive refinement.",
+      "llm_tldr_cn": "从3D场景中移除不想要的物体是AR/VR等应用的关键。现有方法缺乏利用多视角语义信息且一次性补全导致细节不足。本文提出语义引导块匹配和区域渐进细化框架，利用DINOv2编码多视角语义，通过最佳匹配令牌解码缺失区域，并逐步优化细节。实验表明，该方法在复杂几何和纹理场景下显著优于现有移除方法，生成的场景自然且完整。",
+      "llm_tldr": "从3D场景中移除不想要的物体是AR/VR等应用的关键。现有方法缺乏利用多视角语义信息且一次性补全导致细节不足。本文提出语义引导块匹配和区域渐进细化框架，利用DINOv2编码多视角语义，通过最佳匹配令牌解码缺失区域，并逐步优化细节。实验表明，该方法在复杂几何和纹理场景下显著优于现有移除方法，生成的场景自然且完整。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
