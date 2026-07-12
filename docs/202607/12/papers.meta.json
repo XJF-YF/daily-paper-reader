@@ -1,0 +1,24 @@
+{
+  "label": "2026-07-12",
+  "date": "2026-07-12",
+  "generated_at": "2026-07-12T20:20:24",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202607/12/2607.08408v1-track2map-online-deformable-slam-with-motion-aware-pose-optimization-in-robotic-surgery",
+      "section": "quick",
+      "title_en": "Track2Map: Online Deformable SLAM with Motion-Aware Pose Optimization in Robotic Surgery",
+      "authors": "Tianyi Song, Sierra Bonilla, Xinwei Ju, Evangelos Mazomenos, Danail Stoyanov, Adam Schmidt, Omid Mohareri, Sophia Bano, Francisco Vasconcelos",
+      "date": "2026-07-09",
+      "pdf": "https://arxiv.org/pdf/2607.08408v1",
+      "score": "6.0",
+      "evidence": "在线3D高斯泼溅SLAM用于形变重建",
+      "tldr": "机器人手术中可变形三维重建多依赖离线处理与精确相机先验，限制了在缺失或噪声先验下的应用。Track2Map提出在线高斯泼溅SLAM，联合优化相机轨迹与变形场景表示，利用密集点轨迹初始化变形并区分运动类型。在StereoMIS上重建质量和轨迹精度均优于现有方法，实现了无需先验的在线可变形SLAM。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Gaussian splatting is the current state-of-the-art for dense, deformable 3D anatomy reconstruction in robot-assisted minimally invasive surgery (RAMIS); however, most pipelines are offline and depend on accurate camera trajectory priors (often from robotic kinematics), limiting applicability when priors are missing or noisy. To address these limitations, we propose Track2Map, an online 3D Gaussian Splatting pipeline that jointly optimizes camera trajectory and 3D deformable scene representation directly from surgical video. Track2Map is therefore capable of robust 3D reconstructions when camera trajectory priors are either absent or noisy, and due to its online nature it effectively works as a Simultaneous Localisation and Mapping (SLAM) method. To stabilize optimization in the presence of tissue motion and ambiguous visual cues, we introduce a track-anchored deformation initialization using dense 2D point tracks. Track statistics are further utilized to disentangle camera motion from scene deformation by detecting static camera periods and reducing drift during incremental mapping. Experiments on StereoMIS show improved reconstruction quality and camera trajectory against competing SLAM methods, as well as compared to non-SLAM methods that utilize camera trajectory priors. The code is available at https://track2map.github.io/.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

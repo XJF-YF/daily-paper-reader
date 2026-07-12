@@ -1,0 +1,61 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-12T20:19:38.950301+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2607.08408v1",
+      "source": "arxiv",
+      "title": "Track2Map: Online Deformable SLAM with Motion-Aware Pose Optimization in Robotic Surgery",
+      "abstract": "Gaussian splatting is the current state-of-the-art for dense, deformable 3D anatomy reconstruction in robot-assisted minimally invasive surgery (RAMIS); however, most pipelines are offline and depend on accurate camera trajectory priors (often from robotic kinematics), limiting applicability when priors are missing or noisy. To address these limitations, we propose Track2Map, an online 3D Gaussian Splatting pipeline that jointly optimizes camera trajectory and 3D deformable scene representation directly from surgical video. Track2Map is therefore capable of robust 3D reconstructions when camera trajectory priors are either absent or noisy, and due to its online nature it effectively works as a Simultaneous Localisation and Mapping (SLAM) method. To stabilize optimization in the presence of tissue motion and ambiguous visual cues, we introduce a track-anchored deformation initialization using dense 2D point tracks. Track statistics are further utilized to disentangle camera motion from scene deformation by detecting static camera periods and reducing drift during incremental mapping. Experiments on StereoMIS show improved reconstruction quality and camera trajectory against competing SLAM methods, as well as compared to non-SLAM methods that utilize camera trajectory priors. The code is available at https://track2map.github.io/.",
+      "authors": [
+        "Tianyi Song",
+        "Sierra Bonilla",
+        "Xinwei Ju",
+        "Evangelos Mazomenos",
+        "Danail Stoyanov",
+        "Adam Schmidt",
+        "Omid Mohareri",
+        "Sophia Bano",
+        "Francisco Vasconcelos"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-07-09T12:34:55+00:00",
+      "link": "https://arxiv.org/pdf/2607.08408v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "online 3D Gaussian Splatting SLAM for deformable reconstruction",
+      "llm_evidence_cn": "在线3D高斯泼溅SLAM用于形变重建",
+      "llm_evidence": "在线3D高斯泼溅SLAM用于形变重建",
+      "canonical_evidence": "在线3D高斯泼溅SLAM用于形变重建",
+      "llm_tldr_en": "Track2Map is an online 3D Gaussian Splatting pipeline that jointly optimizes camera trajectory and deformable scene representation from surgical video, enabling robust SLAM without pose priors.",
+      "llm_tldr_cn": "针对现有手术场景3D高斯重建依赖相机轨迹先验且离线运行的问题，提出Track2Map在线管道，联合优化相机轨迹和形变场景表示，无需先验即可进行鲁棒3D重建。该方法在缺少或噪声先验下仍有效，拓展了3DGS在SLAM中的应用。",
+      "llm_tldr": "针对现有手术场景3D高斯重建依赖相机轨迹先验且离线运行的问题，提出Track2Map在线管道，联合优化相机轨迹和形变场景表示，无需先验即可进行鲁棒3D重建。该方法在缺少或噪声先验下仍有效，拓展了3DGS在SLAM中的应用。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

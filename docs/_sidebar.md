@@ -1,6 +1,9 @@
 * <a class="dpr-sidebar-root-link" href="#/">首页</a>
 * <a class="dpr-sidebar-root-link dpr-sidebar-noactive-link" href="javascript:void(0)" data-dpr-hash="#/tutorial/README">使用教程</a>
 * Daily Papers
+  * 2026-07-12 <!--dpr-date:20260712-->
+    * 速读区
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202607/12/2607.08408v1-track2map-online-deformable-slam-with-motion-aware-pose-optimization-in-robotic-surgery" data-sidebar-item="{&quot;title&quot;: &quot;Track2Map: Online Deformable SLAM with Motion-Aware Pose Optimization in Robotic Surgery&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2607.08408v1-track2map-online-deformable-slam-with-motion-aware-pose-optimization-in-robotic-surgery&quot;, &quot;score&quot;: &quot;6.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;pano-dgs&quot;}], &quot;evidence&quot;: &quot;在线3D高斯泼溅SLAM用于形变重建&quot;}">Track2Map: Online Deformable SLAM with Motion-Aware Pose Optimization in Robotic Surgery</a>
   * 2026-07-11 <!--dpr-date:20260711-->
     * 精读区
       * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202607/11/2607.04127v1-real-time-lidar-gaussian-splatting-slam" data-sidebar-item="{&quot;title&quot;: &quot;Real-Time LiDAR Gaussian Splatting SLAM&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2607.04127v1-real-time-lidar-gaussian-splatting-slam&quot;, &quot;score&quot;: &quot;8.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;pano-dgs&quot;}], &quot;evidence&quot;: &quot;基于LiDAR的实时3DGS SLAM，使用球形光栅化稠密建图&quot;}">Real-Time LiDAR Gaussian Splatting SLAM</a>
