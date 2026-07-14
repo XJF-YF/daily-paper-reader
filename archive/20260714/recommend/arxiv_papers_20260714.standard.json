@@ -1,0 +1,352 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-14T20:57:01.496451+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 5,
+    "deep_cap": 6,
+    "deep_selected": 5,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [
+    {
+      "id": "2607.11673v1",
+      "source": "arxiv",
+      "title": "ABot-3DWorld 0: A Universal World Model to Explore Any 3D Space",
+      "abstract": "We present ABot-3DWorld 0, a universal multimodal 3D world model that turns text, image, and video inputs into high-fidelity, explorable 3D worlds. At the heart of our framework is a unified Spatial Generative Primitive (SGP), a compact tuple of a high-quality panorama and a spatial point cloud that delivers an efficient description of any 3D space. Multimodal inputs are first lifted into this primitive; a 3D-consistent panoramic video generator then explores the primitive along a planned trajectory; finally, our panoramic video reconstruction engine converts the generated video into a clean, photorealistic 3D Gaussian Splatting (3DGS) world. This pipeline covers two regimes: rich inputs (multi-view sets, casual video) are lifted into the SGP through a geometry-rigorous recovery that mirrors the observed scene, while a single image or sentence is completed generatively into a creative world. The result is one low-barrier engine for general 3D content creation that further anchors generated worlds to geographic points of interest, enabling map-native spatial exploration at consumer scale. Experiments show that ABot-3DWorld 0 sets the state of the art among open-source methods and demonstrates stronger scene fidelity than Marble under rich multimodal inputs.",
+      "authors": [
+        "Mingchao Sun",
+        "Luyang Tang",
+        "Yu Liu",
+        "Xu Yan",
+        "Zhan Li",
+        "Yunwei Zhang",
+        "Fei Yu",
+        "Zengye Ge",
+        "Yumin Liu",
+        "Jiacheng Zhang",
+        "Yongchang Zhang",
+        "Jiawei Zhang",
+        "Zhicheng Liu",
+        "Zhongxu Sun",
+        "Tianjian Ouyang",
+        "Wenzheng Chen",
+        "Shixing Yang",
+        "Nianfei Fan",
+        "Guodong Sun",
+        "Huan Li",
+        "Zheng Zhou",
+        "Yongze Li",
+        "Yingliang Peng",
+        "Mengmeng Du",
+        "Yuan Liu",
+        "Haozhe Shi",
+        "Chunnuo Gong",
+        "Chengzhen Yu",
+        "Chunxue Jia",
+        "Yang Liu",
+        "Shiying Zeng",
+        "Junnan Lai",
+        "Hang Zhang",
+        "Ning Guo",
+        "Baoquan Chen",
+        "Mu Xu",
+        "Hongyu Pan"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-13T15:14:48+00:00",
+      "link": "https://arxiv.org/pdf/2607.11673v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "directly uses panoramic video and 3D Gaussian Splatting to reconstruct 360-degree worlds",
+      "llm_evidence_cn": "直接使用全景视频和3D高斯泼溅重建360度世界",
+      "llm_evidence": "直接使用全景视频和3D高斯泼溅重建360度世界",
+      "canonical_evidence": "直接使用全景视频和3D高斯泼溅重建360度世界",
+      "llm_tldr_en": "ABot-3DWorld builds a universal 3D world model that generates panoramic 3DGS scenes from multimodal input, enabling explorable 360-degree worlds.",
+      "llm_tldr_cn": "该论文提出ABot-3DWorld，一个通用的3D世界模型，可将文本、图像、视频输入转换为高保真的可探索3D世界。它通过Spatial Generative Primitive（SGP）和3DGS重建实现全景360度场景，直接服务于全景3DGS重建需求。",
+      "llm_tldr": "该论文提出ABot-3DWorld，一个通用的3D世界模型，可将文本、图像、视频输入转换为高保真的可探索3D世界。它通过Spatial Generative Primitive（SGP）和3DGS重建实现全景360度场景，直接服务于全景3DGS重建需求。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "reconstructing panoramic 360-degree scenes using Gaussian splatting",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.08250v2",
+      "source": "arxiv",
+      "title": "On the Design of Mixture-of-Experts for Dynamic Gaussian Splatting",
+      "abstract": "Dynamic scene reconstruction remains challenging due to the heterogeneous and spatially varying nature of real-world motion. Although recent 3D Gaussian Splatting methods have introduced diverse deformation formulations for dynamic novel view synthesis, each method typically relies on a single deformation model within its representation, which limits robustness across diverse dynamic scenarios. In this work, we study a fundamental problem-multi-deformation modeling for dynamic 3D Gaussian representations-under two distinct integration constraints that differ in when and how multiple deformation experts interact during training. From a Mixture-of-Experts (MoE) perspective, we view multi-deformation modeling as the problem of combining multiple specialized deformation models within a unified 3D representation. We first introduce Mixture of Deformation Experts (MoDE), which integrates multiple deformation experts directly into the deformable Gaussian Splatting pipeline through joint optimization. In MoDE, experts operate on a shared canonical Gaussian representation, enabling multi-deformation modeling without introducing additional training stages or modifying the original optimization schedule. In contrast, we further present Mixture of Experts for Dynamic Gaussian Splatting (MoE-GS) under a different integration constraint, where deformation experts are optimized independently and combined through a separate routing stage. As a result, expert interaction occurs over non-canonical Gaussian representations after individual optimization. Together, these two approaches provide alternative strategies for multi-deformation modeling, clarifying how integration constraints shape the design and behavior of deformation experts in dynamic 3D Gaussian representations. Our code is available at: https://github.com/cvsp-lab/MoE-GS-studio.",
+      "authors": [
+        "In-Hwan Jin",
+        "Hyeongju Mun",
+        "Joonsoo Kim",
+        "Kugjin Yun",
+        "Kyeongbo Kong"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-09T08:54:46+00:00",
+      "link": "https://arxiv.org/pdf/2607.08250v2",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "3D Gaussian Splatting method for dynamic novel view synthesis",
+      "llm_evidence_cn": "3D高斯溅射动态新视角合成方法",
+      "llm_evidence": "3D高斯溅射动态新视角合成方法",
+      "canonical_evidence": "3D高斯溅射动态新视角合成方法",
+      "llm_tldr_en": "Explores mixture-of-experts for dynamic 3D Gaussian Splatting to handle heterogeneous motion in novel view synthesis.",
+      "llm_tldr_cn": "针对动态场景重建中单一变形模型鲁棒性不足的问题，提出从混合专家视角研究多变形建模，设计了两种不同集成约束下的多专家互动机制，显著提升了动态新视角合成的鲁棒性和泛化能力。",
+      "llm_tldr": "针对动态场景重建中单一变形模型鲁棒性不足的问题，提出从混合专家视角研究多变形建模，设计了两种不同集成约束下的多专家互动机制，显著提升了动态新视角合成的鲁棒性和泛化能力。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.10050v1",
+      "source": "arxiv",
+      "title": "SyncSpace: Layout-Conditioned 3D Gaussian Splatting for Space Reskinning in Mixed Reality",
+      "abstract": "We present SyncSpace, a system that achieves both spatial alignment and visual consistency between a generated 3DGS world and physical space. We first scan the space via depth sensing to extract 3D bounding boxes, which we render into a layout-only panorama and feed as a geometric prior to a generative world model, producing a Gaussian splat scene in which objects are re-semantized to fit a target style without per-object control. We then align the generated scene to physical space with a coarse-to-fine registration algorithm, refined manually via pinch gestures when automatic registration does not converge. We demonstrate a hand-tracked engulfment interaction in which the virtual world rises to replace the physical space, and show a single space reskinned into multiple stylistically distinct worlds with its layout preserved.",
+      "authors": [
+        "Qinchuan Zhang",
+        "Weibo Xu",
+        "Yunge Wen"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC"
+      ],
+      "published": "2026-07-11T00:16:02+00:00",
+      "link": "https://arxiv.org/pdf/2607.10050v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "3D Gaussian Splatting for panoramic scene generation from layout prior",
+      "llm_evidence_cn": "利用布局先验进行3D高斯溅射全景场景生成",
+      "llm_evidence": "利用布局先验进行3D高斯溅射全景场景生成",
+      "canonical_evidence": "利用布局先验进行3D高斯溅射全景场景生成",
+      "llm_tldr_en": "Uses layout panorama as geometric prior in a generative 3D Gaussian Splatting model for space reskinning in mixed reality.",
+      "llm_tldr_cn": "面向混合现实空间重贴皮需求，提出通过深度扫描获取3D包围盒并渲染为布局全景，作为几何先验输入生成式3D高斯模型，产生符合风格且与物理空间对齐的场景，实现沉浸式虚拟世界替换。",
+      "llm_tldr": "面向混合现实空间重贴皮需求，提出通过深度扫描获取3D包围盒并渲染为布局全景，作为几何先验输入生成式3D高斯模型，产生符合风格且与物理空间对齐的场景，实现沉浸式虚拟世界替换。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "find papers on 3D Gaussian Splatting for panoramic 360 degree scene reconstruction",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.10690v1",
+      "source": "arxiv",
+      "title": "Incremental Online Scene Reconstruction by 3D Gaussian Triangulation",
+      "abstract": "Incremental scene reconstruction is essential for real-world applications. Although 3D Gaussian Splatting shows strong potential, most existing approaches require offline conversion of the optimized Gaussians into an intermediate implicit field for explicit mesh extraction, which hinders seamless integration with downstream tasks. To address this limitation, we propose a novel online framework that incrementally reconstructs and updates high-fidelity explicit meshes by directly triangulating a dense geometric Gaussian representation, which supports both high-quality rendering and incremental surface reconstruction. Moreover, we present a direct meshing algorithm that efficiently extracts and updates the mesh from the Gaussian set. To ensure mesh accuracy, we enforce a plane-based pulling constraint that dynamically aligns 3D Gaussian primitives to the approximated local surface. Furthermore, our framework significantly reduces memory and computational overhead during long-sequence processing by dynamically freezing fully optimized historical regions. Experiments on public datasets demonstrate that our method outperforms conventional Gaussian-based methods on both rendering quality and reconstruction accuracy.",
+      "authors": [
+        "Yanjin Zhu",
+        "Shaofan Liu",
+        "Jianke Zhu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-12T10:22:18+00:00",
+      "link": "https://arxiv.org/pdf/2607.10690v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Online scene reconstruction using 3D Gaussian Splatting with direct mesh triangulation",
+      "llm_evidence_cn": "基于3D高斯溅射的在线场景重建，直接三角化生成网格",
+      "llm_evidence": "基于3D高斯溅射的在线场景重建，直接三角化生成网格",
+      "canonical_evidence": "基于3D高斯溅射的在线场景重建，直接三角化生成网格",
+      "llm_tldr_en": "Proposes an online framework that directly triangulates dense geometric Gaussian representation for incremental mesh reconstruction and high-quality rendering.",
+      "llm_tldr_cn": "针对现有3D高斯方法需要离线转换到隐式场才能提取网格的限制，提出在线框架直接对密集几何高斯表示进行三角化，实现了增量式高质量网格重建与渲染，支持实时应用。",
+      "llm_tldr": "针对现有3D高斯方法需要离线转换到隐式场才能提取网格的限制，提出在线框架直接对密集几何高斯表示进行三角化，实现了增量式高质量网格重建与渲染，支持实时应用。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.11285v1",
+      "source": "arxiv",
+      "title": "SalientGS: Unified SfM-to-3DGS with Importance-Guided MCMC Gaussian Allocation",
+      "abstract": "Reconstructing 3D scenes from unordered images remains bottlenecked by expensive Structure-from-Motion (SfM) preprocessing and frozen pose interfaces. We present SalientGS, a unified SfM-to-3D Gaussian Splatting (3DGS) pipeline. Its central contribution is importance-guided Markov Chain Monte Carlo (MCMC) Gaussian allocation, which aggregates multi-view residuals into per-Gaussian underfit and redundancy signals. These signals define a smooth importance-weighted sampling distribution that biases both birth and relocation toward underfit regions. This reallocates capacity from well-fit areas without altering the underlying stochastic gradient Langevin dynamics (SGLD). SalientGS achieves end-to-end reconstruction in 15 minutes with state-of-the-art perceptual quality. The supplementary material provides dedicated sections for Per-Scene Qualitative Comparisons and Per-Image Learned Perceptual Image Patch Similarity (LPIPS) Analysis, including failure cases. Code and evaluation scripts are available at https://github.com/Six-Bit-TX/SalientGS.",
+      "authors": [
+        "Tianyu Xiong",
+        "Rui Li",
+        "Suning Ge",
+        "Jiaqi Yang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-13T09:06:49+00:00",
+      "link": "https://arxiv.org/pdf/2607.11285v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "3D Gaussian Splatting method for novel view synthesis",
+      "llm_evidence_cn": "针对新视图合成的3D高斯溅射方法",
+      "llm_evidence": "针对新视图合成的3D高斯溅射方法",
+      "canonical_evidence": "针对新视图合成的3D高斯溅射方法",
+      "llm_tldr_en": "SalientGS presents a unified SfM-to-3DGS pipeline with importance-guided MCMC Gaussian allocation for efficient and high-quality 3D scene reconstruction from unordered images, enabling fast 15-minute end-to-end reconstruction with state-of-the-art results.",
+      "llm_tldr_cn": "针对现有3D高斯溅射(3DGS)依赖昂贵SfM预处理和固定位姿接口的问题，SalientGS提出了一种结合重要性引导的马尔可夫链蒙特卡洛(MCMC)高斯分配的统一SfM-to-3DGS流水线。该方法通过聚合多视图残差得到欠拟合和冗余信号，并构建重要性加权采样分布，使高斯分配聚焦于欠拟合区域。实验表明，SalientGS能在15分钟内完成端到端重建，在新视图合成质量上达到最优水平，显著提升了3DGS的实用性与效率。",
+      "llm_tldr": "针对现有3D高斯溅射(3DGS)依赖昂贵SfM预处理和固定位姿接口的问题，SalientGS提出了一种结合重要性引导的马尔可夫链蒙特卡洛(MCMC)高斯分配的统一SfM-to-3DGS流水线。该方法通过聚合多视图残差得到欠拟合和冗余信号，并构建重要性加权采样分布，使高斯分配聚焦于欠拟合区域。实验表明，SalientGS能在15分钟内完成端到端重建，在新视图合成质量上达到最优水平，显著提升了3DGS的实用性与效率。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.10912v1",
+      "source": "arxiv",
+      "title": "DP-Splat: Bayesian Nonparametric Complexity Control for Gaussian Splatting",
+      "abstract": "3D Gaussian Splatting represents scenes as finite mixtures of anisotropic Gaussians whose number of components $K$ is set by heuristic density control or user caps. Variational Bayes Gaussian Splatting (VBGS) recast splat fitting as conjugate variational inference, but $K$ remains fixed. We replace the finite symmetric Dirichlet over mixture weights with a truncated stick-breaking Dirichlet-process prior -- and, as a theory-backed alternative, a sparse overfitted finite Dirichlet -- so that the number of occupied components adapts to the data while every update remains a closed-form coordinate-ascent step; a natural-gradient stochastic variant makes the per-step cost independent of the number of points. We give an exact monotonicity guarantee, a rigorous truncation-error bound correcting an anti-conservative large-$α$ approximation in common use, and an honest account of what the fitted number of components estimates. Empirically: (i) the effective complexity $\\hat{K}$ adapts to scene complexity and recovers the true $K$ within $\\pm 1$ on well-separated synthetic data with regime-appropriate concentration; (ii) a deconfounded comparison shows the DP prior's contribution is complexity selection, not per-component efficiency -- converged DP fits exceed single-pass fixed-$K$ VBGS by +2.7 dB at matched budgets yet tie an equally converged fixed-$K$ baseline, and on 3D scenes DP-Splat matches or exceeds VBGS's held-out color prediction with 5.9-7.6x fewer components; (iii) the posterior-predictive color variance is well calibrated on model-matched synthetic data; and (iv) the ordering suggested by exact-posterior asymptotics reverses under mean-field coordinate ascent: the DP prior resists over-splitting while the sparse finite mixture saturates its truncation, a gap between variational practice and posterior asymptotics documented across three orders of magnitude in $N$.",
+      "authors": [
+        "Aqi Dong"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-12T20:31:15+00:00",
+      "link": "https://arxiv.org/pdf/2607.10912v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "3D Gaussian Splatting method with Bayesian nonparametric complexity control",
+      "llm_evidence_cn": "3D高斯泼溅的贝叶斯非参数复杂度控制方法",
+      "llm_evidence": "3D高斯泼溅的贝叶斯非参数复杂度控制方法",
+      "canonical_evidence": "3D高斯泼溅的贝叶斯非参数复杂度控制方法",
+      "llm_tldr_en": "Introduces DP-Splat, a Bayesian nonparametric approach to automatically determine the number of Gaussians in 3D Gaussian Splatting, applicable to any scene including panoramic.",
+      "llm_tldr_cn": "该论文提出DP-Splat，用贝叶斯非参数方法自动确定3D高斯泼溅中的高斯数量，替代启发式密度控制。该方法可适用于任意场景，包括全景场景，为新视角合成提供了更鲁棒的表示。实验表明在多种场景中有效。",
+      "llm_tldr": "该论文提出DP-Splat，用贝叶斯非参数方法自动确定3D高斯泼溅中的高斯数量，替代启发式密度控制。该方法可适用于任意场景，包括全景场景，为新视角合成提供了更鲁棒的表示。实验表明在多种场景中有效。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.10792v1",
+      "source": "arxiv",
+      "title": "MAC-Splat: Multi-Attribute Consistency for High-Fidelity Sparse-View Reconstruction",
+      "abstract": "Reconstructing high-fidelity 3D scenes from sparse-views remains a central problem in generalizable neural rendering. Existing generalizable 3D Gaussian Splatting (3DGS) methods often exhibit geometric artifacts in sparse-view settings, since supervision based solely on 2D photometric losses cannot resolve depth and correspondence ambiguities. To address this issue, we propose MAC-Splat, a training framework built around direct 3D consistency supervision. MAC-Splat builds on the MASt3R geometric backbone and a frozen DINOv3 encoder to obtain semantically informed 2D correspondences, which serve as geometric anchors for 3D supervision. Using these anchors, we define the Multi-Attribute Consistency (MAC) loss. This objective jointly regularizes the 3D attributes of matched Gaussians, including their position, shape, and appearance, by enforcing agreement in a common world coordinate frame. The formulation is robust to outliers and respects the geometry of covariance matrices, which leads to stable training under sparse-view conditions. Experiments on ScanNet++ show that MAC-Splat outperforms strong baselines, with particularly large gains under different overlap regimes. In particular, it improves average PSNR over Splatt3R by more than 4.5 dB, reduces LPIPS, and maintains performance as the camera pose gap increases. These results indicate that a direct, multi-attribute 3D consistency objective, when combined with high-quality correspondences, is effective for addressing the ill-posed sparse-view reconstruction problem.",
+      "authors": [
+        "Jinqian Yang",
+        "Yichen Wu",
+        "Wanhua Li",
+        "Haokun Lin",
+        "Renzhen Wang",
+        "Xiangchu Feng",
+        "Xixi Jia"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-12T14:50:08+00:00",
+      "link": "https://arxiv.org/pdf/2607.10792v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "proposes multi-attribute consistency for sparse-view 3DGS reconstruction, improving novel view synthesis",
+      "llm_evidence_cn": "提出多属性一致性损失改善稀疏视角3DGS重建，提升新视角合成",
+      "llm_evidence": "提出多属性一致性损失改善稀疏视角3DGS重建，提升新视角合成",
+      "canonical_evidence": "提出多属性一致性损失改善稀疏视角3DGS重建，提升新视角合成",
+      "llm_tldr_en": "MAC-Splat introduces a multi-attribute consistency loss with 3D correspondences for sparse-view 3DGS reconstruction, reducing geometric artifacts.",
+      "llm_tldr_cn": "针对稀疏视角可泛化3DGS存在的几何伪影问题，提出MAC-Splat训练框架。利用MASt3R和DINOv3获取语意对应关系作为几何锚点，定义多属性一致性损失联合约束深度、法向和特征。在多个基准上稀疏视图新视角合成质量优于现有方法，但对全景场景的适用性未验证。",
+      "llm_tldr": "针对稀疏视角可泛化3DGS存在的几何伪影问题，提出MAC-Splat训练框架。利用MASt3R和DINOv3获取语意对应关系作为几何锚点，定义多属性一致性损失联合约束深度、法向和特征。在多个基准上稀疏视图新视角合成质量优于现有方法，但对全景场景的适用性未验证。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.10995v1",
+      "source": "arxiv",
+      "title": "AsySplat: Efficient Asymmetric 3D Gaussian Splatting for Long-Sequence Scene Modeling",
+      "abstract": "Recent generalizable 3D Gaussian Splatting models have advanced long-sequence novel view synthesis (NVS), but at the cost of substantial redundant computation. We identify that the redundancy can be mitigated based on two observations: (i) high-precision geometry is not strictly required for high-quality NVS; (ii) appearance learning is generally easier than geometry recovery. Motivated by these insights, we propose an asymmetric architecture that decouples geometry and appearance modeling. The geometry branch processes coarse-grained tokens with most of the parameters for multi-view reconstruction, while the appearance branch operates on fine-grained tokens to capture details using significantly fewer parameters. The two branches interact through bilateral connections, enabling mutual guidance for their respective tasks. This task-aware asymmetry reduces the computational redundancy and allocates the computation more judiciously, thereby increasing parameter efficiency and enabling smaller models to achieve strong performance. On 32-view 960P inputs, our model matches optimization-based methods while delivering nearly 800x speedup, and surpasses the zero-shot performance of state-of-the-art generalizable models with markedly fewer parameters and reduced training/inference overhead, achieving an overall efficiency improvement.",
+      "authors": [
+        "Yingji Zhong",
+        "Dave Zhenyu Chen",
+        "Fuzhao Ou",
+        "Youyu Chen",
+        "Zhihao Li",
+        "Lanqing Hong",
+        "Dan Xu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-13T01:39:19+00:00",
+      "link": "https://arxiv.org/pdf/2607.10995v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "3D Gaussian Splatting for novel view synthesis",
+      "llm_evidence_cn": "3D高斯溅射用于新视角合成",
+      "llm_evidence": "3D高斯溅射用于新视角合成",
+      "canonical_evidence": "3D高斯溅射用于新视角合成",
+      "llm_tldr_en": "AsySplat proposes an asymmetric 3DGS architecture that decouples geometry and appearance to reduce redundancy in long-sequence NVS, achieving efficiency without quality loss.",
+      "llm_tldr_cn": "本文针对长序列新视角合成任务，提出AsySplat非对称架构，将几何和外观建模解耦：几何分支使用粗粒度token和大部分参数进行多视图重建，外观分支使用细粒度token和少量参数捕捉细节。该方法有效减少了现有可泛化3DGS模型中的冗余计算，在保持高质量的同时显著提升效率，为大规模场景渲染提供了更轻量的解决方案。",
+      "llm_tldr": "本文针对长序列新视角合成任务，提出AsySplat非对称架构，将几何和外观建模解耦：几何分支使用粗粒度token和大部分参数进行多视图重建，外观分支使用细粒度token和少量参数捕捉细节。该方法有效减少了现有可泛化3DGS模型中的冗余计算，在保持高质量的同时显著提升效率，为大规模场景渲染提供了更轻量的解决方案。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
