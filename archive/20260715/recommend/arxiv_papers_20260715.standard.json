@@ -1,0 +1,127 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-15T20:06:40.240883+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 0,
+    "quick_skim_target": 11,
+    "quick_selected": 0
+  },
+  "deep_dive": [
+    {
+      "id": "2607.11673v2",
+      "source": "arxiv",
+      "title": "ABot-3DWorld 0: A Universal World Model to Explore Any 3D Space",
+      "abstract": "We present ABot-3DWorld 0, a universal multimodal 3D world model that turns text, image, and video inputs into high-fidelity, explorable 3D worlds. At the heart of our framework is a unified Spatial Generative Primitive (SGP), a compact tuple of a high-quality panorama and a spatial point cloud that delivers an efficient description of any 3D space. Multimodal inputs are first lifted into this primitive; a 3D-consistent panoramic video generator then explores the primitive along a planned trajectory; finally, our panoramic video reconstruction engine converts the generated video into a clean, photorealistic 3D Gaussian Splatting (3DGS) world. This pipeline covers two regimes: rich inputs (multi-view sets, casual video) are lifted into the SGP through a geometry-rigorous recovery that mirrors the observed scene, while a single image or sentence is completed generatively into a creative world. The result is one low-barrier engine for general 3D content creation that further anchors generated worlds to geographic points of interest, enabling map-native spatial exploration at consumer scale. Experiments show that ABot-3DWorld 0 sets the state of the art among open-source methods and demonstrates stronger scene fidelity than Marble under rich multimodal inputs.",
+      "authors": [
+        "Mingchao Sun",
+        "Luyang Tang",
+        "Yu Liu",
+        "Xu Yan",
+        "Zhan Li",
+        "Yunwei Zhang",
+        "Fei Yu",
+        "Zengye Ge",
+        "Yumin Liu",
+        "Jiacheng Zhang",
+        "Yongchang Zhang",
+        "Jiawei Zhang",
+        "Zhicheng Liu",
+        "Zhongxu Sun",
+        "Tianjian Ouyang",
+        "Wenzheng Chen",
+        "Shixing Yang",
+        "Nianfei Fan",
+        "Guodong Sun",
+        "Huan Li",
+        "Zheng Zhou",
+        "Yongze Li",
+        "Yingliang Peng",
+        "Mengmeng Du",
+        "Yuan Liu",
+        "Haozhe Shi",
+        "Chunnuo Gong",
+        "Chengzhen Yu",
+        "Chunxue Jia",
+        "Yang Liu",
+        "Shiying Zeng",
+        "Junnan Lai",
+        "Hang Zhang",
+        "Ning Guo",
+        "Baoquan Chen",
+        "Mu Xu",
+        "Hongyu Pan"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-13T15:14:48+00:00",
+      "link": "https://arxiv.org/pdf/2607.11673v2",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "uses panoramic video reconstruction to create 3DGS world",
+      "llm_evidence_cn": "使用全景视频重建生成3D高斯泼溅世界",
+      "llm_evidence": "使用全景视频重建生成3D高斯泼溅世界",
+      "canonical_evidence": "使用全景视频重建生成3D高斯泼溅世界",
+      "llm_tldr_en": "ABot-3DWorld uses a spatial generative primitive (panorama + point cloud) and a panoramic video generator to create high-fidelity 3D Gaussian Splatting worlds, enabling exploration of any 3D space.",
+      "llm_tldr_cn": "针对现有3D场景重建难以同时支持多样化输入和高保真交互的问题，本文提出ABot-3DWorld，一种通用多模态3D世界模型。核心是空间生成基元（全景图+点云），通过全景视频生成器沿轨迹探索，最后用全景视频重建引擎转换为3D高斯泼溅世界。实验表明该方法能生成高质量、可探索的3D场景，支持文本、图像、视频等多种输入。",
+      "llm_tldr": "针对现有3D场景重建难以同时支持多样化输入和高保真交互的问题，本文提出ABot-3DWorld，一种通用多模态3D世界模型。核心是空间生成基元（全景图+点云），通过全景视频生成器沿轨迹探索，最后用全景视频重建引擎转换为3D高斯泼溅世界。实验表明该方法能生成高质量、可探索的3D场景，支持文本、图像、视频等多种输入。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "reconstructing panoramic 360-degree scenes using Gaussian splatting",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.12641v1",
+      "source": "arxiv",
+      "title": "GeoFovea-GS: Geometry-Aware Cross-Layer Gaussian Splatting for Wireless Aerial VR",
+      "abstract": "Wireless aerial virtual reality (VR) aims to provide immersive access to large-scale scenes, but high-resolution view generation and delivery are jointly constrained by limited bandwidth, latency, and power. 3D Gaussian Splatting (3DGS) can reduce the payload by rendering views from compact pose information, yet its geometry errors may cause severe VR quality degradation. Existing channel-aware or pixel-level resource allocation schemes fail to capture such geometry-sensitive distortion. To address this issue, this paper proposes GeoFovea-GS as a geometry-aware cross-layer framework for communication-efficient wireless aerial VR. A foveated geometry-aware distortion metric is developed to characterize photometric rendering error, geometric inconsistency, and view-dependent perceptual importance in a unified form. Based on this metric, the joint selection of pose-only 3DGS rendering and image/tile correction transmission is formulated as a cross-layer optimization problem under wireless constraints. A lightweight value-of-information scheduler is further developed to allocate communication resources to regions that are both geometry-critical and perceptually important. Experiments on real-world 3DGS scenes demonstrate that GeoFovea-GS achieves superior immersive rendering quality with substantially reduced transmission cost.",
+      "authors": [
+        "Zeyi Ren",
+        "Wencheng Yan",
+        "Jiawen Zhang",
+        "Jintao Yan",
+        "Sheng Zhou",
+        "Zhisheng Niu"
+      ],
+      "primary_category": "cs.MM",
+      "categories": [
+        "cs.MM",
+        "eess.IV"
+      ],
+      "published": "2026-07-14T11:19:16+00:00",
+      "link": "https://arxiv.org/pdf/2607.12641v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "3D Gaussian Splatting for novel view synthesis in VR",
+      "llm_evidence_cn": "三维高斯溅射用于虚拟现实中的新视角合成",
+      "llm_evidence": "三维高斯溅射用于虚拟现实中的新视角合成",
+      "canonical_evidence": "三维高斯溅射用于虚拟现实中的新视角合成",
+      "llm_tldr_en": "GeoFovea-GS proposes a geometry-aware cross-layer framework using 3D Gaussian Splatting for wireless aerial VR, improving rendering quality under bandwidth constraints.",
+      "llm_tldr_cn": "针对无线空中虚拟现实中高分辨率视图生成与带宽限制之间的矛盾，本文提出GeoFovea-GS，一种几何感知的跨层框架。该方法采用3D高斯溅射（3DGS）从紧凑姿态信息渲染视图，并开发了注视点感知的几何失真度量来联合优化通信和渲染。实验证明该框架能有效缓解3DGS的几何误差引起的VR质量下降，为沉浸式大场景无线传输提供了新思路。",
+      "llm_tldr": "针对无线空中虚拟现实中高分辨率视图生成与带宽限制之间的矛盾，本文提出GeoFovea-GS，一种几何感知的跨层框架。该方法采用3D高斯溅射（3DGS）从紧凑姿态信息渲染视图，并开发了注视点感知的几何失真度量来联合优化通信和渲染。实验证明该框架能有效缓解3DGS的几何误差引起的VR质量下降，为沉浸式大场景无线传输提供了新思路。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": []
+}

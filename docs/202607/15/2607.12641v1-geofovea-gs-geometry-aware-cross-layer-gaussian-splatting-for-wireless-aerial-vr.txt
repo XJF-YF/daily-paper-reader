@@ -1,0 +1,832 @@
+Title: GeoFovea-GS: Geometry-Aware Cross-Layer Gaussian Splatting for Wireless Aerial VR
+
+URL Source: https://arxiv.org/pdf/2607.12641v1
+
+Published Time: Wed, 15 Jul 2026 11:57:08 GMT
+
+Number of Pages: 7
+
+Markdown Content:
+# GeoFovea-GS: Geometry-Aware Cross-Layer Gaussian Splatting for Wireless Aerial VR 
+
+Zeyi Ren, Wencheng Yan, Jiawen Zhang, Jintao Yan, Sheng Zhou, Senior Member, IEEE , and Zhisheng Niu, Fellow, IEEE 
+
+Department of Electronic Engineering, Tsinghua University, Beijing, China Emails: zeyiren0827@outlook.com, {sheng.zhou@, niuzhs@ }tsinghua.edu.cn 
+
+Abstract —Wireless aerial virtual reality (VR) aims to pro-vide immersive access to large-scale scenes, but high-resolution view generation and delivery are jointly constrained by limited bandwidth, latency, and power. 3D Gaussian Splatting (3DGS) can reduce the payload by rendering views from compact pose information, yet its geometry errors may cause severe VR quality degradation. Existing channel-aware or pixel-level resource allo-cation schemes fail to capture such geometry-sensitive distortion. To address this issue, this paper proposes GeoFovea-GS as a geometry-aware cross-layer framework for communication-efficient wireless aerial VR. A foveated geometry-aware distortion metric is developed to characterize photometric rendering error, geometric inconsistency, and view-dependent perceptual impor-tance in a unified form. Based on this metric, the joint selection of pose-only 3DGS rendering and image/tile correction transmis-sion is formulated as a cross-layer optimization problem under wireless constraints. A lightweight value-of-information scheduler is further developed to allocate communication resources to regions that are both geometry-critical and perceptually impor-tant. Experiments on real-world 3DGS scenes demonstrate that GeoFovea-GS achieves superior immersive rendering quality with substantially reduced transmission cost. 
+
+I. I NTRODUCTION 
+
+Wireless aerial virtual reality (VR) is becoming an impor-tant technology for remote exploration [1], digital twins [2], infrastructure inspection [3], and low-altitude intelligent net-works [4], [5]. By reconstructing large-scale scenes captured by unmanned aerial vehicles (UAVs), users can interactively observe outdoor environments from flexible six-degree-of-freedom viewpoints. However, practical aerial VR systems require high-resolution transmission, low latency, and stable visual quality, which impose severe burdens on wireless band-width and transmit power [6]. Recent advances in 3D Gaussian Splatting (3DGS) provide a new opportunity to reduce this communication burden [7], [8]. Instead of transmitting every image frame, the system can transmit compact pose information and synthesize the corresponding view from a pre-trained 3DGS scene representa-tion. This memory-assisted paradigm changes the transmitted content from image-level data to pose-level data, making it attractive for bandwidth-limited wireless VR systems [9], [10]. 
+
+This work is supported in part by the State Key Laboratory of Internet of Things for Smart City (University of Macau) Open Research Project under Grant SKL-IoTSC(UM)/ORP04/2026, and in part by the Project of Tsinghua University-Toyota Joint Research Center for AI Technology of Automated Vehicle under Grant TTAD-2024-08-2. 3DGS Model  
+
+> (Memory System)
+> VR U ser
+> VR U ser
+> RGB Views Capture d
+> Transmission
+> Pose Render
+> Direct Image T ransmission
+> Render from 3DGS Memory
+
+Fig. 1. Conceptual illustration of wireless aerial VR. A UAV captures large-scale outdoor scenes, which are reconstructed into a digital environment as a memory system and delivered over wireless links for immersive remote exploration. 
+
+Nevertheless, directly relying on 3DGS rendering is unre-liable in large-scale aerial scenes [11]. UAV trajectories are often sparse and irregular, while outdoor scenes contain long-range structures and depth discontinuities. As a result, 3DGS may generate views with plausible appearance but incorrect geometry. These geometry errors can be damaging to VR experience, since they cause view inconsistency and incorrect spatial cues during user interaction. Existing wireless resource allocation methods are insuf-ficient for geometry-sensitive aerial VR. Classical channel-aware schedulers allocate radio resources according to channel gains or achievable rates [12], while wireless VR resource al-location further optimizes latency [13], Quality of Experience (QoE), or viewport utility [14], [15]. However, these objectives do not explicitly model the reliability of the reconstructed 3D scene. Image quality-aware schemes commonly rely on viewport-level peak signal-to-noise ratio (PSNR), structural similarity index (SSIM), or rate-distortion utilities [16], al-though such pixel-level metrics can disagree with human per-ceptual judgments. Foveated and viewport-adaptive streaming reduces bandwidth by prioritizing the predicted field of view (FoV) or gaze region [17], but it still treats visual content as video tiles rather than uncertain renderings from a 3D repre-sentation. In contrast, recent neural rendering studies show that sparse or unbounded views may lead to degenerate geometry, depth artifacts, or scale-dependent rendering artifacts [18]– [20], which motivates geometry-aware wireless correction. To overcome these limitations, this paper proposes arXiv:2607.12641v1 [cs.MM] 14 Jul 2026 GeoFovea-GS, a geometry-aware cross-layer framework for wireless aerial VR with 3DGS. The central idea is to spend wireless resources only on regions where geometry unreliabil-ity, perceptual importance, and channel affordability coincide. The main contributions are summarized as follows.  
+
+> •
+
+A foveated geometry-aware distortion metric for 3DGS-assisted aerial VR is developed. The metric jointly cap-tures photometric rendering error, geometry inconsis-tency, temporal instability, and view-dependent percep-tual importance, providing a tile-level reliability map for wireless correction.  
+
+> •
+
+This paper formulates the joint selection of pose-only 3DGS rendering and image/tile correction transmission as a cross-layer optimization problem under rate, latency, average-power, and peak-power constraints. By deriving the minimum power required for a fixed tile selection, the original mixed-integer problem is transformed into a content-selection problem with channel-dependent power costs.  
+
+> •
+
+We design a lightweight value-of-information sched-uler that allocates wireless resources to tiles with large geometry-aware perceptual benefit and low incremental power cost. Experiments on real-world UAV scenes show that GeoFovea-GS improves immersive rendering quality and reduces communication cost compared with GS-only rendering, full image transmission, and conventional resource allocation baselines. II. S YSTEM MODEL 
+
+A wireless aerial VR system is considered, where a server provides immersive views of a large-scale UAV-captured scene to a VR user. The scene is represented by a pre-trained 3D Gaussian Splatting (3DGS) model. The system operates over 
+
+T time slots, indexed by T = {1, . . . , T }. At time slot t, the requested VR viewpoint is denoted by 
+
+st = [ qTt , θTt ]T , (1) where qt ∈ R3 denotes the camera position and θt ∈ R3
+
+denotes the camera orientation. 
+
+A. 3DGS-Assisted Aerial VR Rendering 
+
+Let Φ denote the pre-trained 3DGS model. Given viewpoint 
+
+st, the 3DGS-rendered view is 
+
+yt = Φ( st), (2) where yt ∈ RH×W ×3 is the synthesized RGB image with height H and width W . The corresponding reference image is denoted by rt ∈ RH×W ×3.To support fine-grained wireless content adaptation, each image is divided into K non-overlapping tiles, indexed by 
+
+K = {1, . . . , K }. Let yt,k and rt,k denote the k-th tile of the rendered image and the reference image, respectively. At each tile, the system has two choices. If the 3DGS rendering is trusted, only the compact viewpoint information is transmitted. If the 3DGS rendering is unreliable, an image correction is transmitted for this tile. The binary content selection variable is defined as 
+
+zt,k =
+
+(
+
+1, if tile k at slot t is transmitted ,
+
+0, if tile k is rendered by 3DGS . (3) When tile k at time slot t is selected for transmission, the server sends a correction tile ˜rt,k instead of relying on the 3DGS-rendered tile yt,k . The correction tile represents the best available scene-side reconstruction for the requested view. In the experiments, the held-out reference tile is adopted as an oracle high-quality correction, which provides an upper bound on correction performance. The displayed VR tile is therefore 
+
+mt,k = zt,k ˜rt,k + (1 − zt,k )yt,k . (4) Thus, zt,k = 1 replaces the unreliable 3DGS-rendered tile with a correction tile, while zt,k = 0 saves communication cost by relying on pose-only 3DGS rendering. 
+
+B. Foveated Geometry-Aware Distortion 
+
+For aerial VR, pose-only 3DGS rendering may induce photometric errors, geometric inconsistency, and temporal instability. The resulting 3DGS-induced distortion of tile k
+
+at time slot t is defined as 
+
+dGS  
+
+> t,k
+
+= α ¯dpt,k + β ¯dgt,k + γ ¯dtemp  
+
+> t,k
+
+, (5) where ¯dpt,k , ¯dgt,k , and ¯dtemp  
+
+> t,k
+
+are the normalized photometric distortion, geometry inconsistency, and temporal instability, respectively. The non-negative weights α, β, and γ control their relative importance. Since the three raw distortion terms have different numerical scales, each term is normalized as 
+
+¯dxt,k = dx, raw 
+
+> t,k
+
+μx + εx
+
+, x ∈ { p, g, temp }, (6) where μx is the average value of the corresponding raw distortion over the scheduling window, and εx is a small constant for numerical stability. Unless otherwise specified, we use equal weights α = β =
+
+γ = 1 after the normalization in (6). This setting avoids manual scale tuning, because each raw term is divided by its average value over the scheduling window. In practice, moder-ate changes of these weights mainly adjust the priority among photometric, geometric, and temporal corrections, while the final selected tiles are still jointly governed by the foveated weight and the channel-dependent power cost. The raw photometric distortion is computed as 
+
+dp, raw  
+
+> t,k
+
+= 1
+
+|Ωk|
+
+X
+
+> u∈Ωk
+
+∥xt(u) − yt(u)∥22 , (7) where Ωk is the pixel set of tile k, u denotes a pixel coordinate, and xt denotes the correction/reference image available for distortion estimation. In offline evaluation, xt is set to the held-out reference image rt.RGB Views & Geometry Cues 
+
+> Trajectory
+> 3DGS Model
+> (Memory System)
+> New
+> Pose
+
+𝐀 𝐀 ,𝐀 
+
+> Foveated Geometry-
+> aware Distortion
+
+𝐀 𝐀 ,𝐀  
+
+> Foveated Weight
+> UAV Data Captured
+> GeoFovea-GS
+> Cross-layer
+> Schedul er
+> Channel State
+> Train
+> Render
+> Pose-only
+> 3DGS View
+> Image/Tile
+> Correction
+> Immersive VR V iew
+> VR U ser
+> Pose Bits
+> Selected
+> Tiles
+> Edge / Server Wireless Aerial VR
+
+Fig. 2. Workflow of the proposed GeoFovea-GS framework. The system uses a pre-trained 3DGS model as scene memory for pose-only rendering, estimates foveated geometry-aware distortion for each view or tile, and allocates wireless resources to transmit corrections only for perceptually important regions. 
+
+Let Zref  
+
+> t
+
+(u) denote the reference geometry cue projected onto the query image plane, and let ˆZt(u) denote the depth rendered from 3DGS. The valid geometry set of tile k is 
+
+Ωgt,k =
+
+n
+
+u ∈ Ωk : Zref  
+
+> t
+
+(u) > 0, ˆZt(u) > 0
+
+o
+
+. (8) If the geometry cue is only available up to scale, the rendered depth is aligned by 
+
+λt = median u∈Ωgt
+
+Zref  
+
+> t
+
+(u)ˆZt(u) + εz
+
+. (9) For metric depth cues, we set λt = 1 . The raw geometry inconsistency is defined as 
+
+dg, raw  
+
+> t,k
+
+= 1
+
+|Ωgt,k |
+
+X
+
+> u∈Ωgt,k
+
+min( δgt (u), ρ max ) ,δgt (u) = log  Zref  
+
+> t
+
+(u) + εz
+
+ − log 
+
+
+
+λt ˆZt(u) + εz
+
+
+
+.
+
+(10) For tiles without valid geometry pixels, the geometry term is ignored and the scheduler relies on the photometric and temporal terms. The temporal term is used as a scheduling proxy that identifies tiles whose pose-only 3DGS rendering is temporally unstable. It is computed as 
+
+dtemp ,raw  
+
+> t,k
+
+= 1
+
+|Ωk|
+
+X
+
+> u∈Ωk
+
+∥yt(u) − W t−1→t (yt−1) ( u)∥22 ,
+
+(11) where Wt−1→t(·) denotes the warping operation from view-point st−1 to st. This term prioritizes tiles whose 3DGS rendering is likely to cause unstable VR perception. The three distortion terms have different information re-quirements. During online scheduling, dp, raw  
+
+> t,k
+
+is estimated from the available correction candidate, dg, raw  
+
+> t,k
+
+is computed from scene-side geometry cues such as pre-computed depth, SfM/LiDAR projections, or 3DGS uncertainty, and dtemp ,raw 
+
+> t,k
+
+is obtained directly from consecutive 3DGS-rendered views and the known pose change. In offline evaluation, we set 
+
+xt = rt and use the available scene depth as Zref  
+
+> t
+
+, so the reported results represent an oracle upper bound on the benefit of geometry-aware wireless correction. Since VR users are more sensitive to the center of gaze, a foveated weight at,k ∈ [0 , 1] is assigned to tile k. A common choice is 
+
+at,k = exp − ∥ck − gt∥22
+
+2σ2
+
+> f
+
+!
+
+, (12) where ck is the center coordinate of tile k, gt is the gaze center, and σf controls the foveation range. Let dcorr  
+
+> t,k
+
+denote the residual distortion after transmitting the correction tile. For high-quality correction transmission, dcorr 
+
+> t,k
+
+is small and can be set to zero. The remaining VR distortion at time slot t is 
+
+Dt(zt) = 
+
+> K
+
+X
+
+> k=1
+
+at,k 
+
+(1 − zt,k )dGS  
+
+> t,k
+
++ zt,k dcorr 
+
+> t,k
+
+ . (13) 
+
+C. Wireless Transmission Model 
+
+Let Cpose denote the number of bits required to transmit the viewpoint information, and let Ct,k denote the number of bits required to transmit tile k at time slot t. The total transmitted data size at slot t is 
+
+Ct(zt) = Cpose +
+
+> K
+
+X
+
+> k=1
+
+zt,k Ct,k . (14) We consider an uplink or downlink wireless channel with bandwidth B. Let ht ∈ C denote the channel coefficient at time slot t, and let pt ≥ 0 denote the transmit power. The achievable rate is 
+
+Rt(pt) = B log 2
+
+
+
+1 + |ht|2pt
+
+σ2
+
+
+
+, (15) where σ2 is the noise power. To successfully deliver the selected content within slot duration τ , the following constraint should hold: 
+
+τ R t(pt) ≥ Ct(zt), ∀t ∈ T . (16) III. P ROBLEM FORMULATION AND OPTIMIZATION 
+
+ALGORITHM 
+
+A. Cross-Layer Optimization Problem 
+
+The objective is to minimize the average foveated geometry-aware VR distortion under wireless power and latency con-straints. The optimization variables are the tile selection variables {zt,k } and transmit powers {pt}. The problem is formulated as 
+
+P0 : min  
+
+> {zt,k },{pt}
+
+1
+
+T
+
+> T
+
+X
+
+> t=1
+
+Dt(zt) (17a) 
+
+s.t. τ B log 2
+
+
+
+1 + |ht|2pt
+
+σ2
+
+
+
+≥ Ct(zt), ∀t, 
+
+(17b) 
+
+1
+
+T
+
+> T
+
+X
+
+> t=1
+
+pt ≤ ¯P , (17c) 
+
+0 ≤ pt ≤ Pmax , ∀t, (17d) 
+
+zt,k ∈ { 0, 1}, ∀t, k, (17e) where ¯P is the average power budget and Pmax is the peak power constraint. Problem P0 is a mixed-integer nonlinear programming problem. The binary variables determine the transmitted con-tent, while the continuous variables determine physical-layer power allocation. Solving P0 exactly is computationally ex-pensive when T and K are large. 
+
+B. Equivalent Power Cost Derivation 
+
+For any fixed tile selection zt, the minimum power required to satisfy the rate constraint is obtained when the rate con-straint is active: 
+
+τ B log 2
+
+
+
+1 + |ht|2pt
+
+σ2
+
+
+
+= Ct(zt). (18) Solving for pt gives 
+
+pmin  
+
+> t
+
+(zt) = σ2
+
+|ht|2
+
+
+
+2 Ct(zt) 
+
+> τ B
+
+− 1
+
+
+
+. (19) Therefore, the original problem can be equivalently trans-formed into a content selection problem: 
+
+P1 : min  
+
+> {zt,k }
+
+1
+
+T
+
+> T
+
+X
+
+> t=1
+> K
+
+X
+
+> k=1
+
+at,k 
+
+(1 − zt,k )dGS  
+
+> t,k
+
++ zt,k dcorr 
+
+> t,k
+
+
+
+(20a) 
+
+s.t. 1
+
+T
+
+> T
+
+X
+
+> t=1
+
+pmin  
+
+> t
+
+(zt) ≤ ¯P , (20b) 
+
+pmin  
+
+> t
+
+(zt) ≤ Pmax , ∀t, (20c) 
+
+zt,k ∈ { 0, 1}, ∀t, k. (20d) This transformation shows that the communication cost of transmitting a tile depends on both its bit size and the instantaneous wireless channel. 
+
+Algorithm 1 GeoFovea-GS Scheduling Algorithm 
+
+Require: {dGS  
+
+> t,k
+
+}, {dcorr  
+
+> t,k
+
+}, {at,k }, {Ct,k }, {| ht|2}, ¯P , Pmax .
+
+Ensure: {z∗
+
+> t,k
+
+} and {p∗ 
+
+> t
+
+}. 
+
+> 1:
+
+Initialize zt,k = 0 and St = ∅, ∀t, k . 
+
+> 2:
+
+Initialize the candidate set A = {(t, k ) : t ∈ T , k ∈ K} . 
+
+> 3:
+
+Compute pt = pmin  
+
+> t
+
+(St), ∀t, where 
+
+pmin  
+
+> t
+
+(St) = σ2
+
+|ht|2
+
+
+
+2 Cpose +P 
+
+> j∈S t Ct,j τ B
+
+− 1
+
+
+
+. 
+
+> 4:
+
+if ∃t such that pt > P max or 1
+
+> T
+
+PTt=1 pt > ¯P then  
+
+> 5:
+
+return infeasible.  
+
+> 6:
+
+end if  
+
+> 7:
+
+while A̸ = ∅ do  
+
+> 8:
+
+Initialize feasible candidate set F = ∅. 
+
+> 9:
+
+for each candidate tile (t, k ) ∈ A do  
+
+> 10:
+
+˜pt,k = pmin  
+
+> t
+
+(St ∪ { k}). 
+
+> 11:
+
+¯pnew  
+
+> t,k
+
+= 1
+
+> T
+
+PTℓ=1 pℓ + ˜ pt,k − pt
+
+
+
+. 
+
+> 12:
+
+∆Dt,k = at,k max {dGS  
+
+> t,k
+
+− dcorr  
+
+> t,k
+
+, 0}. 
+
+> 13:
+
+∆pt,k = ˜ pt,k − pt. 
+
+> 14:
+
+if ˜pt,k ≤ Pmax and ¯pnew  
+
+> t,k
+
+≤ ¯P and ∆Dt,k > 0 then  
+
+> 15:
+
+ηt,k = ∆ Dt,k /(∆ pt,k + ϵ). 
+
+> 16:
+
+F ← F ∪ { (t, k )}. 
+
+> 17:
+
+end if  
+
+> 18:
+
+end for  
+
+> 19:
+
+if F = ∅ then  
+
+> 20:
+
+break . 
+
+> 21:
+
+end if  
+
+> 22:
+
+Select (t⋆, k ⋆) = arg max (t,k )∈F ηt,k . 
+
+> 23:
+
+zt⋆,k ⋆ = 1 . 
+
+> 24:
+
+St⋆ ← S t⋆ ∪ { k⋆}. 
+
+> 25:
+
+pt⋆ ← pmin  
+
+> t⋆
+
+(St⋆ ). 
+
+> 26:
+
+A ← F \ { (t⋆, k ⋆)}. 
+
+> 27:
+
+end while  
+
+> 28:
+
+z∗ 
+
+> t,k
+
+= zt,k and p∗ 
+
+> t
+
+= pt, ∀t, k .
+
+C. Value-of-Information Scheduling 
+
+To obtain a low-complexity solution, the distortion reduction obtained by transmitting tile k at time slot t is defined as 
+
+∆Dt,k = at,k max dGS  
+
+> t,k
+
+− dcorr  
+
+> t,k
+
+, 0 . (21) This is the amount of foveated geometry-aware distortion reduced when zt,k changes from 0 to 1. In the case of high-quality correction transmission, we set dcorr  
+
+> t,k
+
+= 0 .Given the current selected set St, the incremental power cost of transmitting tile k is given by 
+
+∆pt,k = pmin  
+
+> t
+
+(St ∪ { k}) − pmin  
+
+> t
+
+(St), (22) where St = {k : zt,k = 1 } is the set of transmitted tiles at time slot t. The value-of-information score is then defined as 
+
+ηt,k = ∆Dt,k 
+
+∆pt,k + ϵ , (23) where ϵ > 0 is a small constant to avoid division by zero. 10 20 30 40              
+
+> Power (mW)
+> 0.00
+> 0.01
+> 0.02
+> 0.03
+> 0.04
+> 0.05
+> 0.06
+> 0.07
+> GeoFovea Loss
+> (a) Loss versus P.
+> 10 20 30 40
+> Power (mW)
+> 12.5
+> 15.0
+> 17.5
+> 20.0
+> 22.5
+> 25.0
+> 27.5
+> 30.0
+> F-PSNR (dB)
+> (b) F-PSNR versus P.
+> GS-only
+> MaxRate
+> Fovea-only
+> RGB-CLO
+> Geo-only
+> GeoFovea-GS (Ours)
+> 10 20 30 40
+> Power (mW)
+> 0.1
+> 0.2
+> 0.3
+> 0.4
+> 0.5
+> D-RMSE (m)
+> (c) Geometry error versus P.
+> 10 20 30 40
+> Power (mW)
+> 0.0
+> 0.1
+> 0.2
+> 0.3
+> 0.4
+> QoE Efficiency
+> (d) Efficiency versus P.
+
+Fig. 3. Quantitative comparison under different average power budgets. GeoFovea-GS consistently improves foveated rendering quality, geometry consistency, and QoE efficiency. TABLE I QUANTITATIVE COMPARISON UNDER ¯P = 20 MW. P URPLE DENOTES THE BEST VALUE IN EACH METRIC .
+
+Method F-PSNR ↑ F-LPIPS ↓ D-RMSE ↓ Flicker ↓ Bits/F. ↓
+
+GS-only 14.73 0.286 0.514 0.092 0.0002 MaxRate 18.92 0.219 0.392 0.073 0.410 Fovea-only 21.46 0.172 0.337 0.061 0.408 RGB-CLO 23.18 0.148 0.286 0.052 0.401 Geo-only 24.05 0.132 0.204 0.047 0.392 GeoFovea-GS 26.72 0.094 0.142 0.035 0.371 
+
+The score ηt,k measures the VR distortion reduction per unit transmit power. A tile with large geometry error, high foveated importance, and low wireless cost receives a high priority. 
+
+D. Complexity Analysis 
+
+The proposed algorithm avoids exhaustive search over all tile selection patterns. Since there are T K candidate tile transmissions, exhaustive search has complexity O(2 T K ). In contrast, Algorithm 1 selects at most T K tiles. If all scores are recomputed after each selection, the complexity is O(T 2K2).With priority-queue implementation, the complexity can be reduced to approximately O(T K log( T K )) .The algorithm is therefore suitable for practical aerial VR systems, where the scheduler needs to make fast content adaptation decisions under time-varying wireless channels. IV. E XPERIMENTS 
+
+In this section, the proposed GeoFovea-GS framework is evaluated on real-world UAV scenes. The experiments focus on three questions: 1) whether geometry-aware scheduling improves immersive rendering quality, 2) whether foveated and channel-aware resource allocation reduces wireless cost, and 3) whether the proposed method preserves fine structures and depth consistency in aerial VR views. 
+
+A. Baselines and Metrics 
+
+GeoFovea-GS is compared with six baselines. GS-only 
+
+transmits only the camera pose and renders all views from the pre-trained 3DGS model. MaxRate prioritizes tiles according to instantaneous channel quality. Fovea-only selects tiles based 
+
+TABLE II RESOURCE COST TO SATISFY LVR ≤ 0.02 . P URPLE DENOTES THE BEST FEASIBLE RESULT .
+
+Method Feas. Power ↓ Bits/F. ↓ Corr. Ratio ↓ Violation ↓
+
+(mW) (Mbits) (%) (%) Full Image ✓ 52.4 5.42 100.0 14.8 MaxRate × – – – –Fovea-only × – – – –RGB-CLO ✓ 24.7 0.61 11.2 3.9 Geo-only ✓ 20.6 0.48 8.5 2.1 GeoFovea-GS ✓ 16.9 0.37 6.4 0.8 
+
+only on gaze-centered foveated weights. RGB-CLO uses RGB reconstruction error as the cross-layer content importance score. Geo-only uses geometry inconsistency without foveated weighting. Full Image transmits the full compressed image and is used as a high-quality but communication-expensive reference in the resource-cost comparison. To examine the quality of the scheduling solution, we also compare it with Exhaustive Search on a reduced scheduling instance. Specifically, we use Ts = 3 time slots and retain the top Ks = 4 candidate tiles per slot according to their geometry-aware distortion, resulting in 2TsKs = 4096 tile-selection patterns. This setting is small enough for exact enumeration while still preserving the most correction-relevant tiles. Visual quality is evaluated by F-PSNR, F-LPIPS, D-RMSE, and flicker. F-PSNR and F-LPIPS are the foveated versions of PSNR and learned perceptual image patch similarity (LPIPS), where pixel or feature errors are weighted according to the gaze-dependent importance map. D-RMSE denotes the root mean square error (RMSE) between the rendered depth and the reference geometry cue, and flicker measures temporal instability across consecutive displayed views. Communication efficiency is evaluated by Bits/F., GeoFovea loss, and QoE efficiency, which correspond to transmitted bits per frame, the proposed foveated geometry-aware distortion, and quality gain per unit energy, respectively. 0.00                     
+
+> 0.01
+> 0.02
+> 0.03
+> 0.04
+> 0.05
+> GeoFovea Loss
+> 0.018 0.017
+> 17.5
+> 20.0
+> 22.5
+> 25.0
+> 27.5
+> F-PSNR (dB)  26.7 27.0
+> MaxRate Fovea RGB Geo Ours Exh.
+> 0.1
+> 0.2
+> 0.3
+> 0.4
+> D-RMSE (m)
+> 0.142 0.136
+> MaxRate Fovea RGB Geo Ours Exh.
+> 0.2
+> 0.3
+> 0.4
+> QoE Efficiency  0.370 0.382
+> Small-Scale Optimality Check under P= 20 mW
+> MaxRate
+> Fovea-only
+> RGB-CLO
+> Geo-only
+> GeoFovea-GS
+> Exhaustive Search Fig. 4. Small-scale optimality check under ¯P=20 mW. Exhaustive Search enumerates all feasible tile-selection patterns on reduced instances and serves as the optimum reference. GeoFovea-GS closely approaches Exhaustive Search across four metrics and consistently outperforms other scheduling baselines.
+
+B. Dataset and Implementation 
+
+GeoFovea-GS is evaluated on the SMBU scene from GauU-Scene V2 [21], which contains large-scale UAV-captured out-door views with buildings, roads, vegetation, and open areas. The views are split by camera poses: training views are used to construct the 3DGS scene memory, while held-out views with noticeable spatial and angular displacement serve as VR query views and references. The 3DGS scene is trained on a single NVIDIA A100 GPU. For correction transmission, the held-out reference tile is adopted as an oracle high-quality correction, and Ct,k is computed from its compressed size. This protocol isolates the scheduling problem from the design of a particular correction generator and evaluates the upper-bound gain achievable when accurate scene-side correction is available. In a practical sys-tem, the correction tile may be generated from nearby captured key views, multi-view interpolation, or a high-quality offline renderer; such non-oracle correction may reduce the absolute gain, but the proposed scheduler remains applicable as long as an estimated correction distortion and bit cost are available. The geometry cue is obtained from available scene depth and projected onto the query image plane to compute tile-level geometry inconsistency. Each test view is divided into non-overlapping tiles, and each tile is either rendered by pose-only 3DGS or corrected through wireless transmission. Unless otherwise specified, the wireless parameters follow Section III, with ¯P varied from 10 
+
+mW to 40 mW. All results are averaged over testing views and random channel realizations. 
+
+C. Quantitative Comparison 
+
+Table I compares the rendering quality and communication cost under ¯P = 20 mW. GS-only incurs negligible transmis-sion cost but suffers from severe photometric, geometric, and temporal artifacts, showing that pose-only 3DGS rendering is unreliable for aerial VR. The adaptive baselines improve over GS-only but address only part of the problem: MaxRate exploits channel quality, Fovea-only emphasizes gaze impor-tance, RGB-CLO relies on photometric distortion, and Geo-only uses geometry reliability without perceptual weighting. By jointly accounting for geometry reliability, foveated im-portance, and wireless cost, GeoFovea-GS achieves the best F-PSNR, F-LPIPS, D-RMSE, and flicker with only 0.371 Mbits per frame. These results indicate that wireless correction is most effective when resources are allocated to regions that are simultaneously geometry-critical and perceptually important. Fig. 3 presents the performance under different average power budgets. As ¯P increases, the adaptive schemes achieve lower distortion and better reconstruction quality, whereas GS-only remains unchanged because no correction tiles are transmitted. GeoFovea-GS consistently yields the lowest Ge-oFovea loss and the highest F-PSNR, especially in the low-power regime where only a small number of tiles can be cor-rected. The clear D-RMSE gain over RGB-CLO further shows that pixel-level distortion alone is insufficient for geometry-sensitive aerial VR. The highest QoE efficiency also confirms that the selected corrections provide larger quality gain per unit energy. Table II reports the resource cost required to satisfy LVR ≤
+
+0.02 . Full Image transmission reaches the target but requires prohibitive power and bandwidth, while MaxRate and Fovea-only are infeasible because geometry reliability is not consid-ered. RGB-CLO and Geo-only meet the target at higher cost. GeoFovea-GS achieves the lowest power, bit rate, correction ratio, and violation rate, requiring only 16 .9 mW and 0.37 
+
+Mbits per frame. This confirms that geometry-aware foveated scheduling can meet the VR quality target with substantially fewer wireless resources To further evaluate the quality of the proposed value-of-information scheduler, we conduct a small-scale optimality check where exhaustive search is computationally tractable. Specifically, we retain a reduced set of time slots and candidate tiles, enumerate all feasible tile-selection patterns, and select the solution with the minimum GeoFovea loss under the same wireless constraints. As shown in Fig. 4, GeoFovea-GS achieves performance close to Exhaustive Search across the four metrics. The small gap indicates that the proposed greedy scheduler captures most of the achievable distortion reduction, while avoiding the exponential complexity of ex-haustive search. In contrast, MaxRate, Fovea-only, RGB-CLO, and Geo-only remain clearly inferior, confirming that jointly considering geometry reliability, foveated importance, and wireless power cost is essential even in the reduced problem. 
+
+D. Visualization Results 
+
+Fig. 5 visualizes three representative testing poses from SMBU, each showing the RGB view, a zoomed-in region, and the corresponding depth map. The red boxes highlight geometry-sensitive regions where pose-only 3DGS rendering produces blurred structures, distorted building boundaries, or unreliable depth, especially around the circular rooftop in Pose A and the vegetation boundary in Pose B. GeoFovea-GS cor-rects these high-impact regions, yielding sharper visual details Scene A A Zo om In A Depth Scene B B Zoom In B Depth Scene C C Zoom In C Depth   
+
+> Pose A Pose B Pose C
+> GT GeoFovea GS-only
+
+Fig. 5. Visualization of wireless aerial VR reconstruction on SMBU. Each pose includes the rendered view, zoomed-in region, and depth map. Red boxes highlight geometry-sensitive regions. GeoFovea-GS preserves sharper visual structures and more consistent depth than GS-only. 
+
+and more consistent depth transitions. This confirms that the proposed scheduler improves not only pixel appearance but also geometry consistency in perceptually important regions. V. C ONCLUSION 
+
+GeoFovea-GS was proposed as a geometry-aware crosslayer framework for communication-efficient wireless aerial VR. By using 3D Gaussian Splatting (3DGS) as scene mem-ory, reliable regions can be rendered from compact pose information, while unreliable regions are corrected through selective image/tile transmission. A foveated geometry-aware distortion metric was developed to jointly capture photometric error, depth inconsistency, and user-view importance. Based on this metric, a lightweight value-of-information scheduler was designed to allocate wireless resources to geometry-critical and perceptually important tiles. Experiments on real-world UAV scenes show that, compared with Geo-only, the strongest adaptive baseline in Table I, GeoFovea-GS improves F-PSNR by 11 .1% and reduces depth error by 30 .4% . Under the target 
+
+LVR ≤ 0.02 , it further reduces the required power and bit rate by 18 .0% and 22 .9% , respectively, relative to Geo-only, and reduces the bit rate by 39 .3% relative to RGB-CLO. REFERENCES [1] C. Wang, C. Yu, X. Xu, Y. Gao, X. Yang, W. Tang, S. Yu, Y. Chen, F. Gao, Z. Jian, X. Chen, F. Gao, B. Zhou, and Y. Wang, “Multi-robot system for cooperative exploration in unknown environments: Asurvey,” 2025. [Online]. Available: https://arxiv.org/abs/2503.07278 [2] J. Zhang, Z. Jiang, S. Zhou, and Z. Niu, “Tgpp: Trajectory-guided plug-and-play priors for sparse radio map reconstruction,” 2026. [Online]. Available: https://arxiv.org/abs/2605.05844 [3] B. Zhao, Q. Duan, G. Yang, J. Tang, Z. Song, J. Wen, X. Liu, Q. Li, L. Lei, J. Zhang, X. Chen, M. W. Mueller, and B. M. Chen, “Lightweight yet high-performance defect detector for uav-based large-scale infrastructure real-time inspection,” in 2025 IEEE Int. Conf. Robot. Autom. (ICRA) , 2025, pp. 13 675–13 682. [4] X. Huang, J. Li, T. Wu, X. Zhou, Z. Han, and F. Gao, “Flying in clutter on monocular rgb by learning in 3d radiance fields with domain adaptation,” IEEE Robot. Autom. Lett. , pp. 1–8, 2026. [5] S. Zhou, B. Xie, D. Shen, W. Feng, Z. Jiang, and Z. Niu, “Agile coverage for low-altitude aerial intelligent networks: A blended hyper-cellular solution,” China Communications , vol. 22, no. 9, pp. 22–36, 2025. [6] Z. Ren, J. Dong, W. Zuo, Y. Wang, B. Cheng, S. Zhou, and Z. Niu, “Ef-ficient transceiver design for aerial image transmission and large-scale scene reconstruction,” in IEEE International Symposium on Information Theory (ISIT) Workshops , 2026. [7] B. Kerbl, G. Kopanas, T. Leimk¨ uhler, and G. Drettakis, “3d gaussian splatting for real-time radiance field rendering,” ACM Trans. Graph. ,vol. 42, no. 4, July 2023. [8] Z. Li, X. Jin, G. Li, S. Wang, M. Wen, H. Arslan, D. Wing Kwan Ng, and C. Xu, “Stt-gs: Sample-then-transmit edge gaussian splatting with joint client selection and power control,” IEEE Trans. Cogn. Commun. Netw. , vol. 12, pp. 4417–4432, 2026. [9] C. Liu, H. Li, Z. Li, S. Wang, W. Xu, K. Ye, D. W. K. Ng, and C. Xu, “Communication efficient robotic mixed reality with gaussian splatting cross-layer optimization,” IEEE Trans. Cogn. Commun. Netw. , vol. 12, pp. 1948–1962, 2026. [10] M. Chen, W. Saad, and C. Yin, “Virtual reality over wireless networks: Quality-of-service model and learning-based resource management,” 
+
+IEEE Trans. Commun. , vol. 66, no. 11, pp. 5621–5635, 2018. [11] Y. Wang, Y. Wan, W. Zuo, S. Wang, Y.-C. Wu, C. Xu, and H. Arslan, “Lags: Low-altitude gaussian splatting with groupwise heterogeneous graph learning,” 2026. [Online]. Available: https://arxiv.org/abs/2604.16910 [12] Z. Liu, Y. Li, Y.-C. Wu, and Y. Gong, “Learning to optimize resource allocation in dynamic wireless environments: Embracing the new while engaging the old,” IEEE Trans. Wireless Commun. , vol. 24, no. 9, pp. 7346–7359, 2025. [13] Y. Jin, Z. Li, Z. Ren, Q. Lin, and Y.-C. Wu, “Balancing latency and model accuracy for fluid antenna-assisted lm-embedded mimo network,” in IEEE Global Communications Conference , 2025, pp. 188–193. [14] C.-Y. Chen and H.-Y. Hsieh, “Cross-frame resource allocation with context-aware qoe estimation for 360° video streaming in wireless virtual reality,” IEEE Trans. Wireless Commun. , vol. 22, no. 11, pp. 7887–7901, 2023. [15] J. Feng, L. Liu, X. Hou, Q. Pei, and C. Wu, “Qoe fairness resource allocation in digital twin-enabled wireless virtual reality systems,” IEEE J. Sel. Areas Commun. , vol. 41, no. 11, pp. 3355–3368, 2023. [16] J. Chakareski, “Viewport-adaptive scalable multi-user virtual reality mobile-edge streaming,” IEEE Trans. Image Process. , vol. 29, pp. 6330– 6342, 2020. [17] D. Li, R. Du, A. Babu, C. D. Brumar, and A. Varshney, “A log-rectilinear transformation for foveated 360-degree video streaming,” IEEE Trans. Vis. Comput. Graph. , vol. 27, no. 5, pp. 2638–2647, 2021. [18] M. Niemeyer, J. T. Barron, B. Mildenhall, M. S. M. Sajjadi, A. Geiger, and N. Radwan, “Regnerf: Regularizing neural radiance fields for view synthesis from sparse inputs,” in CVPR , 2022, pp. 5480–5490. [19] G. Wang, Z. Chen, C. C. Loy, and Z. Liu, “Sparsenerf: Distilling depth ranking for few-shot novel view synthesis,” in ICCV , 2023, pp. 9031– 9042. [20] Z. Yu, A. Chen, B. Huang, T. Sattler, and A. Geiger, “Mip-splatting: Alias-free 3d gaussian splatting,” in CVPR , 2024, pp. 19 447–19 456. [21] B. Xiong, N. Zheng, J. Liu, and Z. Li, “Gauu-scene v2: Assessing the reliability of image-based metrics with expansive lidar image dataset using 3dgs and nerf,” 2024. [Online]. Available: https://arxiv.org/abs/2404.04880
