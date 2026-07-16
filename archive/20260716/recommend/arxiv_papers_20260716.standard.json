@@ -1,0 +1,206 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-16T21:17:43.954387+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 5,
+    "quick_skim_target": 11,
+    "quick_selected": 5
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2607.11184v1",
+      "source": "arxiv",
+      "title": "GeoGS-SLAM: Online Monocular Reconstruction Using Gaussian Splatting with Geometric Priors",
+      "abstract": "SLAM methods based on 3D Gaussian Splatting (3DGS) have demonstrated impressive tracking and mapping performance, but typically require additional geometric information from external depth sensors. Meanwhile, recent SLAM systems that leverage geometric priors from pre-trained feed-forward models enable real-time dense reconstruction, yet often discard original RGB information during optimization, thus degrading overall reconstruction quality. We present GeoGS-SLAM, an online monocular dense reconstruction system that combines the 3DGS-based map representation with learned geometric priors. Given uncalibrated RGB input, we first employ a feed-forward visual geometry model to predict camera and scene priors. The Gaussian scene map is then expanded by directly sampling Gaussian primitives from both RGB input and geometric priors. Camera poses and the scene map are jointly optimized through a coarse-to-fine strategy that minimizes both photometric and geometric losses. To ensure global consistency, we further incorporate online loop closure detection and pose graph optimization. Extensive experiments across indoor and outdoor benchmarks demonstrate that GeoGS-SLAM achieves superior rendering quality and tracking accuracy compared to state-of-the-art methods while maintaining online real-time performance. Project page: https://rlgao.github.io/geogs_slam.",
+      "authors": [
+        "Ruilan Gao",
+        "Letian Jin",
+        "Yu Zhang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-07-13T07:32:09+00:00",
+      "link": "https://arxiv.org/pdf/2607.11184v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Monocular Gaussian Splatting with geometric priors for reconstruction",
+      "llm_evidence_cn": "利用几何先验的单目高斯泼溅重建",
+      "llm_evidence": "利用几何先验的单目高斯泼溅重建",
+      "canonical_evidence": "利用几何先验的单目高斯泼溅重建",
+      "llm_tldr_en": "GeoGS-SLAM combines 3DGS with learned geometric priors for online monocular dense reconstruction, improving quality without external depth sensors.",
+      "llm_tldr_cn": "基于3DGS的SLAM通常需要深度传感器，而利用几何先验的SLAM常丢弃RGB信息。本文提出GeoGS-SLAM，结合3DGS地图表示与学习几何先验，从单目RGB输入预测相机和场景先验，优化高斯场景图。在多个数据集上，该方法在重建精度和渲染质量上超越现有单目SLAM系统。",
+      "llm_tldr": "基于3DGS的SLAM通常需要深度传感器，而利用几何先验的SLAM常丢弃RGB信息。本文提出GeoGS-SLAM，结合3DGS地图表示与学习几何先验，从单目RGB输入预测相机和场景先验，优化高斯场景图。在多个数据集上，该方法在重建精度和渲染质量上超越现有单目SLAM系统。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.10489v1",
+      "source": "arxiv",
+      "title": "Grassmannian Splatting I: Moving rank-2 Spacetime Surfels for Dynamic Scene Rendering",
+      "abstract": "We introduce Grassmannian splatting, a dynamic scene representation whose primitives are Gaussians supported on 3-planes in spacetime $\\R^4$: generically, spatial 2-planes in uniform translation along their normals. Each primitive carries a unit normal $n \\in \\mathbb S^3/\\{\\pm 1\\} \\cong \\mathrm{Gr}(3,4)$ and an unconstrained factor $L \\in \\mathbb R^{4 \\times 3}$, with covariance \\[   Σ_{4\\mathrm{D}} = (P_n L)(P_n L)^T, \\qquad P_n = I - n n^T. \\] For generic $L$ and $n \\neq \\pm e_0$, conditioning on time returns a rank-2 surfel at every frame. The normal of the disk and its velocity along that normal are read off from $n$; the disk shape and the tangential drift of its center are set by $L$. Existing native 4D Gaussian splatting methods [\\it{Yang et. al. 2023,Duan et. al. 2024}] slice full-rank spacetime covariances, so their per-frame primitive is a volumetric ellipsoid; since conditioning lowers rank by exactly one, a rank-2 surfel in the slice requires a rank-3 spacetime covariance, and the parameterization above realizes exactly these. The motion model is closed form, i.e. no deformation field is learned, and no custom CUDA is required: the conditioned disk feeds a standard 3DGS rasterizer through its precomputed-covariance interface. A soft clamp in the Schur denominator regularizes the static orientation and continuously bridges rank-3 static and rank-2 dynamic behavior, so static and moving primitives form a single continuous family. On the 17 HyperNeRF scenes of MonoDyGauBench, training is fastest among all compared methods (4.9 to 5.6 times faster than the strongest quality baselines), while ranking second in PSNR, MS-SSIM, and LPIPS. Code: https://github.com/PaulCelanCoding/grassmannian-splatting",
+      "authors": [
+        "Aaron Maurice Berman",
+        "Shantanu Dave"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-11T21:51:32+00:00",
+      "link": "https://arxiv.org/pdf/2607.10489v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Gaussian splatting for dynamic scenes",
+      "llm_evidence_cn": "高斯泼溅用于动态场景渲染",
+      "llm_evidence": "高斯泼溅用于动态场景渲染",
+      "canonical_evidence": "高斯泼溅用于动态场景渲染",
+      "llm_tldr_en": "Grassmannian splatting extends 3DGS to dynamic scenes by representing primitives as Gaussians on 3-planes in spacetime, enabling moving surfels.",
+      "llm_tldr_cn": "针对动态场景渲染，论文提出Grassmannian泼溅，其基元是时空中3-平面上的高斯函数，每个基元携带单位法线和未约束因子，可在每帧产生秩2表面元。该方法从法线读取速度和方向，从因子读取形状和切向漂移，实现了动态场景的高效表示。虽非全景，但扩展了3DGS的适用范围。",
+      "llm_tldr": "针对动态场景渲染，论文提出Grassmannian泼溅，其基元是时空中3-平面上的高斯函数，每个基元携带单位法线和未约束因子，可在每帧产生秩2表面元。该方法从法线读取速度和方向，从因子读取形状和切向漂移，实现了动态场景的高效表示。虽非全景，但扩展了3DGS的适用范围。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.11285v2",
+      "source": "arxiv",
+      "title": "SalientGS: Unified SfM-to-3DGS with Importance-Guided MCMC Gaussian Allocation",
+      "abstract": "Reconstructing 3D scenes from unordered images remains bottlenecked by expensive Structure-from-Motion (SfM) preprocessing and frozen pose interfaces. We present SalientGS, a unified SfM-to-3D Gaussian Splatting (3DGS) pipeline. Its central contribution is importance-guided Markov Chain Monte Carlo (MCMC) Gaussian allocation, which aggregates multi-view residuals into per-Gaussian underfit and redundancy signals. These signals define a smooth importance-weighted sampling distribution that biases both birth and relocation toward underfit regions. This reallocates capacity from well-fit areas without altering the underlying stochastic gradient Langevin dynamics (SGLD). SalientGS achieves end-to-end reconstruction in 15 minutes with state-of-the-art perceptual quality. The supplementary material provides dedicated sections for Per-Scene Qualitative Comparisons and Per-Image Learned Perceptual Image Patch Similarity (LPIPS) Analysis, including failure cases. Code and evaluation scripts are available at https://github.com/Six-Bit-TX/SalientGS.",
+      "authors": [
+        "Tianyu Xiong",
+        "Rui Li",
+        "Suning Ge",
+        "Jiaqi Yang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-13T09:06:49+00:00",
+      "link": "https://arxiv.org/pdf/2607.11285v2",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "unified SfM to 3DGS pipeline for novel view synthesis",
+      "llm_evidence_cn": "统一SfM到3DGS管道用于新视角合成",
+      "llm_evidence": "统一SfM到3DGS管道用于新视角合成",
+      "canonical_evidence": "统一SfM到3DGS管道用于新视角合成",
+      "llm_tldr_en": "SalientGS presents a unified SfM-to-3DGS pipeline using importance-guided MCMC Gaussian allocation, enabling end-to-end 3D reconstruction and novel view synthesis without separate SfM.",
+      "llm_tldr_cn": "针对传统SfM预处理昂贵且与3DGS分离的问题，提出SalientGS统一管道。核心是重要性引导的MCMC高斯分配，通过多视角残差定义欠拟合和冗余信号，动态调整高斯分布。实现端到端重建，15分钟内完成场景重建和新视角合成，达到最先进水平。",
+      "llm_tldr": "针对传统SfM预处理昂贵且与3DGS分离的问题，提出SalientGS统一管道。核心是重要性引导的MCMC高斯分配，通过多视角残差定义欠拟合和冗余信号，动态调整高斯分布。实现端到端重建，15分钟内完成场景重建和新视角合成，达到最先进水平。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.12362v1",
+      "source": "arxiv",
+      "title": "Implicit 4D Gaussian Splatting for Fast Motion with Large Inter-Frame Displacements",
+      "abstract": "Recent 4D Gaussian Splatting (4DGS) methods often fail under fast motion with large inter-frame displacements, where Gaussian attributes are poorly learned during training, and fast-moving objects are often lost from the reconstruction. In this work, we introduce Spatiotemporal Position Implicit Network for 4DGS, coined SPIN-4DGS, which learns Gaussian attributes from explicitly collected spatiotemporal positions rather than modeling temporal displacements, thereby enabling more faithful splatting under fast motions with large inter-frame displacements. To avoid the heavy memory overhead of explicitly optimizing attributes across all spatiotemporal positions, we instead predict them with a lightweight feed-forward network trained under a rasterization-based reconstruction loss. Consequently, SPIN-4DGS learns shared representations across Gaussians, effectively capturing spatiotemporal consistency and enabling stable high-quality Gaussian splatting even under challenging motions. Across extensive experiments, SPIN-4DGS consistently achieves higher fidelity under large displacements, with clear improvements in PSNR and SSIM on challenging sports scenes from the CMU Panoptic dataset. For example, SPIN-4DGS notably outperforms the strongest baseline, D3DGS, by achieving +1.83 higher PSNR on the Basketball scene.",
+      "authors": [
+        "Seung-gyeom Kim",
+        "Areum Kim",
+        "Yongjae Yoo",
+        "Sukmin Yun"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-14T05:33:05+00:00",
+      "link": "https://arxiv.org/pdf/2607.12362v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "4D Gaussian Splatting for novel view synthesis",
+      "llm_evidence_cn": "4D高斯溅射用于新视图合成",
+      "llm_evidence": "4D高斯溅射用于新视图合成",
+      "canonical_evidence": "4D高斯溅射用于新视图合成",
+      "llm_tldr_en": "SPIN-4DGS improves 4D Gaussian Splatting for fast motion by predicting Gaussian attributes from spatiotemporal positions via a lightweight network, enabling faithful novel view synthesis under large inter-frame displacements.",
+      "llm_tldr_cn": "针对4D高斯溅射在快速运动和大帧间位移下无法准确学习高斯属性、导致运动物体丢失的问题，该文提出SPIN-4DGS，通过轻量级前馈网络从明确的时空位置预测高斯属性，避免了显式属性优化的高内存开销，实现了对大位移运动的更可靠渲染。实验证明该方法在动态场景新视图合成中优于现有4DGS方法。",
+      "llm_tldr": "针对4D高斯溅射在快速运动和大帧间位移下无法准确学习高斯属性、导致运动物体丢失的问题，该文提出SPIN-4DGS，通过轻量级前馈网络从明确的时空位置预测高斯属性，避免了显式属性优化的高内存开销，实现了对大位移运动的更可靠渲染。实验证明该方法在动态场景新视图合成中优于现有4DGS方法。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.13808v1",
+      "source": "arxiv",
+      "title": "Bake It Till You Make It: Ultrafast Spatial Texture-Atlas Splatting",
+      "abstract": "Recent extensions of 3D Gaussian Splatting (3DGS) capture fine color details using hash-grid-based appearance parameterization but incur high computational cost during fragment rendering. We introduce a decoupled radiance representation that models low-frequency geometry and view dependent appearance features with 2D surfels while representing high-frequency textures via a view-independent spatial hash grid that is baked into a compact texture atlas. By including sparsity-enhancing optimizations that penalize semi-transparency and per-primitive falloff, our method aggressively prunes insignificant surfels and achieves significantly faster and sparser reconstructions than prior work. Exploiting geometric sparsity and efficient GPU texture mapping, our approach achieves up to a fivefold speedup over 3DGS while preserving state-of-the-art visual fidelity, enabling real-time 4K rendering at 60 FPS on consumer hardware.",
+      "authors": [
+        "Neel Kelkar",
+        "Simon Niedermayr",
+        "Kaloian Petkov",
+        "Klaus Engel",
+        "Rüdiger Westermann"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "published": "2026-07-15T13:12:31+00:00",
+      "link": "https://arxiv.org/pdf/2607.13808v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "3D Gaussian Splatting method for efficiency",
+      "llm_evidence_cn": "3D高斯泼溅的高效纹理渲染方法",
+      "llm_evidence": "3D高斯泼溅的高效纹理渲染方法",
+      "canonical_evidence": "3D高斯泼溅的高效纹理渲染方法",
+      "llm_tldr_en": "Bake It Till You Make It proposes a decoupled radiance representation for 3DGS, baking high-frequency textures into a compact atlas, achieving faster and sparser reconstruction.",
+      "llm_tldr_cn": "针对3DGS哈希网格外观参数化计算成本高的问题，论文提出解耦辐射表示，用2D面元建模低频几何和视角相关特征，高频纹理则烘焙到紧凑纹理图集中。通过稀疏性增强优化裁剪非显著的表面元，相比之前工作实现更快更稀疏的重建，同时保持渲染质量。该方法提升了3DGS的效率，但未直接处理全景场景。",
+      "llm_tldr": "针对3DGS哈希网格外观参数化计算成本高的问题，论文提出解耦辐射表示，用2D面元建模低频几何和视角相关特征，高频纹理则烘焙到紧凑纹理图集中。通过稀疏性增强优化裁剪非显著的表面元，相比之前工作实现更快更稀疏的重建，同时保持渲染质量。该方法提升了3DGS的效率，但未直接处理全景场景。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

@@ -6,27 +6,36 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-15
-- 运行时间：2026-07-15 20:08:32 UTC
+- 最新运行日期：2026-07-16
+- 运行时间：2026-07-16 21:19:58 UTC
 - 运行状态：成功
-- 本次总论文数：2
-- 精读区：2
-- 速读区：0
+- 本次总论文数：5
+- 精读区：0
+- 速读区：5
 
 ### 今日简报（AI）
-今天精读两篇高分论文，分别探索通用3D空间模型与无线VR几何感知渲染。最值得关注的是《ABot-3DWorld》提出的通用世界模型，以及《GeoFovea-GS》针对无线VR的跨层高斯抛雪法。建议普通读者重点关注这两项技术对未来虚拟现实与机器人导航的融合潜力。
-- 详情：[/202607/15/README](/202607/15/README)
+今日速读5篇论文，其中3篇获得7.0/10的高分。最值得关注的是GeoGS-SLAM的在线单目重建方法，以及SalientGS的重要性引导MCMC高斯分配框架。建议读者优先了解几何先验如何提升高斯泼溅重建精度，并关注高效高斯分配策略的潜力。
+- 详情：[/202607/16/README](/202607/16/README)
 
 ### 精读区论文标签
-1. [ABot-3DWorld 0: A Universal World Model to Explore Any 3D Space](/202607/15/2607.11673v2-abot-3dworld-0-a-universal-world-model-to-explore-any-3d-space)  
-   标签：评分：9.0/10、query:pano-dgs
-   evidence：使用全景视频重建生成3D高斯泼溅世界
-2. [GeoFovea-GS: Geometry-Aware Cross-Layer Gaussian Splatting for Wireless Aerial VR](/202607/15/2607.12641v1-geofovea-gs-geometry-aware-cross-layer-gaussian-splatting-for-wireless-aerial-vr)  
-   标签：评分：8.0/10、query:pano-dgs
-   evidence：三维高斯溅射用于虚拟现实中的新视角合成
+- 本次无精读推荐。
 
 ### 速读区论文标签
-- 本次无速读推荐。
+1. [GeoGS-SLAM: Online Monocular Reconstruction Using Gaussian Splatting with Geometric Priors](/202607/16/2607.11184v1-geogs-slam-online-monocular-reconstruction-using-gaussian-splatting-with-geometric-priors)  
+   标签：评分：7.0/10、query:pano-dgs
+   evidence：利用几何先验的单目高斯泼溅重建
+2. [SalientGS: Unified SfM-to-3DGS with Importance-Guided MCMC Gaussian Allocation](/202607/16/2607.11285v2-salientgs-unified-sfm-to-3dgs-with-importance-guided-mcmc-gaussian-allocation)  
+   标签：评分：7.0/10、query:pano-dgs
+   evidence：统一SfM到3DGS管道用于新视角合成
+3. [Implicit 4D Gaussian Splatting for Fast Motion with Large Inter-Frame Displacements](/202607/16/2607.12362v1-implicit-4d-gaussian-splatting-for-fast-motion-with-large-inter-frame-displacements)  
+   标签：评分：7.0/10、query:pano-dgs
+   evidence：4D高斯溅射用于新视图合成
+4. [Bake It Till You Make It: Ultrafast Spatial Texture-Atlas Splatting](/202607/16/2607.13808v1-bake-it-till-you-make-it-ultrafast-spatial-texture-atlas-splatting)  
+   标签：评分：7.0/10、query:pano-dgs
+   evidence：3D高斯泼溅的高效纹理渲染方法
+5. [Grassmannian Splatting I: Moving rank-2 Spacetime Surfels for Dynamic Scene Rendering](/202607/16/2607.10489v1-grassmannian-splatting-i-moving-rank-2-spacetime-surfels-for-dynamic-scene-rendering)  
+   标签：评分：6.0/10、query:pano-dgs
+   evidence：高斯泼溅用于动态场景渲染
 
 
 <div class="dpr-home-promo-card">
