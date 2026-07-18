@@ -1,6 +1,9 @@
 * <a class="dpr-sidebar-root-link" href="#/">首页</a>
 * <a class="dpr-sidebar-root-link dpr-sidebar-noactive-link" href="javascript:void(0)" data-dpr-hash="#/tutorial/README">使用教程</a>
 * Daily Papers
+  * 2026-07-18 <!--dpr-date:20260718-->
+    * 速读区
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202607/18/2607.10237v1-cosag-compact-semantic-anchor-gaussians-via-training-free-rate-distortion-coding" data-sidebar-item="{&quot;title&quot;: &quot;CoSAG: Compact Semantic Anchor Gaussians via Training-Free Rate-Distortion Coding&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2607.10237v1-cosag-compact-semantic-anchor-gaussians-via-training-free-rate-distortion-coding&quot;, &quot;score&quot;: &quot;7.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;pano-dgs&quot;}], &quot;evidence&quot;: &quot;以3D高斯泼溅为骨干进行开放词汇场景理解，并实现紧凑存储，与3DGS方法论相关&quot;}">CoSAG: Compact Semantic Anchor Gaussians via Training-Free Rate-Distortion Coding</a>
   * 2026-07-17 <!--dpr-date:20260717-->
     * 精读区
       * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202607/17/2607.14481v1-immediate-3d-gaussian-splat-reconstruction-of-unordered-input-with-global-consistency" data-sidebar-item="{&quot;title&quot;: &quot;Immediate 3D Gaussian Splat Reconstruction of Unordered Input with Global Consistency&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2607.14481v1-immediate-3d-gaussian-splat-reconstruction-of-unordered-input-with-global-consistency&quot;, &quot;score&quot;: &quot;8.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;pano-dgs&quot;}], &quot;evidence&quot;: &quot;3D高斯泼溅用于新视角合成并保证全局一致性&quot;}">Immediate 3D Gaussian Splat Reconstruction of Unordered Input with Global Consistency</a>

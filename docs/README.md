@@ -6,35 +6,24 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-17
-- 运行时间：2026-07-17 21:09:00 UTC
+- 最新运行日期：2026-07-18
+- 运行时间：2026-07-18 21:08:22 UTC
 - 运行状态：成功
-- 本次总论文数：5
-- 精读区：1
-- 速读区：4
+- 本次总论文数：1
+- 精读区：0
+- 速读区：1
 
 ### 今日简报（AI）
-今日推荐5篇3D高斯泼溅研究，1篇精读聚焦全局一致性无序输入重建。最值得关注精读论文《Immediate 3D Gaussian Splat Reconstruction》的高效全局重建能力，以及速读中《G$^2$SR》的几何表面重建方法。普通读者可从精读论文入手，理解无序输入下的实时高质量重建前沿。
-- 详情：[/202607/17/README](/202607/17/README)
+今日收录1篇3D高斯点云压缩研究，提出免训练率失真编码方法。最值得关注的是通过语义锚点实现紧凑表示，无需额外训练即可压缩高斯点云。建议进一步探索该方法在实时渲染和存储效率中的实际应用潜力。
+- 详情：[/202607/18/README](/202607/18/README)
 
 ### 精读区论文标签
-1. [Immediate 3D Gaussian Splat Reconstruction of Unordered Input with Global Consistency](/202607/17/2607.14481v1-immediate-3d-gaussian-splat-reconstruction-of-unordered-input-with-global-consistency)  
-   标签：评分：8.0/10、query:pano-dgs
-   evidence：3D高斯泼溅用于新视角合成并保证全局一致性
+- 本次无精读推荐。
 
 ### 速读区论文标签
-1. [G$^2$SR: Geometric Methods for Fast and Memory-Efficient Gaussian-based Surface Reconstruction](/202607/17/2607.14470v1-g2sr-geometric-methods-for-fast-and-memory-efficient-gaussian-based-surface-reconstruction)  
+1. [CoSAG: Compact Semantic Anchor Gaussians via Training-Free Rate-Distortion Coding](/202607/18/2607.10237v1-cosag-compact-semantic-anchor-gaussians-via-training-free-rate-distortion-coding)  
    标签：评分：7.0/10、query:pano-dgs
-   evidence：基于3D高斯泼溅的少视角表面重建方法
-2. [Compression of 3D Gaussian Splatting Data Using GPU-friendly Graphics Texture Coding](/202607/17/2607.14513v1-compression-of-3d-gaussian-splatting-data-using-gpu-friendly-graphics-texture-coding)  
-   标签：评分：7.0/10、query:pano-dgs
-   evidence：使用GPU友好纹理编码压缩3D高斯溅射数据
-3. [JADE-GS: Joint Alternating Deblurring Guided by Events in 3D Gaussian Splatting](/202607/17/2607.14990v1-jade-gs-joint-alternating-deblurring-guided-by-events-in-3d-gaussian-splatting)  
-   标签：评分：7.0/10、query:pano-dgs
-   evidence：联合事件相机去模糊与3D高斯泼溅重建
-4. [SpeedyGS: Content-Aware 3D Gaussian Splatting Compression via Two-Stage Optimization](/202607/17/2607.12656v1-speedygs-content-aware-3d-gaussian-splatting-compression-via-two-stage-optimization)  
-   标签：评分：6.0/10、query:pano-dgs
-   evidence：3D高斯泼溅新视角合成方法（压缩技术）
+   evidence：以3D高斯泼溅为骨干进行开放词汇场景理解，并实现紧凑存储，与3DGS方法论相关
 
 
 <div class="dpr-home-promo-card">

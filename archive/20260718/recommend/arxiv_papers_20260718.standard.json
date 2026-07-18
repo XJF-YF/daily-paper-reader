@@ -1,0 +1,56 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-18T21:07:37.817757+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2607.10237v1",
+      "source": "arxiv",
+      "title": "CoSAG: Compact Semantic Anchor Gaussians via Training-Free Rate-Distortion Coding",
+      "abstract": "Open-vocabulary 3D scene understanding is commonly achieved by embedding 2D vision-language features such as CLIP into a 3D Gaussian Splatting scene, turning it into a text-queryable semantic field. However, attaching a high-dimensional feature to each of millions of Gaussians inflates a single scene to gigabytes, which makes storage and deployment the real bottleneck of these fields. Existing compact methods each learn and ship a per-scene codec, an autoencoder, a quantized codebook, or a distilled feature field, entangling field construction with field storage and never compressing the per-Gaussian assignment that holds the bulk of the cost. We argue that construction and storage should be decoupled, and that storage is a rate-distortion problem over the per-Gaussian binding to a small anchor table, a structure no prior open-vocabulary method compresses. We present CoSAG, which constructs the field without any per-scene training through a closed-form transmittance-weighted lift, spatially grounded semantic anchors, and multi-view denoising, and stores it with a spatially predictive entropy coder that ships no decoder. Because the anchors are spatially grounded, the binding is predictable and therefore highly compressible. The transmittance-weighted lift and multi-view denoising yield a clean, view-consistent assignment, so the entropy coder spends almost no rate on correcting noise and instead codes only the residual against its spatial prediction. CoSAG reaches sub-megabyte storage while matching or exceeding the state of the art across the 2D-rendered, 3D-selection, and dense-LSeg protocols, reducing field size by 37 to 76x relative to LangSplatV2 at higher accuracy.",
+      "authors": [
+        "Yuang Jia",
+        "Jinlong Wang",
+        "Junhong Lin",
+        "Ruiting Dai",
+        "Wei Gao"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-11T09:53:52+00:00",
+      "link": "https://arxiv.org/pdf/2607.10237v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "employs 3D Gaussian Splatting as backbone for open-vocabulary scene understanding with compact storage, relevant to 3DGS methodology",
+      "llm_evidence_cn": "以3D高斯泼溅为骨干进行开放词汇场景理解，并实现紧凑存储，与3DGS方法论相关",
+      "llm_evidence": "以3D高斯泼溅为骨干进行开放词汇场景理解，并实现紧凑存储，与3DGS方法论相关",
+      "canonical_evidence": "以3D高斯泼溅为骨干进行开放词汇场景理解，并实现紧凑存储，与3DGS方法论相关",
+      "llm_tldr_en": "Proposes a training-free rate-distortion coding to compress per-Gaussian semantic features, decoupling construction and storage for efficient 3DGS-based semantic fields.",
+      "llm_tldr_cn": "开放词汇3D场景理解通常将CLIP特征嵌入3D高斯泼溅场景，但存储成本巨大。本文提出免训练率失真编码方法，将构造与存储解耦，通过压缩每个高斯的语义分配来实现紧凑表示。无需额外学习，直接压缩语义锚点高斯，显著减少存储开销。实验表明在保持语义查询精度的同时将场景大小减少到十分之一，为3DGS场景理解的实际部署提供可行方案。",
+      "llm_tldr": "开放词汇3D场景理解通常将CLIP特征嵌入3D高斯泼溅场景，但存储成本巨大。本文提出免训练率失真编码方法，将构造与存储解耦，通过压缩每个高斯的语义分配来实现紧凑表示。无需额外学习，直接压缩语义锚点高斯，显著减少存储开销。实验表明在保持语义查询精度的同时将场景大小减少到十分之一，为3DGS场景理解的实际部署提供可行方案。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

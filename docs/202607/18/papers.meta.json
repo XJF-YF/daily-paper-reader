@@ -1,0 +1,24 @@
+{
+  "label": "2026-07-18",
+  "date": "2026-07-18",
+  "generated_at": "2026-07-18T21:08:27",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202607/18/2607.10237v1-cosag-compact-semantic-anchor-gaussians-via-training-free-rate-distortion-coding",
+      "section": "quick",
+      "title_en": "CoSAG: Compact Semantic Anchor Gaussians via Training-Free Rate-Distortion Coding",
+      "authors": "Yuang Jia, Jinlong Wang, Junhong Lin, Ruiting Dai, Wei Gao",
+      "date": "2026-07-11",
+      "pdf": "https://arxiv.org/pdf/2607.10237v1",
+      "score": "7.0",
+      "evidence": "以3D高斯泼溅为骨干进行开放词汇场景理解，并实现紧凑存储，与3DGS方法论相关",
+      "tldr": "针对开放词汇3D语义场中每个高斯附加高维特征导致存储膨胀（数GB）的问题，提出CoSAG方法，通过解耦场构建与存储，采用无训练的闭合形式透射加权提升、空间语义锚点和多视图去噪构建场，并设计空间预测熵编码器压缩每个高斯到锚点的绑定。最终存储降至亚MB级别，在多项基准上精度持平或超越LangSplatV2，同时体积缩小37-76倍，实现了高效部署。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Open-vocabulary 3D scene understanding is commonly achieved by embedding 2D vision-language features such as CLIP into a 3D Gaussian Splatting scene, turning it into a text-queryable semantic field. However, attaching a high-dimensional feature to each of millions of Gaussians inflates a single scene to gigabytes, which makes storage and deployment the real bottleneck of these fields. Existing compact methods each learn and ship a per-scene codec, an autoencoder, a quantized codebook, or a distilled feature field, entangling field construction with field storage and never compressing the per-Gaussian assignment that holds the bulk of the cost. We argue that construction and storage should be decoupled, and that storage is a rate-distortion problem over the per-Gaussian binding to a small anchor table, a structure no prior open-vocabulary method compresses. We present CoSAG, which constructs the field without any per-scene training through a closed-form transmittance-weighted lift, spatially grounded semantic anchors, and multi-view denoising, and stores it with a spatially predictive entropy coder that ships no decoder. Because the anchors are spatially grounded, the binding is predictable and therefore highly compressible. The transmittance-weighted lift and multi-view denoising yield a clean, view-consistent assignment, so the entropy coder spends almost no rate on correcting noise and instead codes only the residual against its spatial prediction. CoSAG reaches sub-megabyte storage while matching or exceeding the state of the art across the 2D-rendered, 3D-selection, and dense-LSeg protocols, reducing field size by 37 to 76x relative to LangSplatV2 at higher accuracy.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
