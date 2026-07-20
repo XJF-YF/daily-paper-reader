@@ -1,0 +1,39 @@
+{
+  "label": "2026-07-20",
+  "date": "2026-07-20",
+  "generated_at": "2026-07-20T21:23:09",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202607/20/2607.15536v1-e3dgs-unified-geometric-photometric-equivariance-for-3d-gaussian-splatting-via-color-as-geometry-embedding",
+      "section": "quick",
+      "title_en": "E3DGS: Unified Geometric-Photometric Equivariance for 3D Gaussian Splatting via Color-as-Geometry Embedding",
+      "authors": "Chankyo Kim, Maani Ghaffari",
+      "date": "2026-07-17",
+      "pdf": "https://arxiv.org/pdf/2607.15536v1",
+      "score": "7.0",
+      "evidence": "提出颜色作为几何嵌入，统一3DGS的SE(3)等变性",
+      "tldr": "针对3D高斯溅射(3DGS)中颜色与几何表示不统一导致的SE(3)等变瓶颈，本文证明低阶球谐系数与秩2几何张量代数同构，提出统一矩阵嵌入将高斯属性映射至𝔤𝔩(3)空间，构建无需Clebsch-Gordan张量积的刚体等变架构E3DGS。在物体视觉和动作条件世界建模任务中，该方法在相机帧变化下展现出强鲁棒性和数据效率提升，首次实现几何与光度的统一对称处理。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "3D Gaussian Splatting (3DGS) captures scenes by coupling explicit geometry (position, covariance) with view-dependent photometry (Spherical Harmonics). However, building $\\mathrm{SE}(3)$-equivariant architectures on these primitives presents a fundamental representation bottleneck. Color has been treated as a signal rather than a geometric entity, making it nontrivial to unify symmetry across geometry and appearance as the camera frame changes. While translations are handled by relative coordinates, rotations act heterogeneously across attributes: $μ\\mapsto Rμ$, $Σ\\mapsto RΣR^\\top$, and $f_\\ell\\mapsto D^\\ell(R)f_\\ell$. This mismatch complicates strict equivariance, leading existing methods to either discard or flatten SH coefficients, thereby breaking symmetry. We propose a unified solution rooted in representation theory: for SH degrees $\\ell\\le2$, photometry is algebraically isomorphic to a rank-2 geometric tensor. We prove that the Wigner-$D$ action on these SH coefficients can be exactly reformulated as the conjugation action on $3\\times3$ matrices. Leveraging this, we introduce the Unified Matrix Embedding, a lifting that maps all Gaussian attributes into a unified carrier space, $\\mathfrak{gl}(3)$. Building on the \"Color-as-Geometry\" formulation, we present E3DGS, a rigid-body ($\\mathrm{SE}(3)$) equivariant architecture that processes 3D Gaussians without Clebsch-Gordan tensor products. Evaluations on object vision and action-conditioned Gaussian world modeling demonstrate that our unified approach yields strong robustness under camera-frame changes and improved data efficiency.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/20/2607.15542v1-improvedvbgs-real-time-continual-variational-bayes-gaussian-splatting",
+      "section": "quick",
+      "title_en": "ImprovedVBGS: Real-time Continual Variational Bayes Gaussian Splatting",
+      "authors": "Damani Mguni-Coker",
+      "date": "2026-07-17",
+      "pdf": "https://arxiv.org/pdf/2607.15542v1",
+      "score": "6.0",
+      "evidence": "改进变分贝叶斯高斯泼溅实现实时连续重建",
+      "tldr": "实时重建是机器人与自主导航的关键需求，但现有变分贝叶斯高斯泼溅（VBGS）因每帧对所有点迭代而延迟高达84秒，无法实时运行。本文提出的ImprovedVBGS通过空间截断变分推断和改进的重分配机制（前向传播与截断），将每帧延迟降至0.05秒，实现1680倍加速，且重建质量不变。该方法无需回放缓冲区，首次使连续贝叶斯高斯泼溅满足严格的内存与延迟限制，为在线三维重建提供了高效方案。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "On-the-fly reconstruction is a key requirement for many applications in robotics and autonomous navigation. Variational Bayes Gaussian Splatting (VBGS) enables continual learning without replay buffers using Coordinate Ascent Variational Inference (CAVI), but its per-frame iterations over all observed points make it too slow for real-time use with strict memory and latency requirements. We present ImprovedVBGS, an accelerated framework for on-the-fly continual reconstruction. This is achieved primarily through (i) spatially truncated variational inference, and (ii) improved reassignment that uses forwarding, truncation and eliminates wasteful dynamic recompilation. On the NeRF synthetic dataset, we reduce mean per-frame latency from ~84.0 s to ~0.050 s on an RTX 3070 Ti, a 1680x speed-up while maintaining reconstruction quality.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
