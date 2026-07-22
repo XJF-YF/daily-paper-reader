@@ -1,6 +1,9 @@
 * <a class="dpr-sidebar-root-link" href="#/">首页</a>
 * <a class="dpr-sidebar-root-link dpr-sidebar-noactive-link" href="javascript:void(0)" data-dpr-hash="#/tutorial/README">使用教程</a>
 * Daily Papers
+  * 2026-07-22 <!--dpr-date:20260722-->
+    * 速读区
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202607/22/2607.19100v1-flexiavatar-unified-3d-gaussian-human-avatars-under-arbitrary-body-visibility" data-sidebar-item="{&quot;title&quot;: &quot;FlexiAvatar: Unified 3D Gaussian Human Avatars Under Arbitrary Body Visibility&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2607.19100v1-flexiavatar-unified-3d-gaussian-human-avatars-under-arbitrary-body-visibility&quot;, &quot;score&quot;: &quot;6.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;pano-dgs&quot;}], &quot;evidence&quot;: &quot;使用3D高斯泼溅进行人体化身新视图合成&quot;}">FlexiAvatar: Unified 3D Gaussian Human Avatars Under Arbitrary Body Visibility</a>
   * 2026-07-21 <!--dpr-date:20260721-->
     * 精读区
       * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202607/21/2607.16624v1-spare-gs-structural-parsimony-and-resource-efficiency-for-3d-gaussian-splatting" data-sidebar-item="{&quot;title&quot;: &quot;SPARE-GS: Structural Parsimony and Resource Efficiency for 3D Gaussian Splatting&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2607.16624v1-spare-gs-structural-parsimony-and-resource-efficiency-for-3d-gaussian-splatting&quot;, &quot;score&quot;: &quot;8.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;pano-dgs&quot;}], &quot;evidence&quot;: &quot;面向3DGS的结构精简与资源优化，实现高质量新视图合成&quot;}">SPARE-GS: Structural Parsimony and Resource Efficiency for 3D Gaussian Splatting</a>

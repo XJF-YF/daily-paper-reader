@@ -1,0 +1,24 @@
+{
+  "label": "2026-07-22",
+  "date": "2026-07-22",
+  "generated_at": "2026-07-22T20:32:30",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202607/22/2607.19100v1-flexiavatar-unified-3d-gaussian-human-avatars-under-arbitrary-body-visibility",
+      "section": "quick",
+      "title_en": "FlexiAvatar: Unified 3D Gaussian Human Avatars Under Arbitrary Body Visibility",
+      "authors": "Yihalem Yimolal Tiruneh, Muhammad Salman Ali, Uyoung Jeong, Muneeb A. Khan, MD Khalequzzaman Chowdhury Sayem, Allanur Bayramgeldiyev, Binod Bhattarai, Seungryul Baek",
+      "date": "2026-07-21",
+      "pdf": "https://arxiv.org/pdf/2607.19100v1",
+      "score": "6.0",
+      "evidence": "使用3D高斯泼溅进行人体化身新视图合成",
+      "tldr": "从单目视频重建可动画三维人体化身是计算机视觉中的基础问题，对AR/VR等应用至关重要。现有方法通常联合优化所有身体区域，导致可见区域保真度下降。FlexiAvatar提出统一框架，仅优化可见身体区域，结合遮挡鲁棒的SMPL-X跟踪与部分残差细化以捕捉高频细节，并利用扩散模型生成一致纹理补全不可见区域。在NeuMan、ZJU-MoCap等数据集上，该方法在全身、半身和头部输入中均取得更高质量，平均PSNR提升约3%，同时因减少优化高斯数量而降低计算开销。这一工作为任意身体可见性下的高效高保真人体重建树立了新基准。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Reconstructing animatable 3D human avatars from monocular video is a fundamental problem in computer vision with broad applications in AR/VR and digital content creation. Existing approaches typically couple parametric body models with neural rendering or 3D Gaussian splatting and optimize all body regions jointly from short videos, which often degrades fidelity in the visible areas. To overcome this limitation, we introduce FlexiAvatar, a unified framework that explicitly optimizes only the visible body regions, effectively eliminating artifacts arising from unobserved limbs. Our method integrates occlusion-robust SMPL-X tracking with part-specific residual refinement to capture high-frequency geometric and appearance details. To complete entirely unseen regions (e.g., back views), we leverage a diffusion-based approach to generate texture consistent with the observed appearance. Experiments on full-body (NeuMan, ZJU-MoCap, WildAvatar), upper/half-body (talk-show clips), and head-only (INSTA) inputs show that FlexiAvatar delivers consistently higher reconstruction quality, outperforming state-of-the-art methods by an average PSNR improvement of approximately 3% across datasets. Finally, by restricting optimization to observed regions, our method reduces the effective number of Gaussians that must be optimized and rendered, leading to reduced runtime and memory overhead in partial-visibility scenarios.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

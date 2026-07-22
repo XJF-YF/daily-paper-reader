@@ -1,0 +1,59 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-22T20:30:37.717665+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2607.19100v1",
+      "source": "arxiv",
+      "title": "FlexiAvatar: Unified 3D Gaussian Human Avatars Under Arbitrary Body Visibility",
+      "abstract": "Reconstructing animatable 3D human avatars from monocular video is a fundamental problem in computer vision with broad applications in AR/VR and digital content creation. Existing approaches typically couple parametric body models with neural rendering or 3D Gaussian splatting and optimize all body regions jointly from short videos, which often degrades fidelity in the visible areas. To overcome this limitation, we introduce FlexiAvatar, a unified framework that explicitly optimizes only the visible body regions, effectively eliminating artifacts arising from unobserved limbs. Our method integrates occlusion-robust SMPL-X tracking with part-specific residual refinement to capture high-frequency geometric and appearance details. To complete entirely unseen regions (e.g., back views), we leverage a diffusion-based approach to generate texture consistent with the observed appearance. Experiments on full-body (NeuMan, ZJU-MoCap, WildAvatar), upper/half-body (talk-show clips), and head-only (INSTA) inputs show that FlexiAvatar delivers consistently higher reconstruction quality, outperforming state-of-the-art methods by an average PSNR improvement of approximately 3% across datasets. Finally, by restricting optimization to observed regions, our method reduces the effective number of Gaussians that must be optimized and rendered, leading to reduced runtime and memory overhead in partial-visibility scenarios.",
+      "authors": [
+        "Yihalem Yimolal Tiruneh",
+        "Muhammad Salman Ali",
+        "Uyoung Jeong",
+        "Muneeb A. Khan",
+        "MD Khalequzzaman Chowdhury Sayem",
+        "Allanur Bayramgeldiyev",
+        "Binod Bhattarai",
+        "Seungryul Baek"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-21T13:43:31+00:00",
+      "link": "https://arxiv.org/pdf/2607.19100v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "3D Gaussian splatting used for novel view synthesis of human avatars",
+      "llm_evidence_cn": "使用3D高斯泼溅进行人体化身新视图合成",
+      "llm_evidence": "使用3D高斯泼溅进行人体化身新视图合成",
+      "canonical_evidence": "使用3D高斯泼溅进行人体化身新视图合成",
+      "llm_tldr_en": "Proposes FlexiAvatar, a unified 3D Gaussian human avatar framework that optimizes visible body regions only, achieving high-fidelity novel view synthesis from monocular video with occlusion robustness.",
+      "llm_tldr_cn": "针对现有3DGS人体化身方法在可见区域保真度不足的问题，提出FlexiAvatar，仅优化可见身体区域，结合遮挡鲁棒的SMPL-X跟踪和局部残差细化，从单目视频生成高保真新视角人体图像，并补全不可见区域，为AR/VR提供更真实的虚拟形象。",
+      "llm_tldr": "针对现有3DGS人体化身方法在可见区域保真度不足的问题，提出FlexiAvatar，仅优化可见身体区域，结合遮挡鲁棒的SMPL-X跟踪和局部残差细化，从单目视频生成高保真新视角人体图像，并补全不可见区域，为AR/VR提供更真实的虚拟形象。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
