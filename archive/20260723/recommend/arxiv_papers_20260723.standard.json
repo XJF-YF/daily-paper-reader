@@ -1,0 +1,215 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-23T20:13:59.437289+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [
+    {
+      "id": "2607.20417v1",
+      "source": "arxiv",
+      "title": "ATSplat: Compact Feed-forward 3D Gaussian Splatting with Adaptive Token Expansion",
+      "abstract": "3D Gaussian Splatting (3DGS) achieves high-quality novel-view synthesis by optimizing freely placed primitives in 3D and adaptively densifying them in under-reconstructed regions. However, this scene-adaptive capacity allocation is largely lost in existing feed-forward 3DGS methods, which commonly regress Gaussians at input pixels and lift them along camera rays. Such pixel-aligned formulations make the number and placement of primitives depend on image resolution and input viewpoints rather than scene complexity, resulting in dense and often redundant Gaussian sets. We present ATSplat, a feed-forward 3DGS framework that restores the adaptive allocation capability of 3DGS optimization through Adaptive 3D Tokens. ATSplat first lifts coarse patch-level depth and camera cues into sparse 3D anchor tokens, forming a compact scaffold of the scene. Each token is then regressed into local Gaussians with learnable 3D offsets, decoupling primitive placement from input image grids. An Adaptive Token Expansion module predicts a token-level uncertainty score, supervised by rendering error maps, and selectively expands high-uncertainty tokens through learnable expansion layers. This sparse-to-adaptive formulation enables ATSplat to concentrate primitives in challenging regions while maintaining a compact representation. Experiments on two representative datasets, RealEstate10K and DL3DV, show that ATSplat achieves state-of-the-art rendering quality while reducing the number of Gaussians by more than $5.7\\times$ compared with dense feed-forward 3DGS methods. From 12 input images at $512 \\times 960$ resolution, ATSplat completes reconstruction in less than a second using a single commercial GPU, and renders high-quality novel views at 1136 FPS ($512 \\times 960$) with only 311K Gaussians.",
+      "authors": [
+        "Cho In",
+        "Jeonghwan Cho",
+        "Mijin Yoo",
+        "Gim Hee Lee",
+        "Seon Joo Kim"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-22T17:54:44+00:00",
+      "link": "https://arxiv.org/pdf/2607.20417v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Proposes a feed-forward 3D Gaussian Splatting method for novel view synthesis with adaptive token expansion",
+      "llm_evidence_cn": "提出了一种用于新颖视角合成的自适应令牌扩展前馈式3D高斯泼溅方法",
+      "llm_evidence": "提出了一种用于新颖视角合成的自适应令牌扩展前馈式3D高斯泼溅方法",
+      "canonical_evidence": "提出了一种用于新颖视角合成的自适应令牌扩展前馈式3D高斯泼溅方法",
+      "llm_tldr_en": "ATSplat introduces adaptive 3D tokens to restore scene-adaptive capacity allocation in feed-forward 3D Gaussian Splatting, achieving compact and efficient novel view synthesis.",
+      "llm_tldr_cn": "当前3DGS前馈方法失去了场景自适应能力，其高斯体数量和位置取决于图像分辨率而非场景复杂度。ATSplat提出自适应3D令牌机制，先提取粗粒度特征再通过令牌扩展自适应分配高斯体。实验表明，该方法在保持高质量渲染的同时显著减少了高斯体数量，实现了紧凑高效的新颖视角合成，为实时应用提供了可能。",
+      "llm_tldr": "当前3DGS前馈方法失去了场景自适应能力，其高斯体数量和位置取决于图像分辨率而非场景复杂度。ATSplat提出自适应3D令牌机制，先提取粗粒度特征再通过令牌扩展自适应分配高斯体。实验表明，该方法在保持高质量渲染的同时显著减少了高斯体数量，实现了紧凑高效的新颖视角合成，为实时应用提供了可能。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.19777v1",
+      "source": "arxiv",
+      "title": "Look Before You Edit: Attention-Guided Camera Placement and Multi-View Alignment for 3D Gaussian Splatting Editing",
+      "abstract": "Text-driven 3D scene editing with 3D Gaussian Splatting (3DGS) typically applies a 2D diffusion editor to views rendered from fixed training cameras, limiting both the spatial coverage of edits and the user's freedom to target specific objects in complex scenes. We present LB-Edit, a framework that addresses two coupled problems: where to place editing cameras for localized edits, and how to make per-view edits agree with one another so that the 3D scene remains consistent after fine-tuning. First, Attention-Guided Editing Camera Placement (ACP) probes the diffusion model's self- and cross-attention at multiple candidate camera distances to find where attention is well-contained in the region of interest, then places a compact, geometrically diverse editing camera set at that attention-optimal distance. Second, Multi-view Attention Alignment (MAA) steers the editor toward the same edit across views along two axes: it aligns appearance by sharing self-attention features via token-level correspondence, and aligns spatial location by lifting cross-attention maps onto the 3D Gaussians as a shared 3D attention field, suppressing both appearance and spatial drift. Experiments on multi-object and single-object scenes show that our method achieves the highest user preference in instruction fidelity, multi-view consistency, and editing locality, using as few as 5 editing views and reducing latency by up to 7x over existing methods.",
+      "authors": [
+        "Jaeyeon Park",
+        "Taeho Kang",
+        "Youngki Lee"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-22T05:51:10+00:00",
+      "link": "https://arxiv.org/pdf/2607.19777v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Text-driven 3D scene editing with 3D Gaussian Splatting, utilizing attention-guided camera placement and multi-view alignment for consistent novel views",
+      "llm_evidence_cn": "利用3D高斯泼溅进行文本驱动的3D场景编辑，通过注意力引导的相机放置和多视图对齐实现一致的新视角合成",
+      "llm_evidence": "利用3D高斯泼溅进行文本驱动的3D场景编辑，通过注意力引导的相机放置和多视图对齐实现一致的新视角合成",
+      "canonical_evidence": "利用3D高斯泼溅进行文本驱动的3D场景编辑，通过注意力引导的相机放置和多视图对齐实现一致的新视角合成",
+      "llm_tldr_en": "Presents LB-Edit, a framework for text-driven 3D editing using 3DGS that introduces attention-guided camera placement and multi-view alignment to enable localized and consistent edits across novel views.",
+      "llm_tldr_cn": "本文提出LB-Edit框架，用于文本驱动的3D场景编辑。其基于3D高斯泼溅，通过注意力引导的相机放置策略选定最佳编辑视角，并采用多视图对齐保证编辑内容在渲染新视图时的一致性。实验证明该方法在复杂场景中能实现高质量局部编辑，且不破坏全局结构。这项工作为3DGS编辑提供了更灵活、精准的视角控制方案。",
+      "llm_tldr": "本文提出LB-Edit框架，用于文本驱动的3D场景编辑。其基于3D高斯泼溅，通过注意力引导的相机放置策略选定最佳编辑视角，并采用多视图对齐保证编辑内容在渲染新视图时的一致性。实验证明该方法在复杂场景中能实现高质量局部编辑，且不破坏全局结构。这项工作为3DGS编辑提供了更灵活、精准的视角控制方案。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.18539v1",
+      "source": "arxiv",
+      "title": "AniGS: Bridging Rendering and Diffusion Prior for 3D Scene Animation",
+      "abstract": "Novel view rendering of large and complex reconstructed scenes is becoming increasingly photorealistic. However, most reconstructions remain static and lack the ambient motion that makes environments immersive. We present AniGS, a method for scene-level animation of 3D Gaussian Splatting (3DGS) reconstructions that adds subtle, distributed dynamics, e.g., vegetation motion, while preserving rigid structures. Unlike existing 3D animation techniques which are limited to object-centric subjects or small regions, AniGS is designed for large, cluttered, navigable scenes. AniGS represents the scene with a canonical 3DGS and models motion using a time-conditioned deformation field. To animate the entire scene, we leverage a pretrained video diffusion model and introduce an iterative dataset--model update strategy that progressively expands viewpoint coverage and repeatedly updates camera-fixed training videos using a render-and-refine scheme. To prevent artifacts from unintended motion in static areas, we further introduce a composed video-to-video refinement scheme that restricts motion to desired regions. Experiments on five real-world, large-scale outdoor scenes demonstrate that AniGS produces natural ambient dynamics and high-quality novel view videos, enabling more immersive viewing experiences of reconstructed environments.",
+      "authors": [
+        "Yen-Chi Cheng",
+        "Chen Gao",
+        "Chuhan Chen",
+        "Tuotuo Li",
+        "Rajvi Shah",
+        "Ayush Saraf",
+        "Changil Kim",
+        "Liangyan Gui",
+        "Alexander Schwing",
+        "Johannes Kopf",
+        "Hung-Yu Tseng"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-20T22:14:03+00:00",
+      "link": "https://arxiv.org/pdf/2607.18539v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "uses 3D Gaussian Splatting for novel view rendering and scene animation",
+      "llm_evidence_cn": "使用3D高斯泼溅进行新视角渲染和场景动画",
+      "llm_evidence": "使用3D高斯泼溅进行新视角渲染和场景动画",
+      "canonical_evidence": "使用3D高斯泼溅进行新视角渲染和场景动画",
+      "llm_tldr_en": "AniGS animates 3DGS reconstructions by adding subtle dynamics via a time-conditioned deformation field and a video diffusion prior, achieving immersive novel view rendering.",
+      "llm_tldr_cn": "本文提出AniGS，一种基于3D高斯泼溅的场景级动画方法。它通过时间条件变形场为重建场景添加微妙动态（如植被运动），并利用预训练视频扩散模型驱动动画，同时保持刚性结构。该方法能在大规模杂乱场景中生成沉浸式新视角渲染，突破了现有技术局限于物体或小区域的限制。",
+      "llm_tldr": "本文提出AniGS，一种基于3D高斯泼溅的场景级动画方法。它通过时间条件变形场为重建场景添加微妙动态（如植被运动），并利用预训练视频扩散模型驱动动画，同时保持刚性结构。该方法能在大规模杂乱场景中生成沉浸式新视角渲染，突破了现有技术局限于物体或小区域的限制。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.17916v1",
+      "source": "arxiv",
+      "title": "Packet-Loss Robust 3D Gaussian Compression via Atomic Packaging and GNN-based Error Concealment",
+      "abstract": "3D Gaussian Splatting (3DGS) and recent compression schemes such as HAC++ enable high-fidelity real-time neural rendering, but their bitstreams are fragile under packet loss during network streaming. Existing compression methods often separate correlated anchor attributes into independent streams, so losing one packet can create attribute-inconsistent broken anchors and severe rendering artifacts. We propose a packet-loss robust 3DGS transmission and error concealment framework. On the encoder side, anchor-level atomic packaging jointly encapsulates all attributes of each anchor, converting corrupted-attribute failures into clean missing-anchor erasures. Stratified random grouping further disperses packet losses across the spatial domain to avoid large contiguous voids. On the decoder side, we formulate recovery as prior-aware attribute inpainting. A Context-Aware Residual Interpolation (CARI) branch uses hash-grid prior predictions and neighboring residuals to build a robust baseline, while a lightweight two-layer graph neural network with cross-attention over hash-grid priors refines high-frequency attribute residuals. Attribute-wise confidence control falls back to interpolation when learned predictions are unreliable. Experiments under 20 percent random packet loss on BungeeNeRF, Mip-NeRF 360, and Tanks and Temples show that the proposed method substantially improves over no-concealment transmission and limits average PSNR degradation to about 3 dB relative to the lossless HAC++ reference.",
+      "authors": [
+        "Yuxuan Tao",
+        "Xuerui Ma",
+        "Hao Zhang",
+        "Chunhua Peng"
+      ],
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR",
+        "cs.CV",
+        "cs.MM"
+      ],
+      "published": "2026-07-20T13:13:38+00:00",
+      "link": "https://arxiv.org/pdf/2607.17916v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Packet-loss robust compression for 3D Gaussian Splatting, enabling reliable transmission and rendering of 3DGS scenes",
+      "llm_evidence_cn": "为3D高斯泼溅设计丢包鲁棒压缩方案，确保3DGS场景的可靠传输与渲染",
+      "llm_evidence": "为3D高斯泼溅设计丢包鲁棒压缩方案，确保3DGS场景的可靠传输与渲染",
+      "canonical_evidence": "为3D高斯泼溅设计丢包鲁棒压缩方案，确保3DGS场景的可靠传输与渲染",
+      "llm_tldr_en": "Proposes a packet-loss robust 3DGS compression framework using atomic packaging and GNN-based error concealment, enabling robust novel view rendering under network loss.",
+      "llm_tldr_cn": "本文针对3DGS流传输中的丢包问题，提出原子级封装将属性捆绑，结合图神经网络纠错以恢复丢失数据。实验表明该方法在丢包环境下仍能保持高质量渲染，显著降低伪影。为实现鲁棒的高斯场景流传输提供了有效方案。",
+      "llm_tldr": "本文针对3DGS流传输中的丢包问题，提出原子级封装将属性捆绑，结合图神经网络纠错以恢复丢失数据。实验表明该方法在丢包环境下仍能保持高质量渲染，显著降低伪影。为实现鲁棒的高斯场景流传输提供了有效方案。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.20325v1",
+      "source": "arxiv",
+      "title": "MR-Compare: A Mixed-Reality Framework for Spatially Grounded Visual Comparison of 3D Gaussian Splatting and Mesh Reconstructions with the Physical Environment",
+      "abstract": "We introduce MR-Compare, a mixed reality framework for spatially grounded visual comparison between 3D Gaussian splatting and mesh reconstructions with live video see-through (VST). Implemented on a PC-tethered Meta Quest~3, it combines a two-stage registration pipeline with a 3D Slider for cross-media comparison. We evaluated five representative desktop and mobile reconstruction workflows through a real-world benchmark with an exploratory user study ($n=30$) in two static indoor rooms. MR-Compare achieved centimetre-level translation error across all workflows. The two desktop 3DGS workflows showed the strongest overall pattern, with 3DGS-MCMC yielding the lowest registration error and strongest VST-referenced visual consistency. Room-session measures indicated high perceived usability and low workload. We further propose an anisotropy filter, a zero-shot module that leverages Gaussian anisotropies to improve 3DGS registration in MR-Compare. A controlled Replica threshold sweep shows that moderate pruning can improve robustness and reduce residual errors. These results establish system-level feasibility in the tested setting rather than task-level effectiveness or standalone deployment. The project is available at https://github.com/changruizhu96/MR-Compare.",
+      "authors": [
+        "Changrui Zhu",
+        "Ernst Kruijff",
+        "Pengju Zhang",
+        "Simon Julier"
+      ],
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR"
+      ],
+      "published": "2026-07-22T16:11:35+00:00",
+      "link": "https://arxiv.org/pdf/2607.20325v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Mixed reality framework for comparing 3D Gaussian splatting reconstructions; directly evaluates 3DGS methods which are central to panoramic 3DGS theme.",
+      "llm_evidence_cn": "一个用于比较3D高斯泼溅与网格重建的混合现实框架，直接评估了3DGS方法，这对全景3DGS主题至关重要。",
+      "llm_evidence": "一个用于比较3D高斯泼溅与网格重建的混合现实框架，直接评估了3DGS方法，这对全景3DGS主题至关重要。",
+      "canonical_evidence": "一个用于比较3D高斯泼溅与网格重建的混合现实框架，直接评估了3DGS方法，这对全景3DGS主题至关重要。",
+      "llm_tldr_en": "MR-Compare is a mixed-reality framework that enables spatially grounded visual comparison between 3D Gaussian splatting and mesh reconstructions, achieving centimetre-level registration accuracy and providing a benchmark for 3DGS workflows.",
+      "llm_tldr_cn": "针对3D高斯泼溅与网格重建在实际环境中的对比需求，提出MR-Compare混合现实框架。该框架结合两阶段配准流程和3D滑块，在Meta Quest 3上实现了跨媒体空间对齐的可视化比较。通过真实世界基准测试和用户研究，验证了框架的厘米级配准精度，并揭示了桌面端3DGS工作流在渲染质量和空间一致性上的优势，为全景3DGS系统的评估提供了有力工具。",
+      "llm_tldr": "针对3D高斯泼溅与网格重建在实际环境中的对比需求，提出MR-Compare混合现实框架。该框架结合两阶段配准流程和3D滑块，在Meta Quest 3上实现了跨媒体空间对齐的可视化比较。通过真实世界基准测试和用户研究，验证了框架的厘米级配准精度，并揭示了桌面端3DGS工作流在渲染质量和空间一致性上的优势，为全景3DGS系统的评估提供了有力工具。",
+      "llm_tags": [
+        "query:pano-dgs:composite"
+      ],
+      "matched_query_tag": "query:pano-dgs:composite",
+      "matched_query_text": "Papers central to 请帮我查找全景3dgs的相关论文, especially work that connects or combines: 3D Gaussian Splatting method for novel view synthesis; reconstructing panoramic 360-degree scenes using Gaussian splatting; novel view synthesis for 360-degree immersive environments; omnidirectional rendering with 3D Gaussian Splatting; find papers on 3D Gaussian Splatting for panoramic 360 degree scene reconstruction; survey of omnidirectional novel view synthesis using Gaussian representations.",
+      "matched_requirement_id": "req-composite-pano-dgs",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
