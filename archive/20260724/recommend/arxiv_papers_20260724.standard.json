@@ -1,0 +1,134 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-24T20:34:21.778211+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2607.20813v1",
+      "source": "arxiv",
+      "title": "SubSplat: High-Resolution Pixel-aligned 3DGS via Sub-pixel Gaussian Reparameterization",
+      "abstract": "Pixel-aligned Gaussian splatting enables efficient and generalizable novel-view synthesis. However, high-resolution rendering faces a critical trade-off where increasing input resolution improves detail at the expense of quadratically rising network computational cost. Conversely, maintaining low-resolution inputs stabilizes this cost but results in insufficient Gaussian density and artifacts. To address this, we propose SubSplat, which introduces Sub-pixel Gaussian Reparameterizer(SPGR) to subdivide primary Gaussians into fine-grained primitives, restoring structural density directly from low-resolution features. We further enhance the reparameterization quality through feature aggregation, which effectively captures high-frequency details across multiple views. Experiments on RealEstate10K and ACID demonstrate that SubSplat achieves high-fidelity rendering with superior efficiency. Our results validate that the proposed framework successfully resolves the trade-off between reparameterization fidelity and network computational cost inherent in pixel-aligned Gaussian Splatting.",
+      "authors": [
+        "Jiun Lee",
+        "Jaekwang Kim",
+        "Sangmin Lee"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-23T00:56:18+00:00",
+      "link": "https://arxiv.org/pdf/2607.20813v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "High-resolution pixel-aligned 3DGS for novel view synthesis",
+      "llm_evidence_cn": "高分辨率像素对齐3DGS用于新视角合成",
+      "llm_evidence": "高分辨率像素对齐3DGS用于新视角合成",
+      "canonical_evidence": "高分辨率像素对齐3DGS用于新视角合成",
+      "llm_tldr_en": "SubSplat introduces sub-pixel Gaussian reparameterization to subdivide Gaussians, restoring density from low-resolution features for high-resolution novel view synthesis without increasing network cost.",
+      "llm_tldr_cn": "该论文针对像素对齐高斯泼溅在高分辨率渲染时要么加重网络计算负担要么产生高斯密度不足和伪影的问题，提出了SubSplat。方法通过亚像素高斯重参数器（SPGR）将主高斯细化为细粒度基元，从低分辨率特征重建结构密度，并利用特征聚合增强重参数化质量。实验证明该方法能在不增加网络开销的情况下实现高分辨率新视角合成，细节丰富且无伪影。",
+      "llm_tldr": "该论文针对像素对齐高斯泼溅在高分辨率渲染时要么加重网络计算负担要么产生高斯密度不足和伪影的问题，提出了SubSplat。方法通过亚像素高斯重参数器（SPGR）将主高斯细化为细粒度基元，从低分辨率特征重建结构密度，并利用特征聚合增强重参数化质量。实验证明该方法能在不增加网络开销的情况下实现高分辨率新视角合成，细节丰富且无伪影。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.21448v1",
+      "source": "arxiv",
+      "title": "GrainGS: Gradient-Decoupled Gaussian Splatting for Efficient Dynamic Novel View Synthesis",
+      "abstract": "Dynamic scene reconstruction with 3D Gaussian Splatting requires a balance between fine-grained motion modeling, structural stability, and compact representation. Existing per-primitive methods provide flexible local deformation but often suffer from redundant primitive growth, while anchor-based methods improve spatial regularity at the cost of suppressing locally varying motion. To address these issues, we present GrainGS, a dynamic Gaussian framework that combines a hierarchical anchor scaffold with per-Gaussian deformation. A static warm-up stage first establishes a time-invariant canonical representation from observations across all timestamps. During joint training, a stop-gradient operation blocks the deformation-mediated gradient pathway to the canonical positions while preserving their direct refinement through the reconstruction objective. Each Gaussian then predicts independent temporal offsets for position, rotation, and scale, enabling detailed local motion within a structurally constrained scaffold. A canonical-residual appearance decomposition further models frame-dependent photometric changes without forcing them into geometric deformation. Experiments on synthetic monocular and real-world multiview benchmarks show that GrainGS achieves high reconstruction quality, real-time novel view synthesis, and compact storage. Under the synthetic benchmark setting, it reaches an average peak signal-to-noise ratio of 36.98 decibels, renders at 435.6 frames per second, and requires 4.67 megabytes of storage.",
+      "authors": [
+        "Jiahao He",
+        "Yihua Shao",
+        "Zhengkai Zhao",
+        "Pan Gao",
+        "Fei Ma",
+        "Jingcai Guo",
+        "Hao Tang",
+        "Nicu Sebe",
+        "Qi Tian"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-23T15:52:35+00:00",
+      "link": "https://arxiv.org/pdf/2607.21448v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "dynamic novel view synthesis with gradient-decoupled Gaussian splatting",
+      "llm_evidence_cn": "梯度解耦的高斯泼溅用于动态新视角合成",
+      "llm_evidence": "梯度解耦的高斯泼溅用于动态新视角合成",
+      "canonical_evidence": "梯度解耦的高斯泼溅用于动态新视角合成",
+      "llm_tldr_en": "GrainGS combines hierarchical anchors with per-Gaussian deformation for efficient dynamic novel view synthesis.",
+      "llm_tldr_cn": "动态场景3DGS面临运动建模与紧凑性平衡。GrainGS引入分层锚点骨架和每高斯形变，通过静态预热和梯度截断，在保持结构稳定性的同时捕捉精细运动。实验在多个数据集上优于现有方法，实现高效动态渲染。",
+      "llm_tldr": "动态场景3DGS面临运动建模与紧凑性平衡。GrainGS引入分层锚点骨架和每高斯形变，通过静态预热和梯度截断，在保持结构稳定性的同时捕捉精细运动。实验在多个数据集上优于现有方法，实现高效动态渲染。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.21416v1",
+      "source": "arxiv",
+      "title": "GLAM-SLAM: Real-time Gaussian Large-scale Mapping via Flow Densification and Spatial Decomposition",
+      "abstract": "Existing Gaussian-splatting-based monocular Simultaneous Localization and Mapping (SLAM) systems are either tailored to short sequences, are not real-time, or suffer from prohibitive GPU memory requirements, limiting their applicability in realistic, long-horizon scenarios. To address this, we present GLAM-SLAM, a real-time, decoupled Gaussian-splatting SLAM system designed for large-scale outdoor scenes. We ensure lightweight tracking using a robust, feature-based SLAM frontend, while for mapping, we adopt a structured, sparse anchor grid representation that ensures scalable operation and maintains scene coherence across long-term sequences. To satisfy the dense initialization requirements of 3D Gaussian Splatting (3DGS), we introduce a geometry-based flow-densification anchoring strategy using epipolar constraints. Furthermore, by treating mapping as a multi-scene problem, we propose a scene-partitioning strategy that introduces a strong spatial inductive bias via MLP initializations to generate localized Gaussians. We evaluate our system on the challenging, long-sequence KITTI Odometry, Oxford RobotCar, and M'alaga datasets. Extensive ablations and comparisons demonstrate a 15% improvement in reconstruction quality over the second-best performer, while maintaining real-time performance and the ability to scale to longer sequences. Code is publicly available for the benefit of the community.",
+      "authors": [
+        "Panagiotis Mermigkas",
+        "Argyris Manetas",
+        "Petros Maragos"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-07-23T15:22:42+00:00",
+      "link": "https://arxiv.org/pdf/2607.21416v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Gaussian splatting SLAM for large-scale mapping",
+      "llm_evidence_cn": "使用高斯泼溅的大规模SLAM建图",
+      "llm_evidence": "使用高斯泼溅的大规模SLAM建图",
+      "canonical_evidence": "使用高斯泼溅的大规模SLAM建图",
+      "llm_tldr_en": "GLAM-SLAM uses 3D Gaussian Splatting for real-time large-scale mapping with sparse anchor grid, enabling scalable novel view synthesis in outdoor scenes.",
+      "llm_tldr_cn": "针对高斯泼溅SLAM在长序列、大场景中实时性差和内存占用高的问题，本文提出GLAM-SLAM，采用解耦的跟踪与建图架构，利用稀疏锚点网格表示实现可扩展的3DGS建图。在室外大规模数据集上，该方法实现了实时运行，并保持场景一致性。该工作为3DGS在广阔环境下的新视角合成提供了高效方案。",
+      "llm_tldr": "针对高斯泼溅SLAM在长序列、大场景中实时性差和内存占用高的问题，本文提出GLAM-SLAM，采用解耦的跟踪与建图架构，利用稀疏锚点网格表示实现可扩展的3DGS建图。在室外大规模数据集上，该方法实现了实时运行，并保持场景一致性。该工作为3DGS在广阔环境下的新视角合成提供了高效方案。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

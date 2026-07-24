@@ -1,0 +1,54 @@
+{
+  "label": "2026-07-24",
+  "date": "2026-07-24",
+  "generated_at": "2026-07-24T20:36:53",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202607/24/2607.20813v1-subsplat-high-resolution-pixel-aligned-3dgs-via-sub-pixel-gaussian-reparameterization",
+      "section": "deep",
+      "title_en": "SubSplat: High-Resolution Pixel-aligned 3DGS via Sub-pixel Gaussian Reparameterization",
+      "authors": "Jiun Lee, Jaekwang Kim, Sangmin Lee",
+      "date": "2026-07-23",
+      "pdf": "https://arxiv.org/pdf/2607.20813v1",
+      "score": "9.0",
+      "evidence": "高分辨率像素对齐3DGS用于新视角合成",
+      "tldr": "像素对齐高斯溅射在高分辨率渲染中面临细节与计算成本的权衡。SubSplat提出子像素高斯重参数化器(SPGR)，将主高斯细分为细粒度原语，从低分辨率特征恢复结构密度。通过特征聚合捕获多视图高频细节，在RealEstate10K和ACID上实现高保真渲染且效率优越。该方法有效解决了保真度与计算成本的矛盾。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Pixel-aligned Gaussian splatting enables efficient and generalizable novel-view synthesis. However, high-resolution rendering faces a critical trade-off where increasing input resolution improves detail at the expense of quadratically rising network computational cost. Conversely, maintaining low-resolution inputs stabilizes this cost but results in insufficient Gaussian density and artifacts. To address this, we propose SubSplat, which introduces Sub-pixel Gaussian Reparameterizer(SPGR) to subdivide primary Gaussians into fine-grained primitives, restoring structural density directly from low-resolution features. We further enhance the reparameterization quality through feature aggregation, which effectively captures high-frequency details across multiple views. Experiments on RealEstate10K and ACID demonstrate that SubSplat achieves high-fidelity rendering with superior efficiency. Our results validate that the proposed framework successfully resolves the trade-off between reparameterization fidelity and network computational cost inherent in pixel-aligned Gaussian Splatting.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/24/2607.21448v1-graings-gradient-decoupled-gaussian-splatting-for-efficient-dynamic-novel-view-synthesis",
+      "section": "deep",
+      "title_en": "GrainGS: Gradient-Decoupled Gaussian Splatting for Efficient Dynamic Novel View Synthesis",
+      "authors": "Jiahao He, Yihua Shao, Zhengkai Zhao, Pan Gao, Fei Ma, Jingcai Guo, Hao Tang, Nicu Sebe, Qi Tian",
+      "date": "2026-07-23",
+      "pdf": "https://arxiv.org/pdf/2607.21448v1",
+      "score": "9.0",
+      "evidence": "梯度解耦的高斯泼溅用于动态新视角合成",
+      "tldr": "动态场景重建需平衡运动细节与结构稳定性。现有方法存在冗余生长或运动受限。本文提出GrainGS，结合层级锚点支架与逐高斯变形，通过停止梯度操作解耦规范位置与变形梯度，并引入规范残差外观分解。在合成和真实基准上达到36.98dB PSNR、435.6 FPS及4.67MB存储，实现高效动态新视角合成。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Dynamic scene reconstruction with 3D Gaussian Splatting requires a balance between fine-grained motion modeling, structural stability, and compact representation. Existing per-primitive methods provide flexible local deformation but often suffer from redundant primitive growth, while anchor-based methods improve spatial regularity at the cost of suppressing locally varying motion. To address these issues, we present GrainGS, a dynamic Gaussian framework that combines a hierarchical anchor scaffold with per-Gaussian deformation. A static warm-up stage first establishes a time-invariant canonical representation from observations across all timestamps. During joint training, a stop-gradient operation blocks the deformation-mediated gradient pathway to the canonical positions while preserving their direct refinement through the reconstruction objective. Each Gaussian then predicts independent temporal offsets for position, rotation, and scale, enabling detailed local motion within a structurally constrained scaffold. A canonical-residual appearance decomposition further models frame-dependent photometric changes without forcing them into geometric deformation. Experiments on synthetic monocular and real-world multiview benchmarks show that GrainGS achieves high reconstruction quality, real-time novel view synthesis, and compact storage. Under the synthetic benchmark setting, it reaches an average peak signal-to-noise ratio of 36.98 decibels, renders at 435.6 frames per second, and requires 4.67 megabytes of storage.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/24/2607.21416v1-glam-slam-real-time-gaussian-large-scale-mapping-via-flow-densification-and-spatial-decomposition",
+      "section": "quick",
+      "title_en": "GLAM-SLAM: Real-time Gaussian Large-scale Mapping via Flow Densification and Spatial Decomposition",
+      "authors": "Panagiotis Mermigkas, Argyris Manetas, Petros Maragos",
+      "date": "2026-07-23",
+      "pdf": "https://arxiv.org/pdf/2607.21416v1",
+      "score": "6.0",
+      "evidence": "使用高斯泼溅的大规模SLAM建图",
+      "tldr": "现有高斯溅射单目SLAM系统难以实时处理大尺度室外场景，存在内存高、不具可扩展性等问题。本文提出GLAM-SLAM，采用解耦的跟踪与建图架构：跟踪端使用特征点法保证轻量，建图端基于稀疏锚点网格，并通过极线约束的几何流致密化策略满足3DGS初始化需求，同时引入场景分解以强化空间归纳偏置。在KITTI等长序列数据集上，重建质量相比第二名提升15%，且保持实时性能与长序列扩展能力。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Existing Gaussian-splatting-based monocular Simultaneous Localization and Mapping (SLAM) systems are either tailored to short sequences, are not real-time, or suffer from prohibitive GPU memory requirements, limiting their applicability in realistic, long-horizon scenarios. To address this, we present GLAM-SLAM, a real-time, decoupled Gaussian-splatting SLAM system designed for large-scale outdoor scenes. We ensure lightweight tracking using a robust, feature-based SLAM frontend, while for mapping, we adopt a structured, sparse anchor grid representation that ensures scalable operation and maintains scene coherence across long-term sequences. To satisfy the dense initialization requirements of 3D Gaussian Splatting (3DGS), we introduce a geometry-based flow-densification anchoring strategy using epipolar constraints. Furthermore, by treating mapping as a multi-scene problem, we propose a scene-partitioning strategy that introduces a strong spatial inductive bias via MLP initializations to generate localized Gaussians. We evaluate our system on the challenging, long-sequence KITTI Odometry, Oxford RobotCar, and M'alaga datasets. Extensive ablations and comparisons demonstrate a 15% improvement in reconstruction quality over the second-best performer, while maintaining real-time performance and the ability to scale to longer sequences. Code is publicly available for the benefit of the community.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
