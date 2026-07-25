@@ -1,0 +1,55 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-25T20:10:10.945245+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2607.20789v1",
+      "source": "arxiv",
+      "title": "3D-GIMP: When 3D Gaussian Inpainting Meets PatchMatch",
+      "abstract": "Recent advances in 3D scene editing have leveraged iterative diffusion models to update input views. However, this process is computationally expensive and struggles to produce sharp details. Meanwhile, ``hallucination drift'' frequently introduces multi-view inconsistencies, leading to structural artifacts when rendering novel viewpoints. To address this problem, we present 3D-GIMP (3D Gaussian Inpainting Meets Patch Matching), a novel hybrid paradigm designed for high-fidelity object removal in 3D Gaussian Splatting. Instead of diffusing every view, 3D-GIMP performs a single generative inpainting on a key reference view, which serves as an appearance prior. We then introduce a 3D-aware PatchMatch algorithm to propagate these reference textures across all remaining views via correspondence matching, effectively bypassing the stochastic nature of frame-by-frame diffusion. By prioritizing reconstructive consistency over iterative generation, 3D-GIMP maintains high-frequency details across arbitrary resolutions while ensuring a mathematically consistent 3D reconstruction. Our experiments demonstrate that 3D-GIMP not only achieves competitive inpainting quality as previous methods using diffusion in multiple views, but also outperforms these methods in rendering speed and view consistency.",
+      "authors": [
+        "Xuening Tian",
+        "Dieter Schmalstieg",
+        "Shohei Mori"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "published": "2026-07-22T23:27:20+00:00",
+      "link": "https://arxiv.org/pdf/2607.20789v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "3D Gaussian inpainting for novel view synthesis with multi-view consistency",
+      "llm_evidence_cn": "基于3D高斯泼溅的修复方法，实现多视图一致的新视图合成",
+      "llm_evidence": "基于3D高斯泼溅的修复方法，实现多视图一致的新视图合成",
+      "canonical_evidence": "基于3D高斯泼溅的修复方法，实现多视图一致的新视图合成",
+      "llm_tldr_en": "Proposes 3D-GIMP, a hybrid approach combining single generative inpainting with 3D-aware PatchMatch for object removal in 3D Gaussian Splatting, ensuring multi-view consistency.",
+      "llm_tldr_cn": "针对3D高斯泼溅场景中物体移除存在的计算昂贵和多视图不一致问题，提出3D-GIMP混合范式。该方法仅对关键参考视图进行一次生成式修复，然后通过3D感知PatchMatch算法将纹理传播到其他视图。实验表明，3D-GIMP在保持高保真细节的同时消除了结构伪影。该工作为3DGS编辑提供了高效且一致的解决方案。",
+      "llm_tldr": "针对3D高斯泼溅场景中物体移除存在的计算昂贵和多视图不一致问题，提出3D-GIMP混合范式。该方法仅对关键参考视图进行一次生成式修复，然后通过3D感知PatchMatch算法将纹理传播到其他视图。实验表明，3D-GIMP在保持高保真细节的同时消除了结构伪影。该工作为3DGS编辑提供了高效且一致的解决方案。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

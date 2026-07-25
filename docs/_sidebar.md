@@ -1,6 +1,9 @@
 * <a class="dpr-sidebar-root-link" href="#/">首页</a>
 * <a class="dpr-sidebar-root-link dpr-sidebar-noactive-link" href="javascript:void(0)" data-dpr-hash="#/tutorial/README">使用教程</a>
 * Daily Papers
+  * 2026-07-25 <!--dpr-date:20260725-->
+    * 速读区
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202607/25/2607.20789v1-3d-gimp-when-3d-gaussian-inpainting-meets-patchmatch" data-sidebar-item="{&quot;title&quot;: &quot;3D-GIMP: When 3D Gaussian Inpainting Meets PatchMatch&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2607.20789v1-3d-gimp-when-3d-gaussian-inpainting-meets-patchmatch&quot;, &quot;score&quot;: &quot;6.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;pano-dgs&quot;}], &quot;evidence&quot;: &quot;基于3D高斯泼溅的修复方法，实现多视图一致的新视图合成&quot;}">3D-GIMP: When 3D Gaussian Inpainting Meets PatchMatch</a>
   * 2026-07-24 <!--dpr-date:20260724-->
     * 精读区
       * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202607/24/2607.20813v1-subsplat-high-resolution-pixel-aligned-3dgs-via-sub-pixel-gaussian-reparameterization" data-sidebar-item="{&quot;title&quot;: &quot;SubSplat: High-Resolution Pixel-aligned 3DGS via Sub-pixel Gaussian Reparameterization&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2607.20813v1-subsplat-high-resolution-pixel-aligned-3dgs-via-sub-pixel-gaussian-reparameterization&quot;, &quot;score&quot;: &quot;9.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;pano-dgs&quot;}], &quot;evidence&quot;: &quot;高分辨率像素对齐3DGS用于新视角合成&quot;}">SubSplat: High-Resolution Pixel-aligned 3DGS via Sub-pixel Gaussian Reparameterization</a>
