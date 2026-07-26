@@ -1,0 +1,39 @@
+{
+  "label": "2026-07-26",
+  "date": "2026-07-26",
+  "generated_at": "2026-07-26T20:12:20",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202607/26/2607.18466v1-econgs-efficient-compressive-neural-gaussian-splats-for-volume-visualization",
+      "section": "quick",
+      "title_en": "ECoNGS: Efficient Compressive Neural Gaussian Splats for Volume Visualization",
+      "authors": "Kaiyuan Tang, Chaoli Wang",
+      "date": "2026-07-20",
+      "pdf": "https://arxiv.org/pdf/2607.18466v1",
+      "score": "7.0",
+      "evidence": "高斯溅射用于新视角合成和场景表示",
+      "tldr": "现有基于显式基元的体积可视化方法存在表示冗余、优化孤立的问题，导致模型庞大且训练缓慢。ECoNGS提出高效压缩神经高斯溅射框架，采用轻量神经网络从显式锚点动态预测隐式高斯溅射，结合隐式紧凑性和显式高效渲染。通过联合学习聚类几何相似场景共享参数，降低训练开销；并利用神经熵模型压缩锚点属性，配合自适应高斯初始化策略提升精度。在单变量和多变量数据集上，相比iVR-GS，PSNR提升2.2dB，模型大小压缩6.1倍，训练加速5.9倍，实现了存储、速度与质量的最佳权衡。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Recent advances in differentiable Gaussian splatting have highlighted the potential of primitive-based approaches as alternative scene representations for interactive, high-quality, volume visualization (VolVis) of large datasets. However, the explicit nature of current primitive-based methods, combined with isolated optimization for each VolVis scene, results in redundant, non-compact representations. We present ECoNGS, an efficient compressive neural Gaussian splatting framework for VolVis scene representation. ECoNGS employs lightweight neural networks to dynamically predict implicit, editable Gaussian splats from explicit anchor points, effectively combining model compactness and parameter efficiency of implicit representations with high-performance rendering of explicit primitives. We explore a joint learning strategy that clusters geometrically similar scenes and shares parameters across them, significantly reducing overall training time and model size while maintaining reconstruction fidelity. To achieve a more compact scene representation, we further compress the explicit anchor attributes using a neural entropy model that estimates their probability distributions, enabling compact storage via entropy coding. We systematically investigate Gaussian initialization strategies and propose a simple yet effective scheme tailored for VolVis scenes, improving reconstruction accuracy and accelerating convergence. We evaluate ECoNGS qualitatively and quantitatively across various univariate and multivariate VolVis scenes, highlighting its superior performance over prior methods in training time, reconstruction quality, and model size. In particular, compared with the prior method iVR-GS, ECoNGS improves reconstruction quality by up to 2.2 dB in PSNR while reducing the model size by up to 6.1x and the training time by up to 5.9x. The code is available at https://github.com/TouKaienn/ECoNGS.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/26/2607.19893v1-odin-primitive-level-synchronization-for-distributed-point-based-neural-rendering",
+      "section": "quick",
+      "title_en": "Odin: Primitive-Level Synchronization for Distributed Point-Based Neural Rendering",
+      "authors": "Zhenxiang Ma, Zeyu He, Yuanzhen Zhou, Zhenyu Yang, Yuchang Zhang, Miao Tao, Rong Fu, Jidong Zhai, Hengjie Li",
+      "date": "2026-07-22",
+      "pdf": "https://arxiv.org/pdf/2607.19893v1",
+      "score": "7.0",
+      "evidence": "面向点基神经渲染（包括3DGS）的分布式训练系统",
+      "tldr": "点基神经渲染（PBNR）在大场景分布式训练中，全局同步因仅读写稀疏子集而成为瓶颈。Odin以原始级同步替代全局屏障，通过预调度器利用稳定局部性和相位顺序识别低冲突窗口，运行时验证原始发布以确保可见性。在8 GPU上平均吞吐提升1.22倍，隐藏82%关键路径等待；64 GPU混合并行下比Grendel快1.89倍。该系统在不改变渲染核心、优化器或模型容量前提下，显著提高训练效率并保持重建质量。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Point-based neural rendering (PBNR) represents 3D scenes as explicit, trainable primitives and underpins high-quality reconstruction and emerging embodied AI and world-model pipelines. Unlike layer-structured neural networks, PBNR has primitive-indexed dependencies: each view reads and updates only a sparse, view-dependent subset of mutable scene state. As large scenes require distributed training and optimized renderers reduce per-view computation, global task- or iteration-level barriers increasingly place synchronization, rather than rendering, on the critical path. We present Odin, a distributed PBNR training system that replaces global barriers with primitive-level synchronization. Its ahead-of-time scheduler uses stable locality and phase order to identify low-conflict overlap windows, while the runtime validates primitive publication before later work observes mutable state. Odin provides a quality-first path that preserves synchronized-training visibility and a throughput-first path that uses overlap and gradient evidence to admit only small, low-impact delayed reads; structural changes and high-impact cases remain synchronized. Across four existing PBNR pipelines and 13 non-city scenes on 8 GPUs, Odin improves throughput by 1.22 times on average and hides 82% of critical-path wait while preserving reconstruction quality. In a MatrixCity mixed-parallel case study scaling to 64 GPUs, Odin improves throughput over Grendel by up to 1.89 times without changing renderer kernels, optimizers, training budgets, or model capacity.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

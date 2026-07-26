@@ -6,26 +6,31 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-25
-- 运行时间：2026-07-25 20:11:06 UTC
+- 最新运行日期：2026-07-26
+- 运行时间：2026-07-26 20:12:13 UTC
 - 运行状态：成功
-- 本次总论文数：1
+- 本次总论文数：2
 - 精读区：0
-- 速读区：1
+- 速读区：2
 
 ### 今日简报（AI）
-今日速读1篇论文，聚焦3D高斯泼溅与PatchMatch的联合三维补全方法。  
-最值得关注的是融合PatchMatch匹配策略提升3D高斯泼溅场景修复质量的技术路线。  
-建议进一步了解PatchMatch在三维补全中的匹配效率，以及该方法与纯神经渲染方案的对比。
-- 详情：[/202607/25/README](/202607/25/README)
+今日速读两篇神经渲染相关论文，均获7.0分。
+
+重点方向：高效压缩高斯点云用于体可视化，以及分布式点基渲染的基元级同步机制。
+
+建议关注神经高斯溅射与分布式渲染的优化方法，可尝试复现或对比实验。
+- 详情：[/202607/26/README](/202607/26/README)
 
 ### 精读区论文标签
 - 本次无精读推荐。
 
 ### 速读区论文标签
-1. [3D-GIMP: When 3D Gaussian Inpainting Meets PatchMatch](/202607/25/2607.20789v1-3d-gimp-when-3d-gaussian-inpainting-meets-patchmatch)  
-   标签：评分：6.0/10、query:pano-dgs
-   evidence：基于3D高斯泼溅的修复方法，实现多视图一致的新视图合成
+1. [ECoNGS: Efficient Compressive Neural Gaussian Splats for Volume Visualization](/202607/26/2607.18466v1-econgs-efficient-compressive-neural-gaussian-splats-for-volume-visualization)  
+   标签：评分：7.0/10、query:pano-dgs
+   evidence：高斯溅射用于新视角合成和场景表示
+2. [Odin: Primitive-Level Synchronization for Distributed Point-Based Neural Rendering](/202607/26/2607.19893v1-odin-primitive-level-synchronization-for-distributed-point-based-neural-rendering)  
+   标签：评分：7.0/10、query:pano-dgs
+   evidence：面向点基神经渲染（包括3DGS）的分布式训练系统
 
 
 <div class="dpr-home-promo-card">

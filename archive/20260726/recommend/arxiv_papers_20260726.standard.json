@@ -1,0 +1,97 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-26T20:10:46.628870+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2607.18466v1",
+      "source": "arxiv",
+      "title": "ECoNGS: Efficient Compressive Neural Gaussian Splats for Volume Visualization",
+      "abstract": "Recent advances in differentiable Gaussian splatting have highlighted the potential of primitive-based approaches as alternative scene representations for interactive, high-quality, volume visualization (VolVis) of large datasets. However, the explicit nature of current primitive-based methods, combined with isolated optimization for each VolVis scene, results in redundant, non-compact representations. We present ECoNGS, an efficient compressive neural Gaussian splatting framework for VolVis scene representation. ECoNGS employs lightweight neural networks to dynamically predict implicit, editable Gaussian splats from explicit anchor points, effectively combining model compactness and parameter efficiency of implicit representations with high-performance rendering of explicit primitives. We explore a joint learning strategy that clusters geometrically similar scenes and shares parameters across them, significantly reducing overall training time and model size while maintaining reconstruction fidelity. To achieve a more compact scene representation, we further compress the explicit anchor attributes using a neural entropy model that estimates their probability distributions, enabling compact storage via entropy coding. We systematically investigate Gaussian initialization strategies and propose a simple yet effective scheme tailored for VolVis scenes, improving reconstruction accuracy and accelerating convergence. We evaluate ECoNGS qualitatively and quantitatively across various univariate and multivariate VolVis scenes, highlighting its superior performance over prior methods in training time, reconstruction quality, and model size. In particular, compared with the prior method iVR-GS, ECoNGS improves reconstruction quality by up to 2.2 dB in PSNR while reducing the model size by up to 6.1x and the training time by up to 5.9x. The code is available at https://github.com/TouKaienn/ECoNGS.",
+      "authors": [
+        "Kaiyuan Tang",
+        "Chaoli Wang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "published": "2026-07-20T19:35:24+00:00",
+      "link": "https://arxiv.org/pdf/2607.18466v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Gaussian splatting for view synthesis and scene representation",
+      "llm_evidence_cn": "高斯溅射用于新视角合成和场景表示",
+      "llm_evidence": "高斯溅射用于新视角合成和场景表示",
+      "canonical_evidence": "高斯溅射用于新视角合成和场景表示",
+      "llm_tldr_en": "ECoNGS proposes an efficient compressive neural Gaussian splatting framework that uses lightweight neural networks to predict implicit Gaussian splats for volume visualization, offering a compact and editable scene representation with high performance.",
+      "llm_tldr_cn": "针对现有基于图元的体可视化方法表示冗余且孤立优化的问题，本文提出ECoNGS框架，利用轻量级神经网络从显式锚点动态预测隐式可编辑高斯溅射，结合隐式表示的紧凑性和显式表示的高性能。在多个大规模体数据集上验证了其高效性和重建质量，为3D高斯溅射在体渲染和新视角合成中的应用提供了可迁移的方法。",
+      "llm_tldr": "针对现有基于图元的体可视化方法表示冗余且孤立优化的问题，本文提出ECoNGS框架，利用轻量级神经网络从显式锚点动态预测隐式可编辑高斯溅射，结合隐式表示的紧凑性和显式表示的高性能。在多个大规模体数据集上验证了其高效性和重建质量，为3D高斯溅射在体渲染和新视角合成中的应用提供了可迁移的方法。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.19893v1",
+      "source": "arxiv",
+      "title": "Odin: Primitive-Level Synchronization for Distributed Point-Based Neural Rendering",
+      "abstract": "Point-based neural rendering (PBNR) represents 3D scenes as explicit, trainable primitives and underpins high-quality reconstruction and emerging embodied AI and world-model pipelines. Unlike layer-structured neural networks, PBNR has primitive-indexed dependencies: each view reads and updates only a sparse, view-dependent subset of mutable scene state. As large scenes require distributed training and optimized renderers reduce per-view computation, global task- or iteration-level barriers increasingly place synchronization, rather than rendering, on the critical path. We present Odin, a distributed PBNR training system that replaces global barriers with primitive-level synchronization. Its ahead-of-time scheduler uses stable locality and phase order to identify low-conflict overlap windows, while the runtime validates primitive publication before later work observes mutable state. Odin provides a quality-first path that preserves synchronized-training visibility and a throughput-first path that uses overlap and gradient evidence to admit only small, low-impact delayed reads; structural changes and high-impact cases remain synchronized. Across four existing PBNR pipelines and 13 non-city scenes on 8 GPUs, Odin improves throughput by 1.22 times on average and hides 82% of critical-path wait while preserving reconstruction quality. In a MatrixCity mixed-parallel case study scaling to 64 GPUs, Odin improves throughput over Grendel by up to 1.89 times without changing renderer kernels, optimizers, training budgets, or model capacity.",
+      "authors": [
+        "Zhenxiang Ma",
+        "Zeyu He",
+        "Yuanzhen Zhou",
+        "Zhenyu Yang",
+        "Yuchang Zhang",
+        "Miao Tao",
+        "Rong Fu",
+        "Jidong Zhai",
+        "Hengjie Li"
+      ],
+      "primary_category": "cs.DC",
+      "categories": [
+        "cs.DC"
+      ],
+      "published": "2026-07-22T08:27:33+00:00",
+      "link": "https://arxiv.org/pdf/2607.19893v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "distributed training system for point-based neural rendering (including 3DGS)",
+      "llm_evidence_cn": "面向点基神经渲染（包括3DGS）的分布式训练系统",
+      "llm_evidence": "面向点基神经渲染（包括3DGS）的分布式训练系统",
+      "canonical_evidence": "面向点基神经渲染（包括3DGS）的分布式训练系统",
+      "llm_tldr_en": "Odin proposes primitive-level synchronization to replace global barriers in distributed point-based neural rendering, significantly reducing synchronization overhead for large scenes.",
+      "llm_tldr_cn": "大规模3D场景的点基神经渲染（如3DGS）在分布式训练中面临全局同步瓶颈。Odin提出基元级同步机制，利用空间局部性提前调度，替代传统的全局屏障，从而将同步从关键路径移除。实验表明，该方法在多GPU训练中显著降低通信开销，支持更大规模场景的高效渲染，为分布式3DGS系统提供了基础优化方案。",
+      "llm_tldr": "大规模3D场景的点基神经渲染（如3DGS）在分布式训练中面临全局同步瓶颈。Odin提出基元级同步机制，利用空间局部性提前调度，替代传统的全局屏障，从而将同步从关键路径移除。实验表明，该方法在多GPU训练中显著降低通信开销，支持更大规模场景的高效渲染，为分布式3DGS系统提供了基础优化方案。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
