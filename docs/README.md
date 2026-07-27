@@ -6,31 +6,27 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-26
-- 运行时间：2026-07-26 20:12:13 UTC
+- 最新运行日期：2026-07-27
+- 运行时间：2026-07-27 21:17:05 UTC
 - 运行状态：成功
 - 本次总论文数：2
-- 精读区：0
-- 速读区：2
+- 精读区：2
+- 速读区：0
 
 ### 今日简报（AI）
-今日速读两篇神经渲染相关论文，均获7.0分。
-
-重点方向：高效压缩高斯点云用于体可视化，以及分布式点基渲染的基元级同步机制。
-
-建议关注神经高斯溅射与分布式渲染的优化方法，可尝试复现或对比实验。
-- 详情：[/202607/26/README](/202607/26/README)
+今日精读两篇高分论文，聚焦动态场景新视角合成与稀疏视图视觉重定位。最值得看的是《GrainGS》的梯度解耦高斯方法，以及《Visual Relocalization》针对混叠低纹理环境的创新。建议优先阅读GrainGS，其解耦策略对高效动态渲染有启发。
+- 详情：[/202607/27/README](/202607/27/README)
 
 ### 精读区论文标签
-- 本次无精读推荐。
+1. [GrainGS: Gradient-Decoupled Gaussian Splatting for Efficient Dynamic Novel View Synthesis](/202607/27/2607.21448v2-graings-gradient-decoupled-gaussian-splatting-for-efficient-dynamic-novel-view-synthesis)  
+   标签：评分：10.0/10、query:pano-dgs
+   evidence：3D高斯泼溅用于新视角合成
+2. [Visual Relocalization from Sparse Views in Aliased and Low-Texture Environments via Novel View Synthesis](/202607/27/2607.22147v1-visual-relocalization-from-sparse-views-in-aliased-and-low-texture-environments-via-novel-view-synthesis)  
+   标签：评分：8.0/10、query:pano-dgs
+   evidence：利用3D高斯泼溅进行新视角合成以实现视觉重定位
 
 ### 速读区论文标签
-1. [ECoNGS: Efficient Compressive Neural Gaussian Splats for Volume Visualization](/202607/26/2607.18466v1-econgs-efficient-compressive-neural-gaussian-splats-for-volume-visualization)  
-   标签：评分：7.0/10、query:pano-dgs
-   evidence：高斯溅射用于新视角合成和场景表示
-2. [Odin: Primitive-Level Synchronization for Distributed Point-Based Neural Rendering](/202607/26/2607.19893v1-odin-primitive-level-synchronization-for-distributed-point-based-neural-rendering)  
-   标签：评分：7.0/10、query:pano-dgs
-   evidence：面向点基神经渲染（包括3DGS）的分布式训练系统
+- 本次无速读推荐。
 
 
 <div class="dpr-home-promo-card">

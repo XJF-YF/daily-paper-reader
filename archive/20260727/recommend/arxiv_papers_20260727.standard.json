@@ -1,0 +1,96 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-27T21:16:05.253524+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 0,
+    "quick_skim_target": 11,
+    "quick_selected": 0
+  },
+  "deep_dive": [
+    {
+      "id": "2607.21448v2",
+      "source": "arxiv",
+      "title": "GrainGS: Gradient-Decoupled Gaussian Splatting for Efficient Dynamic Novel View Synthesis",
+      "abstract": "Dynamic scene reconstruction with 3D Gaussian Splatting requires a balance between fine-grained motion modeling, structural stability, and compact representation. Existing per-primitive methods provide flexible local deformation but often suffer from redundant primitive growth, while anchor-based methods improve spatial regularity at the cost of suppressing locally varying motion. To address these issues, we present GrainGS, a dynamic Gaussian framework that combines a hierarchical anchor scaffold with per-Gaussian deformation. A static warm-up stage first establishes a time-invariant canonical representation from observations across all timestamps. During joint training, a stop-gradient operation blocks the deformation-mediated gradient pathway to the canonical positions while preserving their direct refinement through the reconstruction objective. Each Gaussian then predicts independent temporal offsets for position, rotation, and scale, enabling detailed local motion within a structurally constrained scaffold. A canonical-residual appearance decomposition further models frame-dependent photometric changes without forcing them into geometric deformation. Experiments on synthetic monocular and real-world multiview benchmarks show that GrainGS achieves high reconstruction quality, real-time novel view synthesis, and compact storage. Under the synthetic benchmark setting, it reaches an average peak signal-to-noise ratio of 36.98 decibels, renders at 435.6 frames per second, and requires 4.67 megabytes of storage.",
+      "authors": [
+        "Jiahao He",
+        "Yihua Shao",
+        "Zhengkai Zhao",
+        "Pan Gao",
+        "Fei Ma",
+        "Jingcai Guo",
+        "Hao Tang",
+        "Nicu Sebe",
+        "Qi Tian"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-23T15:52:35+00:00",
+      "link": "https://arxiv.org/pdf/2607.21448v2",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "3D Gaussian Splatting for novel view synthesis",
+      "llm_evidence_cn": "3D高斯泼溅用于新视角合成",
+      "llm_evidence": "3D高斯泼溅用于新视角合成",
+      "canonical_evidence": "3D高斯泼溅用于新视角合成",
+      "llm_tldr_en": "GrainGS proposes a gradient-decoupled Gaussian framework for dynamic novel view synthesis, achieving efficient motion modeling while maintaining structural stability.",
+      "llm_tldr_cn": "针对动态场景重建中3D高斯泼溅的冗余原语增长与运动抑制问题，GrainGS提出结合层次锚点骨架与逐高斯形变的动态框架，通过静态预热和梯度阻断实现高效动态新视角合成。在多个标准数据集上，该方法在保持高渲染质量的同时有效控制原语数量，取得了领先性能。",
+      "llm_tldr": "针对动态场景重建中3D高斯泼溅的冗余原语增长与运动抑制问题，GrainGS提出结合层次锚点骨架与逐高斯形变的动态框架，通过静态预热和梯度阻断实现高效动态新视角合成。在多个标准数据集上，该方法在保持高渲染质量的同时有效控制原语数量，取得了领先性能。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.22147v1",
+      "source": "arxiv",
+      "title": "Visual Relocalization from Sparse Views in Aliased and Low-Texture Environments via Novel View Synthesis",
+      "abstract": "Visual localization becomes extremely challenging in planetary-like terrains characterized by low texture, perceptual aliasing, harsh illumination, and sparse, weakly overlapping viewpoints induced by forward rover motion and unconstrained driving directions. Under these conditions, state-of-the-art image-to-image and image-to-map matching pipelines suffer significant performance degradation. In this work, we propose a visual relocalization method that departs from classical correspondence-based pipelines by directly estimating camera poses against a differentiable map representation built with 3D Gaussian Splatting (3DGS). Our key contribution is a geometry-aware training strategy that combines photometric and geometric losses, where the geometric supervision is provided for the first time by combining multi-view stereo (MVS) and LiDAR depths. We show that this joint optimization produces a 3DGS model that better fits the underlying scene geometry, leading to improved photometric and geometric consistency and more robust, accurate single-image 6-DoF pose estimation. Extensive experiments on data acquired in planetary-analog environments validate the effectiveness of our approach, showing substantial gains in relocalization accuracy under challenging conditions. Code is available at https://github.com/DLR-RM/multimodal-gsplat-relocalization.",
+      "authors": [
+        "Maria Peribañez",
+        "Javier Civera",
+        "Rudolph Triebel",
+        "Riccardo Giubilato"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-24T09:46:07+00:00",
+      "link": "https://arxiv.org/pdf/2607.22147v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Uses 3D Gaussian Splatting for novel view synthesis in visual relocalization",
+      "llm_evidence_cn": "利用3D高斯泼溅进行新视角合成以实现视觉重定位",
+      "llm_evidence": "利用3D高斯泼溅进行新视角合成以实现视觉重定位",
+      "canonical_evidence": "利用3D高斯泼溅进行新视角合成以实现视觉重定位",
+      "llm_tldr_en": "Proposes a visual relocalization method that builds a differentiable map with 3DGS and estimates camera poses via novel view synthesis, achieving robustness in low-texture aliased environments.",
+      "llm_tldr_cn": "针对低纹理、弱重叠视角下的视觉定位难题，提出一种基于3D高斯泼溅（3DGS）的新方法。该方法利用3DGS构建可微分地图表示，通过新视角合成直接估计相机姿态，绕过了传统特征匹配管线。结合光度与几何约束的训练策略，在火星类地形上显著提升了定位鲁棒性，为稀疏视角下的视觉定位提供了新思路。",
+      "llm_tldr": "针对低纹理、弱重叠视角下的视觉定位难题，提出一种基于3D高斯泼溅（3DGS）的新方法。该方法利用3DGS构建可微分地图表示，通过新视角合成直接估计相机姿态，绕过了传统特征匹配管线。结合光度与几何约束的训练策略，在火星类地形上显著提升了定位鲁棒性，为稀疏视角下的视觉定位提供了新思路。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": []
+}

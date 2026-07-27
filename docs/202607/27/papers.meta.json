@@ -1,0 +1,39 @@
+{
+  "label": "2026-07-27",
+  "date": "2026-07-27",
+  "generated_at": "2026-07-27T21:17:11",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202607/27/2607.21448v2-graings-gradient-decoupled-gaussian-splatting-for-efficient-dynamic-novel-view-synthesis",
+      "section": "deep",
+      "title_en": "GrainGS: Gradient-Decoupled Gaussian Splatting for Efficient Dynamic Novel View Synthesis",
+      "authors": "Jiahao He, Yihua Shao, Zhengkai Zhao, Pan Gao, Fei Ma, Jingcai Guo, Hao Tang, Nicu Sebe, Qi Tian",
+      "date": "2026-07-23",
+      "pdf": "https://arxiv.org/pdf/2607.21448v2",
+      "score": "10.0",
+      "evidence": "3D高斯泼溅用于新视角合成",
+      "tldr": "动态场景重建需平衡运动建模、结构稳定和紧凑表示。现有方法存在冗余或抑制局部运动问题。GrainGS结合层次锚点支架与每高斯变形，通过静态预热和停止梯度操作保持结构约束，同时允许独立位移预测。在合成和真实基准上达到高质量、实时渲染和紧凑存储，PSNR 36.98dB，FPS 435.6，存储4.67MB。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Dynamic scene reconstruction with 3D Gaussian Splatting requires a balance between fine-grained motion modeling, structural stability, and compact representation. Existing per-primitive methods provide flexible local deformation but often suffer from redundant primitive growth, while anchor-based methods improve spatial regularity at the cost of suppressing locally varying motion. To address these issues, we present GrainGS, a dynamic Gaussian framework that combines a hierarchical anchor scaffold with per-Gaussian deformation. A static warm-up stage first establishes a time-invariant canonical representation from observations across all timestamps. During joint training, a stop-gradient operation blocks the deformation-mediated gradient pathway to the canonical positions while preserving their direct refinement through the reconstruction objective. Each Gaussian then predicts independent temporal offsets for position, rotation, and scale, enabling detailed local motion within a structurally constrained scaffold. A canonical-residual appearance decomposition further models frame-dependent photometric changes without forcing them into geometric deformation. Experiments on synthetic monocular and real-world multiview benchmarks show that GrainGS achieves high reconstruction quality, real-time novel view synthesis, and compact storage. Under the synthetic benchmark setting, it reaches an average peak signal-to-noise ratio of 36.98 decibels, renders at 435.6 frames per second, and requires 4.67 megabytes of storage.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/27/2607.22147v1-visual-relocalization-from-sparse-views-in-aliased-and-low-texture-environments-via-novel-view-synthesis",
+      "section": "deep",
+      "title_en": "Visual Relocalization from Sparse Views in Aliased and Low-Texture Environments via Novel View Synthesis",
+      "authors": "Maria Peribañez, Javier Civera, Rudolph Triebel, Riccardo Giubilato",
+      "date": "2026-07-24",
+      "pdf": "https://arxiv.org/pdf/2607.22147v1",
+      "score": "8.0",
+      "evidence": "利用3D高斯泼溅进行新视角合成以实现视觉重定位",
+      "tldr": "针对行星地形等低纹理、弱重叠视角下的视觉重定位难题，提出基于3DGS的可微地图表示方法。通过结合多视图立体和LiDAR深度首次提供几何监督，联合优化光度与几何损失，增强模型几何一致性。实验在行星模拟数据上显著提升单图6自由度位姿估计精度，代码已开源。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Visual localization becomes extremely challenging in planetary-like terrains characterized by low texture, perceptual aliasing, harsh illumination, and sparse, weakly overlapping viewpoints induced by forward rover motion and unconstrained driving directions. Under these conditions, state-of-the-art image-to-image and image-to-map matching pipelines suffer significant performance degradation. In this work, we propose a visual relocalization method that departs from classical correspondence-based pipelines by directly estimating camera poses against a differentiable map representation built with 3D Gaussian Splatting (3DGS). Our key contribution is a geometry-aware training strategy that combines photometric and geometric losses, where the geometric supervision is provided for the first time by combining multi-view stereo (MVS) and LiDAR depths. We show that this joint optimization produces a 3DGS model that better fits the underlying scene geometry, leading to improved photometric and geometric consistency and more robust, accurate single-image 6-DoF pose estimation. Extensive experiments on data acquired in planetary-analog environments validate the effectiveness of our approach, showing substantial gains in relocalization accuracy under challenging conditions. Code is available at https://github.com/DLR-RM/multimodal-gsplat-relocalization.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
