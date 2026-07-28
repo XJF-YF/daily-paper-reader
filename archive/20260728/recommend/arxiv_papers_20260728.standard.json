@@ -1,0 +1,97 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-28T20:27:08.582063+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2607.22956v1",
+      "source": "arxiv",
+      "title": "3D Gaussian Splatting for Scientific Particle Data Compression and Rendering",
+      "abstract": "Large-scale particle simulations produce hundreds of millions of particles, straining storage, transfer, and interactive visualization. Existing lossy compressors such as SZ3 operate in data space and provide no guarantees on downstream visualization fidelity. We propose ParticleGS, a visualization-aware framework based on 3D Gaussian Splatting (3DGS) that learns a compact representation directly optimized for rendered image quality, combining (1) a multi-stage, multi-orbit training pipeline, (2) VizMapper, a lightweight network that adapts a single trained model to user-specified visualization parameters at inference time, and (3) spatial block training with KD-tree decomposition and global fine-tuning. On a 281-million-particle HACC cosmological simulation, our 8-block model reaches 30.03 dB PSNR at 65x compression, outperforming SZ3 by 5-8 dB at comparable ratios, and generalizes without tuning to additional HACC regions and a dark-matter-only FIRE-2 simulation. It renders at 662 FPS on a single GPU, over 2,300x faster than ParaView on the full particle data.",
+      "authors": [
+        "Bo Jiang",
+        "Youyuan Liu",
+        "Taolue Yang",
+        "Sheng Di",
+        "Sian Jin"
+      ],
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR",
+        "cs.DC"
+      ],
+      "published": "2026-07-24T23:46:53+00:00",
+      "link": "https://arxiv.org/pdf/2607.22956v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "3D Gaussian Splatting for particle data, not panoramic but method transferable",
+      "llm_evidence_cn": "3D高斯泼溅用于粒子数据压缩与渲染，方法可迁移至全景",
+      "llm_evidence": "3D高斯泼溅用于粒子数据压缩与渲染，方法可迁移至全景",
+      "canonical_evidence": "3D高斯泼溅用于粒子数据压缩与渲染，方法可迁移至全景",
+      "llm_tldr_en": "ParticleGS applies 3DGS to compress and render scientific particle data, demonstrating the method's versatility but not panoramic scenes.",
+      "llm_tldr_cn": "该论文提出ParticleGS，一个基于3D高斯泼溅的可视化感知框架，用于大规模粒子数据的压缩与交互式渲染。通过多阶段多轨道训练、VizMapper轻量网络和空间块训练等创新，在宇宙学模拟数据上实现了高压缩比和渲染质量。虽然面向粒子数据而非全景场景，但展示了3DGS在场景表示和渲染方面的通用性。",
+      "llm_tldr": "该论文提出ParticleGS，一个基于3D高斯泼溅的可视化感知框架，用于大规模粒子数据的压缩与交互式渲染。通过多阶段多轨道训练、VizMapper轻量网络和空间块训练等创新，在宇宙学模拟数据上实现了高压缩比和渲染质量。虽然面向粒子数据而非全景场景，但展示了3DGS在场景表示和渲染方面的通用性。",
+      "llm_tags": [
+        "query:pano-dgs:composite"
+      ],
+      "matched_query_tag": "query:pano-dgs:composite",
+      "matched_query_text": "Papers central to 请帮我查找全景3dgs的相关论文, especially work that connects or combines: 3D Gaussian Splatting method for novel view synthesis; reconstructing panoramic 360-degree scenes using Gaussian splatting; novel view synthesis for 360-degree immersive environments; omnidirectional rendering with 3D Gaussian Splatting; find papers on 3D Gaussian Splatting for panoramic 360 degree scene reconstruction; survey of omnidirectional novel view synthesis using Gaussian representations.",
+      "matched_requirement_id": "req-composite-pano-dgs",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.24403v1",
+      "source": "arxiv",
+      "title": "GenSplatCodec: Feed-Forward Gaussian Splatting Compression via One-Step Diffusion",
+      "abstract": "Feed-forward 3D Gaussian Splatting (3DGS) enables scalable scene reconstruction without per-scene optimization, yet produces dense Gaussians that are costly to store and transmit. Existing feed-forward Gaussian compression methods formulate decoding as deterministic representation recovery, which becomes inadequate at low bitrates when high-frequency textures and view-dependent appearance are discarded. Although generative models offer a promising alternative, using them as standalone post-processing decouples generation from the transmitted scene structure, thereby compromising cross-view consistency. To address these limitations, we propose GenSplatCodec, a unified feed-forward Gaussian codec that reformulates low-bitrate Gaussian compression as geometry-guided generative decoding. We present a detail-aware feed-forward Gaussian coding scheme within a dual-stream formulation, where the resulting compact Gaussian structural stream is complemented by a lightweight reference appearance stream. We further introduce a geometry-guided one-step generative decoding approach that jointly exploits decoded structural and appearance cues through hierarchical geometry control to reconstruct high-fidelity and view-consistent novel views. Finally, we develop a three-stage optimization strategy that stabilizes the learning of the unified codec and adapts the generative decoder to codec-derived structural and appearance cues. Extensive experiments across multiple datasets demonstrate that GenSplatCodec consistently achieves superior rate-distortion (RD) performance over existing methods.",
+      "authors": [
+        "Qiang Hu",
+        "Zhenlong Wu",
+        "Lei Huang",
+        "Zihan Zheng",
+        "Xiaoyun Zhang",
+        "Wenjun Zhang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-27T13:20:26+00:00",
+      "link": "https://arxiv.org/pdf/2607.24403v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Feed-forward 3DGS compression for novel view synthesis",
+      "llm_evidence_cn": "前馈3DGS压缩用于新视角合成",
+      "llm_evidence": "前馈3DGS压缩用于新视角合成",
+      "canonical_evidence": "前馈3DGS压缩用于新视角合成",
+      "llm_tldr_en": "Proposes GenSplatCodec, a unified feed-forward Gaussian codec that reformulates low-bitrate Gaussian compression using one-step diffusion, enabling scalable scene reconstruction without per-scene optimization while preserving cross-view consistency.",
+      "llm_tldr_cn": "本文提出GenSplatCodec，一种统一的前馈高斯码本，通过一步扩散重新定义低比特率高斯压缩。该方法无需逐场景优化即可实现可扩展的场景重建，在低码率下保持跨视角一致性，解决了现有确定性解码在高频纹理和视角依赖外观上不足的问题。",
+      "llm_tldr": "本文提出GenSplatCodec，一种统一的前馈高斯码本，通过一步扩散重新定义低比特率高斯压缩。该方法无需逐场景优化即可实现可扩展的场景重建，在低码率下保持跨视角一致性，解决了现有确定性解码在高频纹理和视角依赖外观上不足的问题。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
