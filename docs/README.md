@@ -6,27 +6,28 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-28
-- 运行时间：2026-07-28 20:28:11 UTC
+- 最新运行日期：2026-07-29
+- 运行时间：2026-07-29 21:29:20 UTC
 - 运行状态：成功
 - 本次总论文数：2
-- 精读区：0
-- 速读区：2
+- 精读区：1
+- 速读区：1
 
 ### 今日简报（AI）
-今天看了两篇关于3D高斯泼溅的压缩与渲染新方法。值得关注的是科学粒子数据压缩渲染和一步扩散前馈压缩两个方向。建议先理解3D高斯表示，再探索其与生成模型的结合应用。
-- 详情：[/202607/28/README](/202607/28/README)
+今日精读高分论文《ATSplat》实现高效前馈3D高斯溅射，速读《PanoLess》探索部分反射视图的环境重建。  
+最值得关注的是ATSplat的自适应token扩展方法，将3D高斯溅射压缩为紧凑表示，性能评9.0/10。  
+建议普通读者优先精读ATSplat，了解如何用前馈网络加速3D场景渲染。
+- 详情：[/202607/29/README](/202607/29/README)
 
 ### 精读区论文标签
-- 本次无精读推荐。
+1. [ATSplat: Compact Feed-forward 3D Gaussian Splatting with Adaptive Token Expansion](/202607/29/2607.20417v2-atsplat-compact-feed-forward-3d-gaussian-splatting-with-adaptive-token-expansion)  
+   标签：评分：9.0/10、query:pano-dgs
+   evidence：前馈三维高斯溅射用于新视角合成
 
 ### 速读区论文标签
-1. [3D Gaussian Splatting for Scientific Particle Data Compression and Rendering](/202607/28/2607.22956v1-3d-gaussian-splatting-for-scientific-particle-data-compression-and-rendering)  
-   标签：评分：6.0/10、query:pano-dgs
-   evidence：3D高斯泼溅用于粒子数据压缩与渲染，方法可迁移至全景
-2. [GenSplatCodec: Feed-Forward Gaussian Splatting Compression via One-Step Diffusion](/202607/28/2607.24403v1-gensplatcodec-feed-forward-gaussian-splatting-compression-via-one-step-diffusion)  
-   标签：评分：6.0/10、query:pano-dgs
-   evidence：前馈3DGS压缩用于新视角合成
+1. [PanoLess: Environment Reconstruction from Partial Reflective Views](/202607/29/2607.25362v1-panoless-environment-reconstruction-from-partial-reflective-views)  
+   标签：评分：7.0/10、query:pano-dgs
+   evidence：基于高斯泼溅从反射视图重建环境
 
 
 <div class="dpr-home-promo-card">

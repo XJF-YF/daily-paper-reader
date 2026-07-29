@@ -1,0 +1,39 @@
+{
+  "label": "2026-07-29",
+  "date": "2026-07-29",
+  "generated_at": "2026-07-29T21:29:27",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202607/29/2607.20417v2-atsplat-compact-feed-forward-3d-gaussian-splatting-with-adaptive-token-expansion",
+      "section": "deep",
+      "title_en": "ATSplat: Compact Feed-forward 3D Gaussian Splatting with Adaptive Token Expansion",
+      "authors": "In Cho, Jeonghwan Cho, Mijin Yoo, Gim Hee Lee, Seon Joo Kim",
+      "date": "2026-07-22",
+      "pdf": "https://arxiv.org/pdf/2607.20417v2",
+      "score": "9.0",
+      "evidence": "前馈三维高斯溅射用于新视角合成",
+      "tldr": "现有前馈3DGS方法将高斯基元与像素对齐，导致数量依赖分辨率且冗余。ATSplat通过自适应3D令牌和令牌扩展模块恢复场景自适应分配能力，稀疏锚点令牌回归局部高斯，并基于渲染误差预测不确定性选择性扩展。在RealEstate10K和DL3DV上达到SOTA渲染质量，高斯数减少5.7倍，12张512×960图像重建<1秒，渲染1136 FPS，仅需311K高斯。该方法实现了紧凑高效的前馈3DGS，为实时高质量新视角合成提供新方案。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "3D Gaussian Splatting (3DGS) achieves high-quality novel-view synthesis by optimizing freely placed primitives in 3D and adaptively densifying them in under-reconstructed regions. However, this scene-adaptive capacity allocation is largely lost in existing feed-forward 3DGS methods, which commonly regress Gaussians at input pixels and lift them along camera rays. Such pixel-aligned formulations make the number and placement of primitives depend on image resolution and input viewpoints rather than scene complexity, resulting in dense and often redundant Gaussian sets. We present ATSplat, a feed-forward 3DGS framework that restores the adaptive allocation capability of 3DGS optimization through Adaptive 3D Tokens. ATSplat first lifts coarse patch-level depth and camera cues into sparse 3D anchor tokens, forming a compact scaffold of the scene. Each token is then regressed into local Gaussians with learnable 3D offsets, decoupling primitive placement from input image grids. An Adaptive Token Expansion module predicts a token-level uncertainty score, supervised by rendering error maps, and selectively expands high-uncertainty tokens through learnable expansion layers. This sparse-to-adaptive formulation enables ATSplat to concentrate primitives in challenging regions while maintaining a compact representation. Experiments on two representative datasets, RealEstate10K and DL3DV, show that ATSplat achieves state-of-the-art rendering quality while reducing the number of Gaussians by more than $5.7\\times$ compared with dense feed-forward 3DGS methods. From 12 input images at $512 \\times 960$ resolution, ATSplat completes reconstruction in less than a second using a single commercial GPU, and renders high-quality novel views at 1136 FPS ($512 \\times 960$) with only 311K Gaussians.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/29/2607.25362v1-panoless-environment-reconstruction-from-partial-reflective-views",
+      "section": "quick",
+      "title_en": "PanoLess: Environment Reconstruction from Partial Reflective Views",
+      "authors": "Ahitagni Das, Ashok Veeraraghavan, Vivek Boominathan",
+      "date": "2026-07-28",
+      "pdf": "https://arxiv.org/pdf/2607.25362v1",
+      "score": "7.0",
+      "evidence": "基于高斯泼溅从反射视图重建环境",
+      "tldr": "反射面能扩展相机视野，但现有逆渲染方法需要360度全景输入。PanoLess提出基于表面对齐的2D高斯泼溅与延迟着色框架，从单侧反射视图重建环境照明图，并生成可见性图指示受支持区域。在合成和真实数据集上，该方法实现高保真、几何一致的重建，显著优于反射感知基线。其贡献在于无需全景即可从部分反射观测恢复物理正确照明，拓展了反射驱动环境重建的适用场景。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Reflections from shiny objects and glass facades naturally extend the field of view of a camera, capturing the surrounding environment without the need to pan the camera or acquire a full panorama. We propose PanoLess, a Gaussian-splat-based framework that reconstructs the surrounding environment as a distant illumination map from images captured on only one side of a reflective surface. PanoLess leverages surface-aligned 2D Gaussian splats with deferred shading to recover accurate per-pixel normals and reflection cues, which are fused into a neural cubemap representation of the environment. In addition, PanoLess produces a visibility map that explicitly denotes which regions of the environment are supported by the partial reflective observations. Unlike existing inverse-rendering and reflection-aware Gaussian-splatting approaches, which typically require full 360-degree coverage and struggle under incomplete views, PanoLess enables consistent, physically grounded illumination estimation from partial-view input. We show that PanoLess achieves high-fidelity and geometrically consistent environment reconstruction, outperforming reflection-aware baselines on a new custom synthetic benchmark and publicly available datasets, and demonstrating generalization to real-world reflective captures.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
