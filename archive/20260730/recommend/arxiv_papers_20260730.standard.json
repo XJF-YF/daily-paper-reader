@@ -1,0 +1,175 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-30T21:42:18.745245+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2607.22956v1",
+      "source": "arxiv",
+      "title": "3D Gaussian Splatting for Scientific Particle Data Compression and Rendering",
+      "abstract": "Large-scale particle simulations produce hundreds of millions of particles, straining storage, transfer, and interactive visualization. Existing lossy compressors such as SZ3 operate in data space and provide no guarantees on downstream visualization fidelity. We propose ParticleGS, a visualization-aware framework based on 3D Gaussian Splatting (3DGS) that learns a compact representation directly optimized for rendered image quality, combining (1) a multi-stage, multi-orbit training pipeline, (2) VizMapper, a lightweight network that adapts a single trained model to user-specified visualization parameters at inference time, and (3) spatial block training with KD-tree decomposition and global fine-tuning. On a 281-million-particle HACC cosmological simulation, our 8-block model reaches 30.03 dB PSNR at 65x compression, outperforming SZ3 by 5-8 dB at comparable ratios, and generalizes without tuning to additional HACC regions and a dark-matter-only FIRE-2 simulation. It renders at 662 FPS on a single GPU, over 2,300x faster than ParaView on the full particle data.",
+      "authors": [
+        "Bo Jiang",
+        "Youyuan Liu",
+        "Taolue Yang",
+        "Sheng Di",
+        "Sian Jin"
+      ],
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR",
+        "cs.DC"
+      ],
+      "published": "2026-07-24T23:46:53+00:00",
+      "link": "https://arxiv.org/pdf/2607.22956v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "uses 3DGS for novel view synthesis of particle data, directly relevant to query",
+      "llm_evidence_cn": "使用3DGS进行粒子数据的新视角合成，直接相关",
+      "llm_evidence": "使用3DGS进行粒子数据的新视角合成，直接相关",
+      "canonical_evidence": "使用3DGS进行粒子数据的新视角合成，直接相关",
+      "llm_tldr_en": "Proposes ParticleGS, a 3D Gaussian Splatting framework for compressing and rendering scientific particle data, achieving compact representation and high-quality visualization.",
+      "llm_tldr_cn": "针对大规模粒子数据存储和可视化挑战，提出ParticleGS，一种基于3D高斯泼溅的视化感知框架，通过多阶段多轨道训练、VizMapper轻量网络和KD树空间块训练，直接优化渲染图像质量，在281百万粒子数据上实现高效压缩与高质量渲染，为科学可视化提供新范式。",
+      "llm_tldr": "针对大规模粒子数据存储和可视化挑战，提出ParticleGS，一种基于3D高斯泼溅的视化感知框架，通过多阶段多轨道训练、VizMapper轻量网络和KD树空间块训练，直接优化渲染图像质量，在281百万粒子数据上实现高效压缩与高质量渲染，为科学可视化提供新范式。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.26578v1",
+      "source": "arxiv",
+      "title": "3DGBGS: 3D Granular Ball Gaussian Splatting for Compact Novel View Synthesis",
+      "abstract": "Three-dimensional Gaussian Splatting (3DGS) enables high-quality real-time novel-view synthesis through explicit Gaussian primitives and differentiable rasterization. 3DGS and Granular Ball Computing (GBC), proposed in 2019, share a natural compatibility in adaptive representation. The efficiency of 3DGS partly stems from a coarse-to-fine and on-demand refinement process that draws on the generation principle of GBC. This connection motivates us to further introduce adaptive granular ball organization into anchor-based 3DGS. Existing anchor-based methods typically construct anchors from sparse SfM point clouds through fixed voxelization, which cannot adequately adapt to spatially non-uniform point distributions and leads to a trade-off among anchor count, model compactness, and rendering quality. To address this issue, we propose 3DGBGS (3D Granular Ball Gaussian Splatting), a compact anchor-based framework for novel-view synthesis. 3DGBGS adaptively partitions SfM point clouds into 3D granular balls, using larger balls to compactly represent smooth and redundant regions and smaller balls to preserve complex geometry and local details. Based on this representation, Granular Ball Anchor Initialization (GBAI) uses granular ball centers to initialize compact anchor positions, while the Granular Ball Scale Prior (GBSP) exploits granular ball radii to provide local scale priors for Gaussian generation. Experiments on four benchmarks show that 3DGBGS reduces initial and final anchors by 37.1% and 10.0%, respectively, and model storage by 9.8% on average, while maintaining comparable rendering quality.",
+      "authors": [
+        "Meng Yang",
+        "Shuyin Xia",
+        "Dawei Dai",
+        "YiWang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-29T07:57:17+00:00",
+      "link": "https://arxiv.org/pdf/2607.26578v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "compact novel view synthesis using adaptive Gaussian representation",
+      "llm_evidence_cn": "使用自适应高斯表示的紧凑新视角合成",
+      "llm_evidence": "使用自适应高斯表示的紧凑新视角合成",
+      "canonical_evidence": "使用自适应高斯表示的紧凑新视角合成",
+      "llm_tldr_en": "Proposes 3DGBGS integrating granular ball computing into anchor-based 3DGS for adaptive anchor organization, achieving compact representation and high-quality NVS.",
+      "llm_tldr_cn": "针对基于锚点的3DGS中固定体素化无法适应非均匀点分布的问题，本文引入粒度球计算（GBC）的自适应组织。3DGBGS根据点密度动态调整锚点大小和位置，从而减少锚点冗余并提升表示效率。在多个数据集上，该方法以更少的锚点实现了与现有方法相当或更优的渲染质量。",
+      "llm_tldr": "针对基于锚点的3DGS中固定体素化无法适应非均匀点分布的问题，本文引入粒度球计算（GBC）的自适应组织。3DGBGS根据点密度动态调整锚点大小和位置，从而减少锚点冗余并提升表示效率。在多个数据集上，该方法以更少的锚点实现了与现有方法相当或更优的渲染质量。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.25971v1",
+      "source": "arxiv",
+      "title": "SplatStream: Fine Granular Scalable Gaussian Splatting for Adaptive 3D Scene Streaming",
+      "abstract": "Dynamic 3D Gaussian Splatting (GS) enables high quality real-time rendering for immersive media, but its large representation size and frame-wise redundancy create significant challenges for adaptive streaming. This paper presents SplatStream, a fine granular scalable Gaussian splatting framework for dynamic 3D scene delivery. The proposed method decompose the GS scenes into quality and resolution layers, and introduces inter-layer predictive coding to achieve scalability. For temporal direction, B-frames are introduced to have temporal quality scalability. A lightweight cross-layer transformer based predictor is utilized for both cross layer and temporal predictions. In addition, a volume-opacity based importance measure is used for fine-grained Gaussian packetization, allowing visually important primitives to be transmitted earlier for progressive refinement. Finally, the scalable GS bitstream is mapped to an MPEG-DASH compatible sub-representation structure, enabling fine granular adaptive, low-latency delivery of dynamic Gaussian splatting content under bandwidth-varying conditions.",
+      "authors": [
+        "Muhammad Talha",
+        "William Gordon",
+        "Sajid Umair",
+        "Anique Akhtar",
+        "Joel Jung"
+      ],
+      "primary_category": "eess.IV",
+      "categories": [
+        "eess.IV",
+        "eess.SP"
+      ],
+      "published": "2026-07-28T16:52:45+00:00",
+      "link": "https://arxiv.org/pdf/2607.25971v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "3D Gaussian Splatting scene streaming for high-quality rendering",
+      "llm_evidence_cn": "3D高斯泼溅场景流式传输用于高质量渲染",
+      "llm_evidence": "3D高斯泼溅场景流式传输用于高质量渲染",
+      "canonical_evidence": "3D高斯泼溅场景流式传输用于高质量渲染",
+      "llm_tldr_en": "SplatStream proposes a scalable 3D Gaussian Splatting streaming method for dynamic scenes, enabling adaptive quality and resolution layers.",
+      "llm_tldr_cn": "针对动态3D场景流式传输中的表示冗余问题，SplatStream提出一种细粒度可扩展的高斯泼溅框架，通过质量和分辨率分层以及帧间预测实现自适应传输，在保持高质量实时渲染的同时降低带宽需求。",
+      "llm_tldr": "针对动态3D场景流式传输中的表示冗余问题，SplatStream提出一种细粒度可扩展的高斯泼溅框架，通过质量和分辨率分层以及帧间预测实现自适应传输，在保持高质量实时渲染的同时降低带宽需求。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.26646v1",
+      "source": "arxiv",
+      "title": "Genie Sim PanoWorld: An Infinite Indoor 3D World Generation Pipeline via Panoramic Scene Modeling and Simulation",
+      "abstract": "We address the problem of reconstructing a high-fidelity, freely navigable 3D scene from a single $360^\\circ$ panorama, without per-scene optimization or multi-view capture. Existing methods either lack metric trajectory control, which hinders reliable downstream 3D reconstruction, or struggle with large disocclusions under long-range camera motion while requiring high-end multi-GPU servers.We present Genie Sim PanoWorld, a two-stage feed-forward pipeline that bridges generation and reconstruction via an explicit, trajectory-controllable panoramic video. A NavMesh-planned $\\mathrm{SE}(3)$ roaming trajectory is injected into a latent video diffusion model through dense geometry-warped conditioning; long--short trajectory mixed training and a self-consistency objective based on shortcut models together yield high-fidelity video in four CFG-free denoising steps.   A feed-forward panoramic reconstructor then lifts the generated video into a high-fidelity   3D Gaussian scene that supports real-time, free-viewpoint roaming and can be directly used as a simulation-ready asset for embodied AI applications. Experiments show that Genie Sim PanoWorld   outperforms geometry-conditioned baselines in both panoramic video generation and   downstream 3D reconstruction, while generalizing zero-shot to unseen indoor scenes.",
+      "authors": [
+        "Yongxin Su",
+        "Linjie Hou",
+        "Feng Wang",
+        "Jialin Tang",
+        "Zhijun Li",
+        "Qian Wang",
+        "Maoqing Yao"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-29T09:08:16+00:00",
+      "link": "https://arxiv.org/pdf/2607.26646v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "single 360 panorama to 3D scene, enabling novel view synthesis",
+      "llm_evidence_cn": "单张360度全景图生成可自由漫游的3D场景，支持新视角合成",
+      "llm_evidence": "单张360度全景图生成可自由漫游的3D场景，支持新视角合成",
+      "canonical_evidence": "单张360度全景图生成可自由漫游的3D场景，支持新视角合成",
+      "llm_tldr_en": "Proposes a two-stage pipeline that generates a trajectory-controllable panoramic video from a single 360 panorama, enabling feed-forward 3D scene reconstruction without per-scene optimization.",
+      "llm_tldr_cn": "针对从单张360度全景图重建高保真3D场景时缺乏轨迹控制和难以处理大范围遮挡的问题，提出Genie Sim PanoWorld两阶段管线。首先通过NavMesh规划漫游路径，然后利用几何变形条件注入视频扩散模型生成全景视频，最终实现可自由导航的3D场景。实验证明无需多视图输入即可实现高质量重建，降低了计算需求。",
+      "llm_tldr": "针对从单张360度全景图重建高保真3D场景时缺乏轨迹控制和难以处理大范围遮挡的问题，提出Genie Sim PanoWorld两阶段管线。首先通过NavMesh规划漫游路径，然后利用几何变形条件注入视频扩散模型生成全景视频，最终实现可自由导航的3D场景。实验证明无需多视图输入即可实现高质量重建，降低了计算需求。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "novel view synthesis for 360-degree immersive environments",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
