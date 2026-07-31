@@ -6,32 +6,48 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-30
-- 运行时间：2026-07-30 21:44:27 UTC
+- 最新运行日期：2026-07-31
+- 运行时间：2026-07-31 21:42:05 UTC
 - 运行状态：成功
-- 本次总论文数：4
-- 精读区：2
-- 速读区：2
+- 本次总论文数：8
+- 精读区：3
+- 速读区：5
 
 ### 今日简报（AI）
-今日聚焦3D高斯泼溅在科学数据压缩与紧凑新视角合成中的两大突破。最值得看的两篇9分和8分论文：分别展示了高斯泼溅用于科学粒子数据的高效压缩渲染，以及通过颗粒球体表示实现更紧凑的新视角合成。建议关注粒子数据压缩方向，探索3DGS在非视觉科学数据中的潜力，同时注意计算效率与压缩比的平衡。
-- 详情：[/202607/30/README](/202607/30/README)
+今日精选8篇3D视觉论文，聚焦道路重建、4D动态人体生成与高斯泼溅渲染。
+
+最值精读RoadVGGT的路面结构感知重建与4DHumanDiff的文本驱动360度动态人体生成，均获8分高分。
+
+速读中高斯泼溅的流式传输与压缩（SplatStream、AtlasLC）值得关注，适合想跟进实时渲染优化的读者。
+- 详情：[/202607/31/README](/202607/31/README)
 
 ### 精读区论文标签
-1. [3D Gaussian Splatting for Scientific Particle Data Compression and Rendering](/202607/30/2607.22956v1-3d-gaussian-splatting-for-scientific-particle-data-compression-and-rendering)  
-   标签：评分：9.0/10、query:pano-dgs
-   evidence：使用3DGS进行粒子数据的新视角合成，直接相关
-2. [3DGBGS: 3D Granular Ball Gaussian Splatting for Compact Novel View Synthesis](/202607/30/2607.26578v1-3dgbgs-3d-granular-ball-gaussian-splatting-for-compact-novel-view-synthesis)  
+1. [RoadVGGT: Road-Structure-Aware Feed-Forward Road Surface Reconstruction](/202607/31/2607.23758v1-roadvggt-road-structure-aware-feed-forward-road-surface-reconstruction)  
    标签：评分：8.0/10、query:pano-dgs
-   evidence：使用自适应高斯表示的紧凑新视角合成
+   evidence：基于前馈高斯溅射的多视角场景重建，与3DGS新视图合成直接相关。
+2. [4DHumanDiff: Direct Text-to-4DGS Generation for Consistent 360-Degree Dynamic Humans](/202607/31/2607.27634v1-4dhumandiff-direct-text-to-4dgs-generation-for-consistent-360-degree-dynamic-humans)  
+   标签：评分：8.0/10、query:pano-dgs
+   evidence：使用4D高斯泼溅生成一致360度动态人体
+3. [S-Avatar: Diffusion-Guided Gaussian Head Avatars from a Single Image](/202607/31/2607.28164v1-s-avatar-diffusion-guided-gaussian-head-avatars-from-a-single-image)  
+   标签：评分：8.0/10、query:pano-dgs
+   evidence：用3D高斯泼溅从单图合成照片级头部化身，面向视角一致的新视角合成
 
 ### 速读区论文标签
-1. [SplatStream: Fine Granular Scalable Gaussian Splatting for Adaptive 3D Scene Streaming](/202607/30/2607.25971v1-splatstream-fine-granular-scalable-gaussian-splatting-for-adaptive-3d-scene-streaming)  
+1. [SplatStream: Fine Granular Scalable Gaussian Splatting for Adaptive 3D Scene Streaming](/202607/31/2607.25971v2-splatstream-fine-granular-scalable-gaussian-splatting-for-adaptive-3d-scene-streaming)  
+   标签：评分：7.0/10、query:pano-dgs
+   evidence：面向动态场景自适应流式传输的三维高斯泼溅框架
+2. [AtlasLC: Fast Codec-Ready Compression of Object-Centric 3D Gaussian Splatting](/202607/31/2607.26525v1-atlaslc-fast-codec-ready-compression-of-object-centric-3d-gaussian-splatting)  
+   标签：评分：7.0/10、query:pano-dgs
+   evidence：基于三维高斯泼溅的新视角合成与压缩方法
+3. [Deformable Triangle Splatting: Flexible Primitives for Real-Time Radiance Field Rendering](/202607/31/2607.22446v1-deformable-triangle-splatting-flexible-primitives-for-real-time-radiance-field-rendering)  
    标签：评分：6.0/10、query:pano-dgs
-   evidence：3D高斯泼溅场景流式传输用于高质量渲染
-2. [Genie Sim PanoWorld: An Infinite Indoor 3D World Generation Pipeline via Panoramic Scene Modeling and Simulation](/202607/30/2607.26646v1-genie-sim-panoworld-an-infinite-indoor-3d-world-generation-pipeline-via-panoramic-scene-modeling-and-simulation)  
+   evidence：提出可变形三角形泼溅，一种用于实时新视角渲染的泼溅式方法
+4. [TSOG: A Format For Temporally And Spatially Ordered Gaussians](/202607/31/2607.28049v1-tsog-a-format-for-temporally-and-spatially-ordered-gaussians)  
    标签：评分：6.0/10、query:pano-dgs
-   evidence：单张360度全景图生成可自由漫游的3D场景，支持新视角合成
+   evidence：面向4D高斯溅射的表示格式，与基于高斯的场景渲染相关。
+5. [AdaAnchor4D: Anchor-Conditioned Spatiotemporal Feature Aggregation for Monocular UAV 4D Reconstruction](/202607/31/2607.28320v1-adaanchor4d-anchor-conditioned-spatiotemporal-feature-aggregation-for-monocular-uav-4d-reconstruction)  
+   标签：评分：6.0/10、query:pano-dgs
+   evidence：动态高斯重建方法，可服务于新视角合成
 
 
 <div class="dpr-home-promo-card">

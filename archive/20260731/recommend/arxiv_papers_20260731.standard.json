@@ -1,0 +1,336 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-31T21:36:40.049248+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 3,
+    "deep_cap": 6,
+    "deep_selected": 3,
+    "quick_candidates": 5,
+    "quick_skim_target": 11,
+    "quick_selected": 5
+  },
+  "deep_dive": [
+    {
+      "id": "2607.23758v1",
+      "source": "arxiv",
+      "title": "RoadVGGT: Road-Structure-Aware Feed-Forward Road Surface Reconstruction",
+      "abstract": "Large-scale road surface reconstruction supports high-definition mapping, autonomous-driving perception, annotation, and simulation. Existing road-specialized optimization methods can produce high-quality road representations, but they typically require per-scene training and scene-dependent coverage design around the driving trajectory, limiting scalable reconstruction over newly collected roads. To address these limitations, we introduce RoadVGGT, a road-structure-aware feed-forward framework that reconstructs compact Gaussian road surfaces without test-time per-scene optimization. RoadVGGT uses a geometric foundation model to exploit multi-view images together with provided pose and depth observations, and predicts dense pixel-aligned Gaussian attributes through a learned Gaussian head. To make these dense predictions usable for large road surfaces, we align them into a consistent metric world coordinate system and fuse redundant Gaussians on the road-aligned XY plane through confidence-weighted grid fusion. Category-aware grouping and road--sidewalk junction protection further control fusion around vulnerable road structures. The resulting representation supports RGB and semantic bird's-eye-view maps, elevation estimation, and novel view synthesis. RoadVGGT eliminates the need for per-scene optimization in prior methods, reconstructs complete road surfaces with a compact Gaussian representation, and improves image quality, semantic mapping, and elevation accuracy. Extensive experiments demonstrate the potential of geometric foundation models for scalable feed-forward road surface reconstruction.",
+      "authors": [
+        "Han Jiao",
+        "Chen Liu",
+        "Jiakai Sun",
+        "Zhanjie Zhang",
+        "Mengyuan Yang",
+        "Yimeng Li",
+        "Mofan Zhou",
+        "Kun Zhan",
+        "Lei Zhao"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-26T17:09:12+00:00",
+      "link": "https://arxiv.org/pdf/2607.23758v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Feed-forward Gaussian splatting reconstruction from multi-view images, directly aligned with 3DGS-based novel view synthesis.",
+      "llm_evidence_cn": "基于前馈高斯溅射的多视角场景重建，与3DGS新视图合成直接相关。",
+      "llm_evidence": "基于前馈高斯溅射的多视角场景重建，与3DGS新视图合成直接相关。",
+      "canonical_evidence": "基于前馈高斯溅射的多视角场景重建，与3DGS新视图合成直接相关。",
+      "llm_tldr_en": "RoadVGGT is a feed-forward framework that reconstructs compact Gaussian road surfaces without per-scene optimization, using a geometric foundation model and multi-view images with pose and depth, showing scalable road reconstruction.",
+      "llm_tldr_cn": "针对大规模道路表面重建中逐场景优化导致可扩展性差的问题，提出RoadVGGT，一种道路结构感知的前馈框架。它利用几何基础模型结合多视角图像、位姿和深度，预测密集像素对齐的高斯属性，无需测试时优化即可重建紧凑的高斯道路表面。实验表明该方法在新采集道路上有较好的可扩展性，为自动驾驶高精地图等应用提供了高效方案。",
+      "llm_tldr": "针对大规模道路表面重建中逐场景优化导致可扩展性差的问题，提出RoadVGGT，一种道路结构感知的前馈框架。它利用几何基础模型结合多视角图像、位姿和深度，预测密集像素对齐的高斯属性，无需测试时优化即可重建紧凑的高斯道路表面。实验表明该方法在新采集道路上有较好的可扩展性，为自动驾驶高精地图等应用提供了高效方案。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.27634v1",
+      "source": "arxiv",
+      "title": "4DHumanDiff: Direct Text-to-4DGS Generation for Consistent 360-Degree Dynamic Humans",
+      "abstract": "Generating high-quality 360-degree dynamic human assets from text prompts is challenging. Existing methods usually synthesize monocular or multi-view videos first and then fit a 4D representation, which is expensive and often causes incomplete geometry or view-inconsistent renderings. We present 4DHumanDiff, a diffusion framework that directly generates dynamic humans represented by 4D Gaussian Splatting (4DGS) from text prompts. By modeling the structured 4D representation space end-to-end, 4DHumanDiff avoids video pre-generation and per-scene reconstruction, making it better suited for view-consistent and temporally coherent asset generation. The model uses a 3D U-Net backbone with temporal attention for motion-aware generation. We further construct a large-scale text-to-4DGS dataset with 60,000 high-quality pairs, and introduce 2D regularization and training-free 4D interpolation to improve rendering quality and motion smoothness. Experiments show that 4DHumanDiff generates consistent 360-degree dynamic humans within one minute, achieves better temporal and multi-view consistency, and reduces inference time by more than 10x.",
+      "authors": [
+        "Renlong Wu",
+        "Haoran Chen",
+        "Yuxiang Wei",
+        "Xiaowei Jin",
+        "Wangmeng Zuo",
+        "Hui Li"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-30T03:45:34+00:00",
+      "link": "https://arxiv.org/pdf/2607.27634v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Uses 4D Gaussian Splatting to generate consistent 360-degree dynamic humans",
+      "llm_evidence_cn": "使用4D高斯泼溅生成一致360度动态人体",
+      "llm_evidence": "使用4D高斯泼溅生成一致360度动态人体",
+      "canonical_evidence": "使用4D高斯泼溅生成一致360度动态人体",
+      "llm_tldr_en": "Generates consistent 360-degree dynamic human assets directly from text using 4D Gaussian Splatting, avoiding video pre-generation and per-scene reconstruction.",
+      "llm_tldr_cn": "针对现有文本到4D人体生成方法需先合成视频再拟合4D表示、成本高且视角不一致的问题，提出4DHumanDiff，将动态人体直接表示为4D高斯泼溅并端到端生成，利用3D U-Net与时序注意力保证运动感知与多视角一致性，适用于360度动态人体资产生成。",
+      "llm_tldr": "针对现有文本到4D人体生成方法需先合成视频再拟合4D表示、成本高且视角不一致的问题，提出4DHumanDiff，将动态人体直接表示为4D高斯泼溅并端到端生成，利用3D U-Net与时序注意力保证运动感知与多视角一致性，适用于360度动态人体资产生成。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "omnidirectional rendering with 3D Gaussian Splatting",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.28164v1",
+      "source": "arxiv",
+      "title": "S-Avatar: Diffusion-Guided Gaussian Head Avatars from a Single Image",
+      "abstract": "We propose S-Avatar, a novel method for generating photorealistic 3D head avatars from a single image using a diffusion-guided 3D model generation module and strategies for animating 3D Gaussian Splatting (3DGS). While single-image head avatar reconstruction is crucial for lifelike Virtual Reality (VR) applications, existing approaches often struggle to preserve 3D consistency under unseen viewpoints. S-Avatar addresses this limitation through a three-stage pipeline. First, a high-resolution 3DGS is synthesized directly from a single image using a diffusion-based Gaussian splat generation module. Next, the parametric head model FLAME is aligned with the generated 3DGS by optimizing its parameters and spatial transformations. Finally, to adapt the 3DGS to FLAME variations, we construct a binding template that encodes the spatial relationship between the initial splats and FLAME. The dynamic 3D head avatar can then be rendered in real time by deforming the 3DGS with the binding template. By combining diffusion-guided canonical 3DGS generation with FLAME-based control, our method achieves efficient and accurate reconstruction with enhanced 3D consistency. Evaluations on public datasets demonstrate that S-Avatar outperforms state-of-the-art methods in novel-view and expression generation, achieving superior realism and consistency. Consequently, our approach represents a significant advance in accessible avatar creation, applicable to a wide range of VR/AR applications. The project page is available at https://github.com/hailsong/savatar.",
+      "authors": [
+        "Hail Song",
+        "Seokhwan Yang",
+        "Jiwon Yang",
+        "Woojin Cho",
+        "Woontack Woo"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "published": "2026-07-30T13:04:03+00:00",
+      "link": "https://arxiv.org/pdf/2607.28164v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Synthesizes photorealistic 3D head avatars from a single image with 3D Gaussian Splatting for view-consistent novel views",
+      "llm_evidence_cn": "用3D高斯泼溅从单图合成照片级头部化身，面向视角一致的新视角合成",
+      "llm_evidence": "用3D高斯泼溅从单图合成照片级头部化身，面向视角一致的新视角合成",
+      "canonical_evidence": "用3D高斯泼溅从单图合成照片级头部化身，面向视角一致的新视角合成",
+      "llm_tldr_en": "Proposes S-Avatar, a diffusion-guided 3DGS pipeline that synthesizes high-resolution head avatars from a single image and animates them with FLAME.",
+      "llm_tldr_cn": "针对单图头部虚拟化身重建中未见视角下3D一致性差的问题，提出S-Avatar，通过扩散模型直接从单图合成高分辨率3D高斯泼溅，再与FLAME参数化模型对齐并实现动画，从而获得照片级且视角一致的头部化身。",
+      "llm_tldr": "针对单图头部虚拟化身重建中未见视角下3D一致性差的问题，提出S-Avatar，通过扩散模型直接从单图合成高分辨率3D高斯泼溅，再与FLAME参数化模型对齐并实现动画，从而获得照片级且视角一致的头部化身。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.25971v2",
+      "source": "arxiv",
+      "title": "SplatStream: Fine Granular Scalable Gaussian Splatting for Adaptive 3D Scene Streaming",
+      "abstract": "Dynamic 3D Gaussian Splatting (GS) enables high quality real-time rendering for immersive media, but its large representation size and frame-wise redundancy create significant challenges for adaptive streaming. This paper presents SplatStream, a fine granular scalable Gaussian splatting framework for dynamic 3D scene delivery. The proposed method decompose the GS scenes into quality and resolution layers, and introduces inter-layer predictive coding to achieve scalability. For temporal direction, B-frames are introduced to have temporal quality scalability. A lightweight cross-layer transformer based predictor is utilized for both cross layer and temporal predictions. In addition, a volume-opacity based importance measure is used for fine-grained Gaussian packetization, allowing visually important primitives to be transmitted earlier for progressive refinement. Finally, the scalable GS bitstream is mapped to an MPEG-DASH compatible sub-representation structure, enabling fine granular adaptive, low-latency delivery of dynamic Gaussian splatting content under bandwidth-varying conditions.",
+      "authors": [
+        "Muhammad Talha",
+        "William Gordon",
+        "Sajid Umair",
+        "Zhu Li",
+        "Anique Akhtar",
+        "Joel Jung"
+      ],
+      "primary_category": "eess.IV",
+      "categories": [
+        "eess.IV",
+        "eess.SP"
+      ],
+      "published": "2026-07-28T16:52:45+00:00",
+      "link": "https://arxiv.org/pdf/2607.25971v2",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "3D Gaussian Splatting framework for adaptive streaming of dynamic scenes",
+      "llm_evidence_cn": "面向动态场景自适应流式传输的三维高斯泼溅框架",
+      "llm_evidence": "面向动态场景自适应流式传输的三维高斯泼溅框架",
+      "canonical_evidence": "面向动态场景自适应流式传输的三维高斯泼溅框架",
+      "llm_tldr_en": "SplatStream presents a fine-granular scalable Gaussian splatting framework for dynamic 3D scene delivery, decomposing scenes into quality and resolution layers and using inter-layer predictive coding to achieve adaptive streaming.",
+      "llm_tldr_cn": "动态三维高斯泼溅虽然能实现高质量实时渲染，但其表示体量大、帧间冗余多，给自适应流式传输带来显著挑战。SplatStream 将高斯场景分解为质量层与分辨率层，引入帧间预测编码与跨层 Transformer 预测器，并结合体积不透明度筛选，实现细粒度可扩展传输。实验表明该方法在保持渲染质量的同时显著降低带宽需求，为沉浸式动态场景流式传输提供了高效解决方案。",
+      "llm_tldr": "动态三维高斯泼溅虽然能实现高质量实时渲染，但其表示体量大、帧间冗余多，给自适应流式传输带来显著挑战。SplatStream 将高斯场景分解为质量层与分辨率层，引入帧间预测编码与跨层 Transformer 预测器，并结合体积不透明度筛选，实现细粒度可扩展传输。实验表明该方法在保持渲染质量的同时显著降低带宽需求，为沉浸式动态场景流式传输提供了高效解决方案。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.22446v1",
+      "source": "arxiv",
+      "title": "Deformable Triangle Splatting: Flexible Primitives for Real-Time Radiance Field Rendering",
+      "abstract": "Recent radiance field methods represent scenes with 2D primitives that offer surface alignment and efficient rasterization, from Gaussian disks to triangles, yet all rely on convex boundaries: curved and concave structures demand excessive primitives. We introduce Deformable Triangle Splatting, which augments each triangle with $K$ control points per edge, each parameterized by a single learnable scalar displacement that shifts the boundary inward or outward, enabling non-convex shape representation while preserving the three base vertices that define the 3D plane. To render these non-convex primitives differentiably, we design a rasterization pipeline in the triangle's barycentric coordinate space, ensuring view-consistent rendering. A winding number test determines whether each pixel lies inside the deformed primitive, and a window function controlled by two learnable parameters, sharpness and corner smoothness, together with a per-primitive scalar opacity, produces the smooth opacity transition from interior to boundary. Validation is done in a variety of real-world scenes, outperforming recent works based on non-volumetric primitives in terms of visual quality and versatility while still achieving competitive rendering efficiency.",
+      "authors": [
+        "Oriol Jiménez-Ayguadé",
+        "Antonio Agudo"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "published": "2026-07-24T16:08:26+00:00",
+      "link": "https://arxiv.org/pdf/2607.22446v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Introduces deformable triangle splatting, a splatting-based method for real-time novel view rendering",
+      "llm_evidence_cn": "提出可变形三角形泼溅，一种用于实时新视角渲染的泼溅式方法",
+      "llm_evidence": "提出可变形三角形泼溅，一种用于实时新视角渲染的泼溅式方法",
+      "canonical_evidence": "提出可变形三角形泼溅，一种用于实时新视角渲染的泼溅式方法",
+      "llm_tldr_en": "Proposes Deformable Triangle Splatting with learnable edge displacements and barycentric rasterization for efficient non-convex radiance field rendering.",
+      "llm_tldr_cn": "针对凸多边形泼溅基元在表示弯曲凹面结构时需大量基元的问题，提出可变形三角形泼溅，为每条边附加可学习的标量位移使三角形边界可内外移动，在重心坐标系中设计可微光栅化流程，实现非凸形状的高效实时辐射场渲染。",
+      "llm_tldr": "针对凸多边形泼溅基元在表示弯曲凹面结构时需大量基元的问题，提出可变形三角形泼溅，为每条边附加可学习的标量位移使三角形边界可内外移动，在重心坐标系中设计可微光栅化流程，实现非凸形状的高效实时辐射场渲染。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.26525v1",
+      "source": "arxiv",
+      "title": "AtlasLC: Fast Codec-Ready Compression of Object-Centric 3D Gaussian Splatting",
+      "abstract": "3D Gaussian Splatting (3DGS) enables photorealistic novel-view synthesis with real-time rendering, but deploying compressed object-centric 3DGS in XR requires more than image-space rate-distortion. In practical XR asset pipelines, reusable objects are repeatedly packaged, transmitted, decoded, and instantiated, making asset-preparation cost, codec compatibility, decoding latency, and preservation of depth and silhouette cues first-class concerns. Existing 3DGS compression methods are largely developed for scene-scale captures and often rely on heavy layout generation or aggressive global pruning, assumptions that transfer poorly to semantically concentrated foreground objects. We present AtlasLC, a source-free, training-free compression pipeline for object-centric 3DGS that operates directly on released Gaussian assets, without original images, camera poses, or per-asset optimization. AtlasLC couples local-competition pruning with deterministic atlas packing to remove the mapping/remapping bottleneck while preserving object-wide foreground support; a lightweight single-pass sort-based conditional transport is used as a shared coordinate backbone for these stages. Across the evaluated assets, AtlasLC reduces atlas-preparation time by up to a factor of 25 and end-to-end compression time by up to a factor of 5, while offering a favorable deployment-aware balance of payload, decode latency, runtime FPS, and 3D geometry relative to the evaluated compressed baselines. Relative to similarly compact structured baselines, it uses about 6 to 8 percent fewer bits while maintaining comparable perceptual and geometric quality. These results show that object-centric 3DGS compression should be optimized for a deployment-aware operating point enabling scalable XR asset libraries.",
+      "authors": [
+        "ByungHyun Kim",
+        "Jinwoo Jeon",
+        "Woontack Woo"
+      ],
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR"
+      ],
+      "published": "2026-07-29T06:43:17+00:00",
+      "link": "https://arxiv.org/pdf/2607.26525v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "3D Gaussian Splatting based novel view synthesis with compression focus",
+      "llm_evidence_cn": "基于三维高斯泼溅的新视角合成与压缩方法",
+      "llm_evidence": "基于三维高斯泼溅的新视角合成与压缩方法",
+      "canonical_evidence": "基于三维高斯泼溅的新视角合成与压缩方法",
+      "llm_tldr_en": "AtlasLC presents a source-free, training-free compression pipeline for object-centric 3DGS that preserves depth and silhouette cues, enabling fast codec-ready decoding for XR asset workflows.",
+      "llm_tldr_cn": "三维高斯泼溅虽然支持照片级新视角合成，但面向对象级资源在XR管线中的部署需要兼顾压缩率、解码延迟与深度轮廓保持。AtlasLC 提出免训练、源码免费的压缩管线，专为物体中心的3DGS资产设计，避免全局剪枝带来的前景语义损失。该方法在保持前景几何和轮廓线索的同时实现快速压缩，适合可复用对象的编解码传输。",
+      "llm_tldr": "三维高斯泼溅虽然支持照片级新视角合成，但面向对象级资源在XR管线中的部署需要兼顾压缩率、解码延迟与深度轮廓保持。AtlasLC 提出免训练、源码免费的压缩管线，专为物体中心的3DGS资产设计，避免全局剪枝带来的前景语义损失。该方法在保持前景几何和轮廓线索的同时实现快速压缩，适合可复用对象的编解码传输。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.28049v1",
+      "source": "arxiv",
+      "title": "TSOG: A Format For Temporally And Spatially Ordered Gaussians",
+      "abstract": "We propose Temporally and Spatially Ordered Gaussians (TSOG), a format for efficient representation of 4D Gaussian Splatting (4DGS) content. TSOG extends the Spatially Ordered Gaussians (SOG) framework to the temporal domain by introducing a timeline attribute and temporal parameterization of geometry and appearance attributes. Similar to SOG, TSOG is a lossy format that assigns each Gaussian a unique index and encodes attribute values as index-aligned image data. TSOG is model-agnostic, extensible, and compatible with both discrete and continuous 4DGS representations. Evaluation using a PLYs sequence and FreeTimeGS as baselines, serving as simplistic and state-of-the-art 4DGS representations respectively, shows file size reductions exceeding 90%, with PSNR differences ranging between -0.42 and +0.85 dB. These results demonstrate substantial file size savings with minimal quality degradation, enabling efficient representation, storage, and delivery of dynamic scenes for next-generation 4D content.",
+      "authors": [
+        "Shady Gmira",
+        "Evangelos Alexiou",
+        "Emmanouil Potetsianakis",
+        "Emmanuel Thomas"
+      ],
+      "primary_category": "eess.IV",
+      "categories": [
+        "eess.IV",
+        "cs.CV",
+        "cs.GR"
+      ],
+      "published": "2026-07-30T11:28:01+00:00",
+      "link": "https://arxiv.org/pdf/2607.28049v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "A format for 4D Gaussian Splatting representation, relevant to Gaussian-based scene rendering and storage.",
+      "llm_evidence_cn": "面向4D高斯溅射的表示格式，与基于高斯的场景渲染相关。",
+      "llm_evidence": "面向4D高斯溅射的表示格式，与基于高斯的场景渲染相关。",
+      "canonical_evidence": "面向4D高斯溅射的表示格式，与基于高斯的场景渲染相关。",
+      "llm_tldr_en": "TSOG is a model-agnostic, extensible format for temporally and spatially ordered Gaussians that compresses 4DGS content by encoding attributes as index-aligned images, achieving over 90% file size reduction.",
+      "llm_tldr_cn": "针对4D高斯溅射内容存储开销大的问题，提出TSOG格式，将SOG扩展到时域，为每个高斯分配唯一索引并将属性编码为与索引对齐的图像数据。该格式与离散和连续4DGS表示兼容，且与PLYs和FreeTimeGS基线相比，文件大小减少超过90%，PSNR损失很小。TSOG为4DGS内容的高效表示和传输提供了通用格式。",
+      "llm_tldr": "针对4D高斯溅射内容存储开销大的问题，提出TSOG格式，将SOG扩展到时域，为每个高斯分配唯一索引并将属性编码为与索引对齐的图像数据。该格式与离散和连续4DGS表示兼容，且与PLYs和FreeTimeGS基线相比，文件大小减少超过90%，PSNR损失很小。TSOG为4DGS内容的高效表示和传输提供了通用格式。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.28320v1",
+      "source": "arxiv",
+      "title": "AdaAnchor4D: Anchor-Conditioned Spatiotemporal Feature Aggregation for Monocular UAV 4D Reconstruction",
+      "abstract": "Monocular UAV videos provide valuable observations for dynamic reconstruction of complex urban scenes. However, such scenes exhibit pronounced spatiotemporal heterogeneity: different regions follow distinct temporal activity patterns, while the motion states of some dynamic regions may further evolve over time. Although dynamic Gaussian methods based on decomposed shared spatiotemporal feature fields have achieved efficient and accurate reconstruction in object-centric or relatively compact scenes, their commonly adopted fixed plane-wise feature combination mechanisms are less suited to the heterogeneous local dynamics of UAV scenes, often leading to ghosting artifacts and blurred dynamic details. To address this challenge, we propose AdaAnchor4D, an adaptive anchor deformation framework for monocular UAV dynamic scene reconstruction. At its core, Anchor-Conditioned Feature Aggregation (ACFA) adaptively aggregates shared spatiotemporal features using anchor-specific aggregation embeddings and temporal information, allowing different local units to obtain dynamic representations tailored to their local and temporal states. Decoupled Local Geometry Deformation (DLGD) separates anchor-state deformation from local Gaussian geometry deformation, while Density-Adaptive Coordinate Warping (DACW) reparameterizes feature-query coordinates according to the axis-wise anchor distributions, alleviating the mismatch between non-uniform geometric sampling and uniform grid parameterization. Experiments on UAV-Arc4D, VisDrone, and UAVDT show that AdaAnchor4D achieves higher rendering quality than representative dynamic Gaussian methods while maintaining real-time rendering performance. The code will be made publicly available.",
+      "authors": [
+        "Peiyi Xu",
+        "Junpeng Zhang",
+        "Guanbin Li",
+        "Ronghua Shang",
+        "Mingtao Feng",
+        "Le Dong",
+        "Weisheng Dong",
+        "Guangming Shi",
+        "Jie Feng"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-30T14:55:06+00:00",
+      "link": "https://arxiv.org/pdf/2607.28320v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "dynamic Gaussian reconstruction with spatiotemporal feature aggregation for novel view synthesis",
+      "llm_evidence_cn": "动态高斯重建方法，可服务于新视角合成",
+      "llm_evidence": "动态高斯重建方法，可服务于新视角合成",
+      "canonical_evidence": "动态高斯重建方法，可服务于新视角合成",
+      "llm_tldr_en": "AdaAnchor4D proposes anchor-conditioned spatiotemporal feature aggregation for monocular UAV 4D reconstruction with 3D Gaussian Splatting, improving dynamic detail.",
+      "llm_tldr_cn": "针对无人机单目视频中复杂城市场景的动态重建，AdaAnchor4D发现固定平面特征组合不适应局部动态异质性。它提出锚点条件化的时空特征聚合机制，结合动态高斯方法高效建模不同区域的不同时序模式，减少鬼影和模糊。该方法在动态城市场景重建中取得了更清晰的结果。",
+      "llm_tldr": "针对无人机单目视频中复杂城市场景的动态重建，AdaAnchor4D发现固定平面特征组合不适应局部动态异质性。它提出锚点条件化的时空特征聚合机制，结合动态高斯方法高效建模不同区域的不同时序模式，减少鬼影和模糊。该方法在动态城市场景重建中取得了更清晰的结果。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
