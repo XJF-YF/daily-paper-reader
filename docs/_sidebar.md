@@ -1,6 +1,9 @@
 * <a class="dpr-sidebar-root-link" href="#/">首页</a>
 * <a class="dpr-sidebar-root-link dpr-sidebar-noactive-link" href="javascript:void(0)" data-dpr-hash="#/tutorial/README">使用教程</a>
 * Daily Papers
+  * 2026-08-01 <!--dpr-date:20260801-->
+    * 速读区
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202608/01/2607.26595v1-spatialq-understanding-3d-gaussian-splatting-scene-quality-via-visual-based-mllm" data-sidebar-item="{&quot;title&quot;: &quot;SpatialQ: Understanding 3D Gaussian Splatting Scene Quality via Visual-based MLLM&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2607.26595v1-spatialq-understanding-3d-gaussian-splatting-scene-quality-via-visual-based-mllm&quot;, &quot;score&quot;: &quot;6.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;pano-dgs&quot;}], &quot;evidence&quot;: &quot;面向新视角合成的3DGS场景质量评估&quot;}">SpatialQ: Understanding 3D Gaussian Splatting Scene Quality via Visual-based MLLM</a>
   * 2026-07-31 <!--dpr-date:20260731-->
     * 精读区
       * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202607/31/2607.23758v1-roadvggt-road-structure-aware-feed-forward-road-surface-reconstruction" data-sidebar-item="{&quot;title&quot;: &quot;RoadVGGT: Road-Structure-Aware Feed-Forward Road Surface Reconstruction&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2607.23758v1-roadvggt-road-structure-aware-feed-forward-road-surface-reconstruction&quot;, &quot;score&quot;: &quot;8.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;pano-dgs&quot;}], &quot;evidence&quot;: &quot;基于前馈高斯溅射的多视角场景重建，与3DGS新视图合成直接相关。&quot;}">RoadVGGT: Road-Structure-Aware Feed-Forward Road Surface Reconstruction</a>
