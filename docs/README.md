@@ -6,24 +6,26 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-01
-- 运行时间：2026-08-01 20:49:26 UTC
+- 最新运行日期：2026-08-02
+- 运行时间：2026-08-02 21:06:13 UTC
 - 运行状态：成功
 - 本次总论文数：1
 - 精读区：0
 - 速读区：1
 
 ### 今日简报（AI）
-今日速读1篇，聚焦3D高斯溅射场景质量评估新方法。值得关注：视觉MLLM用于空间理解，但得分仅6.0，表现中规中矩。建议普通读者暂缓深挖，先关注后续优化版本。
-- 详情：[/202608/01/README](/202608/01/README)
+今日速读1篇论文，聚焦轻量级单目开放词汇3D高斯方法。  
+值得关注的方向是将几何与语义解耦，以降低模型复杂度并保持开放词汇能力。  
+若感兴趣，可进一步对比其与现有3D场景理解方法的效率与精度差异。
+- 详情：[/202608/02/README](/202608/02/README)
 
 ### 精读区论文标签
 - 本次无精读推荐。
 
 ### 速读区论文标签
-1. [SpatialQ: Understanding 3D Gaussian Splatting Scene Quality via Visual-based MLLM](/202608/01/2607.26595v1-spatialq-understanding-3d-gaussian-splatting-scene-quality-via-visual-based-mllm)  
+1. [MonoVoc: Decoupling Geometry and Semantics for Lightweight Monocular Open-Vocabulary 3D Gaussians](/202608/02/2607.28300v1-monovoc-decoupling-geometry-and-semantics-for-lightweight-monocular-open-vocabulary-3d-gaussians)  
    标签：评分：6.0/10、query:pano-dgs
-   evidence：面向新视角合成的3DGS场景质量评估
+   evidence：利用单目视频通过高斯泼溅重建3D场景，与基于高斯的场景重建相关
 
 
 <div class="dpr-home-promo-card">

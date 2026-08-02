@@ -1,0 +1,24 @@
+{
+  "label": "2026-08-02",
+  "date": "2026-08-02",
+  "generated_at": "2026-08-02T21:06:18",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202608/02/2607.28300v1-monovoc-decoupling-geometry-and-semantics-for-lightweight-monocular-open-vocabulary-3d-gaussians",
+      "section": "quick",
+      "title_en": "MonoVoc: Decoupling Geometry and Semantics for Lightweight Monocular Open-Vocabulary 3D Gaussians",
+      "authors": "Pouya Ardekhani, Zahra Dehghanian, Morteza Abolghasemi, Hamid R. Rabiee",
+      "date": "2026-07-30",
+      "pdf": "https://arxiv.org/pdf/2607.28300v1",
+      "score": "6.0",
+      "evidence": "利用单目视频通过高斯泼溅重建3D场景，与基于高斯的场景重建相关",
+      "tldr": "开放词汇3D场景理解依赖多视角输入、逐场景优化与密集语言特征，存在采集不便、开销大、存储昂贵等瓶颈。本文提出MonoVoc，一种免训练管线，显式解耦几何重建与语义集成：仅需单目视频，先独立重建几何，再通过轻量模块化后处理注入对象级语义嵌入。该架构在Replica数据集上维持了高渲染保真度与竞争力分割精度，同时将内存占用较SOTA降低一个数量级，为单目日常视频上的开放词汇3D交互提供了高效可扩展方案。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Open vocabulary 3D scene understanding is essential for next-generation interactive systems, empowering users to intuitively query and navigate reconstructed environments using natural language. However, current 3D Gaussian frameworks are often bottlenecked by restrictive multiview capture requirements, costly scene-specific optimization, and the massive memory overhead of storing dense language features. We present a novel, training-free pipeline that fundamentally reimagines this paradigm by explicitly decoupling 3D geometric reconstruction from semantic integration. Given a standard monocular video sequence as input, our method efficiently outputs a compact, highly interpretable, and fully searchable object-level semantic Gaussian map. Rather than entangling heavy language embeddings within the mapping loop, we extract geometry independently and ground semantics through a lightweight, modular post-processing framework. Extensive evaluations on the Replica dataset demonstrate that this decoupled architecture preserves strong rendering fidelity and competitive segmentation accuracy. Crucially, by replacing dense per-Gaussian storage with modular, object-level semantic embeddings, our approach delivers an order-of-magnitude reduction in memory usage compared to SOTA baselines. This provides a highly efficient, scalable, and practical solution for open-vocabulary 3D retrieval and question answering directly from everyday monocular video.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

@@ -1,6 +1,9 @@
 * <a class="dpr-sidebar-root-link" href="#/">首页</a>
 * <a class="dpr-sidebar-root-link dpr-sidebar-noactive-link" href="javascript:void(0)" data-dpr-hash="#/tutorial/README">使用教程</a>
 * Daily Papers
+  * 2026-08-02 <!--dpr-date:20260802-->
+    * 速读区
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202608/02/2607.28300v1-monovoc-decoupling-geometry-and-semantics-for-lightweight-monocular-open-vocabulary-3d-gaussians" data-sidebar-item="{&quot;title&quot;: &quot;MonoVoc: Decoupling Geometry and Semantics for Lightweight Monocular Open-Vocabulary 3D Gaussians&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2607.28300v1-monovoc-decoupling-geometry-and-semantics-for-lightweight-monocular-open-vocabulary-3d-gaussians&quot;, &quot;score&quot;: &quot;6.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;pano-dgs&quot;}], &quot;evidence&quot;: &quot;利用单目视频通过高斯泼溅重建3D场景，与基于高斯的场景重建相关&quot;}">MonoVoc: Decoupling Geometry and Semantics for Lightweight Monocular Open-Vocabulary 3D Gaussians</a>
   * 2026-08-01 <!--dpr-date:20260801-->
     * 速读区
       * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202608/01/2607.26595v1-spatialq-understanding-3d-gaussian-splatting-scene-quality-via-visual-based-mllm" data-sidebar-item="{&quot;title&quot;: &quot;SpatialQ: Understanding 3D Gaussian Splatting Scene Quality via Visual-based MLLM&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2607.26595v1-spatialq-understanding-3d-gaussian-splatting-scene-quality-via-visual-based-mllm&quot;, &quot;score&quot;: &quot;6.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;pano-dgs&quot;}], &quot;evidence&quot;: &quot;面向新视角合成的3DGS场景质量评估&quot;}">SpatialQ: Understanding 3D Gaussian Splatting Scene Quality via Visual-based MLLM</a>
