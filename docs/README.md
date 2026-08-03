@@ -6,26 +6,26 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-02
-- 运行时间：2026-08-02 21:06:13 UTC
+- 最新运行日期：2026-08-03
+- 运行时间：2026-08-03 21:27:58 UTC
 - 运行状态：成功
 - 本次总论文数：1
-- 精读区：0
-- 速读区：1
+- 精读区：1
+- 速读区：0
 
 ### 今日简报（AI）
-今日速读1篇论文，聚焦轻量级单目开放词汇3D高斯方法。  
-值得关注的方向是将几何与语义解耦，以降低模型复杂度并保持开放词汇能力。  
-若感兴趣，可进一步对比其与现有3D场景理解方法的效率与精度差异。
-- 详情：[/202608/02/README](/202608/02/README)
+今日精读一篇高分论文，聚焦4D高斯泼溅的观测间隙填补问题。  
+最值得关注的是《FillGS》提出的视点-时间选择与生成式精修结合方案，可有效提升动态场景重建质量。  
+建议普通读者后续关注该方法的实际渲染效果与计算开销对比。
+- 详情：[/202608/03/README](/202608/03/README)
 
 ### 精读区论文标签
-- 本次无精读推荐。
+1. [FillGS: Filling Observation Gaps in 4D Gaussian Splatting via Viewpoint-Time Selection and Generative Refinement](/202608/03/2607.29284v1-fillgs-filling-observation-gaps-in-4d-gaussian-splatting-via-viewpoint-time-selection-and-generative-refinement)  
+   标签：评分：8.0/10、query:pano-dgs
+   evidence：面向4D高斯泼溅的稀疏视角选择与生成式细化，对全景覆盖有借鉴意义
 
 ### 速读区论文标签
-1. [MonoVoc: Decoupling Geometry and Semantics for Lightweight Monocular Open-Vocabulary 3D Gaussians](/202608/02/2607.28300v1-monovoc-decoupling-geometry-and-semantics-for-lightweight-monocular-open-vocabulary-3d-gaussians)  
-   标签：评分：6.0/10、query:pano-dgs
-   evidence：利用单目视频通过高斯泼溅重建3D场景，与基于高斯的场景重建相关
+- 本次无速读推荐。
 
 
 <div class="dpr-home-promo-card">

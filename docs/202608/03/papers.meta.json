@@ -1,0 +1,24 @@
+{
+  "label": "2026-08-03",
+  "date": "2026-08-03",
+  "generated_at": "2026-08-03T21:28:04",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202608/03/2607.29284v1-fillgs-filling-observation-gaps-in-4d-gaussian-splatting-via-viewpoint-time-selection-and-generative-refinement",
+      "section": "deep",
+      "title_en": "FillGS: Filling Observation Gaps in 4D Gaussian Splatting via Viewpoint-Time Selection and Generative Refinement",
+      "authors": "Takashi Otonari, Toshihiko Yamasaki",
+      "date": "2026-07-31",
+      "pdf": "https://arxiv.org/pdf/2607.29284v1",
+      "score": "8.0",
+      "evidence": "面向4D高斯泼溅的稀疏视角选择与生成式细化，对全景覆盖有借鉴意义",
+      "tldr": "4D高斯泼溅在视角覆盖不足时，时空区域稀疏观测导致伪影。现有方法依赖启发式选择虚拟视角，难以主动探索稀疏区域。本文提出基于渲染敏感性和运动感知观测密度的虚拟视角选择策略，优先补充稀疏区域，并过滤与真实观测冲突或含生成伪影的区域后微调。在专门设计的数据分割上验证，显著减少伪影，提升重建质量。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "4D Gaussian Splatting (4DGS) can render dynamic scenes photorealistically. However, with limited viewpoint coverage, some spatiotemporal regions remain sparsely observed, leading to artifacts, particularly in scenes with large motion. Existing approaches leveraging generative models rely on heuristic virtual-viewpoint selection before refining rendered views. As a result, they cannot actively explore such sparsely observed regions. To address this issue, we propose a pipeline that actively selects spatiotemporal virtual viewpoints to improve 4DGS reconstruction. Our method selects virtual viewpoints for generative enhancement based on the rendering sensitivity and motion-aware observation density of 4D Gaussians, prioritizing views that alleviate observation sparsity. In the refined images, we filter out regions that conflict with captured observations or are likely to contain generative artifacts and then fine-tune 4DGS using only the reliable regions. We evaluate our method on multi-view video benchmarks using new train/test splits designed to induce observation gaps. Results show consistent improvements over prior viewpoint selection strategies and fine-tuning methods in both qualitative and quantitative evaluations, while reducing artifacts.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

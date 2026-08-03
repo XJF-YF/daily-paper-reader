@@ -1,0 +1,52 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-03T21:26:33.519635+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 0,
+    "quick_skim_target": 11,
+    "quick_selected": 0
+  },
+  "deep_dive": [
+    {
+      "id": "2607.29284v1",
+      "source": "arxiv",
+      "title": "FillGS: Filling Observation Gaps in 4D Gaussian Splatting via Viewpoint-Time Selection and Generative Refinement",
+      "abstract": "4D Gaussian Splatting (4DGS) can render dynamic scenes photorealistically. However, with limited viewpoint coverage, some spatiotemporal regions remain sparsely observed, leading to artifacts, particularly in scenes with large motion. Existing approaches leveraging generative models rely on heuristic virtual-viewpoint selection before refining rendered views. As a result, they cannot actively explore such sparsely observed regions. To address this issue, we propose a pipeline that actively selects spatiotemporal virtual viewpoints to improve 4DGS reconstruction. Our method selects virtual viewpoints for generative enhancement based on the rendering sensitivity and motion-aware observation density of 4D Gaussians, prioritizing views that alleviate observation sparsity. In the refined images, we filter out regions that conflict with captured observations or are likely to contain generative artifacts and then fine-tune 4DGS using only the reliable regions. We evaluate our method on multi-view video benchmarks using new train/test splits designed to induce observation gaps. Results show consistent improvements over prior viewpoint selection strategies and fine-tuning methods in both qualitative and quantitative evaluations, while reducing artifacts.",
+      "authors": [
+        "Takashi Otonari",
+        "Toshihiko Yamasaki"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-31T10:57:07+00:00",
+      "link": "https://arxiv.org/pdf/2607.29284v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "sparse viewpoint selection and generative refinement for 4DGS, useful for panoramic coverage",
+      "llm_evidence_cn": "面向4D高斯泼溅的稀疏视角选择与生成式细化，对全景覆盖有借鉴意义",
+      "llm_evidence": "面向4D高斯泼溅的稀疏视角选择与生成式细化，对全景覆盖有借鉴意义",
+      "canonical_evidence": "面向4D高斯泼溅的稀疏视角选择与生成式细化，对全景覆盖有借鉴意义",
+      "llm_tldr_en": "FillGS actively selects spatiotemporal virtual viewpoints based on rendering sensitivity and observation density, then uses generative refinement to fill gaps in 4D Gaussian Splatting, improving dynamic scene rendering.",
+      "llm_tldr_cn": "针对4D高斯泼溅在多视角覆盖不足时出现伪影的问题，提出FillGS管线。它基于渲染敏感度和运动感知观测密度主动选择时空虚拟视角，并利用生成式细化补齐稀疏区域。在动态场景重建上减少伪影，这对全景360度场景的稀疏视角重建具有直接借鉴意义。",
+      "llm_tldr": "针对4D高斯泼溅在多视角覆盖不足时出现伪影的问题，提出FillGS管线。它基于渲染敏感度和运动感知观测密度主动选择时空虚拟视角，并利用生成式细化补齐稀疏区域。在动态场景重建上减少伪影，这对全景360度场景的稀疏视角重建具有直接借鉴意义。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "find papers on 3D Gaussian Splatting for panoramic 360 degree scene reconstruction",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": []
+}
