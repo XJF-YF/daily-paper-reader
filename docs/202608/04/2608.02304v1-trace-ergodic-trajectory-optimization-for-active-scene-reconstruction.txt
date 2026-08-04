@@ -1,0 +1,552 @@
+Title: TRACE: Ergodic Trajectory Optimization for Active Scene Reconstruction
+
+URL Source: https://arxiv.org/pdf/2608.02304v1
+
+Published Time: Tue, 04 Aug 2026 02:51:35 GMT
+
+Number of Pages: 11
+
+Markdown Content:
+# TRACE: Ergodic Trajectory Optimization for Active Scene Reconstruction 
+
+## Ziyue Zheng 1∗, Linli Shi 1∗, Bingkun He 1, Wen Jiang 2, Ziyun Wang 1†
+
+> 1
+
+Johns Hopkins University, USA 
+
+> 2
+
+University of Pennsylvania, USA {zzheng60, lshi42, bhe15}@jh.edu, wenjiang@seas.upenn.edu, claude.w@jhu.edu 
+
+> *
+
+These authors contributed equally. †Corresponding author. Problem of NBV  
+
+> Baseline (NBV) Ours (Continuous)
+
+From Sparse Views to Continuous Information Gathering NBV (Dynamic -Ignorant) Ours (Dynamic -Aware) 
+
+From Sparse Views to Feasible Trajectory     
+
+> Jerky turns
+> Worse PSNR
+> ✅Feasible Traj .
+> ✅Better PSNR
+> Baseline (NBV) Ours
+
+# ~1.5dB PSNR Gain on Replica 
+
+Results        
+
+> Blind to
+> Robot Dynamics
+> Information Lost
+> during Transmission
+> Sparse NBVs
+> miss coverage
+> Viewpoint -only
+> planning yields
+> infeasible motions
+> RGB -D Sampling Build Information Map Ergodic Search Path
+> Agent Transmission &Sample
+
+Ergodic Information Gathering   
+
+> Dwell Time ∝information, yielding smooth feasible trajectories.
+
+Our Method: TRACE 
+
+> 🐢 Dwell
+> 🐇 Skim Map
+> Update
+
+Figure 1: From discrete viewpoints to ergodic active reconstruction. Next-Best-View (NBV) planners discard information between sparse viewpoints and ignore robot dynamics, producing jerky, infeasible trajectories. Our method instead constructs an information map from streaming RGB-D observations and plans an ergodic search path that continuously gathers information while respecting the robot’s dynamic. This yields smoother trajectories, denser coverage, and 1.5 dB PSNR gain. 
+
+Abstract 
+
+Existing active reconstruction systems with Gaussian-splatting maps select observations greedily, optimizing a sin-gle next-best-view (NBV) at each step and connecting the chosen views by short-horizon path planning. This greedy decoupling disregards the global structure of scene informa-tion, producing inefficient trajectories that waste sensing ca-pacity in transit between selected views. In this work, we study active reconstruction as an ergodic coverage problem: the time-averaged spatial statistics of the sensor trajectory should match a target information distribution induced by the current map. Our approach derives this target distribution on-line from uncertainty and visibility, and calculates ergodic trajectories via a kernel-ergodic horizon planner with gradi-ent flow and footprint depletion, closing the loop between mapping and trajectory optimization. We thoroughly eval-uate TRACE on the Replica dataset against the Next-Best-View (NBV) baselines, improving PSNR by 1.5 dB. Code :https://github.com/spikelab-jhu/trace-active-reconstruction. 
+
+## Introduction 
+
+Active 3D reconstruction recovers the geometry of an un-known scene by moving a sensor along a sequence of infor-mative viewpoints, which has long been a core problem in robotic perception (Zeng et al. 2020; Isler et al. 2016; Bircher et al. 2016). In such tasks, the robot incrementally builds a high-fidelity model of the scene from its own streaming ob-servations. Recent advances in differentiable rendering, par-ticularly 3D Gaussian Splatting (GS) (Kerbl et al. 2023) and its surface-aligned variant 2DGS (Huang et al. 2024), have raised the achievable reconstruction quality dramatically. The bottleneck has shifted from the map representation to the planner (Jin et al. 2025; Chen et al. 2025; Li et al. 2025): under finite budgets of time, energy, and motion, the agent must decide how to spend each meter of motion across an un-known scene. Therefore, the reconstruction quality depends on both map representations and how the agent chooses to distribute its limited motion budget across the scene. arXiv:2608.02304v1 [cs.RO] 3 Aug 2026 A common paradigm of active reconstruction with Gaussian-splatting maps is to plan view-by-view: at each step, the planner scores candidate viewpoints by an information-gain proxy, commits to the highest-scoring pose, and connects it to the current location by short-horizon path planning (Jin et al. 2025; Chen et al. 2025). Recent work introduces a hierarchy over a topological subgraph, but each step still commits to a single node and routes to it via shortest-path planning (Li et al. 2025). However, this formulation decouples viewpoint selection from trajectory planning, and the motion between successive views serves only to move the sensor toward the next target rather than to acquire additional information. The decoupling has three main issues . First, viewpoint scoring is short-term : each de-cision commits to the locally most informative pose without anticipating where the sensor must subsequently travel. Sec-ond, the behaviors between selected views do not contribute to efficient information gathering . The resulting trajecto-ries are jagged, redundant, and biased toward isolated high-information viewpoints rather than uniform spatial coverage of the scene. Third, the trajectory formed by the sequence of planned views ignores real-world constraints such as controllability, actuator limits, and energy efficiency, often producing dynamically infeasible trajectories. In particular, discrete search algorithms used in Next-Best-View (NBV) planning typically optimize over viewpoints rather than ex-ecutable motions, and therefore cannot directly account for the robot’s continuous-time dynamics. In this work, we aim to address these issues by proposing the first active 3D reconstruction method that plans contin-uous and control-feasible trajectories using ergodic search. Instead of modeling the problem as a planning over a set of next poses, we directly optimize a trajectory over the con-structed information distribution based on the current state of mapping and exploration. Specifically, our planner optimizes the path so that its time-averaged spatial statistics match a tar-get information distribution: the time the trajectory spends in any region is proportional to the information density there. Instantiating this formulation on a live Gaussian-splatting map raises three technical challenges. First, classical er-godic search assumes a target distribution specified a priori, whereas in active reconstruction the information density is implicit in the map state, encoded in per-Gaussian confidence and evolving occupancy, and must be re-derived online as ob-servations are integrated. Second, the informative regions are scene surfaces that the sensor cannot occupy: the trajectory must remain in free space while its viewing footprint, rather than its position, covers the high-information surfaces. Third, the marginal value of observing a surface diminishes under repeated coverage within a horizon, a time-varying effect that a static target distribution cannot capture. The target information distribution is derived online from per-Gaussian uncertainty and visibility, while the trajectory is computed by a kernel-ergodic horizon planner with gradient-flow updates and a footprint-depletion mechanism that sup-presses re-coverage. Our contributions are summarized as: 
+
+• To the best of our knowledge, we are the first to formu-late active reconstruction with Gaussian-splatting maps as a trajectory-level ergodic coverage problem, replacing greedy viewpoint selection with continuous optimization over dynamically feasible trajectories. 
+
+• We adapt kernel-based ergodic search to surface-based reconstruction by diffusing surface information into traversable free space and introducing footprint-aware depletion and gaze objectives for efficient coverage and camera orientation. 
+
+• Under the same mapper, budget, and evaluation protocol, TRACE improves over the strongest NBV baseline by 
+
+1.5 dB PSNR across eight Replica scenes and supports direct trajectory execution on quadruped and manipulator (supplementary) without an intermediate path planner. 
+
+## Related Work 
+
+Active 3D Reconstruction 
+
+Active 3D reconstruction has been studied for decades under the next-best-view (NBV) formulation (Connolly 1985; Isler et al. 2016; Bircher et al. 2016; Delmerico et al. 2018): at each step, the agent selects the viewpoint expected to max-imize a chosen information-gain criterion. Sampling-based informative path planning extends NBV to entire trajecto-ries (Hollinger and Sukhatme 2014) and long-horizon tree search (Best et al. 2019), while multi-stage aerial pipelines couple it to multi-view-stereo reconstruction (Hepp, Nießner, and Hilliges 2018). Frontier-based exploration (Yamauchi 1997) and occupancy mapping (Hornung et al. 2013) pro-vide complementary geometric drivers, and SCONE (Gué-don, Monasse, and Lepetit 2022) optimizes surface coverage via Monte Carlo volumetric integration. The emergence of differentiable rendering— NeRF (Mildenhall et al. 2020) and subsequent radiance-field variants (Barron et al. 2022; Müller et al. 2022; Fridovich-Keil et al. 2022; Chen et al. 2022)—extended active reconstruction to learned neural map representations. NARUTO (Feng et al. 2024), ActiveNeRF (Pan et al. 2022), ActiveImplicit (Yan et al. 2023), and NeU-NBV (Jin et al. 2023) score viewpoints by NeRF uncertainty or implicit-occupancy entropy. FisherRF (Jiang, Lei, and Daniilidis 2024) uses Fisher information over radiance-field parameters; NVF (Xue et al. 2024) composites position-based uncertainty into camera-ray uncertainty; Active Neural Mapping (Yan, Yang, and Zha 2023) measures neural variability under weight perturbation; and Siming et al. (2024) maximize mutual information through agenerative NeRF model. GenNBV (Chen et al. 2024) trains a generalizable RL policy over a 5-DoF action space, while ACE-NBV (Zhang et al. 2023) selects views that improve grasp quality. Recent Gaussian-splatting maps (Kerbl et al. 2023; Huang et al. 2024) have prompted dedicated active-GS planners. ActiveGS (Jin et al. 2025), ActiveGAMER (Chen et al. 2025), and ActiveSplat (Li et al. 2025) score viewpoints by per-primitive confidence, rendering-based information gain, or frontier cues; ActiveSplat further introduces a local-vs-global hierarchy over a topological subgraph. GauSS-MI (Xie et al. 2025) introduces Shannon mutual informa-tion over Gaussian-splat appearance, POp-GS (Wilson et al. 2025) reframes information gain through P-Optimality, and Active3D (Li, Li, and Lee 2026) fuses implicit and explicit representations with hierarchical uncertainty quantification. These methods share a common structure: at each step, the planner commits to a best viewpoint and connects it to the current pose by short-horizon path planning, producing tra-jectories at the viewpoint level rather than the trajectory level. 
+
+Ergodic Coverage for Robotic Exploration 
+
+Ergodic search formulates information gathering as atrajectory-level coverage problem: the time-averaged spa-tial statistics of the trajectory should match a target infor-mation distribution (Mathew and Mezić 2011; Miller et al. 2016). This trajectory-centric formulation naturally accom-modates finite sensing budgets by optimizing information collection over the entire motion rather than selecting iso-lated viewpoints. To optimize the ergodic problem, a range of methods optimize the ergodic objective via spectral multi-scale coverage with Fourier analysis (Mathew and Mezić 2011), Kullback–Leibler divergence (Abraham, Prabhakar, and Murphey 2021), kernel-based ergodic metrics (Sun et al. 2025), flow matching (Sun, Pinosky, and Murphey 2025), receding-horizon control (Mavrommati et al. 2017), poten-tial field approaches (Ivić, Crnković, and Mezić 2016), and LQR-based optimization (Miller and Murphey 2013). Subse-quent work has extended the framework along several axes, including time-optimal ergodic search (Dong, Berger, and Abraham 2024), dynamic sensor footprints (Zheng et al. 2025), probabilistic connectivity (Liu and Ren 2025), ma-nipulation (Shetty, Silvério, and Calinon 2022), target local-ization (Mavrommati et al. 2017) and coverage in constrained domains (Ayvali, Salman, and Choset 2017). Despite these advances, most of these methods typically assume the target distribution is parametrically given a priori from a model of expected information density. In contrast, we derive the target distribution online from a live 2DGS map, where the information density is implicit in per-Gaussian uncertainty and evolving visibility geometry. To our knowledge, this is the first ergodic trajectory optimization formulation for active reconstruction with Gaussian-splatting maps. 
+
+## Method 
+
+We instantiate the formulation of Sec. as a horizon-based ergodic trajectory optimization driven by online 2DGS map. Sec. formalizes the problem; Sec. constructs the target information distribution from the map state; Sec. optimizes a kernel-ergodic trajectory by gradient descent on a footprint-depleting information field. 
+
+Problem Formulation 
+
+We consider the problem of active 2D Gaussian-surfel (2DGS) mapping: an autonomous agent equipped with an RGB-D sensor incrementally builds a 2DGS map M of an unknown bounded scene Ω ⊂ R3 through a sequence of self-selected viewpoints. We adopt the 2DGS representation for its surface-aligned geometry, which directly supports the mesh-quality metrics commonly used to evaluate active re-construction (Huang et al. 2024). The sensor is modeled as a view cone, rotationally symmetric about its optical axis, Unexplored Frontier Free Occupied GS Surface w /  
+
+> High Confidence
+> H
+> L
+> GS Surface w /
+> Low Confidence
+> Occupied but
+> Unbuilt Surface Planed Path Camera Pose
+> when Sample
+> Begin
+> End
+
+Figure 2: 2D illustration of a single planning horizon. Left: voxel classification and our planned path. Right: the corresponding information-map heatmap (Sec. ). The plan-ner jointly optimizes the trajectory, allocating sampling effort proportional to the information distribution, dwelling longer and sampling more densely in high-information regions. so its roll is immaterial and held fixed. At each replan-ning step (horizon) t, the planner selects a K-step trajectory 
+
+τt = ( p1 
+
+> t
+
+, . . . , pKt ) ∈ SE (3) K , with positions xkt ∈ R3
+
+and orientations determined by yaw and pitch. The trajec-tory is parameterized by control ut ∈ RK×5 (position ve-locity, yaw rate, pitch rate) cumulatively integrated under single-integrator dynamics (matching Go2’s interface). The supplementary shows a more complex case on FR3. After executing the full horizon, the agent integrates new RGB-D observations into Mt and re-plans with u warm-started from the previous optimization. Although the voxel map is updated during execution, the planning objective re-mains fixed until the next horizon. Formally, each replanning step solves 
+
+τ ⋆t = arg min 
+
+> τt∈T t
+
+Jt(τt; Mt, Vt), (1) where Tt is the feasible-trajectory set in horizon t (collision-free, bounded step size) and Jt is the ergodic optimal-control objective of Sec. , defined over a target information distri-bution ϕt derived online from the current map (Sec. ). In practice we relax the hard constraints defining Tt into the soft penalties of Eq. (7) and optimize the resulting objective over the controls. 
+
+Information Map 
+
+Ergodic search requires a target information distribution to guide trajectory planning. In our task, ϕt (information map at horizon t), evolves as new observations are integrated. To introduce the information map, we first present map repre-sentation design. We follow the hybrid map representation of ActiveGS (Jin et al. 2025): a 2DGS Map Mt is used for rendering, while a voxel map Vt represents the occupancy probability. GS Map Mt is trained and updated at the end of each horizon, whereas the voxel map Vt is updated on the fly following the approach of OctoMap (Hornung et al. 2013). For brevity we suppress the dependence on (Mt, Vt) in the notation below; all fields are evaluated at the current map state. For each voxel v in Vt, the raw information value is 
+
+ϕraw  
+
+> t
+
+(v) = αu 1unexp (v) + αf 1front (v) + 
+
+αb 1unbuilt (v) + β  1 − c(v) 1low (v), (2) Here 1unexp (v), 1front (v), and 1unbuilt (v) indicate, re-spectively, voxels no depth ray has traversed, free voxels bordering unexplored space, and voxels Vt deems occupied but holding no Gaussian of Mt. Since Vt updates on exe-cution but Mt only at horizon boundaries, known-occupied voxels may still hold no Gaussian; 1unbuilt draws the sen-sor back to them and reduces holes in the GS map early in the mission. For the confidence term, Gv ⊆ M t collects the Gaussians whose centers fall in voxel v, γg ∈ [0 , 1] is the per-primitive rendering confidence inherited from ActiveGS (Jin et al. 2025), and c(v) = 1 
+
+> |G v|
+
+P 
+
+> g∈G v
+
+γg is their mean. Intu-itively, γg grows with the number and angular diversity of viewpoints that have already observed Gaussian g, so 1−c(v)
+
+is large precisely on voxels whose surface fit is still weakly constrained. The gate 1low (v) = 1 on voxels that contain Gaussians but are not yet well built (as shown in Fig. 3); well-built voxels contribute no mass and stop attracting the sensor. The non-negative weights αu, α f , α b, β control, re-spectively, exploration of unseen volume, expansion of the frontier, attention to visible-but-unmodeled surfaces, and re-finement of low-confidence Gaussians. We obtain ϕt by box-filtering ϕraw  
+
+> t
+
+, masking it to the ob-served collision-free region of Vt, and normalizing to a prob-ability distribution. Masking is what makes the ergodic target realizable: it projects information mass from occupied sur-faces onto the reachable free space the sensor can actually occupy. The gaze reward instead uses the unmasked ϕraw 
+
+> t
+
+to preserve absolute scale. Both fields are sampled at con-tinuous locations by trilinear interpolation, so all terms are differentiable in the trajectory. 
+
+Kernel-Ergodic Trajectory with Sensor Footprint Depletion 
+
+We plan the trajectory with the kernel-ergodic metric of Sun et al. (2025), which drives a trajectory’s time-averaged posi-tions to match a target distribution ϕ. Active reconstruction violates its central premise: the high-ϕ mass lies on scene sur-faces the robot cannot occupy, so no collision-free trajectory can match it. We resolve this in two ways. First, we project 
+
+the target into free space—the diffusion and masking of Sec. , so the body covers reachable space rather than the surfaces themselves. Second, we add two footprint-aware mechanisms on top of the position-based metric: a footprint-overlap de-pletion term (Eq. (3)) that discourages re-observing covered surfaces, and a footprint gaze reward (Eq. (5)) that aims the camera at high-ϕ surfaces while the body stays in free space. Unlike Zheng et al. (2025), which replaces the point-sensor delta with a footprint distribution, our footprint enters only through the depletion factor while the kernel-ergodic met-ric stays position-based, and we derive ϕ online from a live 2DGS map rather than a fixed target. Fig. 3 illustrates the design on an object-centric example. Info map 
+
+> Under -observed
+> Planner
+
+Figure 3: From reconstruction state to information dis-tribution to ergodic coverage. The current reconstruction has well-built and under-built regions (top left); the voxel map discretizes this state, and the under-built region carries high information (bottom left); Right: the induced infor-mation distribution over the object surface and a continu-ous trajectory whose view cones dwell on high-information regions—the time spent looking at a region is proportional to its information density. 
+
+Time-varying ϕ via footprint-overlap depletion. In ac-tive sensing, the marginal value of observing a region di-minishes once prior visits have already covered it; ϕ should therefore decay at already-covered locations as the trajec-tory progresses. We model this decay by replacing the static evaluation ϕt(xkt ) with a coverage-discounted value 
+
+ϕkt ≡ ϕt(xkt ) Y
+
+> j<k
+
+ 1 − η · vjk 
+
+, (3) where η ∈ (0 , 1) is the per-visit discount rate and vjk ∈ [0 , 1] 
+
+is a soft footprint-overlap kernel between waypoints j, k . We approximate the sensor footprint at waypoint k by D points 
+
+f kt,d = xkt + d zkt sampled along the optical axis zkt at depths 
+
+{d1, . . . , d D }, each a candidate surface location at distance 
+
+d from the camera; the overlap kernel is then 
+
+vjk = max  
+
+> dk, d j
+
+exp − ∥f kt,d k − f jt,d j ∥2
+
+2 σ2fp 
+
+!
+
+. (4) This serves as a differentiable proxy for surface co-visibility: two waypoints whose central rays pass through nearby ob-servable points are penalized for re-observing the same re-gion, with σfp acting as an effective tolerance that softens each ray into a cylinder. The depletion product in Eq. (3) runs over the waypoints of the current horizon; re-coverage 
+
+across horizons is suppressed separately, by re-deriving ϕt
+
+from the updated map at every horizon boundary, where well-built voxels drop out of Eq. (2). 
+
+Footprint-based information attraction. The depletion-aware ergodic metric still evaluates ϕ at waypoint xkt , so its gradient attracts the robot toward high-ϕ positions, which in reconstruction lie on or behind surfaces. We complement this with a footprint reward that attracts the camera’s footprint to high-ϕ surfaces, while the robot position remains governed Table 1: Quantitative comparison of rendering quality on the Replica dataset. We report PSNR, SSIM, and LPIPS across all scenes. Best, second-best, and third-best results are highlighted in red , orange , and yellow , respectively. 
+
+Methods Metrics Of0 Of2 Of3 Of4 R0 R1 R2 H0 
+
+NARUTO PSNR ↑ 32.99 27.60 27.48 30.28 28.41 26.77 29.75 25.49 FisherRF PSNR ↑ 36.21 30.33 28.63 32.80 28.88 30.04 32.26 26.79 ActiveGS PSNR ↑ 36.78 31.68 32.16 34.08 29.93 31.74 32.35 32.04 
+
+Ours PSNR ↑ 38.36 32.81 33.79 34.92 31.55 32.84 34.70 33.69 
+
+ActiveGS SSIM ↑ 0.963 0.926 0.921 0.932 0.891 0.902 0.924 0.937 
+
+Ours SSIM ↑ 0.969 0.930 0.929 0.934 0.907 0.914 0.941 0.953 
+
+ActiveGS LPIPS ↓ 0.081 0.136 0.152 0.138 0.184 0.170 0.146 0.139 
+
+Ours LPIPS ↓ 0.066 0.117 0.143 0.122 0.158 0.151 0.118 0.110 
+
+by the ergodic metric and safety penalties. The reward aver-ages the raw information map ϕraw  
+
+> t
+
+(Eq. (2)) over the same footprint samples used by the depletion kernel, using the raw version to preserve absolute scale across horizons: 
+
+Lgaze (ut) = − 1
+
+KD 
+
+> K
+
+X
+
+> k=1
+> D
+
+X
+
+> d=1
+
+wk,d ϕraw  
+
+> t
+
+(f kt,d ), (5) where wk,d = exp  −κ d unsafe (f kt,d ) attenuates footprint samples in unobservable space. Here dunsafe (f ) is the dis-tance from f to the observed collision-free region of Vt: zero in free space and growing both inside obstacles and in the unobserved region behind them, so the reward never credits pointing at high-ϕ voxels visible only through a wall. 
+
+Full cost and finite-horizon trajectory optimization. 
+
+The depletion-aware ergodic metric is 
+
+Edep kernel (τt) = − 2
+
+K
+
+> K
+
+X
+
+> k=1
+
+ϕkt + 1
+
+K2 (6) 
+
+> K
+
+X
+
+> i,j =1
+
+exp − ∥xit − xjt ∥2
+
+2σ2
+
+!
+
+,
+
+where ϕkt is the depletion-discounted target value of Eq. (3) (information term) and the pairwise term repels nearby way-points toward uniform coverage (self-correlation term)—the two terms of the kernel-ergodic metric of Sun et al. (2025), now evaluated on the free-space-projected target of Sec. . The box-filter diffusion plays the mollifying role of the metric’s Gaussian kernel, so evaluating the diffused ϕt pointwise re-alizes the information term on a target the sensor can reach: when the diffusion width equals the kernel bandwidth this is the metric of Sun et al. (2025) exactly, and otherwise a free-space-projected kernel-ergodic objective. The full per-horizon cost combines the depletion-aware ergodic metric with the gaze reward, soft-barrier penalties 
+
+Lsafe for collisions, excessive step size, and out-of-bounds waypoints, and a quadratic control regularizer: 
+
+Jt(ut) = Edep kernel (τt(ut)) + λg Lgaze (ut)+ λs Lsafe (ut) + λr ∥ut∥2. (7) All terms are differentiable in ut; we optimize with Adam (Kingma and Ba 2017), warm-starting from the previous-horizon solution. The agent executes all K way-points before re-planning. 
+
+## Experiments 
+
+Implementation Details 
+
+Dataset and simulator. We evaluate TRACE on eight indoor scenes from the Replica dataset (Straub et al. 2019), follow-ing the active-reconstruction protocol of ActiveGS (Jin et al. 2025). All experiments use the Habitat simulator (Savva et al. 2019) with an RGB-D camera moving freely in R3 with yaw and pitch control , [60 ◦ × 60 ◦] FOV, 512 × 512 reso-lution, [0 .1, 5.0] m depth range, and Gaussian depth noise 
+
+σ = 0 .01 d. The world is discretized into a 20 cm voxel grid. 
+
+Real Robot Experiments. We deploy the identical planner on two physical platforms: a Unitree Go2 quadruped that reconstructs a room-scale scene, and an Franka FR3 arm that reconstructs an object-centric scene. Maps are trained on real RGB-D data. Sec. details the quadruped deployment; the manipulator result is in the supplementary material. 
+
+Training and planning schedule. All experiments run on a single RTX 5090. Each mission runs for a time budget of 
+
+300 s, accumulated as tmap + tplan + tfly , where tfly is cal-culated from the executed path length divided by a constant velocity of 1 m/s. Per horizon, the planner optimizes a 10 -step trajectory with Adam ( 40 iterations) warm-started from the previous solution; after execution, the Gaussian map is trained for 12 gradient steps on a mini-batch of 10 frames sampled along the executed path together with 10 frames drawn from the observation history. 
+
+Evaluation metrics. We report PSNR, SSIM, and LPIPS on a fixed set of 1000 test viewpoints sampled uniformly in each scene’s free space, averaged over 5 independent runs .Geometry is examined qualitatively in Sec. . All evaluation settings match primary baseline (Jin et al. 2025). 
+
+Baselines. We compare against ActiveGS (Jin et al. 2025), an NBV planner re-run in our pipeline under matched map-per, budget, and evaluation protocol (same as their setting). For completeness, Table 1 also reports NARUTO (Feng et al. 2024), and FisherRF (Jiang, Lei, and Daniilidis 2024) with numbers cited from Jin et al. (2025), which already estab-lished ActiveGS as the strongest of these earlier methods. Sampling-density ablations are described in Sec. . ActiveGS Ours 
+
+> ActiveGS
+> ActiveGS
+> Ours
+> Ours
+> ActiveGS
+> ActiveGS
+> ActiveGS
+> Ours
+> Ours
+> Ours
+
+Figure 4: Qualitative results of ActiveGS and our method on the Replica dataset. We show RGB renderings (top two rows) and reconstructed surface meshes (bottom row) across four scenes. Red boxes on the ActiveGS results mark regions of low-quality reconstruction, and blue boxes mark the same regions in our results, which appear sharper and more faithful. By replacing greedy NBV selection with ergodic search over an information map, our method achieves higher-quality reconstruction. 
+
+Quantitative Analysis 
+
+TRACE achieves higher PSNR than ActiveGS on all scenes (Table 1), with a mean gain of 1.5 dB ; LPIPS and SSIM show the same pattern. The lead arises from two mecha-nisms: continuous-pose optimization places the camera at any high-ϕ pose along the trajectory rather than the near-est discrete candidate, and depletion suppresses re-coverage, spreading subsequent waypoints over low-confidence sur-faces. The PSNR gain is positive on every scene, but its composition differs by scene type. On the office scenes, SSIM is comparable, while LPIPS improves by 6–19 %, indicating that the gain is concentrated in fine-scale appearance. We at-tribute this to continuous-pose optimization, which reaches poses unavailable to discrete candidates. On the room and ho-tel scenes, the SSIM gap widens to 0.012 –0.017 , indicating that structural differences also emerge. These scenes con-tain heavier occlusion from furniture, where surfaces missed by discrete viewpoint selection require deliberate coverage, which the ergodic trajectory provides by continuously vary-ing its heading. The gain is not explained by frame count alone: Sec. shows that densifying the baseline’s sampling along its path does not close the gap. 
+
+Qualitative Results 
+
+Figure 4 compares reconstructions from TRACE and Ac-tiveGS on Replica scenes. The most pronounced differences lie in surface fidelity: in the highlighted regions, TRACE (blue boxes) recovers sharper texture, consistent lighting, and finer geometric detail on furniture and wall surfaces, while ActiveGS (red boxes) produces flatter, lower-fidelity reconstructions on the same regions. These fidelity gains arise from the same trajectory-level coupling that drives the PSNR lead: depletion keeps the camera looking at under-confident surfaces rather than re-sampling already-covered ones. The regions that differ visually are also where LPIPS separates most, confirming that the gain is concentrated in high-frequency texture rather than spread uniformly over the image. The mesh row shows the same pattern, where Ac-tiveGS leaves holes on surfaces its path merely passes, while TRACE recovers a continuous surface in the same regions. 
+
+Ablation Study 
+
+To examine whether TRACE’s gain simply comes from denser sampling along the trajectory, and to validate the ef-fectiveness of footprint depletion, we design the following ablations. For the first, we implement two ActiveGS vari-ants: ActiveGS-Random scatters 10 random observations per horizon (a baseline without planner), and ActiveGS-Uniform captures 10 uniformly-interpolated poses along its original path (the information reachable from the trajectory geome-try alone). Table 2 reports that ActiveGS-Random matches ActiveGS within noise (+0.08 dB) , and ActiveGS-Uniform drops (−1.7 dB) . Neither closes the gap to TRACE. Simply densifying observations performs even worse, as redun-dant views dilute the training weight of informative ones. 
+
+For the second, we drop the footprint mechanism in Sec. , leaving the original kernel-ergodic metric from Sun et al. (2025): This variant loses 2.1 dB and falls below ActiveGS Table 2: Ablation study on Replica (PSNR). ActiveGS-Random and ActiveGS-Uniform observe at 10 random / uniformly-interpolated poses along ActiveGS’s path; Ours-Kernel ES removes the footprint mechanism of Sec. . 
+
+Method Of0 Of2 Of3 Of4 R0 R1 R2 H0 
+
+ActiveGS 36.78 31.68 32.16 34.08 29.93 31.74 32.35 32.04 ActiveGS-Random 36.70 31.37 32.70 34.35 30.09 31.29 32.79 32.11 ActiveGS-Uniform 35.86 29.98 30.49 32.38 27.63 30.95 31.65 28.24 Ours-Kernel ES 35.63 30.78 31.83 34.09 29.91 31.15 33.04 29.39 
+
+Ours 38.36 32.81 33.79 34.92 31.55 32.84 34.70 33.69 
+
+on six of eight scenes. NBV replans after every view, and its confidence updates implicitly deplete visited regions. Er-godic search alone optimizes the whole horizon against a frozen information map, yielding redundant views. Deple-tion is therefore essential to our framework. 
+
+Executing Trajectories in Real World 
+
+We deploy TRACE on two physical platforms: a quadruped (Unitree Go2) exploring a room-scale scene with the same planner as in Sec. and a Franka arm for object recon-struction (supplementary materials) . Since the planned trajectory is itself the optimization variable, its waypoints are handed to each platform’s controller directly, with no inter-mediate path planner. This is a practical payoff of trajectory-level planning. An NBV planner commits to discrete view-points and delegates the connecting motion to a separate path planner, which can issue dynamically infeasible commands on a physical platform. TRACE instead optimizes the trajec-tory under the platform’s own dynamics, so every planned waypoint is dynamically consistent by construction . As shown in the supplementary materials, TRACE achieved a 
+
+100 % success rate , whereas our NBV baseline made minor contact with the environment in every trial. 
+
+Room-scale exploration (Unitree Go2). A quadruped car-ries a front-mounted RGB-D camera (Intel D435). The trajec-tory is constrained to the traversable plane with yaw aligned to the direction of motion, and waypoints are tracked by a velocity-level controller built on the manufacturer’s high-level interface, without an intermediate path planner. Over 
+
+5-minute missions in a 42 m2 scene, every planned horizon executes without infeasible commands, and observations are integrated into the 2DGS map. In Fig. 5, the time-colored ergodic path (top) sweeps the room as a single continuous trajectory; the dashed inset marks a cluttered region the NBV baseline cannot traverse without collision, while TRACE threads the free space safely. The reconstruction (middle) is clean and complete. The heading traces (bottom) show our heading varying continuously, whereas NBV snaps between discrete targets with rapid reversals, exactly the motion a viewpoint-level planner cannot penalize. 
+
+## Conclusion 
+
+We presented TRACE, an ergodic-trajectory formulation for active 2D Gaussian-Surfel reconstruction. Instead of com-mitting to discrete next-best-views, TRACE derives a tar-get information distribution online from voxel-level informa-0°   
+
+> 500 °Camera Heading over Time
+> Ours
+> NBV
+> Our Traj
+> GT Ours
+> NBV Collision
+> Start
+> End
+> NBV Collision Zone
+
+Figure 5: TRACE on Unitree Go2. Top: the Unitree Go2 executes a planned ergodic trajectory in a laboratory scene (composite with time-colored path); the dashed boxes mark the start and final poses and a region that the NBV baseline could not traverse safely (inset). Middle: Visualization of the reconstruction quality. Bottom: the ergodic trajectory turns smoothly and continuously, whereas NBV produces rapid heading reversals between committed viewpoints. tion and per-Gaussian uncertainty, and optimizes a contin-uous, control-feasible trajectory with a kernel-ergodic hori-zon planner and footprint-overlap depletion. Across all eight Replica scenes, TRACE improves over our baseline (Ac-tiveGS) by +1 .5 dB PSNR on average, and its trajectories ex-ecute directly on real physical robot without an intermediate path planner. By recasting active reconstruction as ergodic coverage, TRACE plans information gathering and feasible motion jointly within a single objective. 
+
+## Acknowledgments 
+
+This work was also supported in part by funding from the Johns Hopkins Data Science and AI Institute. Thanks Rex for insightful discussion on our physical experiments. References 
+
+Abraham, I.; Prabhakar, A.; and Murphey, T. D. 2021. An ergodic measure for active learning from equilibrium. IEEE Transactions on Automation Science and Engineering .Ayvali, E.; Salman, H.; and Choset, H. 2017. Ergodic Cov-erage In Constrained Environments Using Stochastic Trajec-tory Optimization. arXiv:1707.04294. Barron, J. T.; Mildenhall, B.; Verbin, D.; Srinivasan, P. P.; and Hedman, P. 2022. Mip-NeRF 360: Unbounded Anti-Aliased Neural Radiance Fields. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) , 5470–5479. Best, G.; Cliff, O. M.; Patten, T.; Mettu, R. R.; and Fitch, R. 2019. Dec-MCTS: Decentralized Planning for Multi-Robot Active Perception. The International Journal of Robotics Research , 38(2–3): 316–337. Bircher, A.; Kamel, M.; Alexis, K.; Oleynikova, H.; and Sieg-wart, R. 2016. Receding Horizon “Next-Best-View” Planner for 3D Exploration. In 2016 IEEE International Conference on Robotics and Automation (ICRA) , 1462–1468. IEEE. Chen, A.; Xu, Z.; Geiger, A.; Yu, J.; and Su, H. 2022. Ten-soRF: Tensorial Radiance Fields. In Computer Vision – ECCV 2022 , 333–350. Springer. Chen, L.; Zhan, H.; Chen, K.; Xu, X.; Yan, Q.; Cai, C.; and Xu, Y. 2025. ActiveGAMER: Active GAussian Mapping through Efficient Rendering. In 2025 IEEE/CVF Confer-ence on Computer Vision and Pattern Recognition (CVPR) ,16486–16497. Chen, X.; Li, Q.; Wang, T.; Xue, T.; and Pang, J. 2024. GenNBV: Generalizable Next-Best-View Policy for Active 3D Reconstruction. In Proceedings of the IEEE/CVF Confer-ence on Computer Vision and Pattern Recognition (CVPR) ,16436–16445. Connolly, C. 1985. The determination of next best views. In Proceedings. 1985 IEEE International Conference on Robotics and Automation , volume 2, 432–435. Delmerico, J. A.; Isler, S.; Sabzevari, R.; and Scaramuzza, D. 2018. A Comparison of Volumetric Information Gain Metrics for Active 3D Object Reconstruction. Autonomous Robots , 42(2): 197–208. Dong, D. E.; Berger, H.; and Abraham, I. 2024. Time-optimal ergodic search: Multiscale coverage in minimum time. The International Journal of Robotics Research ,02783649241273597. Feng, Z.; Zhan, H.; Chen, Z.; Yan, Q.; Xu, X.; Cai, C.; Li, B.; Zhu, Q.; and Xu, Y. 2024. NARUTO: Neural Active Reconstruction from Uncertain Target Observations. In Pro-ceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) , 21572–21583. Fridovich-Keil, S.; Yu, A.; Tancik, M.; Chen, Q.; Recht, B.; and Kanazawa, A. 2022. Plenoxels: Radiance Fields Without Neural Networks. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) , 5501–5510. Guédon, A.; Monasse, P.; and Lepetit, V. 2022. SCONE: Sur-face Coverage Optimization in Unknown Environments by Volumetric Integration. In Advances in Neural Information Processing Systems (NeurIPS) .Hepp, B.; Nießner, M.; and Hilliges, O. 2018. Plan3D: Viewpoint and Trajectory Optimization for Aerial Multi-View Stereo Reconstruction. ACM Transactions on Graphics ,38(1): 1–17. Hollinger, G. A.; and Sukhatme, G. S. 2014. Sampling-Based Robotic Information Gathering Algorithms. The Interna-tional Journal of Robotics Research , 33(9): 1271–1287. Hornung, A.; Wurm, K. M.; Bennewitz, M.; Stachniss, C.; and Burgard, W. 2013. OctoMap: An Efficient Probabilistic 3D Mapping Framework Based on Octrees. Autonomous Robots , 34(3): 189–206. Huang, B.; Yu, Z.; Chen, A.; Geiger, A.; and Gao, S. 2024. 2D Gaussian Splatting for Geometrically Accurate Radiance Fields. In ACM SIGGRAPH 2024 Conference Papers . Asso-ciation for Computing Machinery. Isler, S.; Sabzevari, R.; Delmerico, J.; and Scaramuzza, D. 2016. An information gain formulation for active volumetric 3D reconstruction. In 2016 IEEE International Conference on Robotics and Automation (ICRA) , 3477–3484. Ivić, S.; Crnković, B.; and Mezić, I. 2016. Ergodicity-based cooperative multiagent area coverage via a potential field. 
+
+IEEE transactions on cybernetics , 47(8): 1983–1993. Jiang, W.; Lei, B.; and Daniilidis, K. 2024. FisherRF: Active View Selection and Mapping with Radiance Fields Using Fisher Information. In Computer Vision – ECCV 2024 , 422– 440. Springer. Jin, L.; Chen, X.; Rückin, J.; and Popović, M. 2023. NeU-NBV: Next Best View Planning Using Uncertainty Estima-tion in Image-Based Neural Rendering. In IEEE/RSJ In-ternational Conference on Intelligent Robots and Systems (IROS) .Jin, L.; Zhong, X.; Pan, Y.; Behley, J.; Stachniss, C.; and Popović, M. 2025. ActiveGS: Active Scene Reconstruction Using Gaussian Splatting. IEEE Robotics and Automation Letters , 10(5): 4866–4873. Kerbl, B.; Kopanas, G.; Leimkühler, T.; and Drettakis, G. 2023. 3D Gaussian Splatting for Real-Time Radiance Field Rendering. ACM Transactions on Graphics , 42(4). Kingma, D. P.; and Ba, J. 2017. Adam: A Method for Stochas-tic Optimization. arXiv:1412.6980. Li, Y.; Kuang, Z.; Li, T.; Hao, Q.; Yan, Z.; Zhou, G.; and Zhang, S. 2025. ActiveSplat: High-Fidelity Scene Recon-struction Through Active Gaussian Splatting. IEEE Robotics and Automation Letters , 10(8): 8099–8106. Li, Y.; Li, Y.; and Lee, G. H. 2026. Active3D: Active High-Fidelity 3D Reconstruction via Multi-Level Uncer-tainty Quantification. In Proceedings of the AAAI Conference on Artificial Intelligence , volume 40, 6557–6565. Liu, Y.; and Ren, Z. 2025. A Probabilistic Measure of Multi-Robot Connectivity and Ergodic Optimal Control. In Pro-ceedings of Robotics: Science and Systems . Los Angeles, CA, USA. Mathew, G.; and Mezić, I. 2011. Metrics for ergodicity and design of ergodic dynamics for multi-agent systems. Physica D: Nonlinear Phenomena , 240(4): 432–442. Mavrommati, A.; Tzorakoleftherakis, E.; Abraham, I.; and Murphey, T. D. 2017. Real-time area coverage and target lo-calization using receding-horizon ergodic exploration. IEEE Transactions on Robotics , 34(1): 62–80. Mildenhall, B.; Srinivasan, P. P.; Tancik, M.; Barron, J. T.; Ramamoorthi, R.; and Ng, R. 2020. NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis. In 
+
+Computer Vision – ECCV 2020 , 405–421. Springer. Miller, L. M.; and Murphey, T. D. 2013. Trajectory optimiza-tion for continuous ergodic exploration. In 2013 American Control Conference , 4196–4201. IEEE. Miller, L. M.; Silverman, Y.; MacIver, M. A.; and Murphey, T. D. 2016. Ergodic Exploration of Distributed Information. 
+
+IEEE Transactions on Robotics , 32(1): 36–52. Müller, T.; Evans, A.; Schied, C.; and Keller, A. 2022. In-stant Neural Graphics Primitives with a Multiresolution Hash Encoding. ACM Transactions on Graphics , 41(4). Pan, X.; Lai, Z.; Song, S.; and Huang, G. 2022. ActiveNeRF: Learning Where to See with Uncertainty Estimation. In 
+
+Computer Vision – ECCV 2022 , 230–246. Springer. Savva, M.; Kadian, A.; Maksymets, O.; Zhao, Y.; Wijmans, E.; Jain, B.; Straub, J.; Liu, J.; Koltun, V.; Malik, J.; Parikh, D.; and Batra, D. 2019. Habitat: A Platform for Embodied AI Research. In Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV) , 9339–9347. Shetty, S.; Silvério, J.; and Calinon, S. 2022. Ergodic Explo-ration Using Tensor Train: Applications in Insertion Tasks. 
+
+IEEE Transactions on Robotics , 38(2): 906–921. Siming, H.; Hsu, C. D.; Ong, D.; Shao, Y. S.; and Chaudhari, P. 2024. Active Perception using Neural Radiance Fields. In 
+
+2024 American Control Conference (ACC) , 4353–4358. Straub, J.; Whelan, T.; Ma, L.; Chen, Y.; Wijmans, E.; Green, S.; Engel, J. J.; Mur-Artal, R.; Ren, C.; Verma, S.; et al. 2019. The Replica Dataset: A Digital Replica of Indoor Spaces. 
+
+arXiv preprint arXiv:1906.05797 .Sun, M. M.; Gaggar, A.; Trautman, P.; and Murphey, T. 2025. Fast Ergodic Search With Kernel Functions. IEEE Transactions on Robotics , 41: 1841–1860. Sun, M. M.; Pinosky, A.; and Murphey, T. 2025. Flow Match-ing Ergodic Coverage. arXiv:2504.17872. Wilson, J.; Almeida, M.; Mahajan, S.; Labrie, M.; Ghaffari, M.; Ghasemalizadeh, O.; Sun, M.; Kuo, C.-H.; and Sen, A. 2025. POp-GS: Next Best View in 3D-Gaussian Splatting with P-Optimality. In 2025 IEEE/CVF Conference on Com-puter Vision and Pattern Recognition (CVPR) , 3646–3655. Xie, Y.; Cai, Y.; Zhang, Y.; Yang, L.; and Pan, J. 2025. GauSS-MI: Gaussian Splatting Shannon Mutual Information for Active 3D Reconstruction. In Proceedings of Robotics: Science and Systems (RSS) . Los Angeles, CA, USA. Xue, S.; Dill, J.; Mathur, P.; Dellaert, F.; Tsiotras, P.; and Xu, D. 2024. Neural Visibility Field for Uncertainty-Driven Active Mapping. In Proceedings of the IEEE/CVF Confer-ence on Computer Vision and Pattern Recognition (CVPR) ,18122–18132. Yamauchi, B. 1997. A Frontier-Based Approach for Au-tonomous Exploration. In Proceedings of the IEEE Interna-tional Symposium on Computational Intelligence in Robotics and Automation (CIRA) , 146–151. IEEE. Yan, D.; Liu, J.; Quan, F.; Chen, H.; and Fu, M. 2023. Active Implicit Object Reconstruction Using Uncertainty-Guided Next-Best-View Optimization. IEEE Robotics and Automa-tion Letters , 8(10): 6395–6402. Yan, Z.; Yang, H.; and Zha, H. 2023. Active Neural Mapping. In IEEE/CVF International Conference on Computer Vision (ICCV) .Zeng, R.; Wen, Y.; Zhao, W.; and Liu, Y.-J. 2020. View planning in robot active vision: A survey of systems, algo-rithms, and applications. Computational Visual Media , 6(3): 225–245. Zhang, X.; Wang, D.; Han, S.; Li, W.; Zhao, B.; Wang, Z.; Duan, X.; Fang, C.; Li, X.; and He, J. 2023. Affordance-Driven Next-Best-View Planning for Robotic Grasping. In 
+
+Conference on Robot Learning (CoRL) .Zheng, Z.; Liu, Y.; Wang, H.; and Ren, Z. 2025. Er-godic Trajectory Planning with Dynamic Sensor Footprints. arXiv:2512.08661. TRACE: Ergodic Trajectory Optimization for Active Scene Reconstruction Supplementary Material 
+
+## Per-Horizon Algorithm 
+
+Algorithm 1 summarizes one plan-and-execute horizon of TRACE; the notation follows Sec. . 
+
+Algorithm 1: TRACE per-horizon plan-and-execute 
+
+Input: Live 2DGS map Mt, voxel map Vt, current pose pt, warm-start uprev  
+
+> 1
+
+ϕt ← BuildInfoMap (Mt, Vt) ; // (2)  
+
+> 2
+
+u ← WarmStart (uprev ); 
+
+> 3
+
+for i = 1 , . . . , N iter do  
+
+> 4
+
+τ ← Rollout (pt, u); 
+
+> 5
+
+Compute J(u) via Eqs. (3)–(7);  
+
+> 6
+
+u ← AdamStep (u, ∇uJ); 
+
+> 7
+
+end  
+
+> 8
+
+τt ← Rollout (pt, u); 
+
+> 9
+
+Execute τt; integrate RGB-D into Mt+1 , Vt+1 ; 
+
+> 10
+
+uprev ← u;
+
+## Joint-Space Ergodic Search on the FR3 
+
+On the Franka FR3 arm, we plan directly in joint space. A single integrator sufficed for the Go2 because it has a ve-locity interface; the arm does not. The trajectory variable is instead a sequence of joint configurations, and a differ-entiable forward-kinematics chain maps each to the camera pose, which determines where the world-frame information map ϕ is sampled. This makes reachability intrinsic: with joint limits as box constraints, every planned view is reach-able, and the plan runs with no inverse kinematics, no can-didate viewpoint set, and no feasibility repair. Collisions with the table, wall, and base column are penalized in the same objective, on forward-kinematic body points. Here the ergodic objective of Sec. is optimized through the nonlinear forward kinematics rather than over camera poses directly, yet every executed waypoint is dynamically consistent. 
+
+Setup. The arm’s state is a joint configuration q ∈ Q ⊂ 
+
+R7. Working within a single horizon, we drop the hori-zon index t; the planner optimizes a K-step joint trajec-tory q = ( q1, . . . , q K ) from joint-velocity controls u, with 
+
+qk = qk−1 + ∆ t u k. The camera is mounted on the end-effector, so its pose follows from the configuration through forward kinematics. 
+
+Definition 1 (Kinematic Sensor Map) . Let FK : Q → 
+
+SE (3) be the forward-kinematics map to the camera pose, 
+
+FK( q) = Tee (q) Tcam , with Tcam the fixed hand–eye trans-form. We write FK( q) = ( R(q), x(q)) , with R(q) ∈ SO (3) 
+
+the camera orientation and x(q) ∈ R3 its position. A configuration fixes both where the camera sits, through 
+
+x(q), and where it looks, through the optical axis z(q) = 
+
+R(q)e3. We model its view as samples along this axis. 
+
+Figure 6: TRACE on a Franka FR3. The arm executes the planned ergodic trajectory directly, with no path planner. We overlay the executed end-effector (EE) path, its camera frus-tums, and the start and final poses (green circle, red square). Planning in joint space makes every waypoint dynamically consistent. The supplementary video shows this in full. Definition 2 (Sensor Footprint) . The footprint at q is the set of world points 
+
+fd(q) = x(q) + d z(q), d ∈ { d1, . . . , d D }, (8) sampled along the optical axis at depths d1, . . . , d D .
+
+Objective. We keep the position-space kernel-ergodic met-ric of Sun et al. (2025), which scores a trajectory by how closely its time-averaged occupancy matches the target distri-bution and splits into an information and a uniform-coverage term. Evaluated on the camera positions x(qk), it reads 
+
+Edep kernel (q) = − 2
+
+K
+
+> K
+
+X
+
+> k=1
+
+ϕk + 1
+
+K2 (9) 
+
+> K
+
+X
+
+> i,j =1
+
+exp 
+
+
+
+− ∥x(qi) − x(qj )∥2
+
+2σ2
+
+
+
+.
+
+The first term is the information term: it evaluates the depletion-discounted map ϕk = ϕ(x(qk)) Q
+
+> j<k
+
+(1 − η · vjk )
+
+at each camera position and pulls the trajectory toward in-formative regions, where vjk is the footprint-overlap kernel (Eqs. (3)–(4)). The second is the coverage term: a Gaussian kernel between camera positions that penalizes revisiting and spreads the trajectory out. They reproduce the information-and-coverage decomposition of Sun et al. (2025), now on the camera positions the configuration produces. Position alone does not fix what the camera sees, so orien-tation enters through the footprint. The gaze term evaluates GT Ours GT Ours     
+
+> GT Ours
+> GT Ours
+> GT Ours
+> GT Ours
+
+Figure 7: Real scene versus TRACE reconstruction on the Unitree Go2. The room-scale reconstruction, produced from the directly executed ergodic trajectory, recovers the scene geometry and appearance. The supplementary video shows this in full. 
+
+the raw map ϕraw over the footprint samples, 
+
+Lgaze (q) = − 1
+
+KD 
+
+> K
+
+X
+
+> k=1
+> D
+
+X
+
+> d=1
+
+wk,d ϕraw  fd(qk), (10) with wk,d down-weighting occluded samples; its gradient turns R(q) toward high-information surfaces. Position and orientation are therefore optimized together, both as func-tions of the single map FK .
+
+Problem 1 (Joint-Space Ergodic Search) . Given an infor-mation map ϕ, minimize the objective over joint-velocity controls subject to the arm’s kinematics: 
+
+min  
+
+> u
+
+Edep kernel (q) + λgLgaze (q) + λsLsafe (q) + λr∥u∥2
+
+s.t. qk = qk−1 + ∆ t u k, qk ∈ [qmin , q max ],
+
+where Lsafe is the soft-barrier penalty of the full cost (7), evaluated on forward-kinematic body points. 
+
+Proposition 1 (Feasibility and Generality) . The joint-space problem has three properties. First, the objective is differ-entiable in u: the forward kinematics is differentiable and the kernel-ergodic and gaze terms are differentiable in the camera pose, so the arm reuses the quadruped’s gradient-based optimizer unchanged. Second, every trajectory that respects the joint limits qk ∈ [qmin , q max ] maps to an achiev-able camera pose FK( qk), so every planned waypoint is executable without inverse kinematics or feasibility repair. Third, when the decision variable is the camera pose it-self, the forward-kinematics map drops out and the problem reduces to the camera-pose objective of the main paper, re-covering the quadruped case. 
+
+Table 3: Executing ActiveGS viewpoints directly on the FR3 (simulation). Across 10 paired trials with diverse start poses under a shared mapper and budget, we command each planner’s output on the arm without a path planner. Every ActiveGS trial collides with the scene and knocks the object off the table; TRACE stays collision-free. 
+
+Method Collision-free trials 
+
+ActiveGS 0/10 
+
+TRACE (Ours) 10 /10 
+
+Figure 6 shows a representative mission on the real arm. TRACE follows the joint-space trajectory in one continuous sweep around the object, and every view executes without collision or intervention. Table 3 quantifies the contrast in simulation, where an unrealizable plan can be run safely. Across 10 paired trials under a shared mapper and budget, the camera poses ActiveGS selects collide with the scene on every trial and knock the object off the table, while TRACE, planning in joint space, stays collision-free throughout. 
+
+## Room-Scale Reconstruction on the Go2 
+
+Figure 7 compares the reconstruction TRACE produces on the Unitree Go2 with photo of the same scene. Over a 5-minute mission the quadruped executes the planned ergodic trajectory directly, and the online 2DGS map fills in furniture and wall surfaces across the room. The reconstruction is clean and complete, recovering geometry and texture on the surfaces the trajectory sweeps, which confirms the executed path is both feasible and information-rich at room scale.
