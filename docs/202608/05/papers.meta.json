@@ -1,0 +1,54 @@
+{
+  "label": "2026-08-05",
+  "date": "2026-08-05",
+  "generated_at": "2026-08-05T20:52:14",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202608/05/2608.02437v2-infinisplat-implicit-gaussian-decoding-for-large-baseline-monocular-view-synthesis",
+      "section": "deep",
+      "title_en": "InfiniSplat: Implicit Gaussian Decoding for Large-Baseline Monocular View Synthesis",
+      "authors": "Jiawei Wang, Hao Yu, Yongzhen Hu, Xinyi Yang, Tao Ni, Xin Zhan, Junbo Chen, Xiaowei Zhou, Ruizhen Hu, Sida Peng",
+      "date": "2026-08-03",
+      "pdf": "https://arxiv.org/pdf/2608.02437v2",
+      "score": "9.0",
+      "evidence": "前馈单图像3DGS用于大基线新视图合成",
+      "tldr": "现有单图前馈3D高斯泼溅方法受限于像素对齐表示，高斯从固定图像网格位置预测，与场景表面弱耦合，大视角变化下结构保持不佳。InfiniSplat提出表面对齐表示：用几何引导采样按深度诱导的表面结构放置支撑点，再经查询条件隐式解码器预测高斯属性，使高斯布局贴合表面并减少网格离散化引起的散射伪影。跨数据集评测达到SOTA，且能零样本泛化到开放世界复杂场景。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Single-image feed-forward 3D Gaussian Splatting (3DGS) aims to directly generate a renderable 3D scene representation from one input image, avoiding the cost of multi-view capture and per-scene optimization. However, existing methods are often constrained by a pixel-aligned representation, where Gaussians are predicted from fixed image-grid locations. Such pixel-aligned primitives can produce promising nearby-view renderings, but they remain weakly coupled to underlying scene surfaces and struggle to preserve coherent structures under large viewpoint shifts. We present InfiniSplat, a feed-forward single-image 3DGS framework that moves from a pixel-aligned representation toward a surface-aligned representation. InfiniSplat constructs this representation by first using geometry-guided sampling to place 2D supports according to depth-induced local surface structure, and then applying a query-conditioned implicit decoder to predict Gaussian attributes from the image features queried at these supports. By grounding support locations in geometry while decoupling Gaussian prediction from fixed pixel centers, InfiniSplat produces Gaussian layouts that better follow scene surfaces and reduce scattered primitives caused by grid discretization. Across multiple cross-dataset NVS evaluations, InfiniSplat achieves state-of-the-art performance compared with single-image feed-forward baselines, and demonstrates zero-shot generalization from Hypersim indoor synthetic training to complex open-world scenes. Project page: https://zju3dv.github.io/InfiniSplat.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/05/2608.02206v1-clear-conflict-aware-learning-via-evidence-guided-adaptive-routing-for-unified-sparse-view-3d-gaussian-super-resolution",
+      "section": "deep",
+      "title_en": "CLEAR: Conflict-aware Learning via Evidence-guided Adaptive Routing for Unified Sparse-View 3D Gaussian Super-Resolution",
+      "authors": "Hantang Li, Qiang Zhu, Xiandong Meng, Debin Zhao, Xiaopeng Fan",
+      "date": "2026-08-03",
+      "pdf": "https://arxiv.org/pdf/2608.02206v1",
+      "score": "8.0",
+      "evidence": "稀疏视图三维高斯泼溅超分辨率，提升重建质量和新视角合成效果",
+      "tldr": "稀疏视角3D高斯超分中，稀疏且低分辨率的输入缺乏几何与高频信息，现有两阶段流程先重建低分辨率高斯再细化高分辨率，造成阶段间传递与误差累积。本文提出CLEAR，首个统一单阶段框架，在统一高斯表示中联合优化真实低分辨率观测与外部高分辨率先验，并提出高斯级冲突感知优化策略，以低分辨率梯度为锚点对高分辨率冲突做证据条件软修正；同时引入证据引导的Patch-to-Gaussian路由机制，估计图像块可靠性与细节需求并选择性地路由高频梯度和致密化。在合成和真实4倍超分基准上，CLEAR取得最先进的渲染质量和几何保真度，避免了误差累积，为稀疏视角超分提供了新范式。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Sparse-view 3D Gaussian Splatting Super-resolution is highly challenging since the sparse and low-resolution (LR) inputs lack sufficient geometric and high-frequency information for accurate reconstruction. To achieve high-quality reconstruction, existing sparse-view super-resolution methods adhere to two-stage pipeline that performs LR Gaussian reconstruction and then high-resolution (HR) Gaussian refinement, which directly results in stage-wise Gaussian transfer and reconstruction error accumulation. To this end, we propose CLEAR, a Conflict-aware Learning via Evidence-guided Adaptive Routing, as the first unified single-stage framework for Sparse-view 3D Gaussian Splatting Super-resolution. Specifically, CLEAR performs joint the optimization of authentic LR observations and external HR priors within a unified Gaussian representation. To mitigate the gradient conflicts introduced by sparse supervision during training, we propose a Gaussian-wise conflict-aware optimization strategy that regards the LR gradient as a reliable anchor and applies evidence-conditioned soft correction only to severe HR conflicts. Moreover, to recover high-frequency details, we introduce an evidence-guided Patch-to-Gaussian routing mechanism which estimates patch reliability and detail demand, lifts them into Gaussian space, and selectively routes high-frequency gradients and densification. Finally, we employ shared Gaussian dropout and a detached mid-training anchoring to enhance the robustness of training framework. Extensive experiments on both synthetic and real-world $4\\times$ super-resolution benchmarks demonstrate that CLEAR consistently achieves state-of-the-art rendering quality and superior geometric fidelity.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/05/2608.01178v1-dynactivegs-active-gaussian-splatting-for-dynamic-scene-reconstruction",
+      "section": "quick",
+      "title_en": "DynActiveGS: Active Gaussian Splatting for Dynamic Scene Reconstruction",
+      "authors": "Hongbo Duan, Pengting Luo, Chengzhi Zhao, Yuanhao Chiang, Fangming Liu, Xueqian Wang",
+      "date": "2026-08-02",
+      "pdf": "https://arxiv.org/pdf/2608.01178v1",
+      "score": "7.0",
+      "evidence": "基于3D高斯泼溅的主动式动态场景增量重建，结合不确定性引导的探索",
+      "tldr": "动态环境中的主动重建面临运动干扰和视点选择难题。DynActiveGS基于3D高斯泼溅，通过在线不确定性预测将不确定性显式分解为结构不确定性与运动不确定性，以区分未重建静态区域和动态不可靠区域。结合不确定性加权优化、动态感知视点选择与动态约束路径规划，形成统一闭环主动重建流程。在动态基准上的实验表明，该方法在重建精度、完整度、渲染质量和探索效率上均优于现有主动重建基线。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "We present DynActiveGS, a dynamic-aware active reconstruction framework based on 3D Gaussian Splatting (3DGS) for autonomous exploration in dynamic environments. The framework incrementally reconstructs a 3D Gaussian scene representation while suppressing motion-corrupted observations through online uncertainty prediction and uncertainty-weighted Gaussian optimization. A key component of DynActiveGS is the explicit decomposition of uncertainty into structural uncertainty and motion-induced uncertainty, which enables the system to distinguish under-reconstructed static regions from dynamically unreliable areas. Based on these uncertainty fields, DynActiveGS performs dynamic-aware viewpoint selection and dynamic-constrained path planning to favor informative yet stable observations during exploration. The resulting system forms a unified closed-loop pipeline for robust active reconstruction in dynamic scenes. Extensive experiments on challenging dynamic benchmarks demonstrate consistent improvements over existing active reconstruction baselines in reconstruction accuracy, completeness, rendering quality, and exploration efficiency.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
