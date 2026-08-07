@@ -1,15 +1,15 @@
 {
   "mode": "standard",
-  "generated_at": "2026-08-07T01:51:32.216598+00:00",
+  "generated_at": "2026-08-07T21:08:34.983677+00:00",
   "stats": {
     "mode": "standard",
     "tag_count": 1,
-    "deep_divecandidates": 2,
+    "deep_divecandidates": 4,
     "deep_cap": 6,
-    "deep_selected": 2,
-    "quick_candidates": 3,
+    "deep_selected": 4,
+    "quick_candidates": 4,
     "quick_skim_target": 11,
-    "quick_selected": 3
+    "quick_selected": 4
   },
   "deep_dive": [
     {
@@ -34,14 +34,14 @@
         "keyword:pano-dgs",
         "query:pano-dgs"
       ],
-      "llm_score": 9.0,
-      "llm_evidence_en": "Feed-forward 3D Gaussian Splatting for novel view synthesis",
-      "llm_evidence_cn": "前馈式3D高斯泼溅新视图合成",
-      "llm_evidence": "前馈式3D高斯泼溅新视图合成",
-      "canonical_evidence": "前馈式3D高斯泼溅新视图合成",
-      "llm_tldr_en": "StreamSplat is a streaming feed-forward 3DGS framework with Voxel-Aligned Causal Cache for efficient incremental novel view synthesis from sequential calibrated views without per-scene optimization.",
-      "llm_tldr_cn": "针对现有前馈3DGS假设固定上下文视图、难以在线处理序列输入的问题，提出StreamSplat流式框架，利用体素对齐因果缓存维护持久场景状态并增量解码高斯表示。该方法使内存随场景几何而非流长度增长，支持在线场景更新与高效新视角合成，扩展了3DGS在连续观测场景中的适用性。",
-      "llm_tldr": "针对现有前馈3DGS假设固定上下文视图、难以在线处理序列输入的问题，提出StreamSplat流式框架，利用体素对齐因果缓存维护持久场景状态并增量解码高斯表示。该方法使内存随场景几何而非流长度增长，支持在线场景更新与高效新视角合成，扩展了3DGS在连续观测场景中的适用性。",
+      "llm_score": 8.0,
+      "llm_evidence_en": "Streaming feed-forward 3DGS for online novel view synthesis",
+      "llm_evidence_cn": "面向在线新视角合成的流式前馈3DGS",
+      "llm_evidence": "面向在线新视角合成的流式前馈3DGS",
+      "canonical_evidence": "面向在线新视角合成的流式前馈3DGS",
+      "llm_tldr_en": "StreamSplat is a streaming feed-forward 3DGS framework that maintains a persistent geometry-grounded state with a voxel-aligned causal cache, enabling memory-bounded online novel view synthesis.",
+      "llm_tldr_cn": "现有前馈3DGS假设固定上下文视图并联合处理，无法适应在线场景。StreamSplat提出流式前馈框架，通过体素对齐因果缓存维护持久几何状态，逐步解码生成高斯。实验显示该方法能高效处理流式输入，内存随几何而非流长增长。该工作拓展了3DGS在线因果场景重建的能力。",
+      "llm_tldr": "现有前馈3DGS假设固定上下文视图并联合处理，无法适应在线场景。StreamSplat提出流式前馈框架，通过体素对齐因果缓存维护持久几何状态，逐步解码生成高斯。实验显示该方法能高效处理流式输入，内存随几何而非流长增长。该工作拓展了3DGS在线因果场景重建的能力。",
       "llm_tags": [
         "query:pano-dgs"
       ],
@@ -74,14 +74,87 @@
         "keyword:pano-dgs",
         "query:pano-dgs"
       ],
-      "llm_score": 9.0,
-      "llm_evidence_en": "3D Gaussian Splatting method for novel view synthesis",
-      "llm_evidence_cn": "3D高斯泼溅新视图合成方法",
-      "llm_evidence": "3D高斯泼溅新视图合成方法",
-      "canonical_evidence": "3D高斯泼溅新视图合成方法",
-      "llm_tldr_en": "Proposes adaptive-capacity anchored Gaussian splatting to improve compactness-fidelity trade-off in 4D dynamic radiance fields while retaining real-time novel view synthesis.",
-      "llm_tldr_cn": "针对4D高斯泼溅中运动表达与存储效率难以兼顾的问题，本文提出自适应容量锚定框架，按局部时空复杂度动态分配神经高斯数量与特征预算，避免用过多锚点弥补保真度。在多个动态场景数据集上，该方法在保持实时渲染的同时显著压缩模型存储，为紧凑动态辐射场的新视角合成提供了更高效的实现方案。",
-      "llm_tldr": "针对4D高斯泼溅中运动表达与存储效率难以兼顾的问题，本文提出自适应容量锚定框架，按局部时空复杂度动态分配神经高斯数量与特征预算，避免用过多锚点弥补保真度。在多个动态场景数据集上，该方法在保持实时渲染的同时显著压缩模型存储，为紧凑动态辐射场的新视角合成提供了更高效的实现方案。",
+      "llm_score": 8.0,
+      "llm_evidence_en": "adaptive-capacity anchored 4D Gaussian splatting for compact dynamic radiance fields",
+      "llm_evidence_cn": "自适应容量锚定的4D高斯泼溅用于紧凑动态辐射场",
+      "llm_evidence": "自适应容量锚定的4D高斯泼溅用于紧凑动态辐射场",
+      "canonical_evidence": "自适应容量锚定的4D高斯泼溅用于紧凑动态辐射场",
+      "llm_tldr_en": "ACA-GS introduces adaptive-capacity anchors in 4DGS that dynamically allocate Gaussian counts and feature budgets, balancing fidelity and storage for dynamic NVS.",
+      "llm_tldr_cn": "4D高斯泼溅在动态渲染中面临运动表达力与存储效率之间的矛盾，锚定设计虽紧凑但参数分配固定。ACA-GS提出自适应容量锚定框架，根据局部时空复杂度动态调整每锚点的Neural Gaussian数量和特征预算，既保持高保真渲染又显著降低内存，实现更紧凑的动态辐射场建模。",
+      "llm_tldr": "4D高斯泼溅在动态渲染中面临运动表达力与存储效率之间的矛盾，锚定设计虽紧凑但参数分配固定。ACA-GS提出自适应容量锚定框架，根据局部时空复杂度动态调整每锚点的Neural Gaussian数量和特征预算，既保持高保真渲染又显著降低内存，实现更紧凑的动态辐射场建模。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.05704v1",
+      "source": "arxiv",
+      "title": "G$^2$ARD-GS: Geometry-Guided Anchor-Regularized Gaussian Splatting Distillation",
+      "abstract": "Dense colored LiDAR maps provide accurate city-scale geometry, but lifting them into 3D Gaussian Splatting (3DGS) retains millions of primitives, making the resulting models costly to store, transmit, render, and adapt. Aggressive primitive reduction alleviates this burden, but can remove the local surface support needed for stable novel-view synthesis and downstream geometric use. We introduce G$^2$ARD-GS, a geometry-guided distillation method that converts a dense Gaussian prior instantiated either as a training-free point-cloud lift or a trained GS model into a compact, reusable representation. G$^2$ARD-GS progressively consolidates the prior into surface-aware representatives, then recovers appearance on the resulting fixed topology under construction-time anchor constraints, with no primitives added or removed during recovery. Under limited supervision, geometry-aware view selection allocates the available view budget. On MatrixCity, G$^2$ARD-GS achieves the best PSNR, SSIM, and LPIPS across matched $5\\times$--$30\\times$ compression budgets, outperforming PUP by $3.2$--$6.8$,dB in PSNR. When reused as frozen geometry, the compact model improves off-trajectory appearance adaptation by $3.7$--$4.9$,dB over PUP 3D-GS and preserves image-to-model registration accuracy on Cambridge KingsCollege at $30\\times$ compression. Project page: https://patrick1159.github.io/gardGS-page/.",
+      "authors": [
+        "Puyuan Zhang",
+        "Jianming Huang",
+        "Wenkai Ye",
+        "Wei Dong"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-06T07:46:49+00:00",
+      "link": "https://arxiv.org/pdf/2608.05704v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Geometry-guided Gaussian splatting distillation for compact novel-view synthesis",
+      "llm_evidence_cn": "面向紧凑新视角合成的几何引导高斯泼溅蒸馏",
+      "llm_evidence": "面向紧凑新视角合成的几何引导高斯泼溅蒸馏",
+      "canonical_evidence": "面向紧凑新视角合成的几何引导高斯泼溅蒸馏",
+      "llm_tldr_en": "G2ARD-GS distills dense Gaussian priors into compact surface-aware representations, preserving stable novel-view synthesis and geometric utility while drastically reducing primitive count.",
+      "llm_tldr_cn": "现有方法将稠密LiDAR地图直接提升为3D高斯泼溅会保留数百万图元，带来存储、传输与渲染开销；过度精简又会破坏新视角合成所需的局部表面支撑。G2ARD-GS提出几何引导的蒸馏方法，将稠密高斯先验逐步整合为表面感知的代表性图元，并在固定拓扑上恢复外观，从而获得紧凑且可复用的3DGS表示。实验表明在大幅减少图元的同时仍能保持稳定的新视角合成质量，为城市场景的高效3DGS应用提供了新途径。",
+      "llm_tldr": "现有方法将稠密LiDAR地图直接提升为3D高斯泼溅会保留数百万图元，带来存储、传输与渲染开销；过度精简又会破坏新视角合成所需的局部表面支撑。G2ARD-GS提出几何引导的蒸馏方法，将稠密高斯先验逐步整合为表面感知的代表性图元，并在固定拓扑上恢复外观，从而获得紧凑且可复用的3DGS表示。实验表明在大幅减少图元的同时仍能保持稳定的新视角合成质量，为城市场景的高效3DGS应用提供了新途径。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.06117v1",
+      "source": "arxiv",
+      "title": "Confidence matters: Leveraging Multi-view Geometric Priors for GS-based Reconstruction",
+      "abstract": "3D Gaussian splatting (3DGS) has emerged as a widely-used tool for novel view synthesis, offering real-time rendering in a sparse representation. However, the method's reliance on structure-from-motion initialization and photometric optimization can lead to suboptimal geometric reconstruction, particularly for objects with high specularity. In this work, we investigate the integration of geometric priors, in the form of predicted normal and depth maps, into the 3DGS framework to improve the reconstruction quality. We analyze the effect of incorporating these priors into GS-based methods and our evaluation reveals that multi-view predictions, as they are done by the recent visual geometry grounded transformer (VGGT), outperform single-view alternatives. A major factor is the existence of a confidence map for the estimations, which comes as a by-product of multi-view models and which can significantly improve the effectiveness of priors by weighting each prediction appropriately. Extensive experiments on standard benchmarks show consistent improvement in reconstruction quality and significant gains in complex scenes including specular objects.",
+      "authors": [
+        "Hongyu Zhou",
+        "Zorah Lähner"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "published": "2026-08-06T14:50:29+00:00",
+      "link": "https://arxiv.org/pdf/2608.06117v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "multi-view geometric priors integrated into 3DGS for improved novel view synthesis",
+      "llm_evidence_cn": "将多视图几何先验融合进3DGS以提升新视角合成质量",
+      "llm_evidence": "将多视图几何先验融合进3DGS以提升新视角合成质量",
+      "canonical_evidence": "将多视图几何先验融合进3DGS以提升新视角合成质量",
+      "llm_tldr_en": "Shows that leveraging multi-view geometric priors, particularly from VGGT, improves 3DGS reconstruction quality by providing normal and depth priors, outperforming single-view predictions for specular objects.",
+      "llm_tldr_cn": "针对3DGS依赖运动恢复结构初始化且在高反光物体上几何重建欠佳的问题，提出利用多视图几何先验改善重建。在GS优化中集成VGGT预测的深度图、法线图及其置信度，并与单视图先验对比。实验表明多视图先验可显著提升几何重建与新颖视角合成质量，为基于高斯泼溅的几何感知重建提供了有效解决方案。",
+      "llm_tldr": "针对3DGS依赖运动恢复结构初始化且在高反光物体上几何重建欠佳的问题，提出利用多视图几何先验改善重建。在GS优化中集成VGGT预测的深度图、法线图及其置信度，并与单视图先验对比。实验表明多视图先验可显著提升几何重建与新颖视角合成质量，为基于高斯泼溅的几何感知重建提供了有效解决方案。",
       "llm_tags": [
         "query:pano-dgs"
       ],
@@ -93,39 +166,44 @@
   ],
   "quick_skim": [
     {
-      "id": "2608.00931v1",
+      "id": "2608.05920v1",
       "source": "arxiv",
-      "title": "Stipple: Real-Time Incremental Gaussian Splatting with Visual-Inertial Tracking",
-      "abstract": "3D Gaussian Splatting (3DGS) provides efficient rendering of photo-realistic scenes, but its heavy preprocessing and training steps make it a poor fit for applications that require real-time reconstruction in robotics or XR. This capability is important since it allows immediate feedback and interaction with new environments. Visual-inertial odometry (VIO) and simultaneous localization and mapping (VI-SLAM) systems, on the other hand, specifically target these real-time applications, which makes them a good choice for integration with 3DGS. We propose a new method that tracks and reconstructs simultaneously in real-time by leveraging an efficient visual-inertial tracking system based on Basalt together with a novel incremental method built on top of Brush, an efficient Rust-based GPU-vendor-agnostic implementation of 3D Gaussian Splatting. We show that many of the heavy preprocessing and training steps of 3DGS can be replaced with a more efficient incremental training strategy that has direct access to the information generated by the visual-inertial tracking system. Furthermore, we propose and combine multiple practical improvements to increase the efficiency of the training pipeline and adapt it to run in real-time, parallel to the tracking thread. This work highlights the value of exploiting the complementary nature of SLAM and 3DGS, and how that can lead to promising results for real-time 3D reconstruction.",
+      "title": "Floating Radiance Networks",
+      "abstract": "Recent advances in neural scene representations enable photorealistic novel-view synthesis, yet most methods remain tightly coupled to a single rendering paradigm, limiting their versatility and integration with conventional graphics workflows. We introduce Floating Radiance Networks (FlaRe), a neural scene representation combining explicit ray-traceable geometry with continuous neural radiance functions. A scene is represented by floating planar generalized Gaussian primitives, each carrying a compact latent descriptor of a local radiance field. A lightweight decoder shared across the scene maps this descriptor, local surface coordinates, and viewing direction to color and opacity. This formulation preserves the expressiveness of neural fields while providing an explicitly addressable structure that can be efficiently queried and manipulated. Hardware-accelerated primitive intersections enable interactive rendering and recursive ray-tracing, including reflections, refractions, transparency, and shadows. The same representation further supports primitive-level deformation, mesh extraction, and appearance stylization directly in its learned descriptor space. Experiments across standard reconstruction benchmarks demonstrate competitive rendering quality while using a compact set of primitives. Together, these results establish FlaRe as a versatile representation that brings high-fidelity neural rendering, ray-tracing, geometric manipulation, and appearance editing into a unified scene model. Source code is available online. Source code can be found at: https://github.com/KByrski/FlaRe",
       "authors": [
-        "Kilian Northoff",
-        "Mateo de Mayo",
-        "Daniel Cremers"
+        "Krzysztof Byrski",
+        "Rafał Tobiasz",
+        "Grzegorz Wilczyński",
+        "Mikołaj Zieliński",
+        "Dawid Baran",
+        "Dominik Belter",
+        "Jacek Tabor",
+        "Przemysław Spurek"
       ],
-      "primary_category": "cs.RO",
+      "primary_category": "cs.CV",
       "categories": [
-        "cs.RO",
         "cs.CV"
       ],
-      "published": "2026-08-02T02:17:05+00:00",
-      "link": "https://arxiv.org/pdf/2608.00931v1",
+      "published": "2026-08-06T11:50:01+00:00",
+      "link": "https://arxiv.org/pdf/2608.05920v1",
       "tags": [
-        "keyword:pano-dgs"
+        "keyword:pano-dgs",
+        "query:pano-dgs"
       ],
       "llm_score": 7.0,
-      "llm_evidence_en": "Real-time incremental 3DGS with visual-inertial tracking, enabling full-scene mapping for immersive environments",
-      "llm_evidence_cn": "实时增量式3DGS与视觉惯性跟踪相结合，可支撑沉浸式环境的全场景建图",
-      "llm_evidence": "实时增量式3DGS与视觉惯性跟踪相结合，可支撑沉浸式环境的全场景建图",
-      "canonical_evidence": "实时增量式3DGS与视觉惯性跟踪相结合，可支撑沉浸式环境的全场景建图",
-      "llm_tldr_en": "Introduces a real-time incremental 3DGS method integrated with visual-inertial odometry, tracking and reconstructing simultaneously for robotics/XR applications.",
-      "llm_tldr_cn": "提出一种将视觉惯性里程计与新型增量高斯泼溅结合的实时建图追踪方法，实现同时定位与三维重建。该方法面向机器人和XR场景，弥补了传统3DGS预处理和训练开销大的不足，支持即时交互。这为全景360度场景的实时增量式重建提供了可行的技术路径。",
-      "llm_tldr": "提出一种将视觉惯性里程计与新型增量高斯泼溅结合的实时建图追踪方法，实现同时定位与三维重建。该方法面向机器人和XR场景，弥补了传统3DGS预处理和训练开销大的不足，支持即时交互。这为全景360度场景的实时增量式重建提供了可行的技术路径。",
+      "llm_evidence_en": "Gaussian primitive-based neural scene representation for novel view synthesis",
+      "llm_evidence_cn": "基于高斯原语的神经场景表示用于新视角合成",
+      "llm_evidence": "基于高斯原语的神经场景表示用于新视角合成",
+      "canonical_evidence": "基于高斯原语的神经场景表示用于新视角合成",
+      "llm_tldr_en": "Floating Radiance Networks combine explicit ray-traceable geometry with neural radiance functions using planar generalized Gaussian primitives, preserving expressiveness while enabling integration with conventional graphics workflows.",
+      "llm_tldr_cn": "神经场景表示通常绑定单一渲染范式，难以与图形学工作流集成。Floating Radiance Networks用平面广义高斯原语携带局部辐射场描述，结合显式可光线追踪几何与共享解码器。实验表明该方法在保持神经场表现力的同时提供显式可寻址结构，便于传统图形学管线集成。这为可微渲染与神经辐射场融合提供了新思路。",
+      "llm_tldr": "神经场景表示通常绑定单一渲染范式，难以与图形学工作流集成。Floating Radiance Networks用平面广义高斯原语携带局部辐射场描述，结合显式可光线追踪几何与共享解码器。实验表明该方法在保持神经场表现力的同时提供显式可寻址结构，便于传统图形学管线集成。这为可微渲染与神经辐射场融合提供了新思路。",
       "llm_tags": [
         "query:pano-dgs"
       ],
       "matched_query_tag": "query:pano-dgs",
-      "matched_query_text": "reconstructing panoramic 360-degree scenes using Gaussian splatting",
-      "matched_requirement_id": "req-2",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
       "selection_source": "fresh_fetch",
       "quick_tier": "7"
     },
@@ -152,19 +230,19 @@
         "query:pano-dgs"
       ],
       "llm_score": 6.0,
-      "llm_evidence_en": "active scene reconstruction with Gaussian-splatting maps",
-      "llm_evidence_cn": "使用高斯溅射地图进行主动场景重建",
-      "llm_evidence": "使用高斯溅射地图进行主动场景重建",
-      "canonical_evidence": "使用高斯溅射地图进行主动场景重建",
-      "llm_tldr_en": "TRACE treats active reconstruction with Gaussian-splatting maps as ergodic coverage, deriving target information distributions online and planning kernel-ergodic trajectories instead of greedy next-best views.",
-      "llm_tldr_cn": "现有基于高斯溅射的主动重建通常贪心选择下一个最佳视角，轨迹效率低。TRACE将主动重建建模为遍历覆盖问题，使传感器轨迹的时间平均统计量匹配地图当前的信息分布，并在线从不确定性和可见性推导目标分布。该方法可规划全局高效的遍历轨迹，提升场景重建效率。",
-      "llm_tldr": "现有基于高斯溅射的主动重建通常贪心选择下一个最佳视角，轨迹效率低。TRACE将主动重建建模为遍历覆盖问题，使传感器轨迹的时间平均统计量匹配地图当前的信息分布，并在线从不确定性和可见性推导目标分布。该方法可规划全局高效的遍历轨迹，提升场景重建效率。",
+      "llm_evidence_en": "Active reconstruction with Gaussian-splatting maps via ergodic trajectory optimization",
+      "llm_evidence_cn": "基于遍历轨迹优化的高斯溅射地图主动重建",
+      "llm_evidence": "基于遍历轨迹优化的高斯溅射地图主动重建",
+      "canonical_evidence": "基于遍历轨迹优化的高斯溅射地图主动重建",
+      "llm_tldr_en": "TRACE formulates active scene reconstruction with Gaussian-splatting maps as ergodic coverage, deriving target information distributions online and computing ergodic trajectories for efficient sensing.",
+      "llm_tldr_cn": "现有主动重建系统通常贪心选择下一个最佳视角，导致轨迹低效。TRACE将主动重建视为遍历覆盖问题，从高斯溅射地图的当前不确定性在线推导目标信息分布，并计算遍历轨迹。该方法在场景重建效率上优于贪心策略，为高斯溅射地图的主动感知提供了全局优化方案。",
+      "llm_tldr": "现有主动重建系统通常贪心选择下一个最佳视角，导致轨迹低效。TRACE将主动重建视为遍历覆盖问题，从高斯溅射地图的当前不确定性在线推导目标信息分布，并计算遍历轨迹。该方法在场景重建效率上优于贪心策略，为高斯溅射地图的主动感知提供了全局优化方案。",
       "llm_tags": [
         "query:pano-dgs"
       ],
       "matched_query_tag": "query:pano-dgs",
-      "matched_query_text": "reconstructing panoramic 360-degree scenes using Gaussian splatting",
-      "matched_requirement_id": "req-2",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
       "selection_source": "fresh_fetch",
       "quick_tier": "6"
     },
@@ -192,19 +270,59 @@
         "query:pano-dgs"
       ],
       "llm_score": 6.0,
-      "llm_evidence_en": "3DGS-specific image quality assessment for novel view synthesis",
-      "llm_evidence_cn": "面向新视角合成的3DGS图像质量评估",
-      "llm_evidence": "面向新视角合成的3DGS图像质量评估",
-      "canonical_evidence": "面向新视角合成的3DGS图像质量评估",
-      "llm_tldr_en": "3DGSI-Assessor introduces a large-scale multi-dimensional IQA dataset and an LMM-based method to assess representation-specific distortions in compressed 3DGS novel views.",
-      "llm_tldr_cn": "3DGS训练与压缩会引入浮点伪影和表面散射等特有失真，传统IQA指标难以刻画。作者构建大规模多维IQA数据集3DGS-IEval-15K+，并提出基于多模态大模型的评估方法，可分别诊断几何与颜色属性压缩带来的维度特定失真。实验表明该方法能更全面地评估3DGS新视角合成质量，推动压缩与NVS的实用部署。",
-      "llm_tldr": "3DGS训练与压缩会引入浮点伪影和表面散射等特有失真，传统IQA指标难以刻画。作者构建大规模多维IQA数据集3DGS-IEval-15K+，并提出基于多模态大模型的评估方法，可分别诊断几何与颜色属性压缩带来的维度特定失真。实验表明该方法能更全面地评估3DGS新视角合成质量，推动压缩与NVS的实用部署。",
+      "llm_evidence_en": "large-scale dataset and LMM-based quality assessment for compressed 3DGS images",
+      "llm_evidence_cn": "针对压缩3DGS图像质量的大规模数据集与多模态评估方法",
+      "llm_evidence": "针对压缩3DGS图像质量的大规模数据集与多模态评估方法",
+      "canonical_evidence": "针对压缩3DGS图像质量的大规模数据集与多模态评估方法",
+      "llm_tldr_en": "Introduces a large-scale multi-dimensional image quality assessment dataset and an LMM-based method for evaluating 3DGS-specific distortions from compression, enabling separate diagnosis of geometry and color quality.",
+      "llm_tldr_cn": "针对3DGS压缩引入的浮点伪影和表面散射等特殊失真难以被传统质量指标评估的问题，提出3DGS-IEval-15K+大规模数据集和基于LMM的多维评估方法。该方法能分别诊断几何与颜色相关失真，输出维度级质量分数。实验证明其评估结果更符合人类感知，为3DGS压缩算法的选择和部署提供了有效的评测工具。",
+      "llm_tldr": "针对3DGS压缩引入的浮点伪影和表面散射等特殊失真难以被传统质量指标评估的问题，提出3DGS-IEval-15K+大规模数据集和基于LMM的多维评估方法。该方法能分别诊断几何与颜色相关失真，输出维度级质量分数。实验证明其评估结果更符合人类感知，为3DGS压缩算法的选择和部署提供了有效的评测工具。",
       "llm_tags": [
         "query:pano-dgs"
       ],
       "matched_query_tag": "query:pano-dgs",
       "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
       "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.04701v1",
+      "source": "arxiv",
+      "title": "UniWorld-View: Large-Baseline View Synthesis via Video Diffusion Models",
+      "abstract": "The abundance of casually captured monocular videos and images on social media provides a valuable source for immersive content creation, where generating novel views from such sparse observations can greatly enhance user experiences. However, producing photorealistic and geometrically consistent views with precise camera control remains challenging when input coverage is extremely limited. Reconstruction-based approaches such as NeRF and 3D Gaussian Splatting (3DGS) deteriorate severely under sparse inputs and fail to explicitly handle occlusions. Generative methods ease data requirements but still struggle with large-baseline view synthesis due to inaccurate or implicit geometric guidance. To overcome these limitations, we introduce UniWorld-View, a unified framework for controllable large-baseline novel view synthesis from monocular inputs. UniWorld-View integrates explicit 3D guidance with generative diffusion modeling to enable precise camera control and geometrically consistent view generation. The geometric guidance is obtained through an occlusion-aware point cloud rendering strategy that resolves visibility ambiguities and provides accurate priors for diffusion-based synthesis. By coupling this rendering strategy with powerful video diffusion backbones, UniWorld-View achieves high-fidelity novel view generation even under extreme camera motions and wide-baseline changes, and can further provide multi-view videos for downstream dynamic 3DGS reconstruction. Experiments on the WorldScore benchmark and zero-shot NVS benchmarks demonstrate the effectiveness of UniWorld-View in controllability, geometric consistency, and visual fidelity.",
+      "authors": [
+        "Haiyang Zhou",
+        "Wangbo Yu",
+        "Chaoran Feng",
+        "Xunyu Zhou",
+        "Yonghong Tian",
+        "Li Yuan"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-05T11:10:52+00:00",
+      "link": "https://arxiv.org/pdf/2608.04701v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "novel view synthesis by video diffusion, addresses 3DGS limitations",
+      "llm_evidence_cn": "基于视频扩散的新视图合成，应对3DGS在稀疏输入下的不足",
+      "llm_evidence": "基于视频扩散的新视图合成，应对3DGS在稀疏输入下的不足",
+      "canonical_evidence": "基于视频扩散的新视图合成，应对3DGS在稀疏输入下的不足",
+      "llm_tldr_en": "UniWorld-View generates novel views from sparse monocular inputs using video diffusion models, targeting large-baseline synthesis and immersive content creation.",
+      "llm_tldr_cn": "针对社交媒体海量单目视频与图像生成沉浸式内容的需求，NeRF和3DGS在极稀疏输入下会严重退化，UniWorld-View利用视频扩散模型实现大基线新视图合成，在保持几何一致性的同时支持精确相机控制。",
+      "llm_tldr": "针对社交媒体海量单目视频与图像生成沉浸式内容的需求，NeRF和3DGS在极稀疏输入下会严重退化，UniWorld-View利用视频扩散模型实现大基线新视图合成，在保持几何一致性的同时支持精确相机控制。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "novel view synthesis for 360-degree immersive environments",
+      "matched_requirement_id": "req-3",
       "selection_source": "fresh_fetch",
       "quick_tier": "6"
     }
