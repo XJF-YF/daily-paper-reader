@@ -6,29 +6,35 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-05
-- 运行时间：2026-08-05 20:52:08 UTC
+- 最新运行日期：2026-08-07
+- 运行时间：2026-08-07 01:55:29 UTC
 - 运行状态：成功
-- 本次总论文数：3
+- 本次总论文数：5
 - 精读区：2
-- 速读区：1
+- 速读区：3
 
 ### 今日简报（AI）
-今日精读3篇3D高斯泼溅论文，聚焦大基线单目合成与稀疏视图超分，速读动态场景重建。最值得关注《InfiniSplat》（9.0分）的隐式高斯解码，及《CLEAR》（8.0分）的冲突感知稀疏视图超分。建议普通读者优先从高分论文入手，理解大基线场景下的新视角生成技术。
-- 详情：[/202608/05/README](/202608/05/README)
+今日共读5篇论文，精读2篇高分为焦点，速读3篇作延伸。最值得关注的是《StreamSplat》与《ACA-GS》，分别解决3D高斯泼溅的流式前馈生成与动态场景紧凑表示。建议下一步优先精读这两篇，并顺带浏览实时增量追踪与图像质量评估的工作。
+- 详情：[/202608/07/README](/202608/07/README)
 
 ### 精读区论文标签
-1. [InfiniSplat: Implicit Gaussian Decoding for Large-Baseline Monocular View Synthesis](/202608/05/2608.02437v2-infinisplat-implicit-gaussian-decoding-for-large-baseline-monocular-view-synthesis)  
+1. [StreamSplat: Streaming Feed-Forward 3D Gaussian Splatting](/202608/07/2608.01659v2-streamsplat-streaming-feed-forward-3d-gaussian-splatting)  
    标签：评分：9.0/10、query:pano-dgs
-   evidence：前馈单图像3DGS用于大基线新视图合成
-2. [CLEAR: Conflict-aware Learning via Evidence-guided Adaptive Routing for Unified Sparse-View 3D Gaussian Super-Resolution](/202608/05/2608.02206v1-clear-conflict-aware-learning-via-evidence-guided-adaptive-routing-for-unified-sparse-view-3d-gaussian-super-resolution)  
-   标签：评分：8.0/10、query:pano-dgs
-   evidence：稀疏视图三维高斯泼溅超分辨率，提升重建质量和新视角合成效果
+   evidence：前馈式3D高斯泼溅新视图合成
+2. [ACA-GS: Adaptive-Capacity Anchored Gaussian Splatting for Compact Dynamic Radiance Fields](/202608/07/2608.04581v1-aca-gs-adaptive-capacity-anchored-gaussian-splatting-for-compact-dynamic-radiance-fields)  
+   标签：评分：9.0/10、query:pano-dgs
+   evidence：3D高斯泼溅新视图合成方法
 
 ### 速读区论文标签
-1. [DynActiveGS: Active Gaussian Splatting for Dynamic Scene Reconstruction](/202608/05/2608.01178v1-dynactivegs-active-gaussian-splatting-for-dynamic-scene-reconstruction)  
+1. [Stipple: Real-Time Incremental Gaussian Splatting with Visual-Inertial Tracking](/202608/07/2608.00931v1-stipple-real-time-incremental-gaussian-splatting-with-visual-inertial-tracking)  
    标签：评分：7.0/10、query:pano-dgs
-   evidence：基于3D高斯泼溅的主动式动态场景增量重建，结合不确定性引导的探索
+   evidence：实时增量式3DGS与视觉惯性跟踪相结合，可支撑沉浸式环境的全场景建图
+2. [TRACE: Ergodic Trajectory Optimization for Active Scene Reconstruction](/202608/07/2608.02304v2-trace-ergodic-trajectory-optimization-for-active-scene-reconstruction)  
+   标签：评分：6.0/10、query:pano-dgs
+   evidence：使用高斯溅射地图进行主动场景重建
+3. [3DGSI-Assessor: A Large-Scale Dataset and An LMM-based Method for 3D Gaussian Splatting Image Quality Assessment](/202608/07/2608.03279v1-3dgsi-assessor-a-large-scale-dataset-and-an-lmm-based-method-for-3d-gaussian-splatting-image-quality-assessment)  
+   标签：评分：6.0/10、query:pano-dgs
+   evidence：面向新视角合成的3DGS图像质量评估
 
 
 <div class="dpr-home-promo-card">

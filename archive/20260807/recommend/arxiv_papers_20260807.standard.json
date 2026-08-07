@@ -1,0 +1,212 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-07T01:51:32.216598+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [
+    {
+      "id": "2608.01659v2",
+      "source": "arxiv",
+      "title": "StreamSplat: Streaming Feed-Forward 3D Gaussian Splatting",
+      "abstract": "Feed-forward 3D Gaussian Splatting enables efficient novel-view synthesis without per-scene optimization, but most existing methods assume a fixed set of context views and process them jointly. This limits their applicability to online scenarios where calibrated views arrive sequentially and the scene must be updated causally. We present \\emph{StreamSplat}, a streaming feed-forward 3DGS framework that incrementally maintains a persistent geometry-grounded scene state and decodes it into renderable 3D Gaussians after each input chunk. StreamSplat centers on a \\textbf{Voxel-Aligned Causal Cache (VACC)}, which stores historical 3D tokens in a memory-bounded voxel structure so that memory grows with explored scene geometry rather than stream length. To better reuse history during causal prediction, we introduce \\textbf{History-Projected Depth Anchoring (HPDA)} to project cached geometry as depth guidance for current cost-volume estimation, and \\textbf{Cache-Guided Feature Injection (CGFI)} to inject cached latent evidence into Gaussian-token regression. Experiments on DL3DV, RealEstate10K, and ScanNet show that StreamSplat remains competitive with state-of-the-art feed-forward 3DGS methods under sparse causal inputs, despite not using future views or full-scene context. More importantly, it scales to long input streams with 256, 512, and 1024 views where fixed-view baselines run out of memory, yielding sustained improvements in novel-view synthesis quality as more observations arrive. The code will be made publicly available upon acceptance.",
+      "authors": [
+        "Changhao Song",
+        "Yuxuan Wang",
+        "Qibiao Li",
+        "Youcheng Cai",
+        "Ligang Liu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-03T03:48:20+00:00",
+      "link": "https://arxiv.org/pdf/2608.01659v2",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Feed-forward 3D Gaussian Splatting for novel view synthesis",
+      "llm_evidence_cn": "前馈式3D高斯泼溅新视图合成",
+      "llm_evidence": "前馈式3D高斯泼溅新视图合成",
+      "canonical_evidence": "前馈式3D高斯泼溅新视图合成",
+      "llm_tldr_en": "StreamSplat is a streaming feed-forward 3DGS framework with Voxel-Aligned Causal Cache for efficient incremental novel view synthesis from sequential calibrated views without per-scene optimization.",
+      "llm_tldr_cn": "针对现有前馈3DGS假设固定上下文视图、难以在线处理序列输入的问题，提出StreamSplat流式框架，利用体素对齐因果缓存维护持久场景状态并增量解码高斯表示。该方法使内存随场景几何而非流长度增长，支持在线场景更新与高效新视角合成，扩展了3DGS在连续观测场景中的适用性。",
+      "llm_tldr": "针对现有前馈3DGS假设固定上下文视图、难以在线处理序列输入的问题，提出StreamSplat流式框架，利用体素对齐因果缓存维护持久场景状态并增量解码高斯表示。该方法使内存随场景几何而非流长度增长，支持在线场景更新与高效新视角合成，扩展了3DGS在连续观测场景中的适用性。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.04581v1",
+      "source": "arxiv",
+      "title": "ACA-GS: Adaptive-Capacity Anchored Gaussian Splatting for Compact Dynamic Radiance Fields",
+      "abstract": "Recent advances in 4D Gaussian Splatting (4DGS) enable high-fidelity, real-time spatiotemporal rendering, but expose a fundamental trade-off between motion expressiveness and storage efficiency. While anchor-based designs achieve compactness through anchor-level parameter sharing, their rigid uniform parametrization enforces fixed Neural Gaussian counts and feature budgets per anchor. Consequently, insufficient fidelity is addressed by excessive anchor density, rather than lightweight, targeted increases in Neural Gaussian count or feature capacity, resulting in memory waste. To overcome this rigidity, we introduce an adaptive-capacity anchor-based framework that dynamically allocates the representational capacity based on local spatiotemporal demands. Adaptive Anchor Cardinality varies the number of Neural Gaussians per anchor, concentrating primitives in regions of high geometric or motion complexity while suppressing redundancy. In parallel, Adaptive Anchor Feature Masking modulates anchor-level feature channels, assigning rich features to complex regions and lightweight representations to simpler ones. Experiments on MPEG, Panoptic Sports, and N3DV datasets demonstrate substantial storage reduction without degrading visual quality. Notably, on challenging MPEG sequences with complex motion, our method achieves up to 1.5x higher compression than state-of-the-art anchor-based methods while preserving comparable quality.",
+      "authors": [
+        "Seunghyeon Song",
+        "Joo Chan Lee",
+        "Chanung Park",
+        "Jun Young Jeong",
+        "Minseo Lee",
+        "Eunbyung Park",
+        "Jong Hwan Ko"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-05T08:47:48+00:00",
+      "link": "https://arxiv.org/pdf/2608.04581v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "3D Gaussian Splatting method for novel view synthesis",
+      "llm_evidence_cn": "3D高斯泼溅新视图合成方法",
+      "llm_evidence": "3D高斯泼溅新视图合成方法",
+      "canonical_evidence": "3D高斯泼溅新视图合成方法",
+      "llm_tldr_en": "Proposes adaptive-capacity anchored Gaussian splatting to improve compactness-fidelity trade-off in 4D dynamic radiance fields while retaining real-time novel view synthesis.",
+      "llm_tldr_cn": "针对4D高斯泼溅中运动表达与存储效率难以兼顾的问题，本文提出自适应容量锚定框架，按局部时空复杂度动态分配神经高斯数量与特征预算，避免用过多锚点弥补保真度。在多个动态场景数据集上，该方法在保持实时渲染的同时显著压缩模型存储，为紧凑动态辐射场的新视角合成提供了更高效的实现方案。",
+      "llm_tldr": "针对4D高斯泼溅中运动表达与存储效率难以兼顾的问题，本文提出自适应容量锚定框架，按局部时空复杂度动态分配神经高斯数量与特征预算，避免用过多锚点弥补保真度。在多个动态场景数据集上，该方法在保持实时渲染的同时显著压缩模型存储，为紧凑动态辐射场的新视角合成提供了更高效的实现方案。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.00931v1",
+      "source": "arxiv",
+      "title": "Stipple: Real-Time Incremental Gaussian Splatting with Visual-Inertial Tracking",
+      "abstract": "3D Gaussian Splatting (3DGS) provides efficient rendering of photo-realistic scenes, but its heavy preprocessing and training steps make it a poor fit for applications that require real-time reconstruction in robotics or XR. This capability is important since it allows immediate feedback and interaction with new environments. Visual-inertial odometry (VIO) and simultaneous localization and mapping (VI-SLAM) systems, on the other hand, specifically target these real-time applications, which makes them a good choice for integration with 3DGS. We propose a new method that tracks and reconstructs simultaneously in real-time by leveraging an efficient visual-inertial tracking system based on Basalt together with a novel incremental method built on top of Brush, an efficient Rust-based GPU-vendor-agnostic implementation of 3D Gaussian Splatting. We show that many of the heavy preprocessing and training steps of 3DGS can be replaced with a more efficient incremental training strategy that has direct access to the information generated by the visual-inertial tracking system. Furthermore, we propose and combine multiple practical improvements to increase the efficiency of the training pipeline and adapt it to run in real-time, parallel to the tracking thread. This work highlights the value of exploiting the complementary nature of SLAM and 3DGS, and how that can lead to promising results for real-time 3D reconstruction.",
+      "authors": [
+        "Kilian Northoff",
+        "Mateo de Mayo",
+        "Daniel Cremers"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-08-02T02:17:05+00:00",
+      "link": "https://arxiv.org/pdf/2608.00931v1",
+      "tags": [
+        "keyword:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Real-time incremental 3DGS with visual-inertial tracking, enabling full-scene mapping for immersive environments",
+      "llm_evidence_cn": "实时增量式3DGS与视觉惯性跟踪相结合，可支撑沉浸式环境的全场景建图",
+      "llm_evidence": "实时增量式3DGS与视觉惯性跟踪相结合，可支撑沉浸式环境的全场景建图",
+      "canonical_evidence": "实时增量式3DGS与视觉惯性跟踪相结合，可支撑沉浸式环境的全场景建图",
+      "llm_tldr_en": "Introduces a real-time incremental 3DGS method integrated with visual-inertial odometry, tracking and reconstructing simultaneously for robotics/XR applications.",
+      "llm_tldr_cn": "提出一种将视觉惯性里程计与新型增量高斯泼溅结合的实时建图追踪方法，实现同时定位与三维重建。该方法面向机器人和XR场景，弥补了传统3DGS预处理和训练开销大的不足，支持即时交互。这为全景360度场景的实时增量式重建提供了可行的技术路径。",
+      "llm_tldr": "提出一种将视觉惯性里程计与新型增量高斯泼溅结合的实时建图追踪方法，实现同时定位与三维重建。该方法面向机器人和XR场景，弥补了传统3DGS预处理和训练开销大的不足，支持即时交互。这为全景360度场景的实时增量式重建提供了可行的技术路径。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "reconstructing panoramic 360-degree scenes using Gaussian splatting",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.02304v2",
+      "source": "arxiv",
+      "title": "TRACE: Ergodic Trajectory Optimization for Active Scene Reconstruction",
+      "abstract": "Existing active reconstruction systems with Gaussian-splatting maps select observations greedily, optimizing a single next-best-view (NBV) at each step and connecting the chosen views by short-horizon path planning. This greedy decoupling disregards the global structure of scene information, producing inefficient trajectories that waste sensing capacity in transit between selected views. In this work, we study active reconstruction as an ergodic coverage problem: the time-averaged spatial statistics of the sensor trajectory should match a target information distribution induced by the current map. Our approach derives this target distribution online from uncertainty and visibility, and calculates ergodic trajectories via a kernel-ergodic horizon planner with gradient flow and footprint depletion, closing the loop between mapping and trajectory optimization. We thoroughly evaluate TRACE on the Replica dataset against the Next-Best-View (NBV) baselines, improving PSNR by 1.5 dB. Code: https://github.com/spikelab-jhu/trace-active-reconstruction.",
+      "authors": [
+        "Ziyue Zheng",
+        "Linli Shi",
+        "Bingkun He",
+        "Wen Jiang",
+        "Ziyun Wang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-03T14:30:20+00:00",
+      "link": "https://arxiv.org/pdf/2608.02304v2",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "active scene reconstruction with Gaussian-splatting maps",
+      "llm_evidence_cn": "使用高斯溅射地图进行主动场景重建",
+      "llm_evidence": "使用高斯溅射地图进行主动场景重建",
+      "canonical_evidence": "使用高斯溅射地图进行主动场景重建",
+      "llm_tldr_en": "TRACE treats active reconstruction with Gaussian-splatting maps as ergodic coverage, deriving target information distributions online and planning kernel-ergodic trajectories instead of greedy next-best views.",
+      "llm_tldr_cn": "现有基于高斯溅射的主动重建通常贪心选择下一个最佳视角，轨迹效率低。TRACE将主动重建建模为遍历覆盖问题，使传感器轨迹的时间平均统计量匹配地图当前的信息分布，并在线从不确定性和可见性推导目标分布。该方法可规划全局高效的遍历轨迹，提升场景重建效率。",
+      "llm_tldr": "现有基于高斯溅射的主动重建通常贪心选择下一个最佳视角，轨迹效率低。TRACE将主动重建建模为遍历覆盖问题，使传感器轨迹的时间平均统计量匹配地图当前的信息分布，并在线从不确定性和可见性推导目标分布。该方法可规划全局高效的遍历轨迹，提升场景重建效率。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "reconstructing panoramic 360-degree scenes using Gaussian splatting",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.03279v1",
+      "source": "arxiv",
+      "title": "3DGSI-Assessor: A Large-Scale Dataset and An LMM-based Method for 3D Gaussian Splatting Image Quality Assessment",
+      "abstract": "3D Gaussian Splatting (3DGS) has become a dominant representation for real-time novel view synthesis (NVS), yet its storage footprint makes compression indispensable for practical deployment. 3DGS training and compression introduce representation-specific distortions such as floating artifacts and surface scattering, which conventional image quality assessment (IQA) metrics fail to capture. Moreover, the independent compression of geometric and color attributes may lead to decoupled dimension-specific distortions that must be diagnosed separately, yet existing metrics report only a single overall score. To address these gaps, we present 3DGS-IEval-15K+, a large-scale, multi-dimensional IQA dataset for compressed 3DGS, comprising 15,200 images from 10 diverse scenes, produced by 6 representative 3DGS algorithms at systematically designed compression levels and rendered from 20 strategically selected viewpoints spanning both training views and challenging novel views, annotated with 45,600 mean opinion scores (MOSs) across overall, geometry, and color quality. Based on 3DGS-IEval-15K+, we propose 3DGSI-Assessor, an all-in-one 3DGS IQA framework that integrates global semantic and dimension-specific local features within a large multimodal model (LMM), predicting all three dimensions in a single forward pass. 3DGSI-Assessor achieves state-of-the-art performance on 3DGS-IEval-15K+, and exhibits competitive generalization on other NVS benchmarks. Dataset and code will be released at https://github.com/YukeXing/3DGSI-Assessor.",
+      "authors": [
+        "Yuke Xing",
+        "Jiarui Wang",
+        "William Gordon",
+        "Zhu Li",
+        "Guangtao Zhai",
+        "Yiling Xu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-04T07:53:14+00:00",
+      "link": "https://arxiv.org/pdf/2608.03279v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "3DGS-specific image quality assessment for novel view synthesis",
+      "llm_evidence_cn": "面向新视角合成的3DGS图像质量评估",
+      "llm_evidence": "面向新视角合成的3DGS图像质量评估",
+      "canonical_evidence": "面向新视角合成的3DGS图像质量评估",
+      "llm_tldr_en": "3DGSI-Assessor introduces a large-scale multi-dimensional IQA dataset and an LMM-based method to assess representation-specific distortions in compressed 3DGS novel views.",
+      "llm_tldr_cn": "3DGS训练与压缩会引入浮点伪影和表面散射等特有失真，传统IQA指标难以刻画。作者构建大规模多维IQA数据集3DGS-IEval-15K+，并提出基于多模态大模型的评估方法，可分别诊断几何与颜色属性压缩带来的维度特定失真。实验表明该方法能更全面地评估3DGS新视角合成质量，推动压缩与NVS的实用部署。",
+      "llm_tldr": "3DGS训练与压缩会引入浮点伪影和表面散射等特有失真，传统IQA指标难以刻画。作者构建大规模多维IQA数据集3DGS-IEval-15K+，并提出基于多模态大模型的评估方法，可分别诊断几何与颜色属性压缩带来的维度特定失真。实验表明该方法能更全面地评估3DGS新视角合成质量，推动压缩与NVS的实用部署。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
