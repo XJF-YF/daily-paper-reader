@@ -1,0 +1,24 @@
+{
+  "label": "2026-08-09",
+  "date": "2026-08-09",
+  "generated_at": "2026-08-09T20:36:23",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202608/09/2608.01761v1-decouplegs-interactive-3d-gaussian-splatting-for-end-to-end-autonomous-driving-testing",
+      "section": "quick",
+      "title_en": "DecoupleGS: Interactive 3D Gaussian Splatting for End-to-End Autonomous Driving Testing",
+      "authors": "Siying Li, Ying Ni, Jie Sun, Jian Sun, Haotian Shi",
+      "date": "2026-08-03",
+      "pdf": "https://arxiv.org/pdf/2608.01761v1",
+      "score": "6.0",
+      "evidence": "用于交互式自动驾驶仿真的3DGS框架",
+      "tldr": "端到端自动驾驶算法需在仿真环境中进行闭环验证，但现有方法难以兼顾高保真、强交互与实时性。本文提出解耦3DGS框架，将场景拆分为静态背景与可操控动态代理，通过感知剪枝与向量量化压缩资产，利用地图引导几何配准对齐轨迹，并采用代理重光照实现光照一致。实验表明该方法在保真度与效率间取得平衡，提升指标与光度一致性，为端到端测试提供实用闭环传感器仿真平台。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "End-to-end (E2E) autonomous driving algorithms require rigorous closed-loop validation in simulation environments offering high visual fidelity, strong interactivity, and real-time performance. Existing approaches, from game engines to static neural rendering, inherently trade off these requirements and struggle with the dynamic scene composition essential for E2E testing. To bridge this gap, we propose a novel decoupled 3D Gaussian Splatting (3DGS) framework tailored for large-scale E2E evaluation. We fundamentally decompose scenes into a high-fidelity static background and manipulable dynamic agents using an object-centric canonical representation. To resolve resulting representational conflicts, we introduce three targeted modules: (1) asset compression via perceptual pruning and vector quantization for real-time traffic rendering; (2) map-guided geometric registration leveraging semantic topology to strictly align trajectories; and (3) proxy-based relighting transferring ambient illumination for seamless photometric integration. Extensive experiments demonstrate that DecoupleGS achieves a balanced fidelity-efficiency trade-off, improves metric and photometric consistency, and provides a practical closed-loop sensor simulation platform for E2E autonomous driving evaluation.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

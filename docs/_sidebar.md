@@ -1,6 +1,9 @@
 * <a class="dpr-sidebar-root-link" href="#/">首页</a>
 * <a class="dpr-sidebar-root-link dpr-sidebar-noactive-link" href="javascript:void(0)" data-dpr-hash="#/tutorial/README">使用教程</a>
 * Daily Papers
+  * 2026-08-09 <!--dpr-date:20260809-->
+    * 速读区
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202608/09/2608.01761v1-decouplegs-interactive-3d-gaussian-splatting-for-end-to-end-autonomous-driving-testing" data-sidebar-item="{&quot;title&quot;: &quot;DecoupleGS: Interactive 3D Gaussian Splatting for End-to-End Autonomous Driving Testing&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2608.01761v1-decouplegs-interactive-3d-gaussian-splatting-for-end-to-end-autonomous-driving-testing&quot;, &quot;score&quot;: &quot;6.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;pano-dgs&quot;}], &quot;evidence&quot;: &quot;用于交互式自动驾驶仿真的3DGS框架&quot;}">DecoupleGS: Interactive 3D Gaussian Splatting for End-to-End Autonomous Driving Testing</a>
   * 2026-08-08 <!--dpr-date:20260808-->
     * 速读区
       * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202608/08/2608.00931v1-stipple-real-time-incremental-gaussian-splatting-with-visual-inertial-tracking" data-sidebar-item="{&quot;title&quot;: &quot;Stipple: Real-Time Incremental Gaussian Splatting with Visual-Inertial Tracking&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2608.00931v1-stipple-real-time-incremental-gaussian-splatting-with-visual-inertial-tracking&quot;, &quot;score&quot;: &quot;6.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;pano-dgs&quot;}], &quot;evidence&quot;: &quot;结合视觉惯性跟踪的增量式实时三维高斯泼溅重建&quot;}">Stipple: Real-Time Incremental Gaussian Splatting with Visual-Inertial Tracking</a>
