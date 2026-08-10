@@ -1,0 +1,24 @@
+{
+  "label": "2026-08-10",
+  "date": "2026-08-10",
+  "generated_at": "2026-08-10T20:20:04",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202608/10/2608.07144v1-instancesplat-instance-aware-feed-forward-3d-gaussian-splatting-for-scene-understanding",
+      "section": "quick",
+      "title_en": "InstanceSplat: Instance-Aware Feed-Forward 3D Gaussian Splatting for Scene Understanding",
+      "authors": "Minchao Jiang, Xiaoxuan Ma, Shunyu Jia, Haoru Wang, Zhang Liang, Wentao Zhu",
+      "date": "2026-08-07",
+      "pdf": "https://arxiv.org/pdf/2608.07144v1",
+      "score": "6.0",
+      "evidence": "前馈3DGS联合重建与实例感知场景理解",
+      "tldr": "前馈3DGS场景理解常局限于类别级，实例级方法需逐场景优化且重建与实例学习相互分离。InstanceSplat提出统一前馈框架，共享3D高斯同时编码外观、几何、实例标识与语义，并设计实例中心学习策略，让重建、实例分割和语义理解相互促进。实验表明，在不同输入视图及未见数据集上，新视图合成、实例分割与开放词汇理解均达到SOTA，且高效泛化。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Feed-forward 3D Gaussian Splatting (3DGS) enables efficient and generalizable 3D reconstruction, but current feed-forward 3DGS methods for scene understanding remain largely category-oriented. In contrast, instance-aware 3DGS methods typically rely on per-scene optimization and often decouple reconstruction from instance and semantic learning, limiting reciprocal interactions among them. We present InstanceSplat, a unified feed-forward 3DGS framework for generalizable 3D reconstruction and instance-aware scene understanding from pose-free multi-view images. In a single forward pass, InstanceSplat constructs an instance-aware Gaussian representation that jointly encodes appearance, geometry, instance identity, and language-aligned semantics. Shared 3D Gaussians ground instance identities across views, producing renderable and cross-view-consistent instance features. To allow reconstruction and scene understanding to benefit from each other, we further design an instance-centric learning strategy that connects reconstruction, instance learning, and semantic learning through shared instance structure. Specifically, instance cues guide reconstruction, language-aligned semantics strengthen the discrimination of confusing same-category instances, and instance regions aggregate semantic evidence into coherent object-level predictions. Experiments on novel-view synthesis, instance segmentation, and open-vocabulary semantic understanding under varying input-view settings and on an unseen dataset demonstrate state-of-the-art performance, practical efficiency, and strong generalization.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

@@ -1,6 +1,9 @@
 * <a class="dpr-sidebar-root-link" href="#/">首页</a>
 * <a class="dpr-sidebar-root-link dpr-sidebar-noactive-link" href="javascript:void(0)" data-dpr-hash="#/tutorial/README">使用教程</a>
 * Daily Papers
+  * 2026-08-10 <!--dpr-date:20260810-->
+    * 速读区
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202608/10/2608.07144v1-instancesplat-instance-aware-feed-forward-3d-gaussian-splatting-for-scene-understanding" data-sidebar-item="{&quot;title&quot;: &quot;InstanceSplat: Instance-Aware Feed-Forward 3D Gaussian Splatting for Scene Understanding&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2608.07144v1-instancesplat-instance-aware-feed-forward-3d-gaussian-splatting-for-scene-understanding&quot;, &quot;score&quot;: &quot;6.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;pano-dgs&quot;}], &quot;evidence&quot;: &quot;前馈3DGS联合重建与实例感知场景理解&quot;}">InstanceSplat: Instance-Aware Feed-Forward 3D Gaussian Splatting for Scene Understanding</a>
   * 2026-08-09 <!--dpr-date:20260809-->
     * 速读区
       * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202608/09/2608.01761v1-decouplegs-interactive-3d-gaussian-splatting-for-end-to-end-autonomous-driving-testing" data-sidebar-item="{&quot;title&quot;: &quot;DecoupleGS: Interactive 3D Gaussian Splatting for End-to-End Autonomous Driving Testing&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2608.01761v1-decouplegs-interactive-3d-gaussian-splatting-for-end-to-end-autonomous-driving-testing&quot;, &quot;score&quot;: &quot;6.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;pano-dgs&quot;}], &quot;evidence&quot;: &quot;用于交互式自动驾驶仿真的3DGS框架&quot;}">DecoupleGS: Interactive 3D Gaussian Splatting for End-to-End Autonomous Driving Testing</a>
