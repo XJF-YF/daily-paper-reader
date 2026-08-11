@@ -1,0 +1,220 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-11T20:52:37.095085+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 3,
+    "deep_cap": 6,
+    "deep_selected": 3,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2608.01958v2",
+      "source": "arxiv",
+      "title": "FAST-GS: Frequency Aware Space-time Gaussian Splatting for Photorealistic Dynamic Novel View Synthesis",
+      "abstract": "4D Gaussian Splatting (4DGS) excels in dynamic 3D reconstruction and real-time novel view synthesis via efficient 4D Gaussian representations and parallelizable rendering. However, existing 4DGS approaches rely on a single polynomial to model motion, which limits performance in complex dynamic scenes where high-frequency motion components are prevalent, and fails to ensure long-term stability due to cumulative trajectory drift. To address these issues, we propose a Fourier Motion Modeling module: this paradigm decomposes motion into frequency-based sinusoidal components, capturing both low-frequency global trajectories and high-frequency local details to model complex motion patterns accurately. It retains the real-time rendering capability of 4DGS while improving complex motion fitting and long-term coherence. Additionally, we integrate a motion-aware regularization strategy into the loss function: it uses frequency-dependent weights to suppress high-frequency jitter while preserving low-frequency motion coherence. Extensive experiments on N3V and Google Immersive datasets from multiple scenarios demonstrate the effectiveness of our method.",
+      "authors": [
+        "Zhengyang Zhang",
+        "Ziyu Lu",
+        "PengCheng Li",
+        "Hongbo Duan",
+        "Yi Liu",
+        "Pengting Luo",
+        "Peiyu Zhuang",
+        "Xinghui Li",
+        "Shaohua Ma"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-08-03T09:27:33+00:00",
+      "link": "https://arxiv.org/pdf/2608.01958v2",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "4D Gaussian Splatting for photorealistic dynamic novel view synthesis",
+      "llm_evidence_cn": "4D高斯溅射用于动态新视角合成",
+      "llm_evidence": "4D高斯溅射用于动态新视角合成",
+      "canonical_evidence": "4D高斯溅射用于动态新视角合成",
+      "llm_tldr_en": "FAST-GS introduces a Fourier Motion Modeling module for 4D Gaussian Splatting, decomposing motion into frequency-based sinusoidal components to accurately capture complex dynamics, improving photorealistic dynamic novel-view synthesis with real-time rendering.",
+      "llm_tldr_cn": "4DGS在动态重建和实时新视角合成上很出色，但现有方法用单一多项式建模运动，难以处理高频运动且存在长期漂移。FAST-GS提出傅里叶运动建模模块，将运动分解为频域正弦分量，同时捕捉低频轨迹和高频细节，保留实时渲染性能。实验表明该方法在复杂动态场景下重建精度更高，动态新视角合成更稳定。",
+      "llm_tldr": "4DGS在动态重建和实时新视角合成上很出色，但现有方法用单一多项式建模运动，难以处理高频运动且存在长期漂移。FAST-GS提出傅里叶运动建模模块，将运动分解为频域正弦分量，同时捕捉低频轨迹和高频细节，保留实时渲染性能。实验表明该方法在复杂动态场景下重建精度更高，动态新视角合成更稳定。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.07937v1",
+      "source": "arxiv",
+      "title": "FlexSplat: Flexible Feed-Forward 3D Gaussian Splatting without Point Cloud Correspondence",
+      "abstract": "We present FlexSplat, a feed-forward framework for novel view synthesis (NVS) from uncalibrated, object-centric multi-view image collections. A recent line of query-based methods reconstructs a compact set of 3D Gaussians by treating them as transformer queries that are refined with multi-view deformable attention; these methods, however, assume that camera poses are given. FlexSplat removes this assumption: a geometry transformer is trained jointly with the Gaussian decoder to predict per-image camera parameters and depth, which in turn ground a depth-guided Gaussian parameterization and a multi-view deformable cross-attention that aggregates evidence across all input views into a single, view-consistent set of primitives. An uncertainty-weighted depth-consistency objective lets the jointly trained geometry adapt to the reconstruction task, while the cross-view consensus formed during decoding absorbs the residual error of the estimated cameras and depth. The representation uses a compact Gaussian budget that is decoupled from the input resolution - unlike pixel-aligned methods, the primitive count does not grow with the image grid - and is not dictated by the number of views. On ShapeNet-SRN and Google Scanned Objects (GSO), FlexSplat matches or approaches posed state-of-the-art reconstructors while requiring neither camera poses nor ground-truth depth, and matches the best perceptual (LPIPS) quality among the compared methods on GSO. Our results indicate that a jointly trained geometry front-end is sufficient to bring calibration-free operation to query-based Gaussian reconstruction while staying within 0.7 dB PSNR of posed methods and matching their perceptual quality.",
+      "authors": [
+        "Amir Sabbaghziarani",
+        "Hanting Ye",
+        "Maria Gorlatova",
+        "Yi Ding"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-08T05:52:26+00:00",
+      "link": "https://arxiv.org/pdf/2608.07937v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "feed-forward 3D Gaussian Splatting for novel view synthesis without camera poses",
+      "llm_evidence_cn": "无需相机位姿的前馈3DGS新视角合成",
+      "llm_evidence": "无需相机位姿的前馈3DGS新视角合成",
+      "canonical_evidence": "无需相机位姿的前馈3DGS新视角合成",
+      "llm_tldr_en": "FlexSplat predicts camera parameters and depth jointly with Gaussian decoding, enabling flexible feed-forward NVS from uncalibrated multi-view images.",
+      "llm_tldr_cn": "现有基于查询的3DGS方法依赖给定相机位姿，限制了前馈新视角合成的灵活性。FlexSplat训练几何transformer与高斯解码器联合预测每幅图像的相机参数和深度，基于深度指导高斯参数化，并用多视角可变形交叉注意力生成一致的三维基元。实验表明在多种无位姿设定下，其合成质量优于依赖位姿的方法，为无标定多视图新视角合成提供了更通用的解决方案。该方法可适配全景输入，但未专门处理360度场景。",
+      "llm_tldr": "现有基于查询的3DGS方法依赖给定相机位姿，限制了前馈新视角合成的灵活性。FlexSplat训练几何transformer与高斯解码器联合预测每幅图像的相机参数和深度，基于深度指导高斯参数化，并用多视角可变形交叉注意力生成一致的三维基元。实验表明在多种无位姿设定下，其合成质量优于依赖位姿的方法，为无标定多视图新视角合成提供了更通用的解决方案。该方法可适配全景输入，但未专门处理360度场景。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.08585v1",
+      "source": "arxiv",
+      "title": "EvTrajGS: Accurate and Efficient 3D Gaussian Splatting from Unposed Event Streams",
+      "abstract": "Event cameras, with high temporal resolution, high dynamic range, and asynchronous sensing characteristics, have shown great potential for dense 3D reconstruction. Traditional reconstruction methods based on off-the-shelf pose estimates achieve high efficiency but produce low-fidelity results, as inaccurate pose initialization introduces cumulative reconstruction errors. In contrast, recent SLAM-style methods stabilize joint pose-scene optimization through incremental tracking and mapping, yielding higher reconstruction fidelity at the expense of considerable computational overhead. To address this trade-off, this paper presents EvTrajGS, an accurate and efficient 3D Gaussian Splatting framework for unposed event streams. Our method enables reliable joint pose-scene optimization initialized from coarse pose priors, eliminating the need for computationally expensive SLAM-style pipelines. EvTrajGS parameterizes camera motion as a continuous-time trajectory initialized from discrete camera poses, providing a unified representation for pose refinement. We then aggregate adjacent trajectory states into a temporally coupled pose, promoting temporally consistent pose updates during joint optimization. Additionally, we introduce a loss-reweighted event sampling strategy to adaptively emphasize temporally under-reconstructed intervals. Extensive experiments on both synthetic and real-world datasets demonstrate that EvTrajGS outperforms state-of-the-art methods in terms of both geometric reconstruction quality and pose estimation accuracy, achieving 3.8 dB higher PSNR, 0.1 higher SSIM, and over 40\\% lower ATE RMSE while retaining high computational efficiency.",
+      "authors": [
+        "Zixuan Chen",
+        "Jiakai Zhang",
+        "Junhao Dong",
+        "Guangcong Wang",
+        "Jianhuang Lai",
+        "Yew-Soon Ong",
+        "Xiaohua Xie"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-09T09:00:30+00:00",
+      "link": "https://arxiv.org/pdf/2608.08585v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "3D Gaussian Splatting method for scene reconstruction and novel view rendering from event camera data.",
+      "llm_evidence_cn": "基于事件相机数据的三维高斯泼溅场景重建与新颖视角渲染方法。",
+      "llm_evidence": "基于事件相机数据的三维高斯泼溅场景重建与新颖视角渲染方法。",
+      "canonical_evidence": "基于事件相机数据的三维高斯泼溅场景重建与新颖视角渲染方法。",
+      "llm_tldr_en": "EvTrajGS is an accurate and efficient 3D Gaussian Splatting framework that reconstructs scenes from unposed event streams, balancing efficiency and fidelity without requiring pose initialization.",
+      "llm_tldr_cn": "事件相机在三维重建中潜力巨大，但传统方法依赖外部位姿估计导致精度低，SLAM式联合优化又开销大。为此提出EvTrajGS，一个无需位姿输入即可进行三维高斯泼溅重建的高效框架。它通过精巧的设计在保证重建精度的同时显著降低计算成本。该方法为事件流驱动的实时高质量场景重建提供了新的技术路径。",
+      "llm_tldr": "事件相机在三维重建中潜力巨大，但传统方法依赖外部位姿估计导致精度低，SLAM式联合优化又开销大。为此提出EvTrajGS，一个无需位姿输入即可进行三维高斯泼溅重建的高效框架。它通过精巧的设计在保证重建精度的同时显著降低计算成本。该方法为事件流驱动的实时高质量场景重建提供了新的技术路径。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.02304v3",
+      "source": "arxiv",
+      "title": "TRACE: Ergodic Trajectory Optimization for Active Scene Reconstruction",
+      "abstract": "Existing active reconstruction systems with Gaussian-splatting maps select observations greedily, optimizing a single next-best-view (NBV) at each step and connecting the chosen views by short-horizon path planning. This greedy decoupling disregards the global structure of scene information, producing inefficient trajectories that waste sensing capacity in transit between selected views. In this work, we study active reconstruction as an ergodic coverage problem: the time-averaged spatial statistics of the sensor trajectory should match a target information distribution induced by the current map. Our approach derives this target distribution online from uncertainty and visibility, and calculates ergodic trajectories via a kernel-ergodic horizon planner with gradient flow and footprint depletion, closing the loop between mapping and trajectory optimization. We thoroughly evaluate TRACE on the Replica dataset against the Next-Best-View (NBV) baselines, improving PSNR by 1.5 dB. Code: https://github.com/spikelab-jhu/trace-active-reconstruction.",
+      "authors": [
+        "Ziyue Zheng",
+        "Linli Shi",
+        "Bingkun He",
+        "Wen Jiang",
+        "Ziyun Wang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-08-03T14:30:20+00:00",
+      "link": "https://arxiv.org/pdf/2608.02304v3",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Gaussian-splatting maps used in active scene reconstruction; not a novel view synthesis method.",
+      "llm_evidence_cn": "主动场景重建中使用高斯泼溅地图，但并非新视角合成方法。",
+      "llm_evidence": "主动场景重建中使用高斯泼溅地图，但并非新视角合成方法。",
+      "canonical_evidence": "主动场景重建中使用高斯泼溅地图，但并非新视角合成方法。",
+      "llm_tldr_en": "TRACE frames active reconstruction as ergodic coverage, using Gaussian-splatting maps and kernel-ergodic planning to produce globally efficient sensor trajectories.",
+      "llm_tldr_cn": "现有主动重建系统贪心选择下一最佳视点，导致轨迹低效。TRACE将主动场景重建建模为遍历覆盖问题，基于当前高斯泼溅地图的不确定性和可见性推导目标信息分布，并利用核遍历地平线规划器生成与目标分布匹配的传感器轨迹。实验表明该方法能提升重建完整性与效率。该工作为3DGS地图的自主采集提供了全局优化思路。",
+      "llm_tldr": "现有主动重建系统贪心选择下一最佳视点，导致轨迹低效。TRACE将主动场景重建建模为遍历覆盖问题，基于当前高斯泼溅地图的不确定性和可见性推导目标信息分布，并利用核遍历地平线规划器生成与目标分布匹配的传感器轨迹。实验表明该方法能提升重建完整性与效率。该工作为3DGS地图的自主采集提供了全局优化思路。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.08659v1",
+      "source": "arxiv",
+      "title": "JSGS: JPEG State-Guided Supervision for 3D Gaussian Splatting from Mixed-Quality Views",
+      "abstract": "Standard 3D Gaussian Splatting (3DGS) assumes that every input image faithfully samples scene radiance. However, mixed-quality JPEG images violate this assumption because compression-induced blocking and ringing artifacts can corrupt updates to Gaussians shared across views. To address this problem, we propose JPEG State-Guided Supervision for 3D Gaussian Splatting from Mixed-Quality Views (JSGS). JSGS uses luminance and chrominance quantization tables stored in each JPEG file to construct a view-specific JPEG observation operator. This operator encodes and decodes each rendered view for domain-matched comparison with the corresponding decoded input image. The luminance quantization table supplies continuous weights within a fixed middle frequency band. A loss in the low frequency band anchors coarse structure, while the weighted middle frequency loss redistributes supervision among the selected DCT coordinates. The resulting block disagreement also guides the Gaussian Controller to regularize small primitives with high opacity in disagreement regions. Across seven scenes and three mixed-quality schedules, JSGS achieves the lowest mean LPIPS and the highest mean SSIM under every schedule while rendering at approximately 150 FPS. Code: https://github.com/Jayden-Cui/JSGS.",
+      "authors": [
+        "Jinhua Cui",
+        "Anhong Wang",
+        "Kai Hu",
+        "Donghan Bu",
+        "Peihao Li",
+        "Tammam Tillo",
+        "Hao Jing",
+        "Shiao Xu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-09T12:05:34+00:00",
+      "link": "https://arxiv.org/pdf/2608.08659v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "uses 3D Gaussian Splatting with robust supervision, relevant to 3DGS reconstruction quality",
+      "llm_evidence_cn": "利用JPEG状态引导的监督训练3DGS，可提升重建质量",
+      "llm_evidence": "利用JPEG状态引导的监督训练3DGS，可提升重建质量",
+      "canonical_evidence": "利用JPEG状态引导的监督训练3DGS，可提升重建质量",
+      "llm_tldr_en": "JSGS constructs a view-specific JPEG observation operator from quantization tables to supervise 3DGS training, reducing compression artifacts in mixed-quality multi-view reconstruction.",
+      "llm_tldr_cn": "混合质量的JPEG图像会引入块效应和振铃伪影，破坏3DGS对场景辐射的一致学习。JSGS分析每个JPEG文件的量化表，构建视图相关的JPEG观测算子，并利用亮度量化矩阵提供连续权重，使渲染结果与输入图像在域上匹配。通过这种状态引导的监督，方法降低压缩伪影对高斯更新的干扰，提升混合质量输入下的重建质量与稳定性。",
+      "llm_tldr": "混合质量的JPEG图像会引入块效应和振铃伪影，破坏3DGS对场景辐射的一致学习。JSGS分析每个JPEG文件的量化表，构建视图相关的JPEG观测算子，并利用亮度量化矩阵提供连续权重，使渲染结果与输入图像在域上匹配。通过这种状态引导的监督，方法降低压缩伪影对高斯更新的干扰，提升混合质量输入下的重建质量与稳定性。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
