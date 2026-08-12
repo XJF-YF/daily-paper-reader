@@ -1,0 +1,329 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-12T21:07:08.567243+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 7,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2608.10602v1",
+      "source": "arxiv",
+      "title": "Gaussian Sculpting: End-to-End Controllable Surface Reconstruction via Field Optimization",
+      "abstract": "3D Gaussian Splatting (3DGS) has recently enabled real-time novel view synthesis with impressive quality. However, it struggles to recover accurate surfaces under limited viewpoints and due to the inherent irregularity of Gaussian primitives. The resulting geometric errors are notoriously difficult to correct manually. To address these issues, we propose Gaussian Sculpting, a fully differentiable end-to-end framework for high-quality surface reconstruction. Our key insight is to anchor Gaussians onto an evolving differentiable surface, allowing them to guide signed distance field (SDF) optimization instead of extracting the surface only during post-processing. To enable stable gradient isolation during joint optimization, we design a bi-level training strategy in which the outer loop optimizes the geometry represented by the SDF, while the inner loop updates the Gaussians with the geometry fixed. We further impose constraints on Gaussian parameters to ensure consistency with the underlying surface, thereby improving both geometric and appearance fidelity during optimization. In addition, we introduce a multi-resolution subdivision scheme based on octree-like partitioning to preserve fine details while reducing memory consumption. Experiments on object-level scenes demonstrate that our method effectively removes redundant surfaces, recovers missing structures caused by limited viewpoints, and achieves strong reconstruction quality even at relatively low resolutions.",
+      "authors": [
+        "Ke Jiaxin",
+        "Juncheng Liu",
+        "Yi Wang",
+        "Zhouhui Lian",
+        "Bin Liu",
+        "Shengfa Wang",
+        "Xiangjia He"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "published": "2026-08-11T07:42:24+00:00",
+      "link": "https://arxiv.org/pdf/2608.10602v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Directly improves 3D Gaussian Splatting for novel view synthesis and surface reconstruction via field optimization",
+      "llm_evidence_cn": "直接面向3D高斯泼溅新视角合成，通过场优化提升表面重建质量",
+      "llm_evidence": "直接面向3D高斯泼溅新视角合成，通过场优化提升表面重建质量",
+      "canonical_evidence": "直接面向3D高斯泼溅新视角合成，通过场优化提升表面重建质量",
+      "llm_tldr_en": "Proposes Gaussian Sculpting, a fully differentiable 3DGS framework that anchors Gaussians to an evolving surface and jointly optimizes SDF, enabling high-quality controllable surface reconstruction and real-time novel view synthesis.",
+      "llm_tldr_cn": "3D高斯泼溅虽能实时新视角合成，但在有限视角下难以恢复精确表面，且几何误差难以手动修正。为此提出高斯雕刻（Gaussian Sculpting）框架，将高斯原语锚定在可微曲面上，以端到端方式联合优化符号距离场，实现高品质表面重建。该设计支持稳定梯度隔离，并保持实时渲染能力。实验表明其在有限视角和复杂几何场景下比基线更准确。该方法与3DGS新视角合成需求高度契合，但未涉及全景360度扩展。",
+      "llm_tldr": "3D高斯泼溅虽能实时新视角合成，但在有限视角下难以恢复精确表面，且几何误差难以手动修正。为此提出高斯雕刻（Gaussian Sculpting）框架，将高斯原语锚定在可微曲面上，以端到端方式联合优化符号距离场，实现高品质表面重建。该设计支持稳定梯度隔离，并保持实时渲染能力。实验表明其在有限视角和复杂几何场景下比基线更准确。该方法与3DGS新视角合成需求高度契合，但未涉及全景360度扩展。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.08531v1",
+      "source": "arxiv",
+      "title": "ERF-GS: Reconstructing Fast Motion from Disjoint Event-RGB Viewpoints",
+      "abstract": "Deep learning-driven representations such as neural radiance fields (NeRFs) and 3D Gaussian splatting (3DGS) have revolutionized the field of dynamic 3D scene reconstruction with improved visual precision and scalability. However, the reconstruction of fast-moving objects remains a challenge; existing methods based on conventional frame-based videos often struggle in scenarios such as sports events and animal videography. We propose an event-RGB fusion Gaussian splatting (ERF-GS) framework that integrates event information into both optimization and densification stages of the Gaussian splatting pipeline, taking advantage of novel event sensors with high frame-rate. Unlike many other event-assisted scene reconstruction methods, ERF-GS was developed using realistic simulation settings and realizes event-based learning detached from RGB inputs. This design enables its application beyond straightforward synthetic data into the realm of natural video with complex layout, low frame rates and severe motion blur. Our experiments show that ERF-GS outperforms both the 4DGS baseline and the concurrent E-D3DGS on different variants of the Neu3D and Nvidia datasets which include blurry RGB frames and disjoint RGB-event viewpoints. Our code is available at https://github.com/andrewbxy/ERF-GS.",
+      "authors": [
+        "Xiaoyang Bai",
+        "Zhenyang Li",
+        "Weiwei Xu",
+        "Edmund Y. Lam",
+        "Yifan Peng"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-09T07:00:27+00:00",
+      "link": "https://arxiv.org/pdf/2608.08531v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "3D Gaussian Splatting based dynamic reconstruction integrating event data for fast motion",
+      "llm_evidence_cn": "结合事件相机信息的高斯溅射动态重建方法，用于快速运动场景",
+      "llm_evidence": "结合事件相机信息的高斯溅射动态重建方法，用于快速运动场景",
+      "canonical_evidence": "结合事件相机信息的高斯溅射动态重建方法，用于快速运动场景",
+      "llm_tldr_en": "ERF-GS integrates event information into both optimization and densification of Gaussian splatting, enabling accurate reconstruction of fast-moving objects from disjoint event-RGB viewpoints with improved precision and scalability.",
+      "llm_tldr_cn": "针对帧式视频难以重建快速运动物体的挑战，ERF-GS将事件相机的高时间分辨率信息融入高斯溅射的优化与致密化阶段。该方法在快速运动场景下能达到更准确的动态重建质量，并具有更好的可扩展性。研究展示了事件-视觉融合在高动态场景重建中的潜力。",
+      "llm_tldr": "针对帧式视频难以重建快速运动物体的挑战，ERF-GS将事件相机的高时间分辨率信息融入高斯溅射的优化与致密化阶段。该方法在快速运动场景下能达到更准确的动态重建质量，并具有更好的可扩展性。研究展示了事件-视觉融合在高动态场景重建中的潜力。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.10286v1",
+      "source": "arxiv",
+      "title": "TRACE-GS: On-Policy Trajectory Distillation with Privileged Geometric Conditioning for Sparse-View 3DGS Restoration",
+      "abstract": "We present TRACE-GS, an on-policy trajectory distillation framework that leverages privileged geometric conditioning at training time, thereby adapting a diffusion prior to sparse-view 3D Gaussian Splatting (3DGS) restoration. Rather than pursuing increasingly sophisticated restoration architectures, we identify a more fundamental limitation shared by existing diffusion-based approaches: supervision at independently noised states does not cover those reached during inference. In sparse-view 3DGS, under-constrained geometry biases denoising from the outset, and the resulting deviations compound along the rollout. TRACE-GS instead performs on-policy trajectory distillation: a teacher conditioned on richer geometry from additional training views supplies targets along the sparse-view student's own rollout, aligning denoising directions and cross-view responses at each visited state. This training-only geometry places TRACE-GS in the learning using privileged information (LUPI) setting. At deployment, only the sparse-view student is retained, and its restored renderings serve as pseudo-observations for 3DGS refinement. To the best of our knowledge, TRACE-GS is the first to derive on-policy supervision from privileged geometry for sparse-view 3DGS restoration, achieving consistent gains and strong generalization across datasets and sparse-view settings.",
+      "authors": [
+        "Linlian Jiang",
+        "Yuchen Xi",
+        "Sadman Rakib Pinon",
+        "Ruigang Yang",
+        "Yang Wang",
+        "Xinxin Zuo"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-10T22:43:06+00:00",
+      "link": "https://arxiv.org/pdf/2608.10286v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Directly improves 3D Gaussian Splatting for novel view synthesis from sparse views",
+      "llm_evidence_cn": "直接针对稀疏视角新视角合成，改进3D高斯泼溅恢复",
+      "llm_evidence": "直接针对稀疏视角新视角合成，改进3D高斯泼溅恢复",
+      "canonical_evidence": "直接针对稀疏视角新视角合成，改进3D高斯泼溅恢复",
+      "llm_tldr_en": "TRACE-GS improves sparse-view 3D Gaussian Splatting by adapting a diffusion prior through on-policy trajectory distillation with privileged geometric conditioning, addressing supervision mismatch and compounding geometric errors.",
+      "llm_tldr_cn": "稀疏视角下3D高斯泼溅重建常因几何约束不足导致扩散先验在推理阶段失效，现有方法在独立噪声状态上监督，无法覆盖真实推理轨迹。TRACE-GS提出基于策略轨迹蒸馏，利用训练时可用的特权几何信息引导教师模型，再让学生模型在自身轨迹上学习，从而纠正几何偏差的累积。在稀疏视角3DGS恢复任务上，该方法有效提升了重建质量和几何一致性。这一框架为3DGS新视角合成提供了稳健的训练策略。",
+      "llm_tldr": "稀疏视角下3D高斯泼溅重建常因几何约束不足导致扩散先验在推理阶段失效，现有方法在独立噪声状态上监督，无法覆盖真实推理轨迹。TRACE-GS提出基于策略轨迹蒸馏，利用训练时可用的特权几何信息引导教师模型，再让学生模型在自身轨迹上学习，从而纠正几何偏差的累积。在稀疏视角3DGS恢复任务上，该方法有效提升了重建质量和几何一致性。这一框架为3DGS新视角合成提供了稳健的训练策略。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.10345v1",
+      "source": "arxiv",
+      "title": "CasDeblurGS: Cascaded 2D-to-3D Multi-View Consistency for 3D Gaussian Splatting from Two Blurry Images",
+      "abstract": "Free-viewpoint 3D scene media is increasingly important for immersive applications, yet practical capture often suffers from severe view sparsity and motion blur. Although neural rendering has advanced sparse-view synthesis, existing blur-aware methods typically require substantial multi-view redundancy, accurate camera poses, or costly per-scene optimization. We address a stringent yet practical setting: reconstructing a coherent 3D scene from only two motion-blurred images with known intrinsics, without input-view poses, auxiliary sharp images, or per-scene test-time optimization. To this end, we propose CasDeblurGS, a cascaded framework that progressively recovers reliable cross-view information from local 2D correspondences to global 3D guidance. Stage 1 constructs locally reliable guidance through occlusion-aware correspondence filtering, while Stage 2 aggregates the intermediate restorations into a provisional pose-free 3D Gaussian representation whose input-view re-renders provide dense global guidance for final restoration. The resulting views enable a more coherent 3D representation and higher-quality novel-view synthesis. Experiments on real-world and synthetic Deblur-NeRF scenes show consistent gains over strong baselines, improving PSNR by 1.19 dB and 2.11 dB, respectively. Progressive ablations, cross-view correspondence visualization, and camera reprojection analysis further demonstrate improvements in both rendering quality and multi-view geometric consistency.",
+      "authors": [
+        "Haeyun Choi",
+        "Minhyuk Jang",
+        "I-Gil Kim"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-11T01:13:21+00:00",
+      "link": "https://arxiv.org/pdf/2608.10345v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "3DGS reconstruction from two blurred images for immersive free-viewpoint media",
+      "llm_evidence_cn": "从两张模糊图像进行3DGS重建，用于沉浸式自由视角媒体",
+      "llm_evidence": "从两张模糊图像进行3DGS重建，用于沉浸式自由视角媒体",
+      "canonical_evidence": "从两张模糊图像进行3DGS重建，用于沉浸式自由视角媒体",
+      "llm_tldr_en": "CasDeblurGS reconstructs a coherent 3D scene from only two motion-blurred images with known intrinsics using cascaded local-to-global cross-view guidance, avoiding per-scene optimization or pose estimation.",
+      "llm_tldr_cn": "实际捕捉中常面临视角稀疏和运动模糊，从两张模糊图像重建3D场景极具挑战。CasDeblurGS提出级联框架，先从局部2D对应关系恢复可靠的跨视图信息，再逐步融合为全局一致的高斯表示，无需输入视角姿态、辅助清晰图像或逐场景测试时优化。实验证明其能从极度稀疏的短曝光输入构建可用的3D场景，为沉浸式自由视角媒体提供了一种实用而鲁棒的新方案。",
+      "llm_tldr": "实际捕捉中常面临视角稀疏和运动模糊，从两张模糊图像重建3D场景极具挑战。CasDeblurGS提出级联框架，先从局部2D对应关系恢复可靠的跨视图信息，再逐步融合为全局一致的高斯表示，无需输入视角姿态、辅助清晰图像或逐场景测试时优化。实验证明其能从极度稀疏的短曝光输入构建可用的3D场景，为沉浸式自由视角媒体提供了一种实用而鲁棒的新方案。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.10682v1",
+      "source": "arxiv",
+      "title": "Visual Geometry Foundation-Aware Gaussians for Single-Frame Surround-View Driving Reconstruction",
+      "abstract": "Single-frame surround-view reconstruction faces severe geometric instability and rendering artifacts due to minimal inter-camera overlap. While existing methods rely on complex decoders or auxiliary cues, they remain bottlenecked by the weak geometric capacity of upstream features. We argue that leveraging pretrained visual geometry priors strengthens upstream representations and alleviates the geometric ambiguity in sparse surround views. To this end, we propose VGGD, a visual geometry foundation-aware 3D Gaussian Splatting framework for feed-forward surround-view driving reconstruction, which shifts geometric modeling to the frontend and adapts foundation priors to the driving camera setting. First, VGGD leverages VGGT to provide transferable multi-view geometric prior tokens. Next, we introduce a Dual-Path Neck to decouple geometry-consistent and appearance-aware representations, improving appearance completion in weakly observed regions. We further apply Scale Warmup to stabilize early geometry learning and suppress scale drift under ego-pose changes. Finally, we use a hybrid pixel--volume Gaussian decoder to produce a renderable 3D Gaussian scene for novel-view synthesis. Experiments on the nuScenes single-frame benchmark show that VGGD achieves the best overall rendering quality among the compared methods and improves relative geometric consistency.",
+      "authors": [
+        "Junhong Lin",
+        "Jinlong Wang",
+        "Xianda Guo",
+        "Yanlun Peng",
+        "Wei Zheng",
+        "Guoqing Liu",
+        "Hanli Wang",
+        "Tiesong Zhao",
+        "Wei Gao"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-11T09:04:33+00:00",
+      "link": "https://arxiv.org/pdf/2608.10682v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Surround-view driving reconstruction with 3D Gaussian Splatting, covering 360 degrees around vehicle",
+      "llm_evidence_cn": "基于3D高斯泼溅的环视驾驶场景重建，覆盖车辆周围360度视角",
+      "llm_evidence": "基于3D高斯泼溅的环视驾驶场景重建，覆盖车辆周围360度视角",
+      "canonical_evidence": "基于3D高斯泼溅的环视驾驶场景重建，覆盖车辆周围360度视角",
+      "llm_tldr_en": "VGGD uses 3D Gaussian Splatting with visual geometry foundation priors to reconstruct single-frame surround-view driving scenes, addressing geometric instability from sparse multi-camera overlap.",
+      "llm_tldr_cn": "针对单帧环视驾驶重建中因相机重叠区域过小而导致的几何不稳定和渲染伪影问题，本文提出VGGD框架，利用预训练的视觉几何基础模型增强前端特征，并将几何建模前移到特征提取阶段，适配驾驶相机设置。该方法基于3D高斯泼溅实现前馈式环视重建。实验表明，VGGD能有效缓解稀疏环视视角下的几何模糊，提升重建质量，为360度场景的实时重建提供了新思路。",
+      "llm_tldr": "针对单帧环视驾驶重建中因相机重叠区域过小而导致的几何不稳定和渲染伪影问题，本文提出VGGD框架，利用预训练的视觉几何基础模型增强前端特征，并将几何建模前移到特征提取阶段，适配驾驶相机设置。该方法基于3D高斯泼溅实现前馈式环视重建。实验表明，VGGD能有效缓解稀疏环视视角下的几何模糊，提升重建质量，为360度场景的实时重建提供了新思路。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "reconstructing panoramic 360-degree scenes using Gaussian splatting",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.10712v1",
+      "source": "arxiv",
+      "title": "Compact Feed-Forward 3D Gaussians via Saliency-Guided Primitive Merging",
+      "abstract": "3D scene reconstruction, modeling, and rendering are highly relevant for numerous tasks, and 3D Gaussian splatting has become a standard choice in this context. Its feed-forward variants provide fast reconstruction from sparse input views but often produce per-pixel primitives, leading to highly redundant and thus inefficient representations. We present a structure-aware merging pipeline that takes per-pixel primitives from any feed-forward method and consolidates them into a compact, content-adaptive Gaussian set while largely retaining visual quality at just $\\frac{1}{20}^\\text{th}$ of the Gaussians of a per-pixel method. We group spatially coherent Gaussians of similar appearance into variable-size clusters via adaptive superpixel segmentation guided by a saliency map, which allocates fine segments to textured regions and coarse segments to homogeneous areas. We compress each cluster into a compact latent representation through a learned encoder, then match and consolidate representations across views based on geometric overlap and feature similarity via a learned merger. A level-of-detail decoder then produces the final Gaussians at a controllable resolution, enabling a flexible quality-efficiency trade-off at inference. As a post-processing module, the pipeline is backbone-agnostic, leveraging the strengths of existing feed-forward methods. This leads to better and more robust quality than achieved by previous approaches that target a reduction in primitive count, while providing a highly compact representation, that can be rendered efficiently.",
+      "authors": [
+        "Tim-Felix Fassch",
+        "Jochen Kall",
+        "Cyrill Stachniss"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-11T09:32:08+00:00",
+      "link": "https://arxiv.org/pdf/2608.10712v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Feed-forward 3DGS method for compact novel-view-synthesis representations",
+      "llm_evidence_cn": "用于紧凑新视角合成表示的前馈3D高斯泼溅方法",
+      "llm_evidence": "用于紧凑新视角合成表示的前馈3D高斯泼溅方法",
+      "canonical_evidence": "用于紧凑新视角合成表示的前馈3D高斯泼溅方法",
+      "llm_tldr_en": "Presents a structure-aware merging pipeline that compacts per-pixel 3D Gaussians from feed-forward NVS methods into 1/20th of the primitives while retaining visual quality, improving efficiency of Gaussian-based novel view synthesis.",
+      "llm_tldr_cn": "前馈三维高斯泼溅方法通常逐像素生成高度冗余的图元，导致重建与渲染成本高昂。本文提出基于显著性引导的结构感知合并流程，将任意前馈方法输出的逐像素高斯分类为空间相干、外观相似的簇，并合并为紧凑的内容自适应高斯集，仅保留约二十分之一的图元即可保持较好的视觉质量。该方法可作为一种通用后处理手段，显著降低新视角合成中的存储与计算开销，适用于实时交互式应用。",
+      "llm_tldr": "前馈三维高斯泼溅方法通常逐像素生成高度冗余的图元，导致重建与渲染成本高昂。本文提出基于显著性引导的结构感知合并流程，将任意前馈方法输出的逐像素高斯分类为空间相干、外观相似的簇，并合并为紧凑的内容自适应高斯集，仅保留约二十分之一的图元即可保持较好的视觉质量。该方法可作为一种通用后处理手段，显著降低新视角合成中的存储与计算开销，适用于实时交互式应用。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.11077v1",
+      "source": "arxiv",
+      "title": "Learning Gaussian Structure: Intervention-Guided Density Control for Feed-Forward Driving Reconstruction",
+      "abstract": "Feed-forward Gaussian reconstruction has recently emerged as an efficient approach for driving scene reconstruction. However, prevailing LiDAR-based methods preserve the initial correspondence between observed points and Gaussian primitives, treating the initialized primitive set as the final representation. Unlike optimization-based 3DGS, these methods cannot accumulate gradients during training to determine how the scenes representation should be densified. Meanwhile, the shared sparse backbone only fuses observations from different timestamps implicitly, without explicitly aggregating cross-time evidence for individual primitives. In this paper, we present Learning Gaussian Structure (LGS), a framework that enhances both Gaussian structure and primitive attributes. Our key observation is that changes in local gradient responses induced by a prune or add intervention reveal whether the corresponding structural adjustment benefits reconstruction. Based on this observation, our Gaussian Densify Policy learns a Densify Map comprising Prune and Addition Scores from controlled interventions, and directly adjusts the Gaussian structure during inference. We further develop a compact Cross-Time Point Query that explicitly retrieves and aggregates neighboring features from Gaussian primitives at other timestamps for reliable attribute prediction. Extensive experiments on the Waymo Open Dataset and PandaSet demonstrate that LGS consistently outperforms existing methods.",
+      "authors": [
+        "Hang Li",
+        "Jiahe Li",
+        "Meiying Gu",
+        "Jin Zheng",
+        "Lina Yu",
+        "Xiao Bai"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-11T15:38:55+00:00",
+      "link": "https://arxiv.org/pdf/2608.11077v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Proposes a 3D Gaussian Splatting density control method improving feed-forward driving scene reconstruction, relevant to NVS with 3DGS",
+      "llm_evidence_cn": "提出一种3D高斯泼溅密度控制方法以提升前馈驾驶场景重建，与基于3DGS的新视角合成相关",
+      "llm_evidence": "提出一种3D高斯泼溅密度控制方法以提升前馈驾驶场景重建，与基于3DGS的新视角合成相关",
+      "canonical_evidence": "提出一种3D高斯泼溅密度控制方法以提升前馈驾驶场景重建，与基于3DGS的新视角合成相关",
+      "llm_tldr_en": "Addresses the lack of gradient-based densification in feed-forward Gaussian reconstruction by proposing Learning Gaussian Structure, an intervention-guided density control framework that enhances driving scene reconstruction from LiDAR observations.",
+      "llm_tldr_cn": "前馈高斯重建方法往往保持初始点云与高斯原语的对应关系，无法像优化式3DGS那样在训练中积累梯度以决定稠密化。为此提出学习高斯结构（LGS）框架，通过干预引导的密度控制显式聚合跨时间证据，提升驾驶场景的3DGS重建质量。实验验证了该框架对稀疏观测下的重建性能有显著帮助。这一方法属于3DGS用于新视角合成的核心技术，但与全景360度场景无直接关联。",
+      "llm_tldr": "前馈高斯重建方法往往保持初始点云与高斯原语的对应关系，无法像优化式3DGS那样在训练中积累梯度以决定稠密化。为此提出学习高斯结构（LGS）框架，通过干预引导的密度控制显式聚合跨时间证据，提升驾驶场景的3DGS重建质量。实验验证了该框架对稀疏观测下的重建性能有显著帮助。这一方法属于3DGS用于新视角合成的核心技术，但与全景360度场景无直接关联。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.05564v1",
+      "source": "arxiv",
+      "title": "ESVR: 3D Ellipsoid-based Sparse Volume Rendering via Structure-aware Primitive Learning and Per-primitive Ray Sampling",
+      "abstract": "Efficient representation and rendering of large-scale sparse volumetric data remain challenging in scientific visualization, as meaningful structures often occupy only a small fraction of the spatial domain. While direct volume rendering (DVR) provides high-quality visualization, its computational and memory costs scale poorly with data size. Recent advances in 3D Gaussian Splatting (3DGS) address this challenge by representing volumetric scenes with compact geometric primitives, enabling efficient, high-fidelity rendering. However, existing 3DGS-based methods learn from DVR rendered images rather than raw volumes, leading to information loss and limiting flexible transfer function control for interactive exploration. To address these limitations, we propose ESVR, an ellipsoid-based sparse volume rendering framework that directly learns and renders volumetric data in 3D space. Our method combines differentiable ellipsoidal primitives with bounded support, structure-aware primitive learning with complementary pruning, and a per-primitive ray sampling strategy for fast and accurate transfer function mapping. To support large-scale datasets, we further introduce a chunk-based optimization scheme with ghost ellipsoids, providing boundary context during training. Across large sparse datasets, ESVR achieves up to four orders of magnitude compression and real-time rendering at 43-223 FPS while maintaining competitive reconstruction quality.",
+      "authors": [
+        "Suemin Jeon",
+        "Youjin Kim",
+        "Jungwoo Park",
+        "Kyungryun Lee",
+        "Won-Ki Jeong"
+      ],
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR"
+      ],
+      "published": "2026-08-06T03:33:03+00:00",
+      "link": "https://arxiv.org/pdf/2608.05564v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "3D Gaussian Splatting based sparse volume rendering method",
+      "llm_evidence_cn": "基于3D高斯泼溅的稀疏体渲染方法",
+      "llm_evidence": "基于3D高斯泼溅的稀疏体渲染方法",
+      "canonical_evidence": "基于3D高斯泼溅的稀疏体渲染方法",
+      "llm_tldr_en": "ESVR adapts 3D Gaussian Splatting to scientific volume rendering by learning ellipsoid primitives and per-primitive ray sampling, enabling efficient high-fidelity rendering of large-scale sparse volumetric data.",
+      "llm_tldr_cn": "针对大规模稀疏体数据渲染开销大、现有3DGS方法从渲染图像学习导致信息丢失的问题，ESVR提出结构感知基元学习与逐基元光线采样，直接用椭球基元表达原始体数据。该方法在保持高保真可视化质量的同时显著降低计算和内存成本，并支持灵活的传递函数控制。实验表明其在稀疏体数据渲染上具有高效性和交互性。这为3DGS在新视角合成与科学可视化交叉方向提供了新的建模范式。",
+      "llm_tldr": "针对大规模稀疏体数据渲染开销大、现有3DGS方法从渲染图像学习导致信息丢失的问题，ESVR提出结构感知基元学习与逐基元光线采样，直接用椭球基元表达原始体数据。该方法在保持高保真可视化质量的同时显著降低计算和内存成本，并支持灵活的传递函数控制。实验表明其在稀疏体数据渲染上具有高效性和交互性。这为3DGS在新视角合成与科学可视化交叉方向提供了新的建模范式。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
