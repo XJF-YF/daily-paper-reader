@@ -1,0 +1,55 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-13T21:14:08.389703+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2608.04475v1",
+      "source": "arxiv",
+      "title": "Super-Gaussian: Interactive Scene Editing for 3D Gaussian Splatting and NLI-Based Volume Visualization in Virtual Reality",
+      "abstract": "Despite the promise of virtual reality (VR) for intuitive spatial interaction, volume visualization (VolVis) in VR remains constrained by high rendering costs and motion discomfort. Recent advances have shown that representing volumetric scenes with 3D Gaussian splatting enables high-performance rendering, making this representation well-suited for VR. However, existing Gaussian-based scene editing workflows remain limited by slow offline segmentation and fatigue-inducing manual selection. To address these challenges, we present Super-Gaussian, a novel VolVis framework that enhances scene editing and interaction in VR through intuitive 3D Gaussian selection and natural language interaction (NLI). Our approach groups Gaussian primitives into higher-level units via feature-aware clustering, enabling efficient selection of complex volumetric regions, such as tumors in medical images or filaments in cosmological data, without point-by-point interaction. Building on this, we introduce a hierarchical select-and-refine workflow that combines random-walk-based region propagation, cluster selection, and point refinement, allowing users to progressively specify regions of interest with reduced effort. We further support on-the-fly text labeling of selected regions using NLI, allowing users to semantically query, interpret, and manipulate content within a visualization-perception-action loop. By integrating multimodal interaction, including speech, visual feedback, and spatial manipulation in VR, our framework supports intuitive exploration, editing, and scientific analysis of volumetric data. We demonstrate the effectiveness of Super-Gaussian through four case studies, quantitative selection benchmarks against existing Gaussian-based techniques, and system-level evaluations. Implementation details and experiments can be found on the project page: https://smin0136.github.io/super-gaussian-project/",
+      "authors": [
+        "Suemin Jeon",
+        "Kaiyuan Tang",
+        "Chaoli Wang",
+        "Won-Ki Jeong"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC"
+      ],
+      "published": "2026-08-05T05:58:30+00:00",
+      "link": "https://arxiv.org/pdf/2608.04475v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Applies 3D Gaussian splatting to immersive VR rendering and interaction, related to immersive novel view synthesis.",
+      "llm_evidence_cn": "将3D高斯泼溅应用于沉浸式VR渲染与交互，与沉浸式新视角合成相关。",
+      "llm_evidence": "将3D高斯泼溅应用于沉浸式VR渲染与交互，与沉浸式新视角合成相关。",
+      "canonical_evidence": "将3D高斯泼溅应用于沉浸式VR渲染与交互，与沉浸式新视角合成相关。",
+      "llm_tldr_en": "Super-Gaussian introduces VR scene editing for 3D Gaussian splatting with intuitive Gaussian selection and natural language interaction, enabling efficient volume visualization in immersive environments.",
+      "llm_tldr_cn": "VR中的体积可视化受限于高渲染成本和交互不适，而现有基于3D高斯泼溅的编辑流程依赖离线分割和手动选择。Super-Gaussian提出结合直观3D高斯选择与自然语言交互的框架，在VR中实现高效的场景编辑和NLI驱动的体积可视化，改善了沉浸式环境的交互体验。",
+      "llm_tldr": "VR中的体积可视化受限于高渲染成本和交互不适，而现有基于3D高斯泼溅的编辑流程依赖离线分割和手动选择。Super-Gaussian提出结合直观3D高斯选择与自然语言交互的框架，在VR中实现高效的场景编辑和NLI驱动的体积可视化，改善了沉浸式环境的交互体验。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "novel view synthesis for 360-degree immersive environments",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

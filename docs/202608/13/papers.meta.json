@@ -1,0 +1,24 @@
+{
+  "label": "2026-08-13",
+  "date": "2026-08-13",
+  "generated_at": "2026-08-13T21:15:19",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202608/13/2608.04475v1-super-gaussian-interactive-scene-editing-for-3d-gaussian-splatting-and-nli-based-volume-visualization-in-virtual-reality",
+      "section": "quick",
+      "title_en": "Super-Gaussian: Interactive Scene Editing for 3D Gaussian Splatting and NLI-Based Volume Visualization in Virtual Reality",
+      "authors": "Suemin Jeon, Kaiyuan Tang, Chaoli Wang, Won-Ki Jeong",
+      "date": "2026-08-05",
+      "pdf": "https://arxiv.org/pdf/2608.04475v1",
+      "score": "6.0",
+      "evidence": "将3D高斯泼溅应用于沉浸式VR渲染与交互，与沉浸式新视角合成相关。",
+      "tldr": "针对虚拟现实中高斯溅射体积可视化存在的渲染开销大、离线分割慢及手动选择疲劳等问题，Super-Gaussian框架通过特征感知聚类将高斯基元转化为层次化语义单元，并设计随机游走传播、簇选择与点细化相结合的选择编辑流程；同时利用自然语言交互实现所见即所得的语义标注和查询。在医学影像与宇宙学模拟数据上的案例和定量基准表明，该方法在区域选择准确性和交互效率上优于现有高斯编辑技术，有效改善了VR环境的操作体验。该工作将多模态交互与高斯场景编辑统一，为沉浸式体积数据探索提供了一种高效实用的新方案。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Despite the promise of virtual reality (VR) for intuitive spatial interaction, volume visualization (VolVis) in VR remains constrained by high rendering costs and motion discomfort. Recent advances have shown that representing volumetric scenes with 3D Gaussian splatting enables high-performance rendering, making this representation well-suited for VR. However, existing Gaussian-based scene editing workflows remain limited by slow offline segmentation and fatigue-inducing manual selection. To address these challenges, we present Super-Gaussian, a novel VolVis framework that enhances scene editing and interaction in VR through intuitive 3D Gaussian selection and natural language interaction (NLI). Our approach groups Gaussian primitives into higher-level units via feature-aware clustering, enabling efficient selection of complex volumetric regions, such as tumors in medical images or filaments in cosmological data, without point-by-point interaction. Building on this, we introduce a hierarchical select-and-refine workflow that combines random-walk-based region propagation, cluster selection, and point refinement, allowing users to progressively specify regions of interest with reduced effort. We further support on-the-fly text labeling of selected regions using NLI, allowing users to semantically query, interpret, and manipulate content within a visualization-perception-action loop. By integrating multimodal interaction, including speech, visual feedback, and spatial manipulation in VR, our framework supports intuitive exploration, editing, and scientific analysis of volumetric data. We demonstrate the effectiveness of Super-Gaussian through four case studies, quantitative selection benchmarks against existing Gaussian-based techniques, and system-level evaluations. Implementation details and experiments can be found on the project page: https://smin0136.github.io/super-gaussian-project/",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
