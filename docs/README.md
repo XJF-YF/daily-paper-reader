@@ -6,26 +6,29 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-13
-- 运行时间：2026-08-13 21:15:14 UTC
+- 最新运行日期：2026-08-14
+- 运行时间：2026-08-14 20:37:06 UTC
 - 运行状态：成功
-- 本次总论文数：1
-- 精读区：0
+- 本次总论文数：3
+- 精读区：2
 - 速读区：1
 
 ### 今日简报（AI）
-今日共阅读1篇论文，其中速读1篇；内容聚焦于三维高斯溅射的交互式场景编辑与VR中的体数据可视化。  
-值得关注的方向是“Super-Gaussian”对3D场景编辑的交互性提升，以及自然语言接口在虚拟现实可视化中的应用潜力。  
-建议普通读者可从高频词入手，先快速浏览论文方法与演示截图，后续再深挖相关领域的最新扩展。
-- 详情：[/202608/13/README](/202608/13/README)
+今日精读2篇、速读1篇，共3篇论文，聚焦3D高斯泼溅与快照压缩成像。最值得关注的是满分工作《LocusGS》的空间锚定令牌前馈重建，以及8分的《GS²CI》结合大视觉模型先验的鲁棒高斯泼溅。普通读者可优先了解显式3D表达与基础模型先验融合的新思路。
+- 详情：[/202608/14/README](/202608/14/README)
 
 ### 精读区论文标签
-- 本次无精读推荐。
+1. [LocusGS: Spatially Grounded Tokens for Feed-Forward 3D Gaussian Splatting](/202608/14/2608.12825v1-locusgs-spatially-grounded-tokens-for-feed-forward-3d-gaussian-splatting)  
+   标签：评分：10.0/10、query:pano-dgs
+   evidence：基于空间锚定token的前馈3D高斯泼溅场景表示，直接支持新视角合成
+2. [GS$^{2}$CI: Robust Gaussian Splatting For Snapshot Compressive Imaging via Large Vision Model Priors](/202608/14/2608.13502v1-gs2ci-robust-gaussian-splatting-for-snapshot-compressive-imaging-via-large-vision-model-priors)  
+   标签：评分：8.0/10、query:pano-dgs
+   evidence：利用3D高斯泼溅从单次快照压缩测量中重建3D场景
 
 ### 速读区论文标签
-1. [Super-Gaussian: Interactive Scene Editing for 3D Gaussian Splatting and NLI-Based Volume Visualization in Virtual Reality](/202608/13/2608.04475v1-super-gaussian-interactive-scene-editing-for-3d-gaussian-splatting-and-nli-based-volume-visualization-in-virtual-reality)  
+1. [Implicit representations are dead. Long live explicit primitives!](/202608/14/2608.10001v1-implicit-representations-are-dead-long-live-explicit-primitives)  
    标签：评分：6.0/10、query:pano-dgs
-   evidence：将3D高斯泼溅应用于沉浸式VR渲染与交互，与沉浸式新视角合成相关。
+   evidence：系统综述基于显式高斯基元替代隐式表示的方法，与3DGS核心思路一致
 
 
 <div class="dpr-home-promo-card">
