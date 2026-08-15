@@ -1,0 +1,57 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-15T20:09:34.875897+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2608.13143v1",
+      "source": "arxiv",
+      "title": "ProbSplat: Efficient Probabilistic Hardware for Gaussian Splatting in 3D Scene Reconstruction",
+      "abstract": "This paper presents ProbSplat, a Compute-in-Memory (CIM)-inspired architecture based on programmable and energy efficient floating-gate inverter columns for probabilistic computing. Improving upon our prior work, ProbSplat programs and stores both means and variances of Gaussian mixture components, and evaluates log-likelihood for gaussian splatting during scene reconstruction with high energy efficiency, suitable for robotics and augmented/virtual reality (AR/VR) at the edge. Our proposed scheme enables independent control of both mean and variance via deterministic adjustment of floating-gate MOSFET threshold voltages, increasing the fidelity of hardware to program probability distributions. The design is simulated in 180nm CMOS on 1.8 V at 50 MHz and achieves mean-variance independence with <2.4% deviation during 3-D Gaussian mixture modeling. Compared to conventional digital implementations, ProbSplat significantly reduces compute complexity, memory footprint, and power consumption. The scalable framework consumes 18pJ energy per log-likelihood inference with 4-bit precision while operating for 500 mixture functions in a 3-D GMM. Scene reconstruction with ProbSplat's characteristics gave satisfactory fidelity of 21.99 PSNR (dB) at 8-bit precision.",
+      "authors": [
+        "Siddarth Gottumukkula",
+        "M P Samartha",
+        "Vedant Pahariya",
+        "Priyanshi Jain",
+        "Amit Ranjan Trivedi",
+        "Priyesh Shukla"
+      ],
+      "primary_category": "cs.ET",
+      "categories": [
+        "cs.ET"
+      ],
+      "published": "2026-08-13T12:16:37+00:00",
+      "link": "https://arxiv.org/pdf/2608.13143v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Compute-in-memory hardware for gaussian splatting in 3D scene reconstruction; enables efficient pano/AR rendering",
+      "llm_evidence_cn": "面向三维场景重建中高斯溅射的存内计算硬件，可支撑全景/AR高效渲染",
+      "llm_evidence": "面向三维场景重建中高斯溅射的存内计算硬件，可支撑全景/AR高效渲染",
+      "canonical_evidence": "面向三维场景重建中高斯溅射的存内计算硬件，可支撑全景/AR高效渲染",
+      "llm_tldr_en": "ProbSplat is a compute-in-memory floating-gate architecture that stores means and variances of Gaussian components and evaluates log-likelihood during gaussian splatting, targeting energy-efficient 3D scene reconstruction for robotics and AR/VR edge devices.",
+      "llm_tldr_cn": "针对高斯溅射在边缘机器人或AR/VR设备上高能耗、低效率的问题，本文提出ProbSplat，一种基于浮栅逆变器列的可编程存内计算架构，用于概率计算。它能够存储高斯混合分量的均值和方差并高效计算对数值似然，从而在三维场景重建中完成高斯溅射。独立调节浮栅MOSFET阈值电压可提高概率分布编程的保真度，180nm CMOS仿真验证了其能量效率。该工作为面向三维重建的实时、节能高斯溅射硬件加速提供了可行方案。",
+      "llm_tldr": "针对高斯溅射在边缘机器人或AR/VR设备上高能耗、低效率的问题，本文提出ProbSplat，一种基于浮栅逆变器列的可编程存内计算架构，用于概率计算。它能够存储高斯混合分量的均值和方差并高效计算对数值似然，从而在三维场景重建中完成高斯溅射。独立调节浮栅MOSFET阈值电压可提高概率分布编程的保真度，180nm CMOS仿真验证了其能量效率。该工作为面向三维重建的实时、节能高斯溅射硬件加速提供了可行方案。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

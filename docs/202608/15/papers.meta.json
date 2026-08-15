@@ -1,0 +1,24 @@
+{
+  "label": "2026-08-15",
+  "date": "2026-08-15",
+  "generated_at": "2026-08-15T20:10:44",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202608/15/2608.13143v1-probsplat-efficient-probabilistic-hardware-for-gaussian-splatting-in-3d-scene-reconstruction",
+      "section": "quick",
+      "title_en": "ProbSplat: Efficient Probabilistic Hardware for Gaussian Splatting in 3D Scene Reconstruction",
+      "authors": "Siddarth Gottumukkula, M P Samartha, Vedant Pahariya, Priyanshi Jain, Amit Ranjan Trivedi, Priyesh Shukla",
+      "date": "2026-08-13",
+      "pdf": "https://arxiv.org/pdf/2608.13143v1",
+      "score": "6.0",
+      "evidence": "面向三维场景重建中高斯溅射的存内计算硬件，可支撑全景/AR高效渲染",
+      "tldr": "3D场景重建中高斯溅射计算与存储开销大，传统数字硬件难以满足边缘端能效需求。为此提出ProbSplat，一种基于存储内计算的浮栅反相器列架构，通过编程浮栅MOSFET阈值电压独立控制高斯分量的均值和方差，并高效计算对数似然。在180nm CMOS工艺下，均方差独立偏差小于2.4%，每次推断能耗仅18pJ（4位精度），支持500个混合函数；8位精度下重建PSNR达21.99dB。相比数字实现，大幅降低计算复杂度、内存占用和功耗，适用于机器人、AR/VR等边缘场景。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "This paper presents ProbSplat, a Compute-in-Memory (CIM)-inspired architecture based on programmable and energy efficient floating-gate inverter columns for probabilistic computing. Improving upon our prior work, ProbSplat programs and stores both means and variances of Gaussian mixture components, and evaluates log-likelihood for gaussian splatting during scene reconstruction with high energy efficiency, suitable for robotics and augmented/virtual reality (AR/VR) at the edge. Our proposed scheme enables independent control of both mean and variance via deterministic adjustment of floating-gate MOSFET threshold voltages, increasing the fidelity of hardware to program probability distributions. The design is simulated in 180nm CMOS on 1.8 V at 50 MHz and achieves mean-variance independence with <2.4% deviation during 3-D Gaussian mixture modeling. Compared to conventional digital implementations, ProbSplat significantly reduces compute complexity, memory footprint, and power consumption. The scalable framework consumes 18pJ energy per log-likelihood inference with 4-bit precision while operating for 500 mixture functions in a 3-D GMM. Scene reconstruction with ProbSplat's characteristics gave satisfactory fidelity of 21.99 PSNR (dB) at 8-bit precision.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

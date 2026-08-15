@@ -6,29 +6,28 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-14
-- 运行时间：2026-08-14 20:37:06 UTC
+- 最新运行日期：2026-08-15
+- 运行时间：2026-08-15 20:10:40 UTC
 - 运行状态：成功
-- 本次总论文数：3
-- 精读区：2
+- 本次总论文数：1
+- 精读区：0
 - 速读区：1
 
 ### 今日简报（AI）
-今日精读2篇、速读1篇，共3篇论文，聚焦3D高斯泼溅与快照压缩成像。最值得关注的是满分工作《LocusGS》的空间锚定令牌前馈重建，以及8分的《GS²CI》结合大视觉模型先验的鲁棒高斯泼溅。普通读者可优先了解显式3D表达与基础模型先验融合的新思路。
-- 详情：[/202608/14/README](/202608/14/README)
+今日仅速读1篇论文，聚焦3D场景重建中的高斯泼溅硬件加速。
+
+值得关注的方向：ProbSplat提出高效概率硬件方案，但6.0分表明其效果中规中矩。
+
+若时间有限，可先了解高斯泼溅在3D重建中的瓶颈，再决定是否深入该硬件设计。
+- 详情：[/202608/15/README](/202608/15/README)
 
 ### 精读区论文标签
-1. [LocusGS: Spatially Grounded Tokens for Feed-Forward 3D Gaussian Splatting](/202608/14/2608.12825v1-locusgs-spatially-grounded-tokens-for-feed-forward-3d-gaussian-splatting)  
-   标签：评分：10.0/10、query:pano-dgs
-   evidence：基于空间锚定token的前馈3D高斯泼溅场景表示，直接支持新视角合成
-2. [GS$^{2}$CI: Robust Gaussian Splatting For Snapshot Compressive Imaging via Large Vision Model Priors](/202608/14/2608.13502v1-gs2ci-robust-gaussian-splatting-for-snapshot-compressive-imaging-via-large-vision-model-priors)  
-   标签：评分：8.0/10、query:pano-dgs
-   evidence：利用3D高斯泼溅从单次快照压缩测量中重建3D场景
+- 本次无精读推荐。
 
 ### 速读区论文标签
-1. [Implicit representations are dead. Long live explicit primitives!](/202608/14/2608.10001v1-implicit-representations-are-dead-long-live-explicit-primitives)  
+1. [ProbSplat: Efficient Probabilistic Hardware for Gaussian Splatting in 3D Scene Reconstruction](/202608/15/2608.13143v1-probsplat-efficient-probabilistic-hardware-for-gaussian-splatting-in-3d-scene-reconstruction)  
    标签：评分：6.0/10、query:pano-dgs
-   evidence：系统综述基于显式高斯基元替代隐式表示的方法，与3DGS核心思路一致
+   evidence：面向三维场景重建中高斯溅射的存内计算硬件，可支撑全景/AR高效渲染
 
 
 <div class="dpr-home-promo-card">

@@ -1,0 +1,596 @@
+ProbSplat: Efficient Probabilistic Hardware for
+Gaussian Splatting in 3D Scene Reconstruction
+Siddarth Gottumukkula∗1, M P Samartha∗1, Vedant Pahariya1, Priyanshi Jain1,
+Amit Ranjan Trivedi2, Senior Member, IEEE, and Priyesh Shukla1, Member, IEEE
+1International Institute of Information Technology, Hyderabad, India
+2University of Illinois, Chicago, USA, email: priyesh.shukla@iiit.ac.in
+© 2026 IEEE. Personal use of this material is permitted. Permission from IEEE must be obtained for all other uses, in any current or future media,
+including reprinting/republishing this material for advertising or promotional purposes, creating new collective works, for resale or redistribution to servers
+or lists, or reuse of any copyrighted component of this work in other works.
+Accepted for publication in the 2026 IEEE Computer Society Annual Symposium on VLSI (ISVLSI).
+Abstract—This paper presents ProbSplat, a Compute-in-
+Memory (CIM)-inspired architecture based on programmable
+and energy efficient floating-gate inverter columns for proba-
+bilistic computing. Improving upon our prior work, ProbSplat
+programs and stores both means and variances of Gaussian
+mixture components, and evaluates log-likelihood for gaussian
+splatting during scene reconstruction with high energy efficiency,
+suitable for robotics and augmented/virtual reality (AR/VR) at
+the edge. Our proposed scheme enables independent control
+of both mean and variance via deterministic adjustment of
+floating-gate MOSFET threshold voltages, increasing the fidelity
+of hardware to program probability distributions. The design is
+simulated in 180nm CMOS on 1.8 V at 50 MHz and achieves
+mean–variance independence with < 2.4% deviation during 3-D
+Gaussian mixture modeling. Compared to conventional digital
+implementations, ProbSplat significantly reduces compute com-
+plexity, memory footprint, and power consumption. The scalable
+framework consumes 18pJ energy per log-likelihood inference
+with 4-bit precision while operating for 500 mixture functions in a
+3-D GMM. Scene reconstruction with ProbSplat’s characteristics
+gave satisfactory fidelity of 21.99 PSNR (dB) at 8-bit precision.
+Index Terms—Gaussian splatting, In-memory Probabilistic
+Computing, Programmable floating-gate inverters
+I. INTRODUCTION
+Probabilistic modeling and computation are at the core
+of scientific computing [1], [2], machine learning [3],
+robotics [4], and AR/VR [5]. Probabilistic models have critical
+use cases for estimating uncertainty in machine learning
+predictions for real-time tasks such as self-driving cars [6] and
+surgical robots [7] to make safe and informed decisions. In 3-
+D vision applications such as AR/VR and drone navigation,
+probabilistic models have vital and extensive use for scene
+reconstruction [8], localization [9], and mapping [10].
+Conventional point cloud [11] based 3-D vision processing,
+such as scene rendering and mapping, demands an enormous
+memory footprint to store millions of point cloud coordinates.
+Consequently, local (edge) real-time processing of point clouds
+is intractable and extremely power hungry. Alternatively, rep-
+resenting the scene with a probability distribution, such as the
+mixture of Gaussians (GMMs) [12], requires storing relevant
+parameters, such as means and variances, drastically reducing
+the memory footprint and power demand.
+Computing the probability distribution and associated met-
+rics, such as log-likelihood estimates, is silicon area and
+power-intensive, requiring complex circuits involving adders,
+multipliers, and look-up tables for exponential/logarithmic
+(a)
+(b)
+Fig. 1: (a) Gaussian Mixture Model (GMM) of a scene (left) and 1-D
+representation (right). (b) Left: Conventional digital implementation
+of GMM using memory, MAC and other units. Right: Proposed ar-
+chitecture to compute GMM using 6T Floating-Gate Inverter Arrays.
+functions, as shown in Fig. 1(b) (left). Compute-in-memory
+(CIM)-inspired circuits and architectures [13], [14], on the
+contrary, are promisingly area-power efficient since the storage
+and compute are co-located, alleviating energy-heavy dataflow
+between memory and compute. Prior work [15] encoded the
+mean of a multivariate Gaussian-like distribution into the
+threshold voltages of Floating Gate MOSFETs. The map
+was represented using the harmonic mean of a Gaussian-like
+mixture model (HMGM) emulated by the 6T inverter array,
+as shown in Fig. 1(b) (right). While the prior approach allows
+tuning the mean, the variance remains fixed, limiting the
+scope of scene representation using probability distributions.
+Complex scenes require multivariate distributions of varying
+variances. In this work, we further investigate and present a
+method to controllably tune the variance independent of the
+mean on a 6T-inverter array for applications such as gaussian
+splatting [16] in 3D scene reconstruction.
+The paper is organized as: Section II presents 6T floating-
+gate inverter array for probabilistic computing. Section III
+presents detailed analyses of GMM parameter programming
+on hardware. Section IV shows energy-performance charac-
+terization of ProbSplat, and Section V concludes the paper.
+arXiv:2608.13143v1  [cs.ET]  13 Aug 2026
+
+
+(a)
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+0
+20
+80
+100
+40
+60
+Column Number
+Normalized Current
+Component corresponding
+to maximum likelihood
+(b)
+0.2
+0.4
+0.6
+Threshold Voltage (V)
+0.025
+0.050
+0.075
+0.100
+0.125
+0.150
+Variance
+0.6
+0.8
+1.0
+1.2
+Mean (V)
+Variance
+Mean
+(c)
+0.2
+0.4
+0.6
+0.8
+1.0
+Threshold Voltage (V)
+0.06
+0.08
+0.10
+0.12
+0.14
+Variance
+0.6
+0.7
+0.8
+0.9
+Mean (V)
+Variance
+Mean
+(d)
+Fig. 2: (a) A scene represented by gaussian mixture components with varying means and covariances mapped to a 6T-inverter columns.
+The current through each column is the estimated log-likelihood over GMM. The control signals activate gaussian components clustered
+around the evaluated location. The transmission gate structure reduces power consumption. (b) Current distribution through each column for
+a particular input for a 100-column simulation. (c - d) show the change in variance when the mean is changed and vice versa. The average
+deviation in mean and variance is 2.37% and 2.17%.
+II. PROBABILISTIC INVERTER ARRAY AND APPLICATIONS
+The traditional Von Neumann architecture poses a signif-
+icant memory bandwidth bottleneck with growing data and
+parameter size. Compute-in-Memory techniques tackle this
+problem by exploiting the circuit characteristics to perform
+both storage and computation to get the desired results. The
+6T-Inverter proposed in [15] stores a 3-D Gaussian’s mean in
+Floating Gate (FG) MOSFETs by programming the threshold
+voltages. However, the variance was constant, under-utilizing
+the architecture’s potential. We further enhanced the method
+to change the threshold voltages of the FG-MOSFETs in
+deterministic ways to tune the variance independent of the
+mean.
+The mean changes by ∆upon setting V ′
+Tn = VTno +∆and
+|VTp|′ = |VTp| −∆. To change the variance, both VTn and
+|VTp| must be changed by the same amount. This changes the
+spread of ISC, the short-circuit current.
+The 6T inverter array as a CIM architecture as shown in
+Fig. 2(a) has several use cases. For instance, the locality of a
+drone can be inferred by representing the scene as a mixture
+of Gaussians and evaluating the likelihood of the drone. The
+resulting likelihood current of inverter columns would be high
+if the drone is inside a particular Gaussian. Using a CIM block
+where 6T-inverter columns are connected in parallel, we can
+model each Gaussian of the scene by an inverter column.
+This would help us determine whether the drone is in the
+area envelope or outside it, as seen in Fig. 2(b). The scheme
+can be used to model obstacles in a scene using Gaussians,
+represented by columns of inverters. The column current rises
+as the drone approaches obstacles, and corrective action can
+be taken accordingly.
+Another promising application benefitting from proposed ar-
+chitecture is Gaussian Splatting [16], widely used in 3D scene
+reconstruction. At 32-bit parameter precision, the threshold
+voltage range of an FG-MOSFET requires 232 quantization
+bins. This requires a very high precision ADC to read the
+current changes. Hence, low bit quantization is essential for
+these architectures. From Fig. 3(b), we see that the PSNR
+is not affected much by 16-bit quantization but drops sig-
+nificantly with 8-bit quantization. We can map the means
+and the variances of the gaussians representing a scene to
+the inverter columns to reduce the total memory footprint.
+Typical Gaussian Splatting scene representations consist of
+about 800,000 gaussians. These can be pruned further by
+setting an opacity threshold (Fig. 3(a)), ultimately producing
+a sizable decrease in the occupied memory and computations.
+We subsequently discuss the impact of 6T inverter column-
+based gaussian splatting for scene reconstruction as shown in
+Fig. 6.
+III. PARAMETER PROGRAMMING AND ANALYSES
+All the simulations have been carried out using the TSMC
+180nm technology node using VDD = 1.8V . While gaussian
+transistors [17] could yield superior results, we employ CMOS
+technology for its accessibility and ease of use to analyze
+2
+
+
+0.0
+0.2
+0.4
+0.6
+ - Opacity Threshold
+2
+4
+6
+8
+Gaussians (100k)
+fp32
+fp16
+int8
+(a)
+0.0
+0.2
+0.4
+0.6
+ - Opacity Threshold
+20.5
+21.0
+21.5
+22.0
+22.5
+PSNR (dB)
+fp32
+fp16
+int8
+(b)
+Fig. 3: (a) Gaussian components below the opacity threshold are
+filtered out, reducing the number of required inverter columns. (b)
+Effect of changing the opacity threshold on the PSNR of the rendered
+image over different quantization schemes.
+the characteristics qualitatively. Fig. 4 captures different ISC
+curves while changing the means and variances.
+0.00 0.25 0.50 0.75 1.00 1.25 1.50 1.75
+Vz (Volts)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Normalized ISC
+=
+0.3
+=
+0.1
+= 0.1
+= 0.3
+(a)
+0.00 0.25 0.50 0.75 1.00 1.25 1.50 1.75
+VTn = |VTp| (Volts)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Normalized ISC
+VTn = |VTp| = 0.25
+VTn = |VTp| = 0.4
+VTn = |VTp| = 0.55
+VTn = |VTp| = 0.9
+(b)
+Fig. 4: (a) Programming the means where VTn = 0.4 + ∆, |VTp| =
+0.4 −∆and Vx = Vy = 0.9 + ∆. (b) Programming variance with
+Vx = Vy = 0.9V . The results have been recorded with Wp = 3∗Wn.
+Fig. 5(a) shows the change in variance as we sweep the
+threshold voltages. The range of values that the normalized
+variance can take is from 0.05 to 0.15. For a larger range,
+the multiplication operation can be done on the columnd. For
+instance, multiplying the value by β changes the variance by a
+factor of β2. However, in applications like gaussian splatting,
+the variances are typically low.
+The simulations show that the variance does not change
+independently of the mean entirely. For the MOSFET widths
+ratio Wp = 3Wn, the deviation in mean is the least (Fig. 5(b)).
+The variations are attributed to the unsymmetrical nature of the
+pull-up and pull-down networks. When we change the mean,
+the variance remains constant, and so does the maximum
+current in the column. Changing the variance will affect the
+maximum current as the overdrive voltage changes. An ADC
+with a high range and precision would allow us to utilize a
+wide range of threshold voltages with finer bins.
+IV. ENERGY-PERFORMANCE CHARACTERIZATION
+We next analyze the impact of ProbSplat’s hardware char-
+acteristics on scene reconstruction, illustrated in Fig. 6. We
+used the train scene dataset [16] to render scenes at multiple
+precisions and opacity thresholds (α). We analyze of int8 and
+fp32 precisions for low (α = 0.005) and high (α = 0.5)
+opacity thresholds. Opacity threshold is the minimum opacity
+value to consider a point as a solid in scene reconstruction (the
+smaller, the better for rendering). The means and covariance
+matrices in gaussian splatting are programmed within the
+constraints of 6T FG inverter columns. Comparisons with
+ground truth shows promising outputs with PSNR of 21.99
+0.2
+0.4
+0.6
+0.8
+1.0
+VTn = |VTp| (Volts)
+0.06
+0.08
+0.10
+0.12
+0.14
+Variance of ISC (A2)
+Wp = 2 * Wn
+Wp = 2.5 * Wn
+Wp = 3 * Wn
+Wp = 3.5 * Wn
+(a)
+0.2
+0.4
+0.6
+0.8
+1.0
+VTn = |VTp| (Volts)
+0.70
+0.75
+0.80
+0.85
+0.90
+0.95
+Mean (Vz Volts)
+Wp = 2 * Wn
+Wp = 2.5 * Wn
+Wp = 3 * Wn
+Wp = 3.5 * Wn
+(b)
+Fig. 5: (a) Changes in variance with threshold voltage for different
+Wp : Wn ratios. (b) The change in the mean upon change in the
+variance. Wp = 3 ∗Wn gives the least deviation in the mean.
+dB at int8 precision with a few losses in the information
+without significantly disturbing the overall scene rendering
+quality. Information loss in the reconstructed scene increases
+with lower precision and higher opacity threshold as shown
+for the bottom images in Fig. 6.
+To evaluate the energy metrics of the proposed design, 500
+columns of 6T inverters were simulated, where each column
+was randomly assigned mean and variance values. We sample
+mean and variance values from a uniform distribution and
+find the required threshold voltages. We ran a Monte-Carlo
+simulation by sampling 1000 points in the range [0, 0.9]3. We
+plot VTn and |VTp| on a 2-D plane to visualize the threshold
+voltage’s effect on means and variances. The range of values
+VTn and |VTp| can take is constrained by the line x + y = 1.8
+(Fig. 7(a)) in order to have a region where both the MOSFETs
+are not turned off. Changing threshold voltages along a line
+with slope −1 will only affect the mean, and moving along
+a line with slope +1 will only affect the variance. Since the
+contour lines for mean and variance are orthogonal, changing
+one doesn’t affect the other. Fig. 7(a) shows the range of values
+the threshold voltages can take. The default values for VT H
+corresponding to the center of the scene are chosen to be 0.45
+V, implying that the scene is mapped between a mean value
+of 0 V and 0.9 V. A higher default value would limit the
+variance of the gaussians at the extreme edges of the scene.
+On the other hand, a lower value would constrain the range
+of the mean.
+The control block in Fig 2(a) can activate the columns that
+primarily contribute to the current while deactivating the oth-
+ers, decreasing power consumption. Since the control block is
+implemented using digital logic, it incurs only dynamic power
+consumption and introduces negligible overhead. The simple
+control logic is depicted in Fig. 7(b), where the scene is split
+into 16 cells (encoded using 2 bits per dimension). Only the
+gaussians in the cell where the input position belongs are acti-
+vated. The peripheral ADC/DAC energy consumption is from
+the referenced designs [18], [19]. Under ideal energy scaling,
+we have assumed Energy ∝(180 nm/TechNodeREF)2, Energy
+∝(1.8 V/VDDREF)2, and Energy ∝2PrecisionCURR−PrecisionREF and
+extracted the corresponding energy estimates.
+Table I presents the projected energy of reference designs
+adjusted to match our design specifications. 4-bit precision
+and 8-bit precision suffice for several applications, like drone
+localization. For the 4-bit precision, the total energy per
+evaluation is 17.99 pJ. The Log-ADC accounts for 49.47%
+3
+
+
+Ground Truth
+0.005
+0.05
+0.1
+0.25
+0.5
+0.75
+Opacity Threshold
+fp32
+with cov
+fp32
+fp16
+fp8
+int8
+Data Type
+22.55
+22.43
+22.23
+21.99
+21.54
+20.71
+22.71
+22.39
+22.32
+22.20
+21.66
+20.75
+22.68
+22.42
+22.44
+22.21
+21.56
+20.76
+22.57
+22.62
+22.55
+22.12
+21.50
+20.67
+21.72
+21.99
+21.77
+21.47
+21.25
+20.32
+PSNR (dB) Confusion Matrix
+20.5
+21.0
+21.5
+22.0
+22.5
+fp32 with
+cross-correlation
+int8 without
+cross-correlation
+α = 0.005
+α = 0.5
+α = 0.005
+α = 0.5
+Fig. 6: Qualitative and quantitative analysis of rendering quality. The top row shows the ground truth image and the PSNR matrix. PSNR
+remains high even at α=0.25, allowing for a 3.49x reduction in 6T inverter columns. We show renders across different setups. Although the
+6T array is constrained to model only diagonal covariance, this does not substantially degrade the PSNR and fidelity is preserved even with
+lower precision and higher α. Lower precision reduces DAC, ADC power and area consumption.
+(a)
+(b)
+Fig. 7: (a) Programming of a 1D Gaussian’s mean and variance in
+a 2-D space, where the axes correspond to the threshold voltages of
+the respective transistors. (b) The scene’s bit-encoding uses 2 bits per
+axis, which the control block uses to multiplex the required cells.
+of the total energy consumption, the three DACs contribute
+19.01%, and the inverter columns constitute the remaining
+31.50%. For the case of 8-bit precision, the total energy per
+evaluation is 202.57 pJ. The power consumed by the Log-ADC
+and the DACs scales accordingly. As the number of inverter
+columns is fixed, their energy consumption remains the same
+and is relatively small. This energy breakdown also indicates
+that as the scenes get more complex, the increase in energy
+would be just because of the inverter columns. The power
+consumed by Log-ADC/DACs remains constant.
+TABLE I
+ENERGY PROJECTED TO 1.8V, 180nm CMOS, AND 50MHZ
+Components
+Metrics (Ref.)
+Energy (proposed design)
+4-bits
+8-bits
+Log-ADC
+2.54mW @ 1.62V, 0.18µm,
+8-bits, 22MS/s [18]
+8.91 pJ
+142.54 pJ
+3 DACs
+27mW @ 1.2V, 0.13µm,
+10-bits, 1.6 GHz [19]
+3.41 pJ
+54.59 pJ
+Inv columns
+-
+5.67 pJ
+5.67 pJ
+The conventional architecture in Fig. 1(b) (left) was im-
+plemented in 65-nm CMOS technology [20]. Using power
+estimates of different blocks in the datapath from [21] and
+projecting it to 180-nm CMOS, 1.8 V, the estimated energy
+per inference for the 8-bit GMM processor is 477 pJ for 30 3-
+D mixture functions. Comparatively, our proposed framework
+consumes 202.57 pJ at 8-bit quantization for 500 3-D mixture
+functions.
+V. CONCLUSION
+In this work, we present a method to independently model
+the mean and variance of a 3-D gaussian mixture model
+(GMM) using 6T floating-gate inverter columns to accelerate
+probabilistic computing with high energy efficiency. Adopting
+the proposed mixed-signal in-memory (6T array) computing
+4
+
+
+alleviates the use of conventional power hungry digital ar-
+chitecture. The proposed control scheme further enhances the
+energy efficiency. A detailed analysis of mean and variance
+programming of the 6T-inverter array is provided for Gaussian
+Splatting, a critical use-case in 3D scene reconstruction for
+augment/virtual reality (AR/VR), proving to be a promising
+candidate for miniaturization and energy efficiency of AR/VR
+devices.
+REFERENCES
+[1] P. Hennig, M. A. Osborne, and M. Girolami, “Probabilistic numerics
+and uncertainty in computations,” Proceedings of the Royal Society A:
+Mathematical, Physical and Engineering Sciences, vol. 471, no. 2179,
+p. 20150142, 2015.
+[2] F. Br¨uckerhoff-Pl¨uckelmann, A. P. Ovvyan, A. Varri, H. Borras,
+B. Klein, L. Meyer, C. D. Wright, H. Bhaskaran, G. S. Syed, A. Sebas-
+tian et al., “Probabilistic photonic computing for ai,” Nature Computa-
+tional Science, pp. 1–11, 2025.
+[3] Z. Ghahramani, “Probabilistic machine learning and artificial intelli-
+gence,” Nature, vol. 521, no. 7553, pp. 452–459, 2015.
+[4] P. Fankhauser, M. Bloesch, and M. Hutter, “Probabilistic terrain mapping
+for mobile robots with uncertain localization,” IEEE Robotics and
+Automation Letters, vol. 3, no. 4, pp. 3019–3026, 2018.
+[5] G. Wu, T. Yi, J. Fang, L. Xie, X. Zhang, W. Wei, W. Liu, Q. Tian, and
+X. Wang, “4d gaussian splatting for real-time dynamic scene rendering,”
+in Proceedings of the IEEE/CVF conference on computer vision and
+pattern recognition, 2024, pp. 20 310–20 320.
+[6] D. Feng, A. Harakeh, S. L. Waslander, and K. Dietmayer, “A review and
+comparative study on probabilistic object detection in autonomous driv-
+ing,” IEEE Transactions on Intelligent Transportation Systems, vol. 23,
+no. 8, pp. 9961–9980, 2022.
+[7] A. Zia, C. Zhang, X. Xiong, and A. M. Jarc, “Temporal clustering
+of surgical activities in robot-assisted surgery,” International journal of
+computer assisted radiology and surgery, vol. 12, no. 7, pp. 1171–1178,
+2017.
+[8] D. Charatan, S. L. Li, A. Tagliasacchi, and V. Sitzmann, “pixelsplat: 3d
+gaussian splats from image pairs for scalable generalizable 3d recon-
+struction,” in Proceedings of the IEEE/CVF Conference on Computer
+Vision and Pattern Recognition (CVPR), June 2024, pp. 19 457–19 467.
+[9] H. Matsuki, R. Murai, P. H. Kelly, and A. J. Davison, “Gaussian splatting
+slam,” in Proceedings of the IEEE/CVF Conference on Computer Vision
+and Pattern Recognition (CVPR), June 2024, pp. 18 039–18 048.
+[10] S. M. Malagon-Soldara, M. Toledano-Ayala, G. Soto-Zarazua, R. V.
+Carrillo-Serrano, and E. A. Rivas-Araiza, “Mobile robot localization:
+A review of probabilistic map-based techniques,” IAES International
+Journal of Robotics and Automation, vol. 4, no. 1, p. 73, 2015.
+[11] Y. Fu, S. Liu, A. Kulkarni, J. Kautz, A. A. Efros, and X. Wang, “Colmap-
+free 3d gaussian splatting,” in Proceedings of the IEEE/CVF Conference
+on Computer Vision and Pattern Recognition, 2024, pp. 20 796–20 805.
+[12] S. Dasgupta, “Learning mixtures of gaussians,” in 40th Annual Sympo-
+sium on Foundations of Computer Science (Cat. No.99CB37039), 1999,
+pp. 634–644.
+[13] A. Sebastian, M. Le Gallo, R. Khaddam-Aljameh, and E. Eleftheriou,
+“Memory devices and applications for in-memory computing,” Nature
+Nanotechnology, vol. 15, no. 7, pp. 529–544, Jul 2020. [Online].
+Available: https://doi.org/10.1038/s41565-020-0655-z
+[14] N. Verma, H. Jia, H. Valavi, Y. Tang, M. Ozatay, L.-Y. Chen, B. Zhang,
+and P. Deaville, “In-memory computing: Advances and prospects,” IEEE
+Solid-State Circuits Magazine, vol. 11, no. 3, pp. 43–55, 2019.
+[15] P. Shukla, A. Muralidhar, N. Iliev, T. Tulabandhula, S. B. Fuller,
+and A. R. Trivedi, “Ultralow-power localization of insect-scale drones:
+Interplay of probabilistic filtering and compute-in-memory,” IEEE Trans-
+actions on Very Large Scale Integration (VLSI) Systems, vol. 30, no. 1,
+pp. 68–80, 2022.
+[16] B. Kerbl, G. Kopanas, T. Leimk¨uhler, and G. Drettakis, “3d gaussian
+splatting for real-time radiance field rendering,” 2023. [Online].
+Available: https://arxiv.org/abs/2308.04079
+[17] C. Lee, L. Rahimifard, J. Choi, J.-i. Park, C. Lee, D. Kumar,
+P. Shukla, S. M. Lee, A. R. Trivedi, H. Yoo, and S. G. Im, “Highly
+parallel and ultra-low-power probabilistic reasoning with programmable
+gaussian-like memory transistors,” Nature Communications, vol. 15,
+no. 1, p. 2439, Mar 2024. [Online]. Available: https://doi.org/10.1038/
+s41467-024-46681-2
+[18] J. Lee, J. Kang, S. Park, J.-s. Seo, J. Anders, J. Guilherme, and M. P.
+Flynn, “A 2.5 mw 80 db dr 36 db sndr 22 ms/s logarithmic pipeline adc,”
+IEEE Journal of Solid-State Circuits, vol. 44, no. 10, pp. 2755–2765,
+2009.
+[19] S. Lee, C. Kim, M. Kim, S.-m. Joe, J. Jang, S. Kim, K. Lee, J. Kim,
+J. Park, H.-J. Lee et al., “A 1tb 4b/cell 64-stacked-wl 3d nand flash
+memory with 12mb/s program throughput,” in 2018 IEEE International
+Solid-State Circuits Conference-(ISSCC).
+IEEE, 2018, pp. 340–342.
+[20] M. Price, J. Glass, and A. P. Chandrakasan, “A 6 mw, 5,000-word real-
+time speech recognizer using wfst models,” IEEE Journal of Solid-State
+Circuits, vol. 50, no. 1, pp. 102–112, 2015.
+[21] Q. Xie, X. Lin, Y. Wang, S. Chen, M. J. Dousti, and M. Pedram,
+“Performance comparisons between 7-nm finfet and conventional bulk
+cmos standard cell libraries,” IEEE Transactions on Circuits and Systems
+II: Express Briefs, vol. 62, no. 8, pp. 761–765, 2015.
+5
