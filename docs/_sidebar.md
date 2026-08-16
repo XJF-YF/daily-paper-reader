@@ -1,6 +1,9 @@
 * <a class="dpr-sidebar-root-link" href="#/">首页</a>
 * <a class="dpr-sidebar-root-link dpr-sidebar-noactive-link" href="javascript:void(0)" data-dpr-hash="#/tutorial/README">使用教程</a>
 * Daily Papers
+  * 2026-08-16 <!--dpr-date:20260816-->
+    * 速读区
+      * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202608/16/2608.11928v1-seed2gs-camera-free-training-free-object-extraction-from-3d-gaussian-scenes-via-a-single-reference-view-grounding" data-sidebar-item="{&quot;title&quot;: &quot;Seed2GS: Camera-Free, Training-Free Object Extraction from 3D Gaussian Scenes via a Single Reference-View Grounding&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2608.11928v1-seed2gs-camera-free-training-free-object-extraction-from-3d-gaussian-scenes-via-a-single-reference-view-grounding&quot;, &quot;score&quot;: &quot;6.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;pano-dgs&quot;}], &quot;evidence&quot;: &quot;基于3D高斯场景处理并渲染新视角&quot;}">Seed2GS: Camera-Free, Training-Free Object Extraction from 3D Gaussian Scenes via a Single Reference-View Grounding</a>
   * 2026-08-15 <!--dpr-date:20260815-->
     * 速读区
       * <a class="dpr-sidebar-item-link dpr-sidebar-item-structured" href="#/202608/15/2608.13143v1-probsplat-efficient-probabilistic-hardware-for-gaussian-splatting-in-3d-scene-reconstruction" data-sidebar-item="{&quot;title&quot;: &quot;ProbSplat: Efficient Probabilistic Hardware for Gaussian Splatting in 3D Scene Reconstruction&quot;, &quot;link&quot;: &quot;https://arxiv.org/abs/2608.13143v1-probsplat-efficient-probabilistic-hardware-for-gaussian-splatting-in-3d-scene-reconstruction&quot;, &quot;score&quot;: &quot;6.0&quot;, &quot;tags&quot;: [{&quot;kind&quot;: &quot;query&quot;, &quot;label&quot;: &quot;pano-dgs&quot;}], &quot;evidence&quot;: &quot;面向三维场景重建中高斯溅射的存内计算硬件，可支撑全景/AR高效渲染&quot;}">ProbSplat: Efficient Probabilistic Hardware for Gaussian Splatting in 3D Scene Reconstruction</a>

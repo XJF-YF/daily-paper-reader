@@ -1,0 +1,61 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-16T20:24:49.625919+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2608.11928v1",
+      "source": "arxiv",
+      "title": "Seed2GS: Camera-Free, Training-Free Object Extraction from 3D Gaussian Scenes via a Single Reference-View Grounding",
+      "abstract": "Extracting a target object from a pre-built 3D Gaussian Splatting (3DGS) scene enables interactive 3D editing. Existing methods either train for tens of minutes per scene, sacrifice accuracy, or require original reconstruction cameras that pre-built assets may not include. We present Seed2GS, which achieves the highest reported LERF-MASK accuracy without original reconstruction cameras or scene-specific representation training. Its key insight is to separate target identity from 3D coverage. QD-SAM3 selects one reliable reference mask from several open-vocabulary candidates, fixing identity once. Seed lift and visibility-adaptive virtual orbits then expose the object from new viewpoints, while tracking propagates the seed without repeated detection. Because the scene remains frozen, these masks supervise only one temporary foreground logit per Gaussian. On LERF-MASK, Seed2GS reaches 92.1% mean intersection over union (mIoU) with a measured compute-only latency of 9.3 seconds, 3.7 points above the strongest scene-trained baseline and 7.6 points above the closest camera-free baseline. With one fixed test reference per scene, the complete pipeline retains 91.1% mIoU; replacing its predicted seed with a ground-truth mask improves mIoU by only 0.72 points. On 3D-OVS, Seed2GS reaches 95.7% mIoU.",
+      "authors": [
+        "Zongjian Ding",
+        "Yudong Gao",
+        "Jiale Liu",
+        "Xinglin Yu",
+        "Junxing Ren",
+        "Dong Wei",
+        "Yajing Chen",
+        "Shan Huang",
+        "Mingjun Cheng",
+        "Min Li"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-12T11:16:44+00:00",
+      "link": "https://arxiv.org/pdf/2608.11928v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "3D Gaussian Splatting scene processing with new-viewpoint rendering",
+      "llm_evidence_cn": "基于3D高斯场景处理并渲染新视角",
+      "llm_evidence": "基于3D高斯场景处理并渲染新视角",
+      "canonical_evidence": "基于3D高斯场景处理并渲染新视角",
+      "llm_tldr_en": "Seed2GS extracts objects from pre-built 3DGS scenes without original cameras or per-scene training, using reference-view grounding and visibility-adaptive virtual orbits to expose the object from new viewpoints, achieving SOTA LERF-MASK accuracy.",
+      "llm_tldr_cn": "针对从预构建3D高斯场景中提取目标物体的任务，现有方法需要逐场景训练或依赖原始重建相机。Seed2GS提出无需相机和训练的框架，利用单参考视角定位分离目标身份与3D覆盖范围，通过种子提升和可见性自适应虚拟轨道从新视角暴露目标，并在后续传播中保持准确。在LERF-MASK基准上取得最高精度，验证了该方法无需原始相机即可精准提取目标，为3DGS场景交互编辑提供新思路。",
+      "llm_tldr": "针对从预构建3D高斯场景中提取目标物体的任务，现有方法需要逐场景训练或依赖原始重建相机。Seed2GS提出无需相机和训练的框架，利用单参考视角定位分离目标身份与3D覆盖范围，通过种子提升和可见性自适应虚拟轨道从新视角暴露目标，并在后续传播中保持准确。在LERF-MASK基准上取得最高精度，验证了该方法无需原始相机即可精准提取目标，为3DGS场景交互编辑提供新思路。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
