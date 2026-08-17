@@ -1,0 +1,95 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-17T19:54:18.997392+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2608.14136v1",
+      "source": "arxiv",
+      "title": "HiCo-GS: Hierarchical Context Aggregation and Geometric Consistency for Octree Gaussian Splatting",
+      "abstract": "Octree-based anchor Gaussian Splatting has emerged as a scalable representation for city-scale novel view synthesis, where multi-level anchors adaptively capture scene content from coarse building structures to fine architectural details. However, we identify a fundamental limitation in existing methods: cross-level feature isolation, where each level's anchor features are optimized independently with no inter-level communication, causing color drift on building facades and over-smoothing in textured regions. We present HiCo-GS, a high-fidelity reconstruction framework with two complementary modules. Cross-Level Context Aggregation (CLCA) enables bidirectional hierarchical prior injection by leveraging the octree's spatial containment structure to aggregate per-level context vectors into parent-self-child triplets, fused via a lightweight MLP with residual connection. Coarse-level structural priors flow down to inform fine-level anchors, while fine-level detail statistics feed back to prevent over-smoothing, at negligible computational overhead. Depth-Normal Geometric Consistency (DNGC) regularization enforces agreement between rendered normals and depth-derived normals through an alpha-weighted consistency loss, complemented by edge-aware smoothness losses with progressive warmup that exploit the strong planar priors ubiquitous in urban geometry to suppress floating artifacts. We further introduce the China-Pagoda dataset comprising 8 ancient Chinese pagodas with over 1,200 images each, featuring dense ornamental carvings, curved multi-layer eaves, and repetitive fine-grained textures. Extensive experiments on Mill19, UrbanScene3D, MatrixCity, and China-Pagoda demonstrate that HiCo-GS achieves state-of-the-art rendering quality and substantially cleaner geometry across real-world and synthetic urban benchmarks.Code: https://github.com/WZ-CS/HiCo-GS.",
+      "authors": [
+        "Wei Zhang",
+        "Shengkai Yu",
+        "Shiqiang Gong",
+        "Qi Zhang",
+        "Qiang Li",
+        "Qi Wang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-08-14T09:41:58+00:00",
+      "link": "https://arxiv.org/pdf/2608.14136v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "octree-based Gaussian Splatting for city-scale novel view synthesis",
+      "llm_evidence_cn": "面向城市级新视角合成的八叉树高斯泼溅方法",
+      "llm_evidence": "面向城市级新视角合成的八叉树高斯泼溅方法",
+      "canonical_evidence": "面向城市级新视角合成的八叉树高斯泼溅方法",
+      "llm_tldr_en": "Octree-based anchor Gaussian Splatting scales NVS to city-scale but suffers from cross-level feature isolation. HiCo-GS introduces cross-level context aggregation and geometric consistency, improving color fidelity and details.",
+      "llm_tldr_cn": "基于八叉树锚点的高斯泼溅可扩展至城市级新视角合成，但层级间特征孤立导致立面颜色漂移和纹理过平滑。HiCo-GS提出跨层级上下文聚合与几何一致性约束，使不同层级的锚点特征得以交互。实验表明该方法在城市级场景重建中有效提升颜色保真和细节表现，为大规模3DGS场景重建提供了新思路，并未聚焦全景拍摄。",
+      "llm_tldr": "基于八叉树锚点的高斯泼溅可扩展至城市级新视角合成，但层级间特征孤立导致立面颜色漂移和纹理过平滑。HiCo-GS提出跨层级上下文聚合与几何一致性约束，使不同层级的锚点特征得以交互。实验表明该方法在城市级场景重建中有效提升颜色保真和细节表现，为大规模3DGS场景重建提供了新思路，并未聚焦全景拍摄。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.10938v1",
+      "source": "arxiv",
+      "title": "GS-CPE: Unified 6-Degree-of-Freedom Camera Pose Estimation via 3D Gaussian Splatting",
+      "abstract": "Despite substantial progress in visual localization, from scene coordinate regression to direct camera pose regression, achieving both robust generalization and high accuracy remain challenging. This study introduces GS-CPE (Gaussian Splatting based Camera Pose Estimation), a coarse-to-fine framework for 6-DoF camera pose estimation that unifies geometry-based coarse pose estimation with robust 3D Gaussian Splatting (3DGS) warping based pose refinement. GS-CPE first estimates a coarse pose via retrieval-guided geometric pose estimation on a 3DGS scene representation, then refines it by minimizing a visibility aware masked RGB warping objective in a multi-scale optimization framework, with adaptive re-rendering. Extensive experiments on indoor and outdoor benchmarks including 7Scenes, Cambridge Landmarks, FAST-LIVO2 datasets, and a custom dataset demonstrate state-of-the-art performance, consistently outperforming in both accuracy and generalization.",
+      "authors": [
+        "Huaiyuan Weng",
+        "Chul Min Yeum",
+        "Su-Min Kang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-11T14:06:51+00:00",
+      "link": "https://arxiv.org/pdf/2608.10938v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "3D Gaussian Splatting based camera pose estimation with visibility-aware masked RGB warping refinement, involving novel view synthesis",
+      "llm_evidence_cn": "基于三维高斯泼溅的相机位姿估计，包含可见性感知的掩膜RGB变换细化，涉及新视角合成",
+      "llm_evidence": "基于三维高斯泼溅的相机位姿估计，包含可见性感知的掩膜RGB变换细化，涉及新视角合成",
+      "canonical_evidence": "基于三维高斯泼溅的相机位姿估计，包含可见性感知的掩膜RGB变换细化，涉及新视角合成",
+      "llm_tldr_en": "GS-CPE introduces a coarse-to-fine 6-DoF camera pose estimation framework that combines retrieval-guided geometric pose estimation on a 3DGS scene representation with visibility-aware masked RGB warping refinement, improving localization accuracy.",
+      "llm_tldr_cn": "GS-CPE提出了一种统一的六自由度相机位姿估计框架，先在三维高斯泼溅（3DGS）场景表示上通过检索引导的几何估计获得粗略位姿，再通过可见性感知的掩膜RGB变换目标进行多尺度优化和重渲染来细化位姿。大量实验表明该方法在保持泛化能力的同时显著提升定位精度。该工作展示了3DGS作为场景表示在视觉定位任务中的潜力。",
+      "llm_tldr": "GS-CPE提出了一种统一的六自由度相机位姿估计框架，先在三维高斯泼溅（3DGS）场景表示上通过检索引导的几何估计获得粗略位姿，再通过可见性感知的掩膜RGB变换目标进行多尺度优化和重渲染来细化位姿。大量实验表明该方法在保持泛化能力的同时显著提升定位精度。该工作展示了3DGS作为场景表示在视觉定位任务中的潜力。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

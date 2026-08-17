@@ -6,26 +6,30 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-16
-- 运行时间：2026-08-16 20:25:26 UTC
+- 最新运行日期：2026-08-17
+- 运行时间：2026-08-17 19:56:25 UTC
 - 运行状态：成功
-- 本次总论文数：1
-- 精读区：0
+- 本次总论文数：2
+- 精读区：1
 - 速读区：1
 
 ### 今日简报（AI）
-今日仅速读1篇论文，关注3D高斯场景中的对象提取新方法。  
-《Seed2GS》提出无需相机参数与训练，仅靠单参考视图即可从3D高斯场景中提取目标对象。  
-适合对零成本提取技术感兴趣的读者，可先快速浏览其方法框架与效果展示。
-- 详情：[/202608/16/README](/202608/16/README)
+今日精读与速读共2篇，聚焦3D高斯泼溅技术前沿。
+
+最值得关注的是精读《HiCo-GS》，提出层级上下文聚合与几何一致性方法，优化八叉树高斯泼溅，评分8.0/10；速读《GS-CPE》则将高斯泼溅用于6自由度相机位姿估计，评分7.0/10。
+
+建议优先精读《HiCo-GS》核心方法，速读《GS-CPE》作为应用扩展，后续可关注两方向结合点。
+- 详情：[/202608/17/README](/202608/17/README)
 
 ### 精读区论文标签
-- 本次无精读推荐。
+1. [HiCo-GS: Hierarchical Context Aggregation and Geometric Consistency for Octree Gaussian Splatting](/202608/17/2608.14136v1-hico-gs-hierarchical-context-aggregation-and-geometric-consistency-for-octree-gaussian-splatting)  
+   标签：评分：8.0/10、query:pano-dgs
+   evidence：面向城市级新视角合成的八叉树高斯泼溅方法
 
 ### 速读区论文标签
-1. [Seed2GS: Camera-Free, Training-Free Object Extraction from 3D Gaussian Scenes via a Single Reference-View Grounding](/202608/16/2608.11928v1-seed2gs-camera-free-training-free-object-extraction-from-3d-gaussian-scenes-via-a-single-reference-view-grounding)  
-   标签：评分：6.0/10、query:pano-dgs
-   evidence：基于3D高斯场景处理并渲染新视角
+1. [GS-CPE: Unified 6-Degree-of-Freedom Camera Pose Estimation via 3D Gaussian Splatting](/202608/17/2608.10938v1-gs-cpe-unified-6-degree-of-freedom-camera-pose-estimation-via-3d-gaussian-splatting)  
+   标签：评分：7.0/10、query:pano-dgs
+   evidence：基于三维高斯泼溅的相机位姿估计，包含可见性感知的掩膜RGB变换细化，涉及新视角合成
 
 
 <div class="dpr-home-promo-card">
