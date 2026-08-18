@@ -1,0 +1,224 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-18T20:30:18.115104+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 4,
+    "quick_skim_target": 11,
+    "quick_selected": 4
+  },
+  "deep_dive": [
+    {
+      "id": "2608.16863v1",
+      "source": "arxiv",
+      "title": "SplatGuide: Geometric Priors from 3D Gaussians for Pose-Free Novel View Synthesis",
+      "abstract": "Generating photorealistic novel views from unposed images requires both 3D geometric understanding and the ability to synthesize unseen content. A natural strategy combines feed-forward 3DGS reconstruction with multi-view diffusion. Yet prior pipelines extract at most one signal from the reconstruction, either pixel rendering or learned features, while none exploits per-Gaussian visibility for occlusion-aware reference selection. This *information disconnect* leaves renderable geometry, visibility cues, and learned features unused. SplatGuide closes this disconnect by reusing a single 3DGS scene across three complementary roles. Rendered images provide pixel-aligned geometric conditioning. Per-Gaussian source-view indices are rendered into a target-view voting map for occlusion-aware reference selection. Reconstruction tokens supply feature-level guidance via cross-attention. All three signals derive from the same reconstruction forward pass. Across RealEstate10K, DL3DV, Tanks-and-Temples, and Mip-NeRF 360, SplatGuide achieves state-of-the-art pose-free novel view synthesis. On RealEstate10K, with a moderate number of input views, it surpasses the ground-truth-pose baseline.",
+      "authors": [
+        "Yejun Zhang",
+        "Zihan Wang",
+        "Xu Ji",
+        "Yihao Wang",
+        "Yuxin Hou",
+        "Junyuan Fang",
+        "Juho-Matti Kilpeläinen",
+        "Arno Solin",
+        "Hamed Rezazadegan Tavakoli",
+        "Esa Rahtu",
+        "Juho Kannala"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-17T17:45:57+00:00",
+      "link": "https://arxiv.org/pdf/2608.16863v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "3D Gaussian Splatting geometric priors for pose-free novel view synthesis",
+      "llm_evidence_cn": "基于3D高斯泼溅几何先验的无位姿新视角合成",
+      "llm_evidence": "基于3D高斯泼溅几何先验的无位姿新视角合成",
+      "canonical_evidence": "基于3D高斯泼溅几何先验的无位姿新视角合成",
+      "llm_tldr_en": "SplatGuide reuses a single 3DGS scene for pixel rendering, per-Gaussian visibility, and learned features to improve pose-free novel view synthesis with multiview diffusion.",
+      "llm_tldr_cn": "针对无位姿图像的新视角合成，现有方法只利用3DGS重建的像素渲染或学习特征，忽略逐高斯可见性信息。SplatGuide将同一3DGS场景复用于三种互补角色：渲染图像提供像素对齐几何条件，渲染逐高斯源视角索引实现遮挡感知参考选择，并结合几何特征。实验表明该方法比仅用单一信号的流程生成更真实且几何一致的新视角，为3DGS与多视角扩散模型的结合提供了新范式。",
+      "llm_tldr": "针对无位姿图像的新视角合成，现有方法只利用3DGS重建的像素渲染或学习特征，忽略逐高斯可见性信息。SplatGuide将同一3DGS场景复用于三种互补角色：渲染图像提供像素对齐几何条件，渲染逐高斯源视角索引实现遮挡感知参考选择，并结合几何特征。实验表明该方法比仅用单一信号的流程生成更真实且几何一致的新视角，为3DGS与多视角扩散模型的结合提供了新范式。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.15651v1",
+      "source": "arxiv",
+      "title": "Gaussian-JEPA: Joint-Embedding Predictive Learning for 3D Gaussian Splats",
+      "abstract": "3D Gaussian Splatting (3DGS) represents 3D content with anisotropic primitives that jointly encode geometry and appearance. Fixed-budget encoders consume sampled observations of Gaussian assets, so the same object may be observed through different primitive realizations. Existing self-supervised methods mainly reconstruct masked Gaussian attributes, tying supervision to one sampled realization and requiring an input-space decoder. Latent prediction offers an alternative, but its application to Gaussian tokens requires targets that accommodate coupled attributes and heterogeneous spatial support. We introduce Gaussian-JEPA, which predicts representations of held-out Gaussian token blocks from visible context. An online encoder processes the context, while a shared exponential-moving-average encoder supplies stop-gradient features for multi-scale targets. Complementary target projections and feature-space grounding provide latent supervision without reconstructing Gaussian attributes. We evaluate the features under Gaussian resampling, partial observations, and renderable shape completion, together with transfer to part segmentation and object classification. Compared with matched reconstruction pretraining, Gaussian-JEPA is more consistent across resampled inputs, retains more instance information under partial observations, and provides stronger frozen features for Gaussian completion. These results support latent prediction as an effective objective for reusable 3D Gaussian representations. Code is on the project page (https://amazingren.github.io/Gaussian-JEPA/).",
+      "authors": [
+        "Bin Ren",
+        "Qi Ma",
+        "Yue Li",
+        "Zongyan Han",
+        "Yidi Li",
+        "Yuqian Fu",
+        "Rao Muhammad Anwer",
+        "Theo Gevers",
+        "Fahad Shahbaz Khan",
+        "Salman Khan"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-16T09:43:50+00:00",
+      "link": "https://arxiv.org/pdf/2608.15651v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Self-supervised predictive learning on 3D Gaussian Splat tokens for representation learning",
+      "llm_evidence_cn": "面向3D高斯泼溅令牌的自监督预测学习，用于表征学习",
+      "llm_evidence": "面向3D高斯泼溅令牌的自监督预测学习，用于表征学习",
+      "canonical_evidence": "面向3D高斯泼溅令牌的自监督预测学习，用于表征学习",
+      "llm_tldr_en": "Gaussian-JEPA introduces joint-embedding predictive learning for 3D Gaussian splats, predicting representations of held-out Gaussian token blocks from visible context in latent space.",
+      "llm_tldr_cn": "3DGS资源常以不同高斯原语实现表示同一物体，现有自监督方法往往重建掩蔽高斯属性，受限于单一实现且需要输入空间解码器。Gaussian-JEPA提出面向高斯令牌的联合嵌入预测学习，在线编码器处理可见上下文，在潜空间预测被遮挡的Gaussian token块表示，从而更好地处理耦合属性与异构空间支持。该方法有助于3DGS内容的自监督表示学习，为下游重建与理解提供更稳健的预训练范式。",
+      "llm_tldr": "3DGS资源常以不同高斯原语实现表示同一物体，现有自监督方法往往重建掩蔽高斯属性，受限于单一实现且需要输入空间解码器。Gaussian-JEPA提出面向高斯令牌的联合嵌入预测学习，在线编码器处理可见上下文，在潜空间预测被遮挡的Gaussian token块表示，从而更好地处理耦合属性与异构空间支持。该方法有助于3DGS内容的自监督表示学习，为下游重建与理解提供更稳健的预训练范式。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.08949v1",
+      "source": "arxiv",
+      "title": "EndoMD-SLAM: Endoscopic Gaussian Splatting SLAM under Optical Degradation with Memory and Static-Transient Decomposition",
+      "abstract": "Dense 3D reconstruction is critical for clinical endoscopic navigation and documentation. While Gaussian Splatting SLAM systems show promise in this domain, they fundamentally rely on strict multi-view photometric consistency. In routine procedures, this assumption is severely violated by intermittent optical degradations like moving debris and water flushing. Standard systems erroneously fuse these cameraattached artifacts into the persistent 3D geometry, causing severe tracking drift and irreversible map corruption. To address this limitation, we propose EndoMD-SLAM, a framework designed to maintain stability under optical degradation through specialized tracking and mapping mechanisms. On the tracking side, a memory-driven gating mechanism detects unreliable observations to suspend map updates and utilizes historical keyframes for drift-aware relocalization. On the mapping side, a self-supervised static-transient decomposition isolates visual contaminants into a dedicated transient field. This explicit separation prevents artifacts from structurally entangling with the persistent anatomical map. We curate a degradationfocused benchmark from colonoscopy videos to systematically evaluate these failure modes. Extensive experiments show that while standard baselines fail under severe optical degradation, EndoMD-SLAM preserves geometric integrity, reducing absolute trajectory error by 91% and improving rendering fidelity by 9.9 dB PSNR.",
+      "authors": [
+        "Nuo Chen",
+        "Kangqi Ni",
+        "Lulin Liu",
+        "Joga Ivatury",
+        "Ying Ding",
+        "Farshid Alambeigi",
+        "Tianlong Chen",
+        "Zhiwen Fan"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-09T22:59:01+00:00",
+      "link": "https://arxiv.org/pdf/2608.08949v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "3DGS-SLAM robust to optical degradation; 3DGS method related to dense reconstruction",
+      "llm_evidence_cn": "面向光学退化的3DGS-SLAM方法，属于3DGS稠密重建应用",
+      "llm_evidence": "面向光学退化的3DGS-SLAM方法，属于3DGS稠密重建应用",
+      "canonical_evidence": "面向光学退化的3DGS-SLAM方法，属于3DGS稠密重建应用",
+      "llm_tldr_en": "EndoMD-SLAM introduces memory and static-transient decomposition to make 3DGS SLAM robust to endoscopy optical degradation, improving dense reconstruction.",
+      "llm_tldr_cn": "本文提出EndoMD-SLAM，针对内窥镜场景中光学退化（如碎屑和水流）破坏多视图一致性的问题，设计专用跟踪与建图机制，将静态与瞬态成分分解并维护记忆，避免退化伪影被融合进3D几何，从而在复杂临床环境下保持建图稳定性。该方法将3DGS扩展到内窥镜SLAM领域，提升了稠密重建的鲁棒性，但与全景新视图合成主题关联有限。",
+      "llm_tldr": "本文提出EndoMD-SLAM，针对内窥镜场景中光学退化（如碎屑和水流）破坏多视图一致性的问题，设计专用跟踪与建图机制，将静态与瞬态成分分解并维护记忆，避免退化伪影被融合进3D几何，从而在复杂临床环境下保持建图稳定性。该方法将3DGS扩展到内窥镜SLAM领域，提升了稠密重建的鲁棒性，但与全景新视图合成主题关联有限。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.15785v1",
+      "source": "arxiv",
+      "title": "RoofGS: Roofline-Guided End-to-End Acceleration of 3D Gaussian Splatting",
+      "abstract": "3D Gaussian Splatting (3DGS) enables real-time novel-view synthesis but remains limited on GPUs at high resolutions. Through a stage-wise Roofline characterization, we identify two distinct hardware bottlenecks: global memory traffic dominates the front end, whereas instruction throughput limits rasterization. Guided by this analysis, we develop RoofGS, a rendering framework that applies bottleneck-specific optimizations rather than generic kernel acceleration. For the memory-bound front end, we design a resolution-adaptive quantized depth sorting key that compresses each key to 32 bits. For the compute-bound rasterizer, we introduce a range-aware bit-level fast exponential approximation tailored to the bounded exponent range after opacity culling, with a derived per-pixel error bound. These two core techniques are complemented by additional optimizations (kernel fusion, compact attribute storage, culling, dual-pixel evaluation) that additionally reduce memory traffic and improve instruction-level parallelism. Experiments show that RoofGS achieves a 10.1$\\times$ end-to-end speedup over 3DGS at 4K on an RTX 4090, increasing throughput from 61 to 616 FPS, with only a 0.028 dB PSNR loss.",
+      "authors": [
+        "Yang Luo",
+        "Yan Gong",
+        "Yongsheng Gao",
+        "Jie Zhao"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-16T15:06:39+00:00",
+      "link": "https://arxiv.org/pdf/2608.15785v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Roofline-guided acceleration of 3D Gaussian Splatting for real-time novel view synthesis",
+      "llm_evidence_cn": "面向高分辨率实时新视角合成的3D高斯泼溅加速",
+      "llm_evidence": "面向高分辨率实时新视角合成的3D高斯泼溅加速",
+      "canonical_evidence": "面向高分辨率实时新视角合成的3D高斯泼溅加速",
+      "llm_tldr_en": "RoofGS applies Roofline-guided bottleneck-specific optimizations, including quantized depth sorting keys and fast exponential approximation, to accelerate high-resolution 3DGS novel-view rendering.",
+      "llm_tldr_cn": "针对3DGS高分辨率渲染速度受限的问题，RoofGS通过Roofline分析识别前端显存带宽与光栅化指令吞吐两个瓶颈，分别为其设计分辨率自适应量化深度排序键和范围感知的位级快速指数近似。实验表明该框架在保持渲染质量的同时显著提升高分辨率新视角合成速度，为3DGS在实时大规模场景中的应用提供了有效的优化方案。",
+      "llm_tldr": "针对3DGS高分辨率渲染速度受限的问题，RoofGS通过Roofline分析识别前端显存带宽与光栅化指令吞吐两个瓶颈，分别为其设计分辨率自适应量化深度排序键和范围感知的位级快速指数近似。实验表明该框架在保持渲染质量的同时显著提升高分辨率新视角合成速度，为3DGS在实时大规模场景中的应用提供了有效的优化方案。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.14902v1",
+      "source": "arxiv",
+      "title": "Geometry-Aware Online Mapping for 3D Gaussian Splatting SLAM",
+      "abstract": "Recent 3D Gaussian Splatting (3DGS) has enabled efficient photorealistic view synthesis and is rapidly being adopted in simultaneous localization and mapping (SLAM) systems for online mapping. In these systems, a Gaussian map must be expanded and refined incrementally while tracking runs in real time, so initialization and density control directly determine where limited computation and iterations are spent. This contrasts with offline 3DGS reconstruction, where such heuristics can be amortized over long optimization schedules. However, most 3DGS-SLAM pipelines inherit initialization and density-control heuristics from offline reconstruction, which can become brittle under the strict per-keyframe optimization budgets and incremental map growth of online SLAM. In this work, we revisit these heuristics in a decoupled 3DGS-SLAM setting and propose three geometry-aware methods that operate in the mapping thread: transmittance-preserving densification, camera-aware scale initialization from depth and intrinsics, and error-guided densification that focuses new primitives on high-residual regions. Our results show consistent improvements in rendering quality with negligible overhead, highlighting the coupling between photometric residuals and pose uncertainty in online SLAM. We will open-source our code to the community to foster growth and validate reproducibility.",
+      "authors": [
+        "Thai Luu",
+        "Quan Tran",
+        "Hieu Phan",
+        "Tuan Dang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-14T21:20:16+00:00",
+      "link": "https://arxiv.org/pdf/2608.14902v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "improves 3DGS online mapping heuristics, a 3DGS reconstruction method",
+      "llm_evidence_cn": "改进3DGS在线建图的初始化与密度控制，属3DGS重建方法",
+      "llm_evidence": "改进3DGS在线建图的初始化与密度控制，属3DGS重建方法",
+      "canonical_evidence": "改进3DGS在线建图的初始化与密度控制，属3DGS重建方法",
+      "llm_tldr_en": "Proposes geometry-aware initialization and density control for online 3DGS SLAM, improving reconstruction quality under real-time budgets.",
+      "llm_tldr_cn": "本文聚焦3DGS-SLAM中在线地图构建带来的初始化与密度控制难题。与离线重建不同，在线SLAM必须在严格的逐关键帧优化预算下增量扩展高斯地图，而现有管线直接沿用离线启发式规则，容易失败。作者提出几何感知的初始化与密度控制策略，使高斯分布更贴合场景几何，在保持实时性的同时提升重建质量。该工作推动了3DGS在实时建图中的应用，但与全景视图合成无直接联系。",
+      "llm_tldr": "本文聚焦3DGS-SLAM中在线地图构建带来的初始化与密度控制难题。与离线重建不同，在线SLAM必须在严格的逐关键帧优化预算下增量扩展高斯地图，而现有管线直接沿用离线启发式规则，容易失败。作者提出几何感知的初始化与密度控制策略，使高斯分布更贴合场景几何，在保持实时性的同时提升重建质量。该工作推动了3DGS在实时建图中的应用，但与全景视图合成无直接联系。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
