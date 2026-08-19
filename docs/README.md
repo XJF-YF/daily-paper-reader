@@ -6,35 +6,34 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-18
-- 运行时间：2026-08-18 20:34:31 UTC
+- 最新运行日期：2026-08-19
+- 运行时间：2026-08-19 20:21:03 UTC
 - 运行状态：成功
-- 本次总论文数：5
-- 精读区：1
-- 速读区：4
+- 本次总论文数：4
+- 精读区：2
+- 速读区：2
 
 ### 今日简报（AI）
-今日聚焦3D高斯泼溅（3DGS）方向，共读5篇，其中1篇精读、4篇速读。最值得精读的是9.0分的《SplatGuide》，用3D高斯几何先验解决无位姿新视图合成；7.0分的Gaussian-JEPA与RoofGS分别涉及预测学习和端到端加速，也值得关注。建议优先读SplatGuide，再对照RoofGS和Gaussian-JEPA理解效率与表示层面的延伸。
-- 详情：[/202608/18/README](/202608/18/README)
+今日聚焦3D高斯泼溅与光线追踪，4篇论文中2篇精读获8分。  
+最值得关注：粒子级反向传播加速高斯光线追踪训练，以及实例分组前馈构建可引用3D场景。  
+建议关注高效3D重建与交互技术，后续可尝试复现精读两篇方法。
+- 详情：[/202608/19/README](/202608/19/README)
 
 ### 精读区论文标签
-1. [SplatGuide: Geometric Priors from 3D Gaussians for Pose-Free Novel View Synthesis](/202608/18/2608.16863v1-splatguide-geometric-priors-from-3d-gaussians-for-pose-free-novel-view-synthesis)  
-   标签：评分：9.0/10、query:pano-dgs
-   evidence：基于3D高斯泼溅几何先验的无位姿新视角合成
+1. [3D Gaussian Accelerated Ray Tracing: Fast training through particle-based backward propagation](/202608/19/2608.17298v1-3d-gaussian-accelerated-ray-tracing-fast-training-through-particle-based-backward-propagation)  
+   标签：评分：8.0/10、query:pano-dgs
+   evidence：面向新视角合成的3D高斯泼溅方法，加速光线追踪
+2. [GroupForward: Building Referable 3D Scenes via Instance-Grouped Feed-Forward Gaussian Splatting](/202608/19/2608.17535v1-groupforward-building-referable-3d-scenes-via-instance-grouped-feed-forward-gaussian-splatting)  
+   标签：评分：8.0/10、query:pano-dgs
+   evidence：前馈三维高斯泼溅重建几何与外观，属于3DGS场景重建与新视角合成方向
 
 ### 速读区论文标签
-1. [Gaussian-JEPA: Joint-Embedding Predictive Learning for 3D Gaussian Splats](/202608/18/2608.15651v1-gaussian-jepa-joint-embedding-predictive-learning-for-3d-gaussian-splats)  
-   标签：评分：7.0/10、query:pano-dgs
-   evidence：面向3D高斯泼溅令牌的自监督预测学习，用于表征学习
-2. [RoofGS: Roofline-Guided End-to-End Acceleration of 3D Gaussian Splatting](/202608/18/2608.15785v1-roofgs-roofline-guided-end-to-end-acceleration-of-3d-gaussian-splatting)  
-   标签：评分：7.0/10、query:pano-dgs
-   evidence：面向高分辨率实时新视角合成的3D高斯泼溅加速
-3. [EndoMD-SLAM: Endoscopic Gaussian Splatting SLAM under Optical Degradation with Memory and Static-Transient Decomposition](/202608/18/2608.08949v1-endomd-slam-endoscopic-gaussian-splatting-slam-under-optical-degradation-with-memory-and-static-transient-decomposition)  
+1. [OccamView: Object-Conditioned View Selection for Frame-Budgeted Active 3D Gaussian Reconstruction](/202608/19/2608.16499v1-occamview-object-conditioned-view-selection-for-frame-budgeted-active-3d-gaussian-reconstruction)  
    标签：评分：6.0/10、query:pano-dgs
-   evidence：面向光学退化的3DGS-SLAM方法，属于3DGS稠密重建应用
-4. [Geometry-Aware Online Mapping for 3D Gaussian Splatting SLAM](/202608/18/2608.14902v1-geometry-aware-online-mapping-for-3d-gaussian-splatting-slam)  
+   evidence：基于3D高斯重建的主动视角选择，可迁移至全景场景重建
+2. [Differentiable Voronoi Ray Tracing Beyond Rasterization Speeds](/202608/19/2608.17682v1-differentiable-voronoi-ray-tracing-beyond-rasterization-speeds)  
    标签：评分：6.0/10、query:pano-dgs
-   evidence：改进3DGS在线建图的初始化与密度控制，属3DGS重建方法
+   evidence：基于光线追踪的实时新视角合成，支持非针孔效果，对沉浸式360度渲染有借鉴意义
 
 
 <div class="dpr-home-promo-card">

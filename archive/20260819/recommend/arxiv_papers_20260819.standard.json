@@ -1,0 +1,173 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-19T20:18:34.297675+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2608.17298v1",
+      "source": "arxiv",
+      "title": "3D Gaussian Accelerated Ray Tracing: Fast training through particle-based backward propagation",
+      "abstract": "3D Gaussian Splatting has made Gaussian primitives a highly efficient representation for real-time novel view synthesis, but its rasterisation-based formulation relies on screen-space approximations that limit accurate view-dependent ordering and the integration of secondary ray effects such as reflections, refractions, and shadows. Gaussian ray tracing addresses these limitations by evaluating explicit ray-primitive intersections, yet it remains costly to train. We observe that the main bottleneck is not ray traversal alone, but the pixel-centric backward propagation, where many threads concurrently accumulate gradients into the same primitive parameters, causing severe atomic contention and thread serialisation.   We present 3DGART, a practical training framework for ray-traced Gaussian rendering. Our key idea is to reorganise backward propagation around primitives rather than pixels. Using conservative perspective-correct screen-space bounds, we build a compact intermediate buffer and a tile-primitive mapping that allows each thread to accumulate the contribution of one primitive over its covered pixels within a tile. This transforms gradient computation from a contention-heavy scatter operation into a structured gather-like process. On Mip-NeRF 360, 3DGART achieves an $\\approx 3-3.5\\times$ raw training speedup over per-pixel baseline and $\\approx4 \\times$ over 3DGRT on Mip-NeRF 360 while improving quality. More importantly, 3DGART makes fully ray-traced Gaussian training practical, reaching runtimes competitive with rasterisation-based pipelines while preserving benefits of ray tracing.",
+      "authors": [
+        "Laurent Vit",
+        "Oliver Batchelor",
+        "Richard Green"
+      ],
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR",
+        "cs.CV"
+      ],
+      "published": "2026-08-18T02:50:46+00:00",
+      "link": "https://arxiv.org/pdf/2608.17298v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "3D Gaussian Splatting method for novel view synthesis with ray tracing acceleration",
+      "llm_evidence_cn": "面向新视角合成的3D高斯泼溅方法，加速光线追踪",
+      "llm_evidence": "面向新视角合成的3D高斯泼溅方法，加速光线追踪",
+      "canonical_evidence": "面向新视角合成的3D高斯泼溅方法，加速光线追踪",
+      "llm_tldr_en": "This paper accelerates Gaussian ray tracing training by proposing particle-based backward propagation to reduce atomic contention, enabling efficient integration of secondary ray effects in 3DGS novel view synthesis.",
+      "llm_tldr_cn": "3D高斯泼溅已实现实时新视角合成，但基于光栅化的近似难以处理视角相关排序和反射折射等效果。高斯光线追踪虽能处理这些效应，却因像素中心反向传播中的原子争用而训练昂贵。本文提出基于粒子的反向传播机制，通过分配粒子独立传播梯度来消除原子竞争，从而大幅加速高斯光线追踪训练。该工作使高质量次级光效应集成在3DGS新视角合成中变得更加可行。",
+      "llm_tldr": "3D高斯泼溅已实现实时新视角合成，但基于光栅化的近似难以处理视角相关排序和反射折射等效果。高斯光线追踪虽能处理这些效应，却因像素中心反向传播中的原子争用而训练昂贵。本文提出基于粒子的反向传播机制，通过分配粒子独立传播梯度来消除原子竞争，从而大幅加速高斯光线追踪训练。该工作使高质量次级光效应集成在3DGS新视角合成中变得更加可行。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.17535v1",
+      "source": "arxiv",
+      "title": "GroupForward: Building Referable 3D Scenes via Instance-Grouped Feed-Forward Gaussian Splatting",
+      "abstract": "Simultaneously reconstructing and understanding 3D environments is essential for embodied agents. Toward this goal, feed-forward semantic 3D Gaussian Splatting (3DGS) efficiently constructs semantic scene representations from sparse multi-view observations. However, existing methods lack explicit instance discrimination and mainly support category- or phrase-based semantic queries. To this end, we propose GroupForward, an instance-grouped feed-forward Gaussian splatting model that reconstructs geometry, appearance, instance structure, and semantics from sparse, unposed, and uncalibrated multi-view images. Unlike existing methods that attach high-dimensional semantic features to each Gaussian, GroupForward learns compact instance embeddings that group Gaussians into cross-view consistent 3D instances, reformulating feed-forward semantic 3DGS from per-Gaussian semantic feature rendering to instance-level semantic aggregation and propagation. Building on these instance groups, we further propose a Referential Scene Reasoning Framework (RSRF) for complex 3D referring segmentation. RSRF constructs an instance-grouped 3D scene graph and retrieves candidate instances for a given referring expression. A vision-language model then reasons over structured instance evidence and multi-view observations to identify the referred instance among the candidates. RSRF thereby extends language interaction from simple semantic querying to complex referential scene reasoning. Experiments on semantic reconstruction and referential reasoning demonstrate the effectiveness of our instance-grouped reconstruction and reasoning framework.",
+      "authors": [
+        "Qijian Tian",
+        "Zimeng Wu",
+        "Xuhong Wang",
+        "Lizhuang Ma",
+        "Xin Tan"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-18T08:55:52+00:00",
+      "link": "https://arxiv.org/pdf/2608.17535v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "feed-forward 3D Gaussian Splatting that reconstructs geometry and appearance for scene representation",
+      "llm_evidence_cn": "前馈三维高斯泼溅重建几何与外观，属于3DGS场景重建与新视角合成方向",
+      "llm_evidence": "前馈三维高斯泼溅重建几何与外观，属于3DGS场景重建与新视角合成方向",
+      "canonical_evidence": "前馈三维高斯泼溅重建几何与外观，属于3DGS场景重建与新视角合成方向",
+      "llm_tldr_en": "Feed-forward semantic 3DGS builds scene representations from sparse multi-view images but lacks explicit instance discrimination. GroupForward learns compact instance grouping and reconstructs geometry, appearance, instance structure, and semantics from unposed multi-view images, enabling referable 3D scenes.",
+      "llm_tldr_cn": "前馈语义3D高斯泼溅能从稀疏多视图快速构建场景表示，但缺少显式实例判别。本文提出GroupForward，通过学习紧凑实例分组，在无位姿、未标定输入下同时重建几何、外观、实例结构。相比附加高维语义特征的现有方法，它更高效地支持实例级引用与查询。该工作为具身智能体的三维场景理解与交互提供了可引用场景表示。",
+      "llm_tldr": "前馈语义3D高斯泼溅能从稀疏多视图快速构建场景表示，但缺少显式实例判别。本文提出GroupForward，通过学习紧凑实例分组，在无位姿、未标定输入下同时重建几何、外观、实例结构。相比附加高维语义特征的现有方法，它更高效地支持实例级引用与查询。该工作为具身智能体的三维场景理解与交互提供了可引用场景表示。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.16499v1",
+      "source": "arxiv",
+      "title": "OccamView: Object-Conditioned View Selection for Frame-Budgeted Active 3D Gaussian Reconstruction",
+      "abstract": "Active 3D Gaussian reconstruction fundamentally relies on selecting informative next-best views under limited sensing budgets. Existing active 3DGS methods primarily plan viewpoints according to geometric information gain, treating object-induced hidden regions in the same manner as general unexplored space. Under tight frame budgets, such geometry-driven strategies may prioritize global scene coverage while leaving partially observed objects incompletely reconstructed. To address this limitation, we propose OccamView, an object-conditioned view-selection framework for frame-budgeted active 3D Gaussian reconstruction. Rather than predicting unseen object geometry or performing shape completion, OccamView maintains an online object memory from open-vocabulary detections grounded in measured RGB-D observations and represents unresolved local occupancy around detected objects as conservative hidden-region proxies. Candidate viewpoints are then evaluated using an occlusion-aware proxy-coverage score. Furthermore, we introduce a Geo-Floor mechanism that restricts object-conditioned re-ranking to geometrically competitive candidates, allowing object-conditioned cues to guide complementary observations while preserving the geometry-driven exploration behavior of the underlying planner. Experiments on Replica and Matterport3D under a unified frame-budgeted protocol show that OccamView consistently reduces Completion and improves Completion Ratio across five frame budgets, with particularly pronounced gains under limited frame budgets. These results demonstrate that lightweight object-conditioned cues effectively complement geometry-driven active view planning.",
+      "authors": [
+        "Hongbo Gao",
+        "Wei Zhang",
+        "Zeyu Ni",
+        "Dihao Zhu",
+        "Ruifeng Li",
+        "Yunke Wang",
+        "Chang Xu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-08-17T12:38:56+00:00",
+      "link": "https://arxiv.org/pdf/2608.16499v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "3D Gaussian reconstruction with active view selection, transferable to panoramic scene reconstruction",
+      "llm_evidence_cn": "基于3D高斯重建的主动视角选择，可迁移至全景场景重建",
+      "llm_evidence": "基于3D高斯重建的主动视角选择，可迁移至全景场景重建",
+      "canonical_evidence": "基于3D高斯重建的主动视角选择，可迁移至全景场景重建",
+      "llm_tldr_en": "OccamView proposes object-conditioned view selection for active 3D Gaussian reconstruction under limited frames, improving completeness of partially observed objects; relevant as a methodological bridge to 360-degree scene reconstruction.",
+      "llm_tldr_cn": "在有限的拍摄预算下，主动3D高斯重建依赖选择信息量最大的下一视角。现有方法按几何信息增益规划视角，常忽略物体遮挡区域，导致物体重建不完整。本文提出对象条件化视角选择框架OccamView，对每个物体维护在线可见性状态，优先选择能补全物体结构的视角。实验证明在相同帧预算下，该方法能显著提高物体级重建完整度，为全景/360度场景的高效3DGS采集与重建提供了可借鉴的视角规划思路。",
+      "llm_tldr": "在有限的拍摄预算下，主动3D高斯重建依赖选择信息量最大的下一视角。现有方法按几何信息增益规划视角，常忽略物体遮挡区域，导致物体重建不完整。本文提出对象条件化视角选择框架OccamView，对每个物体维护在线可见性状态，优先选择能补全物体结构的视角。实验证明在相同帧预算下，该方法能显著提高物体级重建完整度，为全景/360度场景的高效3DGS采集与重建提供了可借鉴的视角规划思路。",
+      "llm_tags": [
+        "query:pano-dgs:composite"
+      ],
+      "matched_query_tag": "query:pano-dgs:composite",
+      "matched_query_text": "Papers central to 请帮我查找全景3dgs的相关论文, especially work that connects or combines: 3D Gaussian Splatting method for novel view synthesis; reconstructing panoramic 360-degree scenes using Gaussian splatting; novel view synthesis for 360-degree immersive environments; omnidirectional rendering with 3D Gaussian Splatting; find papers on 3D Gaussian Splatting for panoramic 360 degree scene reconstruction; survey of omnidirectional novel view synthesis using Gaussian representations.",
+      "matched_requirement_id": "req-composite-pano-dgs",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.17682v1",
+      "source": "arxiv",
+      "title": "Differentiable Voronoi Ray Tracing Beyond Rasterization Speeds",
+      "abstract": "Real-time novel view synthesis is dominated by rasterized explicit primitives. These projection-based pipelines provide high throughput but require specialized extensions for non-pinhole effects such as distortion, rolling shutter, and depth of field. Ray-based rendering expresses these effects naturally but is generally assumed too slow for competitive real-time rendering. We analyze the factors governing throughput in differentiable Voronoi ray tracing and identify traversal length, per-cell work, and memory locality as principal determinants. Guided by this, we introduce VoroTracing, which co-designs the scene representation, optimization, and GPU execution to reduce these costs. Compact octahedral appearance textures reduce memory traffic, while surface-concentrated opacity promotes early termination. The fixed-budget representation is optimized without pruning or densification and rendered with a GPU implementation designed for coherent traversal. On Mip-NeRF 360, VoroTracing renders at 623 FPS on an RTX 5090, providing $3.2\\times$ the throughput of the fastest prior ray-based method and $2.8\\times$ that of 3D Gaussian Splatting, while maintaining competitive reconstruction quality. Our renderer supports fisheye, rolling-shutter, motion-blur, and depth-of-field effects through ray generation and sampling, requiring no specialized rasterization. These results show that real-time throughput can be achieved with the flexibility of ray-based rendering. We release our source code, see https://research.zenseact.com/publications/vorotracing",
+      "authors": [
+        "Bernardo Taveira",
+        "Carl Lindström",
+        "Joakim Johnander",
+        "Fredrik Kahl"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-18T11:55:58+00:00",
+      "link": "https://arxiv.org/pdf/2608.17682v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "real-time novel view synthesis with ray tracing, supporting non-pinhole effects useful for immersive 360 rendering",
+      "llm_evidence_cn": "基于光线追踪的实时新视角合成，支持非针孔效果，对沉浸式360度渲染有借鉴意义",
+      "llm_evidence": "基于光线追踪的实时新视角合成，支持非针孔效果，对沉浸式360度渲染有借鉴意义",
+      "canonical_evidence": "基于光线追踪的实时新视角合成，支持非针孔效果，对沉浸式360度渲染有借鉴意义",
+      "llm_tldr_en": "Real-time NVS uses rasterized primitives that struggle with non-pinhole effects. VoroTracing co-designs representation, optimization, and GPU execution for differentiable Voronoi ray tracing, using compact appearance textures to cut memory traffic and beyond-rasterization speeds.",
+      "llm_tldr_cn": "实时新视角合成通常依赖光栅化显式基元，难以自然处理畸变、卷帘快门等非针孔效果。本文提出VoroTracing，通过协同设计场景表示、优化与GPU执行，并采用紧凑八面体外观纹理降低内存开销。实验表明其在支持非针孔成像的同时达到超越光栅化的渲染速度。这为复杂成像模型下的沉浸式新视角合成提供了高效方案。",
+      "llm_tldr": "实时新视角合成通常依赖光栅化显式基元，难以自然处理畸变、卷帘快门等非针孔效果。本文提出VoroTracing，通过协同设计场景表示、优化与GPU执行，并采用紧凑八面体外观纹理降低内存开销。实验表明其在支持非针孔成像的同时达到超越光栅化的渲染速度。这为复杂成像模型下的沉浸式新视角合成提供了高效方案。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "novel view synthesis for 360-degree immersive environments",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
