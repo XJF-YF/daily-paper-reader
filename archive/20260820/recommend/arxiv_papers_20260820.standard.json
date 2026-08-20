@@ -1,0 +1,251 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-20T19:23:50.728546+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 4,
+    "quick_skim_target": 11,
+    "quick_selected": 4
+  },
+  "deep_dive": [
+    {
+      "id": "2608.18388v1",
+      "source": "arxiv",
+      "title": "Depth Anything V4: Dynamic 4D Scene Reconstruction via Riemannian Flow Matching on 4D Gaussian Splatting",
+      "abstract": "We present Depth Anything V4 (DAV4), a framework for dynamic 4D scene reconstruction from monocular video. Our key contribution is the application of Riemannian Flow Matching (RFM) to 4D Gaussian Splatting parameters, defining probability paths directly on non-Euclidean manifolds (scale, rotation, opacity), ensuring all intermediate states are valid. Through controlled experiments, we isolate RFM's contribution from test-time optimization (TTO) and pre-training. A deterministic MLP baseline with the same data, architecture, and TTO achieves F-score 0.762; RFM achieves 0.806 - the +0.044 gain is RFM's isolated contribution. We provide corrected computational cost analysis: pre-training is 360 GPU-hours, amortizing for large-scale deployment (over 10,000 scenes). Uncertainty is quantified via Negative Gaussian Log-Likelihood and Expected Calibration Error. DAV4 outperforms prior Depth Anything models and per-scene 4D-GS on dynamic reconstruction and novel-view synthesis, while using no human-annotated depth labels as training losses.",
+      "authors": [
+        "Jiaming Fan",
+        "Jian Lu",
+        "Jinling Jia",
+        "Chenbin Zhang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-18T23:44:19+00:00",
+      "link": "https://arxiv.org/pdf/2608.18388v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "4D Gaussian Splatting for novel view synthesis from monocular video",
+      "llm_evidence_cn": "基于4D高斯溅射的动态新视角合成",
+      "llm_evidence": "基于4D高斯溅射的动态新视角合成",
+      "canonical_evidence": "基于4D高斯溅射的动态新视角合成",
+      "llm_tldr_en": "Presents a 4D Gaussian Splatting framework with Riemannian Flow Matching for dynamic scene reconstruction from monocular video, improving reconstruction F-score from 0.762 to 0.806.",
+      "llm_tldr_cn": "针对动态场景重建中高斯参数需要满足几何约束的问题，提出基于黎曼流匹配的4D高斯溅射框架DAV4，在尺度、旋转、不透明度等非欧流形上定义概率路径，确保中间状态有效。通过控制变量实验隔离出流匹配的贡献，将F分数从0.762提升至0.806。该方法为动态4D场景的高质量重建提供了新思路。",
+      "llm_tldr": "针对动态场景重建中高斯参数需要满足几何约束的问题，提出基于黎曼流匹配的4D高斯溅射框架DAV4，在尺度、旋转、不透明度等非欧流形上定义概率路径，确保中间状态有效。通过控制变量实验隔离出流匹配的贡献，将F分数从0.762提升至0.806。该方法为动态4D场景的高质量重建提供了新思路。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.18413v1",
+      "source": "arxiv",
+      "title": "CoMVS-GS: Collaborative Multi-View Stereo and 3D Gaussian Splatting for Surface Reconstruction",
+      "abstract": "3D Gaussian Splatting enables efficient novel view synthesis, but accurate mesh reconstruction remains difficult in weakly observed and occluded regions, where Gaussian primitives may grow into unstable or geometrically inconsistent structures. We propose CoMVS-GS, a general surface reconstruction framework that combines Multi-View Stereo with Gaussian splatting. CoMVS-GS initializes Gaussian primitives from dense multi-view stereo points with pre-flattened scales and normal-aligned orientations, providing stronger geometric priors than sparse structure-from-motion initialization and reducing ambiguity during early optimization. It further introduces PatchMatch-3DGS Mutual Supervision, where Gaussian-rendered depths and normals initialize PatchMatch refinement, and refined PatchMatch depths supervise Gaussian optimization to improve weakly constrained geometry. For surface extraction, CoMVS-GS replaces truncated signed distance field voxel fusion with a Delaunay graph-cut meshing pipeline, reducing sensitivity to voxel resolution while preserving visibility-consistent surface evidence. Experiments on DTU, GauU-Scene V2, and MatrixCity show that CoMVS-GS remains competitive on object-level reconstruction and improves geometric accuracy and mesh compactness in outdoor scenes while maintaining high rendering quality.",
+      "authors": [
+        "Shihan Chen",
+        "Junjing Zhang",
+        "Qingsong Yan",
+        "Haibing Liu",
+        "Haofan Ren",
+        "Fei Deng"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-19T00:46:19+00:00",
+      "link": "https://arxiv.org/pdf/2608.18413v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Combines MVS and 3DGS for novel view synthesis and surface reconstruction",
+      "llm_evidence_cn": "结合MVS与3DGS的表面重建方法，面向新视角合成",
+      "llm_evidence": "结合MVS与3DGS的表面重建方法，面向新视角合成",
+      "canonical_evidence": "结合MVS与3DGS的表面重建方法，面向新视角合成",
+      "llm_tldr_en": "CoMVS-GS combines multi-view stereo with 3D Gaussian splatting, using dense stereo priors and PatchMatch mutual supervision to improve surface reconstruction and novel view synthesis in weakly observed regions.",
+      "llm_tldr_cn": "3D高斯泼溅虽能高效进行新视角合成，但在弱观测和遮挡区域常产生不稳定的几何结构，不利于高精度网格重建。CoMVS-GS将多视点立体与高斯泼溅协同起来，用稠密立体点初始化高斯，并通过PatchMatch与3DGS的深度、法线互监督提升几何一致性。实验表明该方法在弱观测和遮挡区域的重建质量明显优于传统3DGS初始化方案。该工作为高保真表面重建与新视角合成提供了新的通用框架。",
+      "llm_tldr": "3D高斯泼溅虽能高效进行新视角合成，但在弱观测和遮挡区域常产生不稳定的几何结构，不利于高精度网格重建。CoMVS-GS将多视点立体与高斯泼溅协同起来，用稠密立体点初始化高斯，并通过PatchMatch与3DGS的深度、法线互监督提升几何一致性。实验表明该方法在弱观测和遮挡区域的重建质量明显优于传统3DGS初始化方案。该工作为高保真表面重建与新视角合成提供了新的通用框架。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.15024v1",
+      "source": "arxiv",
+      "title": "MotionGS-SLAM: Event-Modulated Gaussian Splatting for Motion-Blur Robust SLAM",
+      "abstract": "Current Vision-based SLAM systems fail catastrophically when motion blur corrupts the visual input, as they attempt the ill-posed inverse problem of recovering sharp content from degraded observations. We present MotionGS-SLAM, which fundamentally reimagines motion blur handling through a paradigm shift: rather than removing blur artifacts, we reformulate the challenge as a well-constrained forward problem that generatively models blur formation within the rendering pipeline. By leveraging event cameras' microsecond temporal resolution and immunity to motion blur, we introduce a novel event-modulated Gaussian kernel that dynamically adapts each Gaussian's rasterization based on precise motion cues. Our dual-modulation mechanism transforms 2D Gaussian projections from isotropic dots into anisotropic, motion-aligned elliptical brush strokes (spatial modulation) while adaptively varying exposure integral sampling density based on local velocity (temporal modulation). This physics-based approach enables joint optimization of intra-exposure camera trajectories and 3D scene geometry through blur-aware photometric and event-based constraints. Extensive experiments demonstrate significant improvements over state-of-the-art methods in trajectory accuracy and map quality under severe high-motion conditions.",
+      "authors": [
+        "Zhiqiang Hu",
+        "Shouren Huang",
+        "Masatoshi Ishikawa"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "published": "2026-08-15T04:20:51+00:00",
+      "link": "https://arxiv.org/pdf/2608.15024v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "3D Gaussian Splatting rendering pipeline adapted for motion blur robust SLAM",
+      "llm_evidence_cn": "事件调制高斯核提升3DGS渲染对运动模糊的鲁棒性，可用于SLAM",
+      "llm_evidence": "事件调制高斯核提升3DGS渲染对运动模糊的鲁棒性，可用于SLAM",
+      "canonical_evidence": "事件调制高斯核提升3DGS渲染对运动模糊的鲁棒性，可用于SLAM",
+      "llm_tldr_en": "Introduces event-modulated Gaussian kernels that adapt rasterization based on event camera cues, transforming motion blur handling in Gaussian Splatting SLAM and improving robustness under fast motion.",
+      "llm_tldr_cn": "视觉SLAM在运动模糊下常失效，现有方法试图从退化观测中恢复清晰图像。提出MotionGS-SLAM，将模糊建模为渲染流程中的前向过程，利用事件相机微秒级时间分辨率，通过事件调制高斯核动态调整光栅化。实验证明其显著提升运动模糊场景下SLAM的鲁棒性和渲染质量。",
+      "llm_tldr": "视觉SLAM在运动模糊下常失效，现有方法试图从退化观测中恢复清晰图像。提出MotionGS-SLAM，将模糊建模为渲染流程中的前向过程，利用事件相机微秒级时间分辨率，通过事件调制高斯核动态调整光栅化。实验证明其显著提升运动模糊场景下SLAM的鲁棒性和渲染质量。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.19036v1",
+      "source": "arxiv",
+      "title": "USR-Drive: Unified Driving Scene Representation via Joint Denoising of 3D Gaussians and Boxes",
+      "abstract": "Spatial representation learning for autonomous driving aims to map raw visual signals into structured 3D scene representations, where object-centric bounding boxes and rendering-oriented 3D primitives (\\eg, 3D Gaussians) serve as two distinct yet highly complementary levels for scene understanding. Existing methods typically treat dynamic reconstruction and instance-level perception as separate tasks, despite their shared goal of estimating the underlying 3D world state. As a result, dynamic reconstruction is under-constrained while 3D detection lacks geometric grounding. To address this gap, we propose USR-Drive, a unified conditional generative framework that, given only posed multi-view driving videos, jointly recovers dense dynamic geometry and instance-level object layouts within a shared scene representation. Specifically, USR-Drive represents dense Gaussian primitives and sparse 3D bounding boxes as two aligned latent token streams and jointly denoises them with a unified multi-modal diffusion Transformer. Unlike prior paradigms that use boxes as external conditions or predict them with detached modules, USR-Drive treats them as mutually constrained state variables with a Unified Positional Encoding (UPE) that aligns heterogeneous tokens within a shared metric spatiotemporal coordinate. Via such unified representation and generative framework, the two modalities reinforce each other: geometry supplies dense metric evidence for box prediction, while boxes provide instance-level structural priors that help preserve spatial consistency and reduce ambiguity in sequential 3D geometric representation. Our approach successfully delivers state-of-the-art results for both dynamic reconstruction and 3D detection on the nuScenes and VKitti datasets.",
+      "authors": [
+        "Li-Heng Chen",
+        "Haokai Pang",
+        "Chengye Su",
+        "Jiarun Liu",
+        "Qifeng Chen",
+        "Ziqian Ni",
+        "Jianxin Huang",
+        "Shi-Sheng Huang",
+        "Hongbo Fu",
+        "Sheng Yang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-19T15:29:06+00:00",
+      "link": "https://arxiv.org/pdf/2608.19036v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Unified driving scene representation using 3D Gaussians from posed multi-view videos, related to 360-degree surrounding reconstruction",
+      "llm_evidence_cn": "基于多视角行车视频的3D高斯与框联合去噪，构建360度驾驶环境表示",
+      "llm_evidence": "基于多视角行车视频的3D高斯与框联合去噪，构建360度驾驶环境表示",
+      "canonical_evidence": "基于多视角行车视频的3D高斯与框联合去噪，构建360度驾驶环境表示",
+      "llm_tldr_en": "USR-Drive jointly denoises 3D Gaussians and object boxes from posed multi-view driving videos, unifying dynamic reconstruction and instance perception for autonomous driving.",
+      "llm_tldr_cn": "该文针对自动驾驶中动态重建与实例感知分离导致的重建约束不足和检测缺乏几何基础问题，提出USR-Drive统一条件生成框架。它仅利用带位姿的多视角行车视频，联合去噪3D高斯表示和3D框，同时恢复稠密场景几何与实例级感知。实验表明该联合建模能够提升动态重建的约束性和检测的几何准确性。该工作展示了3D高斯在360度驾驶场景重建中的潜力，对全景场景理解有借鉴意义。",
+      "llm_tldr": "该文针对自动驾驶中动态重建与实例感知分离导致的重建约束不足和检测缺乏几何基础问题，提出USR-Drive统一条件生成框架。它仅利用带位姿的多视角行车视频，联合去噪3D高斯表示和3D框，同时恢复稠密场景几何与实例级感知。实验表明该联合建模能够提升动态重建的约束性和检测的几何准确性。该工作展示了3D高斯在360度驾驶场景重建中的潜力，对全景场景理解有借鉴意义。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "reconstructing panoramic 360-degree scenes using Gaussian splatting",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.17314v1",
+      "source": "arxiv",
+      "title": "Scanline-Aware Animatable Gaussian Avatars from Rolling-Shutter Videos",
+      "abstract": "Animatable human avatars are routinely reconstructed from multi-view video under a silent assumption: that every pixel of a frame observes the same instant of the body's motion. Rolling-shutter (RS) sensors expose image rows sequentially, so within one frame the head and the feet of a moving person are separated by tens of milliseconds of articulated motion, and every scanline sees a different pose. Feeding such video to a state-of-the-art avatar bakes the distortion into the canonical representation, where it survives as shear and wobble under novel views and novel poses. Worse, every camera in a rig follows its own readout schedule, so the multi-view consistency that drives the reconstruction is violated even when the geometry is correct. We present RS-Avatar, which reconstructs a sharp, undistorted, animatable 3D Gaussian avatar directly from RS video. The formulation is minimal: a motion-aware avatar already renders the body at several sub-frame instants, and where a blur model averages those renderings, a rolling-shutter model composites them scanline by scanline. Changing that operator is the only modification required. On RS-ZJU, a benchmark we build from ZJU-MoCap, this improves novel-view synthesis over training as if the frames were instantaneous, on every subject. A motion-aware blur model built on the same sub-frame machinery does not transfer, and in fact falls below the shutter-oblivious baseline: the machinery is reusable, the operator is not.",
+      "authors": [
+        "Youxiang Wang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-18T03:08:33+00:00",
+      "link": "https://arxiv.org/pdf/2608.17314v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "3DGS method for novel view synthesis of animatable avatars",
+      "llm_evidence_cn": "基于3D高斯泼溅的可动化身新视角合成方法",
+      "llm_evidence": "基于3D高斯泼溅的可动化身新视角合成方法",
+      "canonical_evidence": "基于3D高斯泼溅的可动化身新视角合成方法",
+      "llm_tldr_en": "Addresses rolling-shutter distortion in animatable Gaussian avatar reconstruction by introducing a scanline-aware representation, reducing shear and wobble under novel views and novel poses.",
+      "llm_tldr_cn": "现有可动化身重建通常假设同一帧各像素在同一时刻观测人体，滚动快门会破坏这一假设并导致重建结果在新视角和新姿态下出现扭曲。本文提出扫描线感知的高斯化身表示，显式考虑相机逐行曝光的位姿变化，从而消除剪切和摆动伪影。实验表明该方法能有效提升滚动快门视频下的化身重建质量，并为后续基于高斯的动态新视角合成提供了更鲁棒的基础。",
+      "llm_tldr": "现有可动化身重建通常假设同一帧各像素在同一时刻观测人体，滚动快门会破坏这一假设并导致重建结果在新视角和新姿态下出现扭曲。本文提出扫描线感知的高斯化身表示，显式考虑相机逐行曝光的位姿变化，从而消除剪切和摆动伪影。实验表明该方法能有效提升滚动快门视频下的化身重建质量，并为后续基于高斯的动态新视角合成提供了更鲁棒的基础。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.18285v1",
+      "source": "arxiv",
+      "title": "QuARC-GS: Quantized Anchored Residual Coding for Compact Dynamic Scene Streaming with Gaussian Splatting",
+      "abstract": "3D scene representation techniques such as neural radiance fields (NeRFs) and Gaussian splatting have made substantial progress in novel view synthesis, achieving high-quality renderings from arbitrary view angles. More recently, such techniques have been extended to dynamic 3D scenes; however, achieving sustainable online free-viewpoint video (FVV) streaming remains challenging, especially for longer videos, due to significant storage demands of detailed scene representations and high reconstruction/rendering speed needs. To address these challenges, we propose Quantized Anchored Residual Coding Gaussian Streaming (QuARC-GS), a quantization-aware 4D scene optimization framework for online dynamic scene reconstruction that achieves ultra-high compression while maintaining reconstruction speed and quality. QuARC-GS represents a scene using a single canonical frame and highly compressed per-frame residuals. Specifically, we compress each residual through two complementary strategies targeting motion, appearance, and densification. We introduce quantization-aware anchor deformation, which suppresses insignificant motion updates while preserving meaningful deformations, maintaining reconstruction quality under low-storage streaming. Furthermore, we design a change-gated densification strategy that allocates new Gaussians only in regions exhibiting genuine temporal changes, effectively eliminating redundant appearance updates and reducing storage overhead. Extensive experiments on widely used datasets demonstrate that QuARC-GS enables competitive reconstruction quality and training speed while cutting per-frame storage by up to 11$\\times$ compared to the state-of-the-art.",
+      "authors": [
+        "Vu Trung Nghia Nguyen",
+        "Yuchen Wang",
+        "Kyung Chul Lee",
+        "Kevin C. Zhou"
+      ],
+      "primary_category": "eess.IV",
+      "categories": [
+        "eess.IV",
+        "cs.CV"
+      ],
+      "published": "2026-08-18T20:06:16+00:00",
+      "link": "https://arxiv.org/pdf/2608.18285v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Gaussian splatting method for novel view synthesis in dynamic scenes",
+      "llm_evidence_cn": "面向动态场景的高斯溅射新视角合成方法",
+      "llm_evidence": "面向动态场景的高斯溅射新视角合成方法",
+      "canonical_evidence": "面向动态场景的高斯溅射新视角合成方法",
+      "llm_tldr_en": "QuARC-GS proposes a quantization-aware 4D scene optimization framework for Gaussian splatting, compressing dynamic 3D scenes to enable sustainable online free-viewpoint streaming with high-quality arbitrary view synthesis.",
+      "llm_tldr_cn": "针对动态三维场景在线自由视角视频流媒体传输中存储开销大、重建与渲染速度要求高的问题，论文提出QuARC-GS，一种基于高斯溅射的量化感知4D场景优化框架。该方法通过量化锚定残差编码对动态场景进行紧凑表示，在保证高质量任意视角渲染的同时降低存储与带宽需求。实验表明该框架能够支持更长的动态视频流式传输，为自由视角视频应用提供了可行的三维表示与编码方案。",
+      "llm_tldr": "针对动态三维场景在线自由视角视频流媒体传输中存储开销大、重建与渲染速度要求高的问题，论文提出QuARC-GS，一种基于高斯溅射的量化感知4D场景优化框架。该方法通过量化锚定残差编码对动态场景进行紧凑表示，在保证高质量任意视角渲染的同时降低存储与带宽需求。实验表明该框架能够支持更长的动态视频流式传输，为自由视角视频应用提供了可行的三维表示与编码方案。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
