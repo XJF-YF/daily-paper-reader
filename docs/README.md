@@ -6,38 +6,32 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-20
-- 运行时间：2026-08-20 19:27:43 UTC
+- 最新运行日期：2026-08-21
+- 运行时间：2026-08-21 19:43:23 UTC
 - 运行状态：成功
-- 本次总论文数：6
+- 本次总论文数：4
 - 精读区：2
-- 速读区：4
+- 速读区：2
 
 ### 今日简报（AI）
-今日速览6篇3D视觉前沿，聚焦动态场景重建与高斯溅射新突破。最值得关注精读两篇：《Depth Anything V4》以黎曼流匹配攻克4D动态重建，《CoMVS-GS》融合多视图立体与高斯溅射提升表面精度。若求实用，可优先关注运动模糊鲁棒SLAM与可控化身方向。
-- 详情：[/202608/20/README](/202608/20/README)
+今日精读2篇、速读2篇，聚焦3D高斯泼溅（3DGS）生成与4D动态场景重建。最值得关注《GS-Voxel》的无拟合大规模生成器和《Depth Anything V4》的黎曼流匹配4D重建。建议从这两篇8分论文入手，把握3DGS生成与动态场景建模的最新趋势。
+- 详情：[/202608/21/README](/202608/21/README)
 
 ### 精读区论文标签
-1. [Depth Anything V4: Dynamic 4D Scene Reconstruction via Riemannian Flow Matching on 4D Gaussian Splatting](/202608/20/2608.18388v1-depth-anything-v4-dynamic-4d-scene-reconstruction-via-riemannian-flow-matching-on-4d-gaussian-splatting)  
+1. [GS-Voxel: Fitting-Free Structured Latents for Large-Scale 3DGS Generation](/202608/21/2608.17988v1-gs-voxel-fitting-free-structured-latents-for-large-scale-3dgs-generation)  
    标签：评分：8.0/10、query:pano-dgs
-   evidence：基于4D高斯溅射的动态新视角合成
-2. [CoMVS-GS: Collaborative Multi-View Stereo and 3D Gaussian Splatting for Surface Reconstruction](/202608/20/2608.18413v1-comvs-gs-collaborative-multi-view-stereo-and-3d-gaussian-splatting-for-surface-reconstruction)  
+   evidence：提出用于大规模3D高斯泼溅生成的结构化潜表示框架
+2. [Depth Anything V4: Dynamic 4D Scene Reconstruction via Riemannian Flow Matching on 4D Gaussian Splatting](/202608/21/2608.18388v2-depth-anything-v4-dynamic-4d-scene-reconstruction-via-riemannian-flow-matching-on-4d-gaussian-splatting)  
    标签：评分：8.0/10、query:pano-dgs
-   evidence：结合MVS与3DGS的表面重建方法，面向新视角合成
+   evidence：使用4D高斯泼溅和黎曼流匹配从单目视频进行动态场景重建
 
 ### 速读区论文标签
-1. [MotionGS-SLAM: Event-Modulated Gaussian Splatting for Motion-Blur Robust SLAM](/202608/20/2608.15024v1-motiongs-slam-event-modulated-gaussian-splatting-for-motion-blur-robust-slam)  
+1. [S$^2$GS: Structured Sparse Gaussian Streaming for Efficient Free-Viewpoint Video Reconstruction on Edge-IoT Devices](/202608/21/2608.19639v1-s2gs-structured-sparse-gaussian-streaming-for-efficient-free-viewpoint-video-reconstruction-on-edge-iot-devices)  
    标签：评分：7.0/10、query:pano-dgs
-   evidence：事件调制高斯核提升3DGS渲染对运动模糊的鲁棒性，可用于SLAM
-2. [Scanline-Aware Animatable Gaussian Avatars from Rolling-Shutter Videos](/202608/20/2608.17314v1-scanline-aware-animatable-gaussian-avatars-from-rolling-shutter-videos)  
-   标签：评分：7.0/10、query:pano-dgs
-   evidence：基于3D高斯泼溅的可动化身新视角合成方法
-3. [QuARC-GS: Quantized Anchored Residual Coding for Compact Dynamic Scene Streaming with Gaussian Splatting](/202608/20/2608.18285v1-quarc-gs-quantized-anchored-residual-coding-for-compact-dynamic-scene-streaming-with-gaussian-splatting)  
-   标签：评分：7.0/10、query:pano-dgs
-   evidence：面向动态场景的高斯溅射新视角合成方法
-4. [USR-Drive: Unified Driving Scene Representation via Joint Denoising of 3D Gaussians and Boxes](/202608/20/2608.19036v1-usr-drive-unified-driving-scene-representation-via-joint-denoising-of-3d-gaussians-and-boxes)  
+   evidence：基于高斯原语的自由视点视频流式重建
+2. [4DAnyone: Create Anyone in 4D from a Casual Monocular Video](/202608/21/2608.20335v1-4danyone-create-anyone-in-4d-from-a-casual-monocular-video)  
    标签：评分：6.0/10、query:pano-dgs
-   evidence：基于多视角行车视频的3D高斯与框联合去噪，构建360度驾驶环境表示
+   evidence：基于高斯泼溅的4D重建与新视角生成
 
 
 <div class="dpr-home-promo-card">

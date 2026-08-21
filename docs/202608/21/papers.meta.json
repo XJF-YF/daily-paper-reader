@@ -1,0 +1,69 @@
+{
+  "label": "2026-08-21",
+  "date": "2026-08-21",
+  "generated_at": "2026-08-21T19:43:28",
+  "count": 4,
+  "papers": [
+    {
+      "paper_id": "202608/21/2608.17988v1-gs-voxel-fitting-free-structured-latents-for-large-scale-3dgs-generation",
+      "section": "deep",
+      "title_en": "GS-Voxel: Fitting-Free Structured Latents for Large-Scale 3DGS Generation",
+      "authors": "Ming Qian, Zijian Wang, Minchao Sun, Jincheng Xiong, Hang Zhang, Mu Xu, Chi Wang, Baoquan Chen",
+      "date": "2026-08-18",
+      "pdf": "https://arxiv.org/pdf/2608.17988v1",
+      "score": "8.0",
+      "evidence": "提出用于大规模3D高斯泼溅生成的结构化潜表示框架",
+      "tldr": "现有可扩展3D生成器依赖结构化张量，但预优化3DGS重建无序、不规则且数量不一。GS-Voxel提出无拟合转换，将预优化3DGS确定性映射为稀疏活跃体素，保留子体素信息，并用因子化VAE编码几何与属性。训练图像条件流模型生成航拍3DGS场景，通过重叠感知平铺推理扩展到大区域合成。该方法使潜在容量随占用体素增长，为大规模场景生成提供结构化表示。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Many scalable latent 3D generators operate on structured tensors, whereas pre-optimized 3D Gaussian Splatting (3DGS) reconstructions are unordered, spatially irregular, and vary widely in primitive count. We present GS-Voxel, a fitting-free structured latent framework, and evaluate it for large-scale aerial 3D Gaussian scene generation. GS-Voxel deterministically converts a compatible pre-optimized 3DGS reconstruction into sparse active voxels without additional per-scene optimization, retaining the sub-voxel positions and rendering attributes of the selected primitives. A GS-specific factorized VAE then separately encodes voxel geometry and local Gaussian attributes into sparse 3D latents whose size grows with the number of occupied voxels rather than being limited by a fixed scene-wide primitive count. We train image-conditioned flow models in the GS-Voxel latent space to generate aerial 3DGS scenes. A key application enabled by GS-Voxel is large-area scene generation: overlap-aware tiled inference extends synthesis beyond a single training crop conditioned on satellite-view images. Our results show that GS-Voxel provides structured latents for pre-optimized aerial 3DGS reconstructions, with latent capacity that grows with the number of occupied voxels.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/21/2608.18388v2-depth-anything-v4-dynamic-4d-scene-reconstruction-via-riemannian-flow-matching-on-4d-gaussian-splatting",
+      "section": "deep",
+      "title_en": "Depth Anything V4: Dynamic 4D Scene Reconstruction via Riemannian Flow Matching on 4D Gaussian Splatting",
+      "authors": "Jiaming Fan, Jian Lu, Jinling Jia, Chenbin Zhang",
+      "date": "2026-08-18",
+      "pdf": "https://arxiv.org/pdf/2608.18388v2",
+      "score": "8.0",
+      "evidence": "使用4D高斯泼溅和黎曼流匹配从单目视频进行动态场景重建",
+      "tldr": "从单目视频重建动态4D场景，需在非欧几里得参数流形上优化高斯溅射，传统方法难以保证中间状态有效。本文提出DAV4，将黎曼流匹配（RFM）引入4D高斯溅射，在尺度、旋转、不透明度等流形上直接定义概率路径，确保生成过程始终合法。可控实验分离RFM与测试时优化及预训练的贡献：固定其余设置，MLP基线F-score为0.762，RFM达0.806，净增0.044；预训练成本360 GPU小时，可摊销至超万场景。DAV4在动态重建与新视图合成上超过先前Depth Anything系列及逐场景4D-GS，且不依赖人工深度标签。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "We present Depth Anything V4 (DAV4), a framework for dynamic 4D scene reconstruction from monocular video. Our key contribution is the application of Riemannian Flow Matching (RFM) to 4D Gaussian Splatting parameters, defining probability paths directly on non-Euclidean manifolds (scale, rotation, opacity), ensuring all intermediate states are valid. Through controlled experiments, we isolate RFM's contribution from test-time optimization (TTO) and pre-training. A deterministic MLP baseline with the same data, architecture, and TTO achieves F-score 0.762; RFM achieves 0.806 - the +0.044 gain is RFM's isolated contribution. We provide corrected computational cost analysis: pre-training is 360 GPU-hours, amortizing for large-scale deployment (over 10,000 scenes). Uncertainty is quantified via Negative Gaussian Log-Likelihood and Expected Calibration Error. DAV4 outperforms prior Depth Anything models and per-scene 4D-GS on dynamic reconstruction and novel-view synthesis, while using no human-annotated depth labels as training losses.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/21/2608.19639v1-s2gs-structured-sparse-gaussian-streaming-for-efficient-free-viewpoint-video-reconstruction-on-edge-iot-devices",
+      "section": "quick",
+      "title_en": "S$^2$GS: Structured Sparse Gaussian Streaming for Efficient Free-Viewpoint Video Reconstruction on Edge-IoT Devices",
+      "authors": "Yiwei Li, Jiannong Cao, Weixun Gao, Rui Cao, Songye Zhu, Yinfeng Cao, Mingjin Zhang",
+      "date": "2026-08-20",
+      "pdf": "https://arxiv.org/pdf/2608.19639v1",
+      "score": "7.0",
+      "evidence": "基于高斯原语的自由视点视频流式重建",
+      "tldr": "流式重建自由视角视频对边缘IoT设备支持至关重要，但现有方法每帧优化慢、存储大。S^2GS利用结构感知的时间稀疏性，通过流式八叉树与门控机制选择性更新高斯残差。在RTX4090上较QUEEN降低59%优化时间与85%存储，在Jetson AGX Orin上达到60+FPS且能耗最低，展示了资源受限设备上的高效部署潜力。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Streaming reconstruction of Free-Viewpoint Videos (FVVs) supports immersive Internet of Things (IoT) services, such as telepresence and digital twin visualization. Existing methods suffer from high per-frame optimization time and large storage footprints, limiting deployment on resource-constrained Edge-IoT devices. To address these challenges, we propose Structured Sparse Gaussian Streaming (S$^2$GS), an FVV reconstruction framework that exploits structure-aware temporal sparsity to selectively update Gaussian residuals, enabling efficient streaming without compromising visual fidelity. In the spatial domain, a streaming octree hierarchically organizes Gaussian residuals, capturing spatial correlations that guide residual updates. In the temporal domain, a structured gating mechanism, comprising hierarchical feature propagation (HFP) and Gumbel-Sigmoid sampling, converts hierarchical dynamic cues into sparse residual update decisions under differentiable optimization. A multi-level discrete scheme is further adopted to provide fine-grained control over residual updates while preserving intricate dynamic details. Extensive experiments across consumer GPUs, industrial edge IoT devices, and a physical telepresence testbed demonstrate that S$^2$GS consistently reduces per-frame optimization time and storage footprint while maintaining competitive visual quality. Compared with QUEEN, S$^2$GS reduces per-frame optimization time by 59% and storage costs by 85% on an RTX 4090 GPU. On the Jetson AGX Orin, S$^2$GS delivers the highest rendering throughput (60+ FPS) and the lowest energy consumption among the evaluated methods, demonstrating its potential for deployment in resource-constrained systems.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/21/2608.20335v1-4danyone-create-anyone-in-4d-from-a-casual-monocular-video",
+      "section": "quick",
+      "title_en": "4DAnyone: Create Anyone in 4D from a Casual Monocular Video",
+      "authors": "Yudong Jin, Tao Xie, Qihang Zhang, Zehong Shen, Zhen Xu, Yujun Shen, Hujun Bao, Xiaowei Zhou, Yinghao Xu",
+      "date": "2026-08-20",
+      "pdf": "https://arxiv.org/pdf/2608.20335v1",
+      "score": "6.0",
+      "evidence": "基于高斯泼溅的4D重建与新视角生成",
+      "tldr": "从单目视频重建4D人体时，现有扩散模型在数十个目标视角下因注意力上下文不足而难以保持多视角一致性。4DAnyone提出两种设计：参考上下文打包将增多的参考视角压缩为固定长度混合分辨率上下文，目标上下文路由在去噪中轮转分组以交换信息。在DNA-Rendering与DyMVHumans数据集上，新视角视频质量及4D高斯泼溅重建均超越既有方法。该工作为4D人体建模与野外视频泛化提供了高效可行的方案。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "We present 4DAnyone, a framework for reconstructing 4D humans from an uncalibrated monocular video by generating reconstruction-grade multiview-consistent videos and lifting them into 4D Gaussian Splatting (4DGS). Existing camera-controlled video diffusion models synthesize plausible novel-view videos but fail to maintain consistency when scaled to the tens of target views required for 4DGS reconstruction. We identify this failure as a bounded-attention-context problem: when target views exceed the capacity of a single DiT forward pass, they must be split into groups, exposing two coupled bottlenecks. On the reference-context side, conditioning on all previously generated views grows as $O(N)$, weakening cross-view appearance guidance. On the target-context side, disjoint groups cannot directly exchange information, causing global structural drift. 4DAnyone addresses both bottlenecks with two complementary designs: Reference Context Packing (RCP) compresses growing reference views into a fixed-length mixed-resolution context with $O(1)$ reference-context complexity, while Target Context Routing (TCR) rotates target-view groupings during denoising to share context across groups at high-noise steps and stabilize details at low-noise steps. We further build the MVGameHuman dataset using our in-house game engine and combine it with light-stage and in-the-wild video datasets for training. Experiments on DNA-Rendering and DyMVHumans show that 4DAnyone outperforms prior methods in both novel-view video quality and downstream 4DGS reconstruction, with robust in-the-wild generalization. See our project page for video results and source code: https://4danyone.github.io.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
