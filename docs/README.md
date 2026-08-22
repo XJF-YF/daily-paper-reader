@@ -6,32 +6,32 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-21
-- 运行时间：2026-08-21 19:43:23 UTC
+- 最新运行日期：2026-08-22
+- 运行时间：2026-08-22 20:22:35 UTC
 - 运行状态：成功
 - 本次总论文数：4
-- 精读区：2
-- 速读区：2
+- 精读区：3
+- 速读区：1
 
 ### 今日简报（AI）
-今日精读2篇、速读2篇，聚焦3D高斯泼溅（3DGS）生成与4D动态场景重建。最值得关注《GS-Voxel》的无拟合大规模生成器和《Depth Anything V4》的黎曼流匹配4D重建。建议从这两篇8分论文入手，把握3DGS生成与动态场景建模的最新趋势。
-- 详情：[/202608/21/README](/202608/21/README)
+今日精读3篇、速读1篇，聚焦自动驾驶场景渲染与视觉语言模型优化。最值得关注的是结构化全景视频修复（8.0分）与基于高斯泼溅的VLA视角标准化（8.0分）两个方向。建议对自动驾驶视觉技术感兴趣的读者重点追踪这两篇的工作。
+- 详情：[/202608/22/README](/202608/22/README)
 
 ### 精读区论文标签
-1. [GS-Voxel: Fitting-Free Structured Latents for Large-Scale 3DGS Generation](/202608/21/2608.17988v1-gs-voxel-fitting-free-structured-latents-for-large-scale-3dgs-generation)  
+1. [SPVC: Structured and Panoptic Video Fixing for Cross-Dataset Driving Scene Rendering](/202608/22/2608.17420v1-spvc-structured-and-panoptic-video-fixing-for-cross-dataset-driving-scene-rendering)  
    标签：评分：8.0/10、query:pano-dgs
-   evidence：提出用于大规模3D高斯泼溅生成的结构化潜表示框架
-2. [Depth Anything V4: Dynamic 4D Scene Reconstruction via Riemannian Flow Matching on 4D Gaussian Splatting](/202608/21/2608.18388v2-depth-anything-v4-dynamic-4d-scene-reconstruction-via-riemannian-flow-matching-on-4d-gaussian-splatting)  
+   evidence：针对驾驶场景新视角渲染修复，使用3D高斯溅射
+2. [GS-VLA: Plug-and-Play Viewpoint Canonicalization for Frozen VLA Policies via Gaussian Splatting](/202608/22/2608.19066v1-gs-vla-plug-and-play-viewpoint-canonicalization-for-frozen-vla-policies-via-gaussian-splatting)  
    标签：评分：8.0/10、query:pano-dgs
-   evidence：使用4D高斯泼溅和黎曼流匹配从单目视频进行动态场景重建
+   evidence：直接利用3D高斯基新视角合成进行观测空间适应
+3. [Point-Based 3D Reconstruction from Sparse Views under Known Illumination](/202608/22/2608.20000v1-point-based-3d-reconstruction-from-sparse-views-under-known-illumination)  
+   标签：评分：8.0/10、query:pano-dgs
+   evidence：提出基于不透明beta表面元的可微点渲染，用于稀疏视图重建，与高斯溅射相关
 
 ### 速读区论文标签
-1. [S$^2$GS: Structured Sparse Gaussian Streaming for Efficient Free-Viewpoint Video Reconstruction on Edge-IoT Devices](/202608/21/2608.19639v1-s2gs-structured-sparse-gaussian-streaming-for-efficient-free-viewpoint-video-reconstruction-on-edge-iot-devices)  
-   标签：评分：7.0/10、query:pano-dgs
-   evidence：基于高斯原语的自由视点视频流式重建
-2. [4DAnyone: Create Anyone in 4D from a Casual Monocular Video](/202608/21/2608.20335v1-4danyone-create-anyone-in-4d-from-a-casual-monocular-video)  
+1. [GenRec: Knowing Where to Reconstruct and Where to Generate](/202608/22/2608.17832v1-genrec-knowing-where-to-reconstruct-and-where-to-generate)  
    标签：评分：6.0/10、query:pano-dgs
-   evidence：基于高斯泼溅的4D重建与新视角生成
+   evidence：生成式新视角合成，区分重建与生成区域，方法思路可迁移至三维高斯溅射
 
 
 <div class="dpr-home-promo-card">

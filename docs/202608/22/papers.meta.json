@@ -1,0 +1,69 @@
+{
+  "label": "2026-08-22",
+  "date": "2026-08-22",
+  "generated_at": "2026-08-22T20:22:45",
+  "count": 4,
+  "papers": [
+    {
+      "paper_id": "202608/22/2608.17420v1-spvc-structured-and-panoptic-video-fixing-for-cross-dataset-driving-scene-rendering",
+      "section": "deep",
+      "title_en": "SPVC: Structured and Panoptic Video Fixing for Cross-Dataset Driving Scene Rendering",
+      "authors": "Gen Li, Shu Han, Yun Xi Qiao, Hua Chen, Xuyang Dai, Bohan Li, Hao Zhao, Chaojian Li",
+      "date": "2026-08-18",
+      "pdf": "https://arxiv.org/pdf/2608.17420v1",
+      "score": "8.0",
+      "evidence": "针对驾驶场景新视角渲染修复，使用3D高斯溅射",
+      "tldr": "驾驶场景3D重建在轨迹外推和编辑时易出现模糊、闪烁和前景背景错位。SPVC框架利用相机位姿、3D框和高精地图等结构化条件，结合两阶段可控视频扩散模型，对背景渲染和前景车辆伪影进行序列级修复。模型在多个驾驶数据集上共享训练，有效提升修复质量与泛化能力。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Driving scene reconstruction and rendering, especially with 3D Gaussian Splatting, has become an important component of autonomous driving simulation. However, rendered views often degrade under extrapolated ego trajectories and scene edits, producing blurry structures, temporal flicker, and foreground-background misalignment. Existing refinement methods are commonly designed for a specific setting, such as image-level novel-view repair or object-editing correction. In this paper, we introduce SPVC, a structured and panoptic video fixing framework for cross-dataset driving scene rendering. The name summarizes four design principles. (1) Structured fixing denotes the use of explicit spatial conditions, including camera pose, 3D bounding boxes, and HD maps, to guide the repair process and reduce uncontrolled hallucination. (2) Panoptic fixing refers to correcting both background rendering artifacts, such as distorted roads, buildings, and lanes, and foreground vehicle artifacts introduced by scene editing, such as inconsistent object appearance. (3) Video fixing means that the model operates on driving sequences rather than isolated frames, allowing temporal cues to be used during artifact correction. (4) Cross-dataset fixing means that a single shared network is trained and applied across multiple driving datasets, reducing the need for dataset-specific or scene-specific fixers. Concretely, we construct paired degraded-clean training data by simulating under-constrained 3DGS rendering and foreground vehicle insertion artifacts, and train a two-stage controllable video diffusion model that first addresses video-level appearance and then refines scene layout with structured controls.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/22/2608.19066v1-gs-vla-plug-and-play-viewpoint-canonicalization-for-frozen-vla-policies-via-gaussian-splatting",
+      "section": "deep",
+      "title_en": "GS-VLA: Plug-and-Play Viewpoint Canonicalization for Frozen VLA Policies via Gaussian Splatting",
+      "authors": "Yechan Park, HyunJin Kim",
+      "date": "2026-08-19",
+      "pdf": "https://arxiv.org/pdf/2608.19066v1",
+      "score": "8.0",
+      "evidence": "直接利用3D高斯基新视角合成进行观测空间适应",
+      "tldr": "视觉-语言-动作（VLA）策略隐含假设训练与部署相机位姿一致，轻微位移即可致成功率从约90%骤降至10%。现有微调或数据增强方案计算昂贵且易灾难性遗忘。本文将视角偏移重构为局部新视角合成问题，提出仅4M参数的3D高斯规范化模块，前置冻结VLA策略，无需重训即可跨策略架构、未见任务与扰动尺度恢复大部分性能。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "This paper proposes a lightweight, plug-and-play framework that improves robustness to viewpoint shifts in Vision-Language-Action (VLA) policies without policy retraining. To our knowledge, this is the first approach to directly leverage 3D Gaussian-based novel-view synthesis for observation-space adaptation in VLA policies. Current VLA performance relies on the implicit assumption that training and deployment camera configurations are identical. Our experiments show that even a small displacement of the camera mount can reduce the success rate on the LIBERO benchmark from about 90% to about 10% in the worst case. Prior approaches, such as large-scale fine-tuning or generative data augmentation, are computationally expensive and risk catastrophic forgetting. To address this, viewpoint shifts are reformulated as a localized novel-view synthesis problem. Under a Locality assumption, that camera perturbations remain within a small bounded region relative to the workspace, viewpoint normalization reduces to a scene- and policy-independent disocclusion task. Our work implements this idea with a 4M-parameter 3D-Gaussian canonicalizer prepended to a frozen VLA policy. Without modifying policy weights, GS-VLA improves performance across three orthogonal axes: (1) Policy architectures, (2) Unseen task suites, and (3) Perturbation scales. These results show that a lightweight visual module can recover a large fraction of the performance lost under viewpoint shift, without policy retraining.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/22/2608.20000v1-point-based-3d-reconstruction-from-sparse-views-under-known-illumination",
+      "section": "deep",
+      "title_en": "Point-Based 3D Reconstruction from Sparse Views under Known Illumination",
+      "authors": "Magnus Kaufmann Gjerde, Joakim Bruslund Haurum, Jeppe Revall Frisvad, Markus Worchel, J. Andreas Bærentzen, Thomas B. Moeslund",
+      "date": "2026-08-20",
+      "pdf": "https://arxiv.org/pdf/2608.20000v1",
+      "score": "8.0",
+      "evidence": "提出基于不透明beta表面元的可微点渲染，用于稀疏视图重建，与高斯溅射相关",
+      "tldr": "稀疏视图3D重建通常需要大量基元或隐式表面，现有神经隐面方法和点基方法各有局限。本文提出基于不透明度beta surfels的可微点渲染，通过显式伴随光传输公式为surfel几何和外观参数提供梯度，实现物理光传输约束下的表面重建。在五个合成物体从十个姿态视图重建中，该方法取得最低平均对称Chamfer距离，相对最强点基线降低28.5%，且平均仅用267个surfels，比基线少约161个基元。结果表明紧凑beta surfels结合传输优化可在受控照明下高效恢复表面，避免依赖数十万基元。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Sparse view 3D reconstruction is commonly addressed with neural implicit surfaces or dense point-based representations such as Gaussian splatting. Surface-aware splatting methods improve extracted geometry through oriented primitives and regularization, while RadiosityGS incorporates differentiable light transport through a radiosity inspired finite-element surfel formulation. We propose a differentiable point rendering method based on opacity-bearing beta surfels. An opacity explicit adjoint light transport formulation provides gradients for surfel geometry and appearance parameters, allowing physically based light transport to constrain reconstruction.   Across five synthetic objects reconstructed from ten posed views, our method achieves the lowest mean symmetric Chamfer distance among the evaluated baselines and reduces mean Chamfer distance by 28.5% relative to the strongest point-based baseline while using only 267 surfels on average, approximately ~161 fewer primitives. Directional Chamfer results further show improved accuracy and competitive completion relative to related point-based methods. These results show that, in the controlled direct illumination setting, compact beta surfels combined with transport-based optimization can recover surfaces without relying on the tens to hundreds of thousands of primitives used by the evaluated baselines.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/22/2608.17832v1-genrec-knowing-where-to-reconstruct-and-where-to-generate",
+      "section": "quick",
+      "title_en": "GenRec: Knowing Where to Reconstruct and Where to Generate",
+      "authors": "Ata Çelen, Jaewoo Jung, Federico Tombari, Marc Pollefeys, Sunghwan Hong, Michael Niemeyer, Daniel Barath",
+      "date": "2026-08-18",
+      "pdf": "https://arxiv.org/pdf/2608.17832v1",
+      "score": "6.0",
+      "evidence": "生成式新视角合成，区分重建与生成区域，方法思路可迁移至三维高斯溅射",
+      "tldr": "稀疏视角的新视图合成既非纯重建也非纯生成：可见像素有唯一正确值，而遮挡或外推区域存在多样合理补全。现有方法用统一损失混淆两类区域，损害重建保真度或生成先验。GenRec提出多视角流匹配模型，通过观测掩码将重建与生成分离，联合去噪RGB与场景坐标，并门控监督。在多个基准上，可见区域重建保真度最优，不可见区域感知质量也超越纯生成基线。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Generative novel view synthesis from sparse input images is rarely all reconstruction or all generation: pixels visible in some source view have a unique correct value modulated only by view-dependent shading, while pixels in disocclusions or beyond the captured volume admit a distribution of plausible completions. Existing generative novel-view-synthesis methods conflate these regimes under a single uniform loss, blurring the line between geometric fidelity and creative hallucinations even when scene geometry is injected through warped point clouds or projected depth. We introduce GenRec, a multi-view flow matching model that builds the reconstruction--generation split directly into its architecture, supervision, and gradient flow. Guided by an observation mask derived from the source cameras and a monocular depth estimator, a flow matching backbone jointly denoises RGB and scene-coordinate maps across all target views, while a pixel-space refinement stage restores high-frequency detail on observed pixels; the same mask gates supervision so regression signals do not contaminate the generative prior. Across RealEstate10K, DL3DV-10K, and Mip-NeRF~360, in both single-view extrapolation and two-view interpolation, GenRec attains the best reconstruction fidelity in observed regions while also surpassing purely generative baselines on perceptual quality in unobserved ones, showing the effectiveness of our approach.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
