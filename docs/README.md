@@ -6,32 +6,31 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-22
-- 运行时间：2026-08-22 20:22:35 UTC
+- 最新运行日期：2026-08-23
+- 运行时间：2026-08-23 19:57:54 UTC
 - 运行状态：成功
-- 本次总论文数：4
-- 精读区：3
-- 速读区：1
+- 本次总论文数：2
+- 精读区：0
+- 速读区：2
 
 ### 今日简报（AI）
-今日精读3篇、速读1篇，聚焦自动驾驶场景渲染与视觉语言模型优化。最值得关注的是结构化全景视频修复（8.0分）与基于高斯泼溅的VLA视角标准化（8.0分）两个方向。建议对自动驾驶视觉技术感兴趣的读者重点追踪这两篇的工作。
-- 详情：[/202608/22/README](/202608/22/README)
+今日速读2篇三维重建方向论文，聚焦稀疏视角CT渲染与主动视角选择。
+
+两篇均获6.0分：《TR-GS》用t分布高斯泼溅+射线置信度提升稀疏CT体积渲染质量；《OccamView》面向预算受限的3D高斯重建，提出目标条件视角选择策略。
+
+若想入门三维高效重建，可优先关注高斯泼溅在稀疏数据下的鲁棒建模与主动采集的视角规划。
+- 详情：[/202608/23/README](/202608/23/README)
 
 ### 精读区论文标签
-1. [SPVC: Structured and Panoptic Video Fixing for Cross-Dataset Driving Scene Rendering](/202608/22/2608.17420v1-spvc-structured-and-panoptic-video-fixing-for-cross-dataset-driving-scene-rendering)  
-   标签：评分：8.0/10、query:pano-dgs
-   evidence：针对驾驶场景新视角渲染修复，使用3D高斯溅射
-2. [GS-VLA: Plug-and-Play Viewpoint Canonicalization for Frozen VLA Policies via Gaussian Splatting](/202608/22/2608.19066v1-gs-vla-plug-and-play-viewpoint-canonicalization-for-frozen-vla-policies-via-gaussian-splatting)  
-   标签：评分：8.0/10、query:pano-dgs
-   evidence：直接利用3D高斯基新视角合成进行观测空间适应
-3. [Point-Based 3D Reconstruction from Sparse Views under Known Illumination](/202608/22/2608.20000v1-point-based-3d-reconstruction-from-sparse-views-under-known-illumination)  
-   标签：评分：8.0/10、query:pano-dgs
-   evidence：提出基于不透明beta表面元的可微点渲染，用于稀疏视图重建，与高斯溅射相关
+- 本次无精读推荐。
 
 ### 速读区论文标签
-1. [GenRec: Knowing Where to Reconstruct and Where to Generate](/202608/22/2608.17832v1-genrec-knowing-where-to-reconstruct-and-where-to-generate)  
+1. [TR-GS: High-Fidelity Sparse-View CT Volumetric Rendering via t-Distribution Gaussian Splatting and Ray-Confidence Modeling](/202608/23/2608.16042v1-tr-gs-high-fidelity-sparse-view-ct-volumetric-rendering-via-t-distribution-gaussian-splatting-and-ray-confidence-modeling)  
    标签：评分：6.0/10、query:pano-dgs
-   evidence：生成式新视角合成，区分重建与生成区域，方法思路可迁移至三维高斯溅射
+   evidence：高斯泼溅用于体积渲染，应用在CT成像；对通用新视角合成具有迁移性。
+2. [OccamView: Object-Conditioned View Selection for Frame-Budgeted Active 3D Gaussian Reconstruction](/202608/23/2608.16499v1-occamview-object-conditioned-view-selection-for-frame-budgeted-active-3d-gaussian-reconstruction)  
+   标签：评分：6.0/10、query:pano-dgs
+   evidence：对象条件视角选择的主动3D高斯重建
 
 
 <div class="dpr-home-promo-card">

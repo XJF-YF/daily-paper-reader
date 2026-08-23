@@ -1,0 +1,98 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-23T19:57:02.537542+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2608.16042v1",
+      "source": "arxiv",
+      "title": "TR-GS: High-Fidelity Sparse-View CT Volumetric Rendering via t-Distribution Gaussian Splatting and Ray-Confidence Modeling",
+      "abstract": "High-fidelity 3D medical visualization supports applications such as clinical assessment and surgical planning. Sparse-view computed tomography (CT) can reduce projection requirements and associated radiation exposure, but limited observations may introduce structural artifacts and reconstruction uncertainty. Although 3D Gaussian Splatting (3DGS) provides an efficient explicit representation for volumetric rendering, existing CT methods based on standard Gaussian primitives may be sensitive to unreliable observations under sparse-view acquisition. We present TR-GS, a Gaussian-splatting framework for sparse view CT volumetric rendering. TR-GS replaces standard Gaussian primitives with projectable Student's t-distribution primitives and introduces a ray-confidence model that regulates their degrees of freedom according to local ray observability. Confidence-guided 3D wavelet regularization is further used to balance high-frequency detail preservation and noise suppression. This work is licensed under a Creative Commons Attribution 4.0 International License. Experiments on synthetic and real-world datasets show that TR-GS improves over representative baselines in most evaluated settings and remains competitive in the remaining cases. The resulting volumetric representations may support downstream medical multimedia applications, including XR-based visualization and interactive clinical rendering.",
+      "authors": [
+        "Zedong Xiao",
+        "Yiren Wang",
+        "Zhou Liu",
+        "Xiaolin Liu",
+        "Zhangji Lu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-17T03:11:28+00:00",
+      "link": "https://arxiv.org/pdf/2608.16042v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Gaussian Splatting for volumetric rendering, though in CT imaging; transferable to general NVS.",
+      "llm_evidence_cn": "高斯泼溅用于体积渲染，应用在CT成像；对通用新视角合成具有迁移性。",
+      "llm_evidence": "高斯泼溅用于体积渲染，应用在CT成像；对通用新视角合成具有迁移性。",
+      "canonical_evidence": "高斯泼溅用于体积渲染，应用在CT成像；对通用新视角合成具有迁移性。",
+      "llm_tldr_en": "TR-GS adapts Gaussian Splatting for sparse-view CT rendering using t-distribution primitives and ray-confidence modeling, improving structural fidelity.",
+      "llm_tldr_cn": "稀疏CT能减少辐射，但重建易出现伪影和不确定性。TR-GS针对高斯泼溅在医疗体积渲染中的鲁棒性问题，用可投影的学生t分布基元替代标准高斯，并引入射线置信度建模，以抑制不可靠观测的影响。其在稀疏视图CT体渲染上实现了高保真重建，表明t分布与不确定性建模可增强3DGS在病态观测下的稳定性，对其他新视角合成场景也有借鉴意义。",
+      "llm_tldr": "稀疏CT能减少辐射，但重建易出现伪影和不确定性。TR-GS针对高斯泼溅在医疗体积渲染中的鲁棒性问题，用可投影的学生t分布基元替代标准高斯，并引入射线置信度建模，以抑制不可靠观测的影响。其在稀疏视图CT体渲染上实现了高保真重建，表明t分布与不确定性建模可增强3DGS在病态观测下的稳定性，对其他新视角合成场景也有借鉴意义。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.16499v1",
+      "source": "arxiv",
+      "title": "OccamView: Object-Conditioned View Selection for Frame-Budgeted Active 3D Gaussian Reconstruction",
+      "abstract": "Active 3D Gaussian reconstruction fundamentally relies on selecting informative next-best views under limited sensing budgets. Existing active 3DGS methods primarily plan viewpoints according to geometric information gain, treating object-induced hidden regions in the same manner as general unexplored space. Under tight frame budgets, such geometry-driven strategies may prioritize global scene coverage while leaving partially observed objects incompletely reconstructed. To address this limitation, we propose OccamView, an object-conditioned view-selection framework for frame-budgeted active 3D Gaussian reconstruction. Rather than predicting unseen object geometry or performing shape completion, OccamView maintains an online object memory from open-vocabulary detections grounded in measured RGB-D observations and represents unresolved local occupancy around detected objects as conservative hidden-region proxies. Candidate viewpoints are then evaluated using an occlusion-aware proxy-coverage score. Furthermore, we introduce a Geo-Floor mechanism that restricts object-conditioned re-ranking to geometrically competitive candidates, allowing object-conditioned cues to guide complementary observations while preserving the geometry-driven exploration behavior of the underlying planner. Experiments on Replica and Matterport3D under a unified frame-budgeted protocol show that OccamView consistently reduces Completion and improves Completion Ratio across five frame budgets, with particularly pronounced gains under limited frame budgets. These results demonstrate that lightweight object-conditioned cues effectively complement geometry-driven active view planning.",
+      "authors": [
+        "Hongbo Gao",
+        "Wei Zhang",
+        "Zeyu Ni",
+        "Dihao Zhu",
+        "Ruifeng Li",
+        "Yunke Wang",
+        "Chang Xu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-08-17T12:38:56+00:00",
+      "link": "https://arxiv.org/pdf/2608.16499v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "active 3D Gaussian reconstruction with object-conditioned view selection",
+      "llm_evidence_cn": "对象条件视角选择的主动3D高斯重建",
+      "llm_evidence": "对象条件视角选择的主动3D高斯重建",
+      "canonical_evidence": "对象条件视角选择的主动3D高斯重建",
+      "llm_tldr_en": "OccamView proposes object-conditioned next-best view selection for frame-budgeted active 3D Gaussian reconstruction, improving completeness of partially observed objects; a 3DGS reconstruction method indirectly supporting pano scene reconstruction.",
+      "llm_tldr_cn": "现有主动3DGS方法主要按几何信息增益选视角，将物体遮挡区域与未知空间等同处理，在紧帧预算下容易留下未完整重建的物体。OccamView提出对象条件视角选择框架，在在线场景中维护对象感知信息，为部分观测物体主动规划视角。该方法不预测未知几何，而是通过更优视角选择提升3DGS重建完整性。虽然不针对全景，但可迁移到全景360度3DGS重建的主动视角规划中。",
+      "llm_tldr": "现有主动3DGS方法主要按几何信息增益选视角，将物体遮挡区域与未知空间等同处理，在紧帧预算下容易留下未完整重建的物体。OccamView提出对象条件视角选择框架，在在线场景中维护对象感知信息，为部分观测物体主动规划视角。该方法不预测未知几何，而是通过更优视角选择提升3DGS重建完整性。虽然不针对全景，但可迁移到全景360度3DGS重建的主动视角规划中。",
+      "llm_tags": [
+        "query:pano-dgs:composite"
+      ],
+      "matched_query_tag": "query:pano-dgs:composite",
+      "matched_query_text": "Papers central to 请帮我查找全景3dgs的相关论文, especially work that connects or combines: 3D Gaussian Splatting method for novel view synthesis; reconstructing panoramic 360-degree scenes using Gaussian splatting; novel view synthesis for 360-degree immersive environments; omnidirectional rendering with 3D Gaussian Splatting; find papers on 3D Gaussian Splatting for panoramic 360 degree scene reconstruction; survey of omnidirectional novel view synthesis using Gaussian representations.",
+      "matched_requirement_id": "req-composite-pano-dgs",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

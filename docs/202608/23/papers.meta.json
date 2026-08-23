@@ -1,0 +1,39 @@
+{
+  "label": "2026-08-23",
+  "date": "2026-08-23",
+  "generated_at": "2026-08-23T19:58:00",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202608/23/2608.16042v1-tr-gs-high-fidelity-sparse-view-ct-volumetric-rendering-via-t-distribution-gaussian-splatting-and-ray-confidence-modeling",
+      "section": "quick",
+      "title_en": "TR-GS: High-Fidelity Sparse-View CT Volumetric Rendering via t-Distribution Gaussian Splatting and Ray-Confidence Modeling",
+      "authors": "Zedong Xiao, Yiren Wang, Zhou Liu, Xiaolin Liu, Zhangji Lu",
+      "date": "2026-08-17",
+      "pdf": "https://arxiv.org/pdf/2608.16042v1",
+      "score": "6.0",
+      "evidence": "高斯泼溅用于体积渲染，应用在CT成像；对通用新视角合成具有迁移性。",
+      "tldr": "稀疏视图CT可降低辐射但观测不足易产生伪影与不确定性，现有3DGS方法对不可靠观测敏感。TR-GS提出用学生t分布高斯原语替代标准高斯，并引入射线置信度模型自适应调节自由度，结合置信度引导的3D小波正则化。在合成与真实数据集上多数评估优于基线，其余情况保持竞争力。该表示支持XR可视化等医学多媒体应用，提升临床渲染质量。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "High-fidelity 3D medical visualization supports applications such as clinical assessment and surgical planning. Sparse-view computed tomography (CT) can reduce projection requirements and associated radiation exposure, but limited observations may introduce structural artifacts and reconstruction uncertainty. Although 3D Gaussian Splatting (3DGS) provides an efficient explicit representation for volumetric rendering, existing CT methods based on standard Gaussian primitives may be sensitive to unreliable observations under sparse-view acquisition. We present TR-GS, a Gaussian-splatting framework for sparse view CT volumetric rendering. TR-GS replaces standard Gaussian primitives with projectable Student's t-distribution primitives and introduces a ray-confidence model that regulates their degrees of freedom according to local ray observability. Confidence-guided 3D wavelet regularization is further used to balance high-frequency detail preservation and noise suppression. This work is licensed under a Creative Commons Attribution 4.0 International License. Experiments on synthetic and real-world datasets show that TR-GS improves over representative baselines in most evaluated settings and remains competitive in the remaining cases. The resulting volumetric representations may support downstream medical multimedia applications, including XR-based visualization and interactive clinical rendering.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/23/2608.16499v1-occamview-object-conditioned-view-selection-for-frame-budgeted-active-3d-gaussian-reconstruction",
+      "section": "quick",
+      "title_en": "OccamView: Object-Conditioned View Selection for Frame-Budgeted Active 3D Gaussian Reconstruction",
+      "authors": "Hongbo Gao, Wei Zhang, Zeyu Ni, Dihao Zhu, Ruifeng Li, Yunke Wang, Chang Xu",
+      "date": "2026-08-17",
+      "pdf": "https://arxiv.org/pdf/2608.16499v1",
+      "score": "6.0",
+      "evidence": "对象条件视角选择的主动3D高斯重建",
+      "tldr": "主动3D高斯重建在有限帧预算下，现有几何驱动的视角选择将对象遮挡区域与一般未探索空间等同处理，导致对象重建不完整。OccamView利用开放词汇检测维护在线对象记忆，将对象周围未解析占用表示为保守隐藏区域代理，并用遮挡感知的代理覆盖评分评估候选视角，同时引入Geo-Floor机制限制重排序范围。在Replica和Matterport3D五个帧预算下，一致降低Completion并提高Completion Ratio，有限预算下增益更明显，验证了轻量级对象条件线索对几何驱动规划的补充价值。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Active 3D Gaussian reconstruction fundamentally relies on selecting informative next-best views under limited sensing budgets. Existing active 3DGS methods primarily plan viewpoints according to geometric information gain, treating object-induced hidden regions in the same manner as general unexplored space. Under tight frame budgets, such geometry-driven strategies may prioritize global scene coverage while leaving partially observed objects incompletely reconstructed. To address this limitation, we propose OccamView, an object-conditioned view-selection framework for frame-budgeted active 3D Gaussian reconstruction. Rather than predicting unseen object geometry or performing shape completion, OccamView maintains an online object memory from open-vocabulary detections grounded in measured RGB-D observations and represents unresolved local occupancy around detected objects as conservative hidden-region proxies. Candidate viewpoints are then evaluated using an occlusion-aware proxy-coverage score. Furthermore, we introduce a Geo-Floor mechanism that restricts object-conditioned re-ranking to geometrically competitive candidates, allowing object-conditioned cues to guide complementary observations while preserving the geometry-driven exploration behavior of the underlying planner. Experiments on Replica and Matterport3D under a unified frame-budgeted protocol show that OccamView consistently reduces Completion and improves Completion Ratio across five frame budgets, with particularly pronounced gains under limited frame budgets. These results demonstrate that lightweight object-conditioned cues effectively complement geometry-driven active view planning.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
