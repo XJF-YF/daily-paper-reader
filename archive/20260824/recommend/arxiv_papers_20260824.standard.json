@@ -1,0 +1,181 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-24T20:40:32.874318+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2608.16499v1",
+      "source": "arxiv",
+      "title": "OccamView: Object-Conditioned View Selection for Frame-Budgeted Active 3D Gaussian Reconstruction",
+      "abstract": "Active 3D Gaussian reconstruction fundamentally relies on selecting informative next-best views under limited sensing budgets. Existing active 3DGS methods primarily plan viewpoints according to geometric information gain, treating object-induced hidden regions in the same manner as general unexplored space. Under tight frame budgets, such geometry-driven strategies may prioritize global scene coverage while leaving partially observed objects incompletely reconstructed. To address this limitation, we propose OccamView, an object-conditioned view-selection framework for frame-budgeted active 3D Gaussian reconstruction. Rather than predicting unseen object geometry or performing shape completion, OccamView maintains an online object memory from open-vocabulary detections grounded in measured RGB-D observations and represents unresolved local occupancy around detected objects as conservative hidden-region proxies. Candidate viewpoints are then evaluated using an occlusion-aware proxy-coverage score. Furthermore, we introduce a Geo-Floor mechanism that restricts object-conditioned re-ranking to geometrically competitive candidates, allowing object-conditioned cues to guide complementary observations while preserving the geometry-driven exploration behavior of the underlying planner. Experiments on Replica and Matterport3D under a unified frame-budgeted protocol show that OccamView consistently reduces Completion and improves Completion Ratio across five frame budgets, with particularly pronounced gains under limited frame budgets. These results demonstrate that lightweight object-conditioned cues effectively complement geometry-driven active view planning.",
+      "authors": [
+        "Hongbo Gao",
+        "Wei Zhang",
+        "Zeyu Ni",
+        "Dihao Zhu",
+        "Ruifeng Li",
+        "Yunke Wang",
+        "Chang Xu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-08-17T12:38:56+00:00",
+      "link": "https://arxiv.org/pdf/2608.16499v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Active 3D Gaussian reconstruction from multi-view images, enabling novel view synthesis",
+      "llm_evidence_cn": "面向多视图图像的主动3D高斯重建，支持新视角合成",
+      "llm_evidence": "面向多视图图像的主动3D高斯重建，支持新视角合成",
+      "canonical_evidence": "面向多视图图像的主动3D高斯重建，支持新视角合成",
+      "llm_tldr_en": "Introduces OccamView, an object-conditioned view selection framework for frame-budgeted active 3D Gaussian reconstruction, focusing viewpoints on partially observed objects to improve reconstruction completeness under limited sensing budgets.",
+      "llm_tldr_cn": "主动3D高斯重建在帧预算有限时，现有几何驱动的视角选择容易忽略部分观测物体。本文提出OccamView，一种目标条件的视角选择框架，通过在线维护目标感知信息并预测隐藏区域，在有限帧数下优先重建未完整观测的目标。实验表明该方法在帧预算约束下显著提升了部分观测物体的重建完整性，提升了主动3DGS重建的效率。",
+      "llm_tldr": "主动3D高斯重建在帧预算有限时，现有几何驱动的视角选择容易忽略部分观测物体。本文提出OccamView，一种目标条件的视角选择框架，通过在线维护目标感知信息并预测隐藏区域，在有限帧数下优先重建未完整观测的目标。实验表明该方法在帧预算约束下显著提升了部分观测物体的重建完整性，提升了主动3DGS重建的效率。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.20687v1",
+      "source": "arxiv",
+      "title": "TopoSurfel: Closing the Loop between Gaussian Surfels and Meshes for Surface Reconstruction",
+      "abstract": "3D Gaussian Splatting has achieved remarkable success in novel view synthesis. However, extracting high-fidelity surfaces directly from 3DGS remains challenging due to its discrete and unstructured nature. Existing 3DGS-based reconstruction methods typically rely on multi-view geometric consistency or local constraints. Without an explicit structured geometric prior during optimization, these methods often struggle to resolve structural ambiguities, leading to artifacts and floaters, particularly in textureless or occluded regions. To address this limitation, we propose TopoSurfel, a novel framework that closes the loop between Gaussian surfels and continuous meshes. Unlike recent methods that incorporate mesh extraction into the differentiable pipeline by introducing auxiliary neural networks or extra per-Gaussian parameters, we dynamically extract a continuous proxy mesh via a non-trainable differentiable iso-surfacing process. Leveraging this differentiable connection, we introduce a mesh-guided surfel evolution strategy, including normal alignment and geometry-aware density control, to effectively suppress floaters and fill surface holes. Furthermore, to address the initialization challenges in large-scale environments, we propose a spatially aware hybrid re-initialization strategy that ensures robust reconstruction across complex scenes. Extensive experiments demonstrate that TopoSurfel achieves competitive geometric reconstruction accuracy while maintaining high-quality mesh-based novel view synthesis. The code for our method is available at https://github.com/Fan-Treasure/TopoSurfel.",
+      "authors": [
+        "Chuanjin Fan",
+        "Wenjie Chang",
+        "Bohao Liao",
+        "Yujia Chen",
+        "Wenfei Yang",
+        "Tianzhu Zhang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "published": "2026-08-21T02:49:48+00:00",
+      "link": "https://arxiv.org/pdf/2608.20687v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "3D Gaussian Splatting based surface reconstruction and novel view synthesis",
+      "llm_evidence_cn": "基于3D高斯溅射的表面重建与新视角合成",
+      "llm_evidence": "基于3D高斯溅射的表面重建与新视角合成",
+      "canonical_evidence": "基于3D高斯溅射的表面重建与新视角合成",
+      "llm_tldr_en": "Proposes TopoSurfel, a 3DGS-based framework that closes the loop between Gaussian surfels and meshes to improve surface reconstruction and reduce artifacts in novel view synthesis.",
+      "llm_tldr_cn": "针对3DGS直接提取高保真表面困难、在无纹理或被遮挡区域易出现伪影的问题，提出TopoSurfel框架，通过在高斯面片与连续网格之间建立闭环来引入结构化几何先验。该方法在优化过程中融合网格信息，有效缓解结构歧义，减少浮动伪影。实验表明该方法在表面重建和新型视图合成上表现出优势。该工作弥合了离散高斯表示与连续网格之间的鸿沟。",
+      "llm_tldr": "针对3DGS直接提取高保真表面困难、在无纹理或被遮挡区域易出现伪影的问题，提出TopoSurfel框架，通过在高斯面片与连续网格之间建立闭环来引入结构化几何先验。该方法在优化过程中融合网格信息，有效缓解结构歧义，减少浮动伪影。实验表明该方法在表面重建和新型视图合成上表现出优势。该工作弥合了离散高斯表示与连续网格之间的鸿沟。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.16234v1",
+      "source": "arxiv",
+      "title": "GaussianDWM++: Language-Grounded 3D Gaussian Driving World Model for Unified Scene Understanding, Editing, and Multi-Modal Generation",
+      "abstract": "Driving World Models (DWMs) have recently advanced rapidly with generative models, yet most existing methods mainly focus on conditional scene generation and lack explicit 3D scene understanding, language-grounded reasoning, and controllable 4D editing capabilities. Moreover, commonly used point cloud, occupancy, or BEV representations make it difficult to achieve fine-grained alignment between textual information and the underlying 3D scene structure. To address these limitations, we propose a foundation-feature Gaussian driving world model that unifies scene understanding, language-grounded reasoning, controllable 4D editing, and multi-modal generation within a single framework. Specifically, we introduce a foundation-feature Gaussian tokenizer that directly distills Qwen/SigLIP visual-language features into 3D Gaussian primitives, building a compact open-vocabulary Gaussian semantic field. We further design a geometry-aware Gaussian adapter that combines importance-aware hierarchical selection with text-conditioned Perceiver-style cross-attention to aggregate dense Gaussian primitives into compact world tokens. To improve representation compatibility, we introduce a KL-based Gaussian--image distribution alignment objective that aligns Gaussian world tokens with foundation image tokens. Based on the aligned Gaussian representation, our framework further supports instruction-controllable scene editing, including weather-conditioned generation and dynamic vehicle manipulation. Extensive experiments on broader driving benchmarks demonstrate that our method achieves state-of-the-art performance across scene understanding, visual grounding, planning-oriented reasoning, and controllable 4D generation tasks. We will release the code and datasets publicly on Github.",
+      "authors": [
+        "Tianchen Deng",
+        "Xuefeng Chen",
+        "Shuang Wu",
+        "Qu Chen",
+        "Jiajun Zhu",
+        "Bo Dai",
+        "Jianfei Yang",
+        "Hesheng Wang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-17T08:12:56+00:00",
+      "link": "https://arxiv.org/pdf/2608.16234v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Proposes a 3D Gaussian world model for driving scene understanding and generation",
+      "llm_evidence_cn": "提出用于驾驶场景理解与生成的3D高斯世界模型",
+      "llm_evidence": "提出用于驾驶场景理解与生成的3D高斯世界模型",
+      "canonical_evidence": "提出用于驾驶场景理解与生成的3D高斯世界模型",
+      "llm_tldr_en": "Introduces a language-grounded 3D Gaussian driving world model that unifies scene understanding, language-grounded reasoning, 4D editing, and multi-modal generation within a 3DGS framework.",
+      "llm_tldr_cn": "针对驾驶世界模型缺乏显式3D场景理解和语言接地能力的问题，提出基于基础特征的3D高斯驾驶世界模型GaussianDWM++。该模型在3DGS表示上统一场景理解、语言接地推理、可控4D编辑和多模态生成。通过将语言信息与高斯场景结构细粒度对齐，增强了模型的可控性与泛化能力。为驾驶场景的生成式世界建模提供了新方案。",
+      "llm_tldr": "针对驾驶世界模型缺乏显式3D场景理解和语言接地能力的问题，提出基于基础特征的3D高斯驾驶世界模型GaussianDWM++。该模型在3DGS表示上统一场景理解、语言接地推理、可控4D编辑和多模态生成。通过将语言信息与高斯场景结构细粒度对齐，增强了模型的可控性与泛化能力。为驾驶场景的生成式世界建模提供了新方案。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.20602v1",
+      "source": "arxiv",
+      "title": "Sparse Light Field Sampling Improves Casual 3D and 4D Reconstruction",
+      "abstract": "Many consumer smartphones, stereo cameras, and light field cameras record multiple synchronized viewpoints in a single exposure event. However, novel view synthesis pipelines commonly use only a monocular stream and rely on camera motion or learned priors to obtain angular coverage. In this paper, we ask: why do we use only one viewpoint? We analyze sensor-limited multi-view, where one sensor trades off spatial and angular resolution, and exposure-limited multi-view, where multiple sensors on one commodity device observe each event simultaneously. We introduce a new dataset incorporating three types of commodity multi-view cameras, and evaluate sparse-view 3DGS and 4DGS baselines measuring reconstruction quality as a function of number of exposures and angle between extreme views. Our results demonstrate that using multiple cameras, even with a low baseline, significantly improves reconstruction quality in single-shot, few-shot, and casual video settings. In addition, under a fixed sensor budget, angular sampling improves reconstruction when exposures are scarce despite lower spatial resolution. The gains are most pronounced for single-shot and dynamic scenes, where a stationary monocular camera lacks the angular diversity to recover scene geometry and motion.",
+      "authors": [
+        "Shamus Li",
+        "Ruiming Cao",
+        "Laura Waller",
+        "Kristina Monakhova",
+        "Sara Fridovich-Keil"
+      ],
+      "primary_category": "eess.IV",
+      "categories": [
+        "eess.IV",
+        "cs.CV"
+      ],
+      "published": "2026-08-20T22:47:42+00:00",
+      "link": "https://arxiv.org/pdf/2608.20602v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Evaluates and improves sparse-view 3D Gaussian Splatting and 4D Gaussian Splatting reconstruction for novel view synthesis",
+      "llm_evidence_cn": "通过稀疏光场采样改善3DGS/4DGS在稀疏视角下新视角重建质量",
+      "llm_evidence": "通过稀疏光场采样改善3DGS/4DGS在稀疏视角下新视角重建质量",
+      "canonical_evidence": "通过稀疏光场采样改善3DGS/4DGS在稀疏视角下新视角重建质量",
+      "llm_tldr_en": "This paper shows that sparse light field sampling from commodity multi-view cameras improves casual 3DGS and 4DGS reconstruction, and releases a new multi-view consumer dataset.",
+      "llm_tldr_cn": "针对日常3D与4D重建中仅使用单目流导致角度覆盖不足的问题，本文研究消费级多相机设备同时采集的受约束多视角数据。通过系统分析不同曝光数下稀疏光场采样对重建质量的影响，发现多视角曝光能显著提升3DGS与4DGS稀疏视角重建效果。作者还发布包含三类消费级多视角相机的新数据集。该工作为利用廉价设备获得高质量高斯重建提供了数据与方法基础。",
+      "llm_tldr": "针对日常3D与4D重建中仅使用单目流导致角度覆盖不足的问题，本文研究消费级多相机设备同时采集的受约束多视角数据。通过系统分析不同曝光数下稀疏光场采样对重建质量的影响，发现多视角曝光能显著提升3DGS与4DGS稀疏视角重建效果。作者还发布包含三类消费级多视角相机的新数据集。该工作为利用廉价设备获得高质量高斯重建提供了数据与方法基础。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

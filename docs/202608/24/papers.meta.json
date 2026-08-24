@@ -1,0 +1,69 @@
+{
+  "label": "2026-08-24",
+  "date": "2026-08-24",
+  "generated_at": "2026-08-24T20:44:50",
+  "count": 4,
+  "papers": [
+    {
+      "paper_id": "202608/24/2608.16499v1-occamview-object-conditioned-view-selection-for-frame-budgeted-active-3d-gaussian-reconstruction",
+      "section": "deep",
+      "title_en": "OccamView: Object-Conditioned View Selection for Frame-Budgeted Active 3D Gaussian Reconstruction",
+      "authors": "Hongbo Gao, Wei Zhang, Zeyu Ni, Dihao Zhu, Ruifeng Li, Yunke Wang, Chang Xu",
+      "date": "2026-08-17",
+      "pdf": "https://arxiv.org/pdf/2608.16499v1",
+      "score": "8.0",
+      "evidence": "面向多视图图像的主动3D高斯重建，支持新视角合成",
+      "tldr": "帧预算有限时，现有主动3DGS多依据几何信息增益选择下一视角，将物体遮挡造成的未探明区域与通用未知空间同等对待，容易只求场景覆盖而遗留物体残缺。OccamView提出物体条件视角选择：借助开放词汇检测与RGB-D观测维护在线物体记忆，把待消解的局部占据表示为保守隐藏区域代理，并计算遮挡感知的代理覆盖度评分；同时引入Geo-Floor，仅在几何上具备竞争力的候选中进行物体条件重排。在Replica和Matterport3D的帧预算统一协议下，五种预算均持续降低Completion并提高Completion Ratio，尤其在紧凑预算下增益显著。这表明轻量物体条件线索能有效补足几何驱动的主动视角规划。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Active 3D Gaussian reconstruction fundamentally relies on selecting informative next-best views under limited sensing budgets. Existing active 3DGS methods primarily plan viewpoints according to geometric information gain, treating object-induced hidden regions in the same manner as general unexplored space. Under tight frame budgets, such geometry-driven strategies may prioritize global scene coverage while leaving partially observed objects incompletely reconstructed. To address this limitation, we propose OccamView, an object-conditioned view-selection framework for frame-budgeted active 3D Gaussian reconstruction. Rather than predicting unseen object geometry or performing shape completion, OccamView maintains an online object memory from open-vocabulary detections grounded in measured RGB-D observations and represents unresolved local occupancy around detected objects as conservative hidden-region proxies. Candidate viewpoints are then evaluated using an occlusion-aware proxy-coverage score. Furthermore, we introduce a Geo-Floor mechanism that restricts object-conditioned re-ranking to geometrically competitive candidates, allowing object-conditioned cues to guide complementary observations while preserving the geometry-driven exploration behavior of the underlying planner. Experiments on Replica and Matterport3D under a unified frame-budgeted protocol show that OccamView consistently reduces Completion and improves Completion Ratio across five frame budgets, with particularly pronounced gains under limited frame budgets. These results demonstrate that lightweight object-conditioned cues effectively complement geometry-driven active view planning.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/24/2608.20687v1-toposurfel-closing-the-loop-between-gaussian-surfels-and-meshes-for-surface-reconstruction",
+      "section": "deep",
+      "title_en": "TopoSurfel: Closing the Loop between Gaussian Surfels and Meshes for Surface Reconstruction",
+      "authors": "Chuanjin Fan, Wenjie Chang, Bohao Liao, Yujia Chen, Wenfei Yang, Tianzhu Zhang",
+      "date": "2026-08-21",
+      "pdf": "https://arxiv.org/pdf/2608.20687v1",
+      "score": "8.0",
+      "evidence": "基于3D高斯溅射的表面重建与新视角合成",
+      "tldr": "3D高斯溅射虽在新视图合成中表现优异，但直接从离散3DGS提取高保真表面常因结构模糊产生伪影和浮动点。TopoSurfel通过可微等值面提取，动态构建连续代理网格并与Gaussian surfels形成闭环，再利用网格引导的法线对齐和几何感知密度控制，有效抑制浮动并填充表面孔洞。针对大规模场景初始化难题，提出空间感知混合重初始化策略。该方法无需辅助神经网络或额外每高斯参数，实验显示几何重建精度具竞争力，并保持高质量网格新视图合成。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "3D Gaussian Splatting has achieved remarkable success in novel view synthesis. However, extracting high-fidelity surfaces directly from 3DGS remains challenging due to its discrete and unstructured nature. Existing 3DGS-based reconstruction methods typically rely on multi-view geometric consistency or local constraints. Without an explicit structured geometric prior during optimization, these methods often struggle to resolve structural ambiguities, leading to artifacts and floaters, particularly in textureless or occluded regions. To address this limitation, we propose TopoSurfel, a novel framework that closes the loop between Gaussian surfels and continuous meshes. Unlike recent methods that incorporate mesh extraction into the differentiable pipeline by introducing auxiliary neural networks or extra per-Gaussian parameters, we dynamically extract a continuous proxy mesh via a non-trainable differentiable iso-surfacing process. Leveraging this differentiable connection, we introduce a mesh-guided surfel evolution strategy, including normal alignment and geometry-aware density control, to effectively suppress floaters and fill surface holes. Furthermore, to address the initialization challenges in large-scale environments, we propose a spatially aware hybrid re-initialization strategy that ensures robust reconstruction across complex scenes. Extensive experiments demonstrate that TopoSurfel achieves competitive geometric reconstruction accuracy while maintaining high-quality mesh-based novel view synthesis. The code for our method is available at https://github.com/Fan-Treasure/TopoSurfel.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/24/2608.16234v1-gaussiandwm-language-grounded-3d-gaussian-driving-world-model-for-unified-scene-understanding-editing-and-multi-modal-generation",
+      "section": "quick",
+      "title_en": "GaussianDWM++: Language-Grounded 3D Gaussian Driving World Model for Unified Scene Understanding, Editing, and Multi-Modal Generation",
+      "authors": "Tianchen Deng, Xuefeng Chen, Shuang Wu, Qu Chen, Jiajun Zhu, Bo Dai, Jianfei Yang, Hesheng Wang",
+      "date": "2026-08-17",
+      "pdf": "https://arxiv.org/pdf/2608.16234v1",
+      "score": "7.0",
+      "evidence": "提出用于驾驶场景理解与生成的3D高斯世界模型",
+      "tldr": "现有驾驶世界模型多聚焦条件生成，缺乏显式三维场景理解与语言推理，常用点云、占用或BEV表示难以实现文本与三维结构的细粒度对齐。提出GaussianDWM++，以基础特征高斯分词器将Qwen/SigLIP视觉语言特征蒸馏到三维高斯原语，构建开放词汇语义场，并通过几何感知适配器与KL分布对齐得到紧凑世界令牌。该框架统一支持场景理解、视觉定位、规划推理、可控四维编辑和多模态生成，在多个驾驶基准上取得最先进性能，为语言驱动三维世界建模提供新范式。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Driving World Models (DWMs) have recently advanced rapidly with generative models, yet most existing methods mainly focus on conditional scene generation and lack explicit 3D scene understanding, language-grounded reasoning, and controllable 4D editing capabilities. Moreover, commonly used point cloud, occupancy, or BEV representations make it difficult to achieve fine-grained alignment between textual information and the underlying 3D scene structure. To address these limitations, we propose a foundation-feature Gaussian driving world model that unifies scene understanding, language-grounded reasoning, controllable 4D editing, and multi-modal generation within a single framework. Specifically, we introduce a foundation-feature Gaussian tokenizer that directly distills Qwen/SigLIP visual-language features into 3D Gaussian primitives, building a compact open-vocabulary Gaussian semantic field. We further design a geometry-aware Gaussian adapter that combines importance-aware hierarchical selection with text-conditioned Perceiver-style cross-attention to aggregate dense Gaussian primitives into compact world tokens. To improve representation compatibility, we introduce a KL-based Gaussian--image distribution alignment objective that aligns Gaussian world tokens with foundation image tokens. Based on the aligned Gaussian representation, our framework further supports instruction-controllable scene editing, including weather-conditioned generation and dynamic vehicle manipulation. Extensive experiments on broader driving benchmarks demonstrate that our method achieves state-of-the-art performance across scene understanding, visual grounding, planning-oriented reasoning, and controllable 4D generation tasks. We will release the code and datasets publicly on Github.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/24/2608.20602v1-sparse-light-field-sampling-improves-casual-3d-and-4d-reconstruction",
+      "section": "quick",
+      "title_en": "Sparse Light Field Sampling Improves Casual 3D and 4D Reconstruction",
+      "authors": "Shamus Li, Ruiming Cao, Laura Waller, Kristina Monakhova, Sara Fridovich-Keil",
+      "date": "2026-08-20",
+      "pdf": "https://arxiv.org/pdf/2608.20602v1",
+      "score": "6.0",
+      "evidence": "通过稀疏光场采样改善3DGS/4DGS在稀疏视角下新视角重建质量",
+      "tldr": "消费级手机、立体相机、光场相机常在一次曝光中记录多个视角，但新视角合成通常只用单目流。本文研究传感器受限与曝光受限下的稀疏光场采样，并引入三种多视角相机的数据集，评估3DGS与4DGS基线。结果表明，即使基线很短，使用多相机也能显著提升单次和动态场景的重建质量；在固定预算下，增加角度采样优于提高空间分辨率。该研究为随手拍摄的3D/4D重建提供了关键采样策略。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "Many consumer smartphones, stereo cameras, and light field cameras record multiple synchronized viewpoints in a single exposure event. However, novel view synthesis pipelines commonly use only a monocular stream and rely on camera motion or learned priors to obtain angular coverage. In this paper, we ask: why do we use only one viewpoint? We analyze sensor-limited multi-view, where one sensor trades off spatial and angular resolution, and exposure-limited multi-view, where multiple sensors on one commodity device observe each event simultaneously. We introduce a new dataset incorporating three types of commodity multi-view cameras, and evaluate sparse-view 3DGS and 4DGS baselines measuring reconstruction quality as a function of number of exposures and angle between extreme views. Our results demonstrate that using multiple cameras, even with a low baseline, significantly improves reconstruction quality in single-shot, few-shot, and casual video settings. In addition, under a fixed sensor budget, angular sampling improves reconstruction when exposures are scarce despite lower spatial resolution. The gains are most pronounced for single-shot and dynamic scenes, where a stationary monocular camera lacks the angular diversity to recover scene geometry and motion.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
