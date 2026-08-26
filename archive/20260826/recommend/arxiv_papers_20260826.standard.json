@@ -1,0 +1,129 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-26T22:02:40.901342+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2608.23206v1",
+      "source": "arxiv",
+      "title": "Learning Spherical Occupancy Profiles for Multi-View 3D Reconstruction and Generation",
+      "abstract": "We study spherical occupancy profiles-the ray-wise occupancy probability profiles P(r) = T(r) o(r) distilled from multi-view 3D Gaussian reconstructions-as a unified intermediate representation for both discriminative and generative 3D reconstruction from images. On a 999-object subset of Google Scanned Objects with 48 turntable views each, we train (i) a discriminative per-ray decoder that injects global view-averaged and ray-specific image evidence into a FiLM-conditioned profile head, reaching median soft depth error 0.035 (normalized) on an independent 90-object test split, and (ii) a generative pipeline built on a profile VAE and a latent diffusion model, which supports unconditional sampling that matches the reconstruction manifold and image-conditioned multi-solution reconstruction whose per-object solution spread is quantifiable and tunable via classifier-free guidance. We further analyze the morphology of predicted profiles: post-hoc power sharpening and a learned sharpening target both recover ground-truth profile width without degrading depth, exposing a monotonic width-peak frontier in the L1-per-ray loss family and motivating a principled redefinition of morphology gates. Real-photo validation on two DTU scenes confirms the pipeline transfers to non-synthetic input. Our results suggest that ray-wise occupancy profiles offer a compact, learned, and uncertainty-aware interface between multi-view reconstruction and generative priors.",
+      "authors": [
+        "YiHsuan Tsai"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-24T12:56:39+00:00",
+      "link": "https://arxiv.org/pdf/2608.23206v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "spherical ray-wise occupancy profiles from multi-view 3D Gaussian reconstructions, a unified representation for 3D reconstruction and generation",
+      "llm_evidence_cn": "从多视角3D高斯重构中蒸馏球形逐射线占用剖面，作为三维重建与生成的统一表示",
+      "llm_evidence": "从多视角3D高斯重构中蒸馏球形逐射线占用剖面，作为三维重建与生成的统一表示",
+      "canonical_evidence": "从多视角3D高斯重构中蒸馏球形逐射线占用剖面，作为三维重建与生成的统一表示",
+      "llm_tldr_en": "This paper introduces spherical occupancy profiles derived from multi-view 3D Gaussian reconstructions as a unified intermediate representation, enabling discriminative depth estimation and generative 3D sampling via diffusion with low normalized depth error.",
+      "llm_tldr_cn": "通过将多视角3D高斯重构蒸馏为逐射线的球形占用概率剖面，本文提出一种统一的中间表示，同时服务于判别式与生成式三维重建。判别式解码器利用全局视角平均与射线特定图像证据，在Google扫描物体子集上达到0.035的中位归一化软深度误差；生成式管线结合剖面VAE与潜扩散模型支持无条件采样。球形射线表示天然契合全景或环形多视角设置，为360度场景的占用建模与神经渲染提供了有益思路。",
+      "llm_tldr": "通过将多视角3D高斯重构蒸馏为逐射线的球形占用概率剖面，本文提出一种统一的中间表示，同时服务于判别式与生成式三维重建。判别式解码器利用全局视角平均与射线特定图像证据，在Google扫描物体子集上达到0.035的中位归一化软深度误差；生成式管线结合剖面VAE与潜扩散模型支持无条件采样。球形射线表示天然契合全景或环形多视角设置，为360度场景的占用建模与神经渲染提供了有益思路。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "omnidirectional rendering with 3D Gaussian Splatting",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.22102v1",
+      "source": "arxiv",
+      "title": "Learning Implicit Constitutive Laws for Dynamic 3D Gaussian Splatting from Monocular Videos",
+      "abstract": "We present GCA (Gaussian Constitutive Alignment), a framework for learning implicit constitutive laws from monocular dynamic video of deformable objects represented by 3D Gaussians. Given a static multi-view scan for geometric initialization, our method learns intrinsic physical dynamics solely from a single fixed-viewpoint video of the moving object. Existing implicit methods often suffer from local minima under noisy supervision and lack physical interpretability, while explicit approaches rely on predefined constitutive equations, limiting generalizability and becoming unstable in monocular settings. To address these challenges, our framework unifies LoRA-based adaptation with two key alignment modules. First, we propose Rank-based Depth-Geometric Anchors (RDGA) to establish robust geometric constraints from monocular dynamic observations via scale-invariant rank-based depth alignment, reducing the reliance on unreliable pixel-level color supervision. Second, a Constitutive Prior Regularizer (CPR) integrates classical constitutive models as soft differentiable priors, regularizing the optimization while preserving the flexibility of implicit modeling---even when the actual material is absent from the hypotheses. Extensive experiments on synthetic, real-to-sim, and real-world datasets demonstrate that GCA outperforms existing methods, achieving 48% lower Chamfer Distance than the strongest baseline on synthetic benchmarks while remaining robust under monocular supervision.",
+      "authors": [
+        "Xiaoyang Liu",
+        "Kai Han"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-08-22T20:47:17+00:00",
+      "link": "https://arxiv.org/pdf/2608.22102v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "dynamic 3DGS novel view synthesis, not panoramic",
+      "llm_evidence_cn": "动态3DGS新视角合成，非全景",
+      "llm_evidence": "动态3DGS新视角合成，非全景",
+      "canonical_evidence": "动态3DGS新视角合成，非全景",
+      "llm_tldr_en": "GCA learns implicit constitutive laws for deformable objects in dynamic 3DGS from monocular video, improving physical interpretability; relevant as a 3DGS NVS method.",
+      "llm_tldr_cn": "现有动态三维高斯泼溅方法在单目视频下要么陷入局部极小，要么依赖预定义本构方程。本文提出GCA框架，结合LoRA与两个对齐模块，从单目视频学习隐式本构定律，使动态物体物理动力学可解释。实验表明在单目设置下更稳定，为3DGS新视角合成提供了可迁移的物理增强方法。尽管不涉及全景，仍属3DGS新视角合成方向。",
+      "llm_tldr": "现有动态三维高斯泼溅方法在单目视频下要么陷入局部极小，要么依赖预定义本构方程。本文提出GCA框架，结合LoRA与两个对齐模块，从单目视频学习隐式本构定律，使动态物体物理动力学可解释。实验表明在单目设置下更稳定，为3DGS新视角合成提供了可迁移的物理增强方法。尽管不涉及全景，仍属3DGS新视角合成方向。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.22465v1",
+      "source": "arxiv",
+      "title": "M$^3$ISR: A Multi-Modal Multi-View Benchmark for 3D/4D Gaussian Splatting and Feedforward Compression",
+      "abstract": "High-fidelity free-viewpoint video (FVV) and interactive rendering increasingly rely on explicit Gaussian representations, yet practical deployment remains constrained by representation size, dynamic updates, and computational cost. Existing multi-view video benchmarks provide valuable real-captured content, but they make it difficult to isolate the effects of controlled camera geometry, representation efficiency, and temporal redundancy. We introduce M$^3$ISR, a controlled synthetic benchmark for 3D and 4D Gaussian Splatting (3DGS/4DGS). The benchmark contains 25 scenes from five indoor and outdoor scene groups, two camera/motion configurations, six synchronized 1080p views, and dense ground-truth annotations including RGB, camera parameters, depth, semantic and instance segmentation, and static--dynamic masks. The shared-center camera design intentionally isolates angular view variation and enables controlled evaluation of novel-view synthesis and representation efficiency. We organize M$^3$ISR into five complementary tracks covering 3DGS synthesis, 4DGS synthesis, 4DGS streaming, 3DGS compression, and 4DGS compression. Representative baseline results show small differences in static reconstruction quality but substantial differences in representation storage, while the evaluated streaming methods exhibit substantially higher reported training or reconstruction cost than the corresponding offline dynamic reconstruction baselines. We further define feedforward compression tasks for 3DGS and 4DGS and provide reference rate--distortion formulations and preliminary baseline evaluations. The benchmark is intended as a controlled and complementary testbed for systematic study of Gaussian-based FVV reconstruction, compression, and streaming.",
+      "authors": [
+        "Xinhui Liu",
+        "Lei Liu",
+        "Zhenghao Chen",
+        "Lebin Zhou",
+        "Wei Wang",
+        "Wei Jiang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-23T15:44:39+00:00",
+      "link": "https://arxiv.org/pdf/2608.22465v1",
+      "tags": [
+        "keyword:pano-dgs",
+        "query:pano-dgs"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Provides a controlled synthetic benchmark for 3D/4D Gaussian Splatting, supporting evaluation of novel view synthesis",
+      "llm_evidence_cn": "提供面向3D/4D高斯泼溅的受控合成基准，支持新视角合成评测",
+      "llm_evidence": "提供面向3D/4D高斯泼溅的受控合成基准，支持新视角合成评测",
+      "canonical_evidence": "提供面向3D/4D高斯泼溅的受控合成基准，支持新视角合成评测",
+      "llm_tldr_en": "M3ISR builds a controlled synthetic benchmark with 25 scenes, six synchronized views, and dense annotations for 3D/4D Gaussian Splatting, enabling systematic evaluation of representation efficiency, camera geometry, and temporal redundancy.",
+      "llm_tldr_cn": "M3ISR构建了一个面向3D/4D高斯泼溅的受控合成基准，包含25个室内外场景和六路同步视角，以隔离相机几何、表示效率和时间冗余对自由视点渲染的影响。该基准通过系统化控制变量，弥补了现有真实多视角视频基准在可对比性上的不足，为3DGS/4DGS的重建质量与压缩效率提供了标准化评测平台。尽管未直接针对全景场景，其多视角数据与评测方式对3DGS新视角合成研究具有直接支撑作用。",
+      "llm_tldr": "M3ISR构建了一个面向3D/4D高斯泼溅的受控合成基准，包含25个室内外场景和六路同步视角，以隔离相机几何、表示效率和时间冗余对自由视点渲染的影响。该基准通过系统化控制变量，弥补了现有真实多视角视频基准在可对比性上的不足，为3DGS/4DGS的重建质量与压缩效率提供了标准化评测平台。尽管未直接针对全景场景，其多视角数据与评测方式对3DGS新视角合成研究具有直接支撑作用。",
+      "llm_tags": [
+        "query:pano-dgs"
+      ],
+      "matched_query_tag": "query:pano-dgs",
+      "matched_query_text": "3D Gaussian Splatting method for novel view synthesis",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

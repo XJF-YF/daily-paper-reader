@@ -1,0 +1,54 @@
+{
+  "label": "2026-08-26",
+  "date": "2026-08-26",
+  "generated_at": "2026-08-26T22:04:25",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202608/26/2608.23206v1-learning-spherical-occupancy-profiles-for-multi-view-3d-reconstruction-and-generation",
+      "section": "quick",
+      "title_en": "Learning Spherical Occupancy Profiles for Multi-View 3D Reconstruction and Generation",
+      "authors": "YiHsuan Tsai",
+      "date": "2026-08-24",
+      "pdf": "https://arxiv.org/pdf/2608.23206v1",
+      "score": "7.0",
+      "evidence": "从多视角3D高斯重构中蒸馏球形逐射线占用剖面，作为三维重建与生成的统一表示",
+      "tldr": "针对多视角三维重建与生成缺乏统一、可学习且感知不确定性的中间表示，提出从多视角3D高斯重建中蒸馏球面占用轮廓，即射线方向的占用概率分布。判别式路径用FiLM条件逐射线解码器融合全局视角平均与射线特定证据，生成式路径用轮廓VAE与潜在扩散模型，支持无条件采样与图像条件多解重建，在Google Scanned Objects 999子集上取得0.035中位软深度误差，多解扩散可调可控且可量化，DTU真实照片验证了跨域有效性。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "We study spherical occupancy profiles-the ray-wise occupancy probability profiles P(r) = T(r) o(r) distilled from multi-view 3D Gaussian reconstructions-as a unified intermediate representation for both discriminative and generative 3D reconstruction from images. On a 999-object subset of Google Scanned Objects with 48 turntable views each, we train (i) a discriminative per-ray decoder that injects global view-averaged and ray-specific image evidence into a FiLM-conditioned profile head, reaching median soft depth error 0.035 (normalized) on an independent 90-object test split, and (ii) a generative pipeline built on a profile VAE and a latent diffusion model, which supports unconditional sampling that matches the reconstruction manifold and image-conditioned multi-solution reconstruction whose per-object solution spread is quantifiable and tunable via classifier-free guidance. We further analyze the morphology of predicted profiles: post-hoc power sharpening and a learned sharpening target both recover ground-truth profile width without degrading depth, exposing a monotonic width-peak frontier in the L1-per-ray loss family and motivating a principled redefinition of morphology gates. Real-photo validation on two DTU scenes confirms the pipeline transfers to non-synthetic input. Our results suggest that ray-wise occupancy profiles offer a compact, learned, and uncertainty-aware interface between multi-view reconstruction and generative priors.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/26/2608.22102v1-learning-implicit-constitutive-laws-for-dynamic-3d-gaussian-splatting-from-monocular-videos",
+      "section": "quick",
+      "title_en": "Learning Implicit Constitutive Laws for Dynamic 3D Gaussian Splatting from Monocular Videos",
+      "authors": "Xiaoyang Liu, Kai Han",
+      "date": "2026-08-22",
+      "pdf": "https://arxiv.org/pdf/2608.22102v1",
+      "score": "6.0",
+      "evidence": "动态3DGS新视角合成，非全景",
+      "tldr": "针对单目视频中动态3D高斯泼溅的物理建模难题，提出GCA框架，利用LoRA适应并结合秩深度几何锚点与本构先验正则化学习隐式本构定律。该方法通过尺度不变秩深度对齐建立鲁棒几何约束，以经典本构模型作为软先验正则化优化，兼顾鲁棒性与灵活性。实验表明，在合成基准上Chamfer距离较最强基线降低48%，在真实到模拟及真实数据上均稳定优于现有方法，为动态场景重建提供了高效可解释的物理学习范式。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "We present GCA (Gaussian Constitutive Alignment), a framework for learning implicit constitutive laws from monocular dynamic video of deformable objects represented by 3D Gaussians. Given a static multi-view scan for geometric initialization, our method learns intrinsic physical dynamics solely from a single fixed-viewpoint video of the moving object. Existing implicit methods often suffer from local minima under noisy supervision and lack physical interpretability, while explicit approaches rely on predefined constitutive equations, limiting generalizability and becoming unstable in monocular settings. To address these challenges, our framework unifies LoRA-based adaptation with two key alignment modules. First, we propose Rank-based Depth-Geometric Anchors (RDGA) to establish robust geometric constraints from monocular dynamic observations via scale-invariant rank-based depth alignment, reducing the reliance on unreliable pixel-level color supervision. Second, a Constitutive Prior Regularizer (CPR) integrates classical constitutive models as soft differentiable priors, regularizing the optimization while preserving the flexibility of implicit modeling---even when the actual material is absent from the hypotheses. Extensive experiments on synthetic, real-to-sim, and real-world datasets demonstrate that GCA outperforms existing methods, achieving 48% lower Chamfer Distance than the strongest baseline on synthetic benchmarks while remaining robust under monocular supervision.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/26/2608.22465v1-m3isr-a-multi-modal-multi-view-benchmark-for-3d4d-gaussian-splatting-and-feedforward-compression",
+      "section": "quick",
+      "title_en": "M$^3$ISR: A Multi-Modal Multi-View Benchmark for 3D/4D Gaussian Splatting and Feedforward Compression",
+      "authors": "Xinhui Liu, Lei Liu, Zhenghao Chen, Lebin Zhou, Wei Wang, Wei Jiang",
+      "date": "2026-08-23",
+      "pdf": "https://arxiv.org/pdf/2608.22465v1",
+      "score": "6.0",
+      "evidence": "提供面向3D/4D高斯泼溅的受控合成基准，支持新视角合成评测",
+      "tldr": "高保真自由视点视频和交互渲染依赖高斯泼溅表示，但部署受模型尺寸、动态更新和计算成本制约，现有真实多视基准难以隔离相机几何与时间冗余的影响。为此提出M3ISR受控合成基准，含25个场景、6路同步1080p视图和密集真值标注，通过共享中心相机隔离角度变化，支持3D/4D高斯泼溅的新视角合成、压缩与流式任务。基线评测显示静态重建质量差异小但存储开销显著，流式方法训练代价远高于离线基线，并给出前馈压缩的率失真参照，为高斯表示研究提供受控互补测试平台。",
+      "tags": "query:pano-dgs",
+      "abstract_en": "High-fidelity free-viewpoint video (FVV) and interactive rendering increasingly rely on explicit Gaussian representations, yet practical deployment remains constrained by representation size, dynamic updates, and computational cost. Existing multi-view video benchmarks provide valuable real-captured content, but they make it difficult to isolate the effects of controlled camera geometry, representation efficiency, and temporal redundancy. We introduce M$^3$ISR, a controlled synthetic benchmark for 3D and 4D Gaussian Splatting (3DGS/4DGS). The benchmark contains 25 scenes from five indoor and outdoor scene groups, two camera/motion configurations, six synchronized 1080p views, and dense ground-truth annotations including RGB, camera parameters, depth, semantic and instance segmentation, and static--dynamic masks. The shared-center camera design intentionally isolates angular view variation and enables controlled evaluation of novel-view synthesis and representation efficiency. We organize M$^3$ISR into five complementary tracks covering 3DGS synthesis, 4DGS synthesis, 4DGS streaming, 3DGS compression, and 4DGS compression. Representative baseline results show small differences in static reconstruction quality but substantial differences in representation storage, while the evaluated streaming methods exhibit substantially higher reported training or reconstruction cost than the corresponding offline dynamic reconstruction baselines. We further define feedforward compression tasks for 3DGS and 4DGS and provide reference rate--distortion formulations and preliminary baseline evaluations. The benchmark is intended as a controlled and complementary testbed for systematic study of Gaussian-based FVV reconstruction, compression, and streaming.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
