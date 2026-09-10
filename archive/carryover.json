@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-09T22:07:09.055168+00:00",
-  "updated_date": "20260909",
+  "generated_at": "2026-09-10T21:38:41.648225+00:00",
+  "updated_date": "20260910",
   "carryover_days": 9,
   "tag_states": {
     "pano-dgs": {
-      "updated_date": "20260909",
+      "updated_date": "20260910",
       "carryover_days": 9,
       "items": []
     }
